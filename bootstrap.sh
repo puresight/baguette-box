@@ -40,7 +40,6 @@ fi
 podman system migrate
 
 echo "--- 6. VERIFICATION ---"
-echo "User:         $(git config user.name)"
 echo "Node version: $(node -v)"
 echo "Go version:   $(go version)"
 echo "UV version:   $(uv --version)"
