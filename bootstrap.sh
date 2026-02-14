@@ -28,7 +28,6 @@ brew install gcc
 brew bundle --file=./Brewfile
 
 echo "--- 4. SHELL CONFIGURATION (Starship) ---"
-# Initialize Starship in .zshrc if not already there
 if ! grep -q "starship init zsh" "$HOME/.zshrc"; then
     echo 'eval "$(starship init zsh)"' >> "$HOME/.zshrc"
 fi
@@ -41,6 +40,7 @@ fi
 podman system migrate
 
 echo "--- 6. VERIFICATION ---"
+echo "User:         $(git config user.name)"
 echo "Node version: $(node -v)"
 echo "Go version:   $(go version)"
 echo "UV version:   $(uv --version)"
