@@ -1,0 +1,8 @@
+tap "homebrew/bundle"
+brew "node"
+brew "go"
+brew "rustup-init"
+brew "uv"
+brew "aider"
+brew "gh"
+brew "starship"
