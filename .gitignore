@@ -1,0 +1,48 @@
+# --- Personal & Secret Data ---
+.env
+.env.local
+*.pem
+*.key
+.ssh/
+secrets.txt
+
+# --- Aider & AI Tools ---
+.aider.conf.yml
+.aider.chat.history.md
+.aider.applied.history.md
+
+# --- Python (uv / general) ---
+__pycache__/
+.venv/
+.python-version
+.pytest_cache/
+
+# --- Node.js ---
+node_modules/
+npm-debug.log*
+yarn-error.log*
+.pnpm-debug.log*
+
+# --- Go ---
+bin/
+obj/
+
+# --- Rust ---
+target/
+**/*.rs.bk
+
+# --- System & OS ---
+.DS_Store
+.DS_Store?
+ehthumbs.db
+Icon?
+Thumbs.db
+*.swp
+*~
+.nfs*
+
+# --- ChromeOS / Linux specific ---
+.bash_history
+.zsh_history
+.lesshst
+.node_repl_history
