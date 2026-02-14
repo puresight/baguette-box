@@ -9,6 +9,7 @@ This script provides a reproducible environment for a cloud-native developer sta
 3. `cd <repo-name>`
 4. `./bootstrap.sh`
 5. **Identity Setup** (See Manual Steps below)
+6. **Restart Shell:** Close and reopen the terminal (or run `exec zsh`) to activate Starship and Homebrew paths.
 
 ## Core Architecture
 * **System Layer:** Apt handles hardware-dependent fixes (Podman, Keyrings).
