@@ -1,8 +1,6 @@
-# Workstation IDE Setup
+# IDE Setup
 
-## Purpose
-
-This module installs Microsoft VS Code and a curated suite of verified extensions.
+This module installs Microsoft **VS Code** and a curated suite of verified extensions.
 
 ## Installation
 
@@ -15,17 +13,17 @@ This module installs Microsoft VS Code and a curated suite of verified extension
 
 To maintain workstation integrity, the `ide.sh` script only installs extensions from verified, reputable publishers. 
 
-### Third-Party Extension Caveats
+### AI Extensions
 
-The following extensions are highly useful for AI-driven development but are not installed automatically due to being from third-party/unverified authors. Review their permissions before manual installation:
+The following extensions are highly useful for AI-driven development but are not installed automatically. Review their permissions before manual installation:
 
-- Roo Code (rooveterinaryinc.roo-cline): Required for autonomous coding tasks.
+- Roo Code (`rooveterinaryinc.roo-cline`): Required for autonomous coding tasks.
 - Aider (extension-specific alternatives): If using VS Code wrappers for Aider.
 
-### Updates
+### Upkeep
 
-- Linux: VS Code is integrated into the system package manager via the Microsoft repository. Run `sudo apt upgrade` to update.
-- macOS: VS Code manages its own updates via the Microsoft Update service.
+- on Linux: VS Code is integrated into the system package manager via the Microsoft repository. Run `sudo apt upgrade` to update.
+- on Mac: VS Code manages its own updates via the Microsoft Update service.
 
 ## Cross-Platform Support
 

@@ -1,7 +1,7 @@
-# Chromebook Dev Workstation Bootstrap
+# Dev Workstation Bootstrap
 
 ## Purpose
-This script provides a reproducible environment for a cloud-native developer stack (Node.js, Go, Rust, Python/uv) across multiple Chromebooks using Starship and Homebrew.
+This script provides a reproducible environment for a cloud-native developer stack (Node.js, Go, Rust, Python/uv) across multiple systems using Starship and Homebrew.
 
 ## How to Use
 1. `sudo apt update && sudo apt install git -y`
