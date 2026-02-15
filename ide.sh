@@ -29,15 +29,16 @@ code --install-extension dbaeumer.vscode-eslint
 code --install-extension esbenp.prettier-vscode
 
 # TODO: Fix this code to run only on ChromeOS machines (e.g. not Mac's)
+# TODO: Make non-destructive; this approach destroys any additions or modifications to argv.json file
 echo "--- 3. FIXING OS KEYRING on ChromeOS ---"
 mkdir -p ~/.vscode
-# TODO: make non-destructive; this approach destroys any additions or modifications to argv.json file
 # Overwrite or create the argv.json to guarantee the password-store is set to gnome-libsecret
 cat << 'JSON_EOF' > ~/.vscode/argv.json
 {
     "password-store": "gnome-libsecret"
 }
 JSON_EOF
+echo "Destructive overwrite of ~/.vscode/argv.json"
 echo "VS Code runtime arguments updated. Keyring fix applied."
 
 echo "--- IDE SETUP COMPLETE ---"

@@ -1,24 +1,33 @@
 # Workstation IDE Setup
 
 ## Purpose
-This module installs Visual Studio Code and a curated suite of **verified** extensions. The logic supports both Linux (Debian/Crostini) and macOS (via Homebrew).
+
+This module installs Microsoft VS Code and a curated suite of verified extensions.
 
 ## Installation
+
 1. Ensure the base `bootstrap.sh` has been executed.
-2. Run `./ide.sh`.
+1. Run `./ide.sh`.
 
 ## Security & Maintenance
+
 ### Verified Extensions
+
 To maintain workstation integrity, the `ide.sh` script only installs extensions from verified, reputable publishers. 
 
 ### Third-Party Extension Caveats
-The following extensions are highly useful for AI-driven development but are not installed automatically due to being from third-party/unverified authors. Review their permissions before manual installation:
-* **Roo Code (rooveterinaryinc.roo-cline):** Required for autonomous coding tasks.
-* **Aider (extension-specific alternatives):** If using VS Code wrappers for Aider.
 
-### Update Logic
-* **Linux:** VS Code is integrated into the system package manager via the Microsoft repository. Run `sudo apt upgrade` to update.
-* **macOS:** VS Code manages its own updates via the Microsoft Update service.
+The following extensions are highly useful for AI-driven development but are not installed automatically due to being from third-party/unverified authors. Review their permissions before manual installation:
+
+- Roo Code (rooveterinaryinc.roo-cline): Required for autonomous coding tasks.
+- Aider (extension-specific alternatives): If using VS Code wrappers for Aider.
+
+### Updates
+
+- Linux: VS Code is integrated into the system package manager via the Microsoft repository. Run `sudo apt upgrade` to update.
+- macOS: VS Code manages its own updates via the Microsoft Update service.
 
 ## Cross-Platform Support
+
+This is evolving.
 The `ide.sh` script detects if it is running on **Darwin (macOS)** or **Linux** and adjusts the installation method accordingly (Brew Cask vs. Apt).
