@@ -4,7 +4,7 @@ set -e
 echo "--- BOOTSTRAP START ---"
 
 echo
-echo "--- SYSTEM LAYER (Apt fixes) ---"
+echo "--- SYSTEM LAYER (Apt installs) ---"
 sudo apt update
 sudo apt install -y zsh gnome-keyring libsecret-1-dev libsecret-tools seahorse fuse-overlayfs podman git curl build-essential
 
@@ -52,12 +52,18 @@ podman system migrate
 echo
 echo "--- VERSIONS ---"
 
-echo "shell: " # TODO display shell name and version
+echo "Shell: $SHELL ($($SHELL --version | head -n 1))"
 echo "Starship: $(starship --version | head -n 1)"
-echo "Brew: " # TODO display homebrew version
+echo "Brew: $(brew --version | head -n 1)"
 echo "Node: $(node -v)"
 echo "UV: $(uv --version)"
-echo "Rust: " # TODO display Rust name and version
+if command -v rustc &> /dev/null; then
+    echo "Rust: $(rustc --version)"
+elif command -v rustup &> /dev/null; then
+    echo "Rustup: $(rustup --version | head -n 1)"
+else
+    echo "Rust: Not installed"
+fi
 echo "Go: $(go version)"
 
 echo

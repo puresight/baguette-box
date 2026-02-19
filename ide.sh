@@ -7,33 +7,32 @@ echo
 echo "--- IDE SETUP START ---"
 
 echo
-echo "--- ADD APT SOURCE packages.microsoft.com ---"
-echo "TODO"
-# TODO: add the Microsofft packages APT source which shall be used for several things
+echo "--- ADD packages.microsoft.com ---"
+if [ "$OS_TYPE" == "Linux" ]; then
+    sudo apt update && sudo apt install -y wget gpg
+    wget -qO- https://packages.microsoft.com/keys/microsoft.asc | gpg --dearmor > packages.microsoft.gpg
+    sudo install -D -o root -g root -m 644 packages.microsoft.gpg /etc/apt/keyrings/packages.microsoft.gpg
+    sudo sh -c 'echo "deb [arch=amd64,arm64,armhf signed-by=/etc/apt/keyrings/packages.microsoft.gpg] https://packages.microsoft.com/repos/code stable main" > /etc/apt/sources.list.d/vscode.list'
+    rm -f packages.microsoft.gpg
+    sudo apt update
+else
+    echo "Skipping APT source on $OS_TYPE"
+fi
 
 echo
 echo "--- INSTALLING VS CODE ($OS_TYPE) ---"
 if ! command -v code &> /dev/null; then
     if [ "$OS_TYPE" == "Linux" ]; then
-        sudo apt update && sudo apt install -y wget gpg
-        wget -qO- https://packages.microsoft.com/keys/microsoft.asc | gpg --dearmor > packages.microsoft.gpg
-        sudo install -D -o root -g root -m 644 packages.microsoft.gpg /etc/apt/keyrings/packages.microsoft.gpg
-        sudo sh -c 'echo "deb [arch=amd64,arm64,armhf signed-by=/etc/apt/keyrings/packages.microsoft.gpg] https://packages.microsoft.com/repos/code stable main" > /etc/apt/sources.list.d/vscode.list'
-        rm -f packages.microsoft.gpg
-        sudo apt update && sudo apt install -y code
+        sudo apt install -y code
 
-        echo "To fix OS keyring,"
-        echo "Destructive overwrite of ~/.vscode/argv.json (runtime arguments)"
-        # FIXME: this approach destroys any additions or modifications to argv.json file
-        # TODO: use tool jaq (installed during bootstrap) to make the JSON changes
+        echo "Configuring VS Code runtime arguments (argv.json)..."
         mkdir -p ~/.vscode
-        # Overwrite or create the argv.json to guarantee the password-store is set to gnome-libsecret
-        cat << 'JSON_EOF' > ~/.vscode/argv.json
-{
-    "enable-crash-reporter": "false",
-    "password-store": "gnome-libsecret"
-}
-JSON_EOF
+        ARGV_JSON="$HOME/.vscode/argv.json"
+        if [ ! -f "$ARGV_JSON" ]; then
+            echo "{}" > "$ARGV_JSON"
+        fi
+        tmp=$(mktemp)
+        jaq '.["enable-crash-reporter"] = "false" | .["password-store"] = "gnome-libsecret"' "$ARGV_JSON" > "$tmp" && mv "$tmp" "$ARGV_JSON"
     elif [ "$OS_TYPE" == "Darwin" ]; then
         brew install --cask visual-studio-code
     fi
@@ -43,21 +42,41 @@ fi
 
 echo
 echo "--- UPDATE VSCODE EXTENSIONS ---"
-
-# TODO: put list of extensions (to iterate over) in a separate file `CodeExtensions``
-code --install-extension ms-python.python --force
-code --install-extension golang.go --force
-code --install-extension rust-lang.rust-analyzer --force
-code --install-extension dbaeumer.vscode-eslint --force
-code --install-extension esbenp.prettier-vscode --force
-# code --install-extension github.copilot --force
-code --install-extension rooveterinaryinc.roo-cline --force
+if [ -f "CodeExtensions" ]; then
+    while IFS= read -r extension || [ -n "$extension" ]; do
+        # Ignore comments and empty lines
+        [[ "$extension" =~ ^#.*$ ]] && continue
+        [[ -z "$extension" ]] && continue
+        echo "Installing extension: $extension"
+        code --install-extension "$extension" --force
+    done < "CodeExtensions"
+else
+    echo "Error: CodeExtensions file not found! skipping extension installation."
+fi
 code --list-extensions
 
 echo
 echo "--- CONFIGURE VSCODE & EXTENSIONS ---"
-echo "TODO"
-# TODO: use tool jaq to add configurations for vscode & installed extensions
+if [ "$OS_TYPE" == "Linux" ]; then
+    VSCODE_SETTINGS="$HOME/.config/Code/User/settings.json"
+elif [ "$OS_TYPE" == "Darwin" ]; then
+    VSCODE_SETTINGS="$HOME/Library/Application Support/Code/User/settings.json"
+fi
+
+if [ -n "$VSCODE_SETTINGS" ]; then
+    echo "Configuring VS Code settings at $VSCODE_SETTINGS..."
+    mkdir -p "$(dirname "$VSCODE_SETTINGS")"
+    if [ ! -f "$VSCODE_SETTINGS" ]; then
+        echo "{}" > "$VSCODE_SETTINGS"
+    fi
+    # Example configurations using jaq
+    tmp=$(mktemp)
+    jaq '.["editor.formatOnSave"] = true |
+         .["editor.inlineSuggest.enabled"] = true |
+         .["files.insertFinalNewline"] = true' "$VSCODE_SETTINGS" > "$tmp" && mv "$tmp" "$VSCODE_SETTINGS"
+else
+    echo "Unsupported OS for automated VS Code settings configuration."
+fi
 
 echo
 echo "--- IDE SETUP END ---"
