@@ -1,32 +1,28 @@
-# Dev Workstation Bootstrap
+# Bootstrap
 
-Bootstrap your dev workstation
+Bootstrap your developer workstation. This script provides a reproducible environment for a cloud-native developer stack.
 
-## Purpose
-
-This script provides a reproducible environment for a cloud-native developer stack (Node.js, Go, Rust, Python/uv) across multiple systems using Starship and Homebrew.
+- **System Layer:** Apt handles hardware-dependent fixes (Podman, Keyrings)
+- **Package Manager:** Homebrew manages the language stack and CLI tools
+- **Shell UI:** Starship prompt
 
 ## How to Use
 
 - `./bootstrap.sh`
 - Restart your shell: Close and reopen the terminal (or run `exec zsh`) to activate Starship and Homebrew paths
 
-## Core Architecture
-
-- **System Layer:** Apt handles hardware-dependent fixes (Podman, Keyrings).
-- **Package Manager:** Homebrew manages the language stack, GCC, and CLI tools.
-- **Shell Layer:** Starship provides a high-performance Rust-based prompt.
-
 ## Quick-Start Editor
 
-For quick file modifications (like editing your `.gitconfig`), the **Micro** text editor is included. 
-* To use it: `micro <filename>`
-* Key shortcuts: `Ctrl+S` (Save), `Ctrl+Q` (Quit), `Ctrl+C` (Copy), `Ctrl+V` (Paste).
+For quick file modifications, the **Micro** text editor is included
+
+- To use it: `micro <filename>`
+- Key shortcuts: `Ctrl+S` (Save), `Ctrl+Q` (Quit), `Ctrl+C` (Copy), `Ctrl+V` (Paste).
 
 ## Caveats & Warnings
-- **Sudo Password:** You must set a local password for the script to handle Homebrew/Apt updates.
-- **Git Identity:** Your `.gitconfig` is ignored by the repository to prevent PII leaks.
-- **Podman:** Use rootless mode; avoid `sudo` for podman commands.
+
+⚠ Important ⚠
+
+- With podman, use rootless mode, and do not `sudo` for podman commands.
 
 ## Troubleshooting
 

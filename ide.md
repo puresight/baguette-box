@@ -1,6 +1,6 @@
-# IDE Setup
+# IDE
 
-This module installs Microsoft **VS Code** and a curated suite of verified extensions.
+IDE setup installs Microsoft **VS Code** and a curated suite of verified extensions.
 
 ## Installation
 
@@ -27,5 +27,6 @@ The following extensions are highly useful for AI-driven development but are not
 
 ## Cross-Platform Support
 
-This is evolving.
+**This is evolving.**
+
 The `ide.sh` script detects if it is running on **Darwin (macOS)** or **Linux** and adjusts the installation method accordingly (Brew Cask vs. Apt).
