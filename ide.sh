@@ -3,6 +3,15 @@ set -e
 
 OS_TYPE=$(uname -s)
 
+echo
+echo "--- IDE SETUP START ---"
+
+echo
+echo "--- ADD APT SOURCE packages.microsoft.com ---"
+echo "TODO"
+# TODO: add the Microsofft packages APT source which shall be used for several things
+
+echo
 echo "--- INSTALLING VS CODE ($OS_TYPE) ---"
 if ! command -v code &> /dev/null; then
     if [ "$OS_TYPE" == "Linux" ]; then
@@ -13,24 +22,29 @@ if ! command -v code &> /dev/null; then
         rm -f packages.microsoft.gpg
         sudo apt update && sudo apt install -y code
 
-        echo "on ChromeOS, so fixing OS keyring"
+        echo "To fix OS keyring,"
         echo "Destructive overwrite of ~/.vscode/argv.json (runtime arguments)"
-        # TODO: Make non-destructive; this approach destroys any additions or modifications to argv.json file
+        # FIXME: this approach destroys any additions or modifications to argv.json file
+        # TODO: use tool jaq (installed during bootstrap) to make the JSON changes
         mkdir -p ~/.vscode
         # Overwrite or create the argv.json to guarantee the password-store is set to gnome-libsecret
         cat << 'JSON_EOF' > ~/.vscode/argv.json
-{ "password-store": "gnome-libsecret" }
+{
+    "enable-crash-reporter": "false",
+    "password-store": "gnome-libsecret"
+}
 JSON_EOF
     elif [ "$OS_TYPE" == "Darwin" ]; then
         brew install --cask visual-studio-code
     fi
 else
-    echo "VS Code is already installed"
+    echo "VS Code: $(code --version)"
 fi
 
-echo "--- INSTALLING EXTENSIONS ---"
-# Only installing extensions from verified publishers (Microsoft, Google, etc.)
+echo
+echo "--- UPDATE VSCODE EXTENSIONS ---"
 
+# TODO: put list of extensions (to iterate over) in a separate file `CodeExtensions``
 code --install-extension ms-python.python --force
 code --install-extension golang.go --force
 code --install-extension rust-lang.rust-analyzer --force
@@ -38,5 +52,12 @@ code --install-extension dbaeumer.vscode-eslint --force
 code --install-extension esbenp.prettier-vscode --force
 # code --install-extension github.copilot --force
 code --install-extension rooveterinaryinc.roo-cline --force
+code --list-extensions
 
-echo "--- IDE SETUP COMPLETE ---"
+echo
+echo "--- CONFIGURE VSCODE & EXTENSIONS ---"
+echo "TODO"
+# TODO: use tool jaq to add configurations for vscode & installed extensions
+
+echo
+echo "--- IDE SETUP END ---"
