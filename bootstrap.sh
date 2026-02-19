@@ -24,10 +24,10 @@ if ! grep -q "shellenv" "$HOME/.zprofile"; then
 fi
 
 echo "--- 3. DEVELOPER STACK (Brewfile) ---"
-brew install gcc
 brew bundle --file=./Brewfile
 
-echo "--- 4. SHELL CONFIGURATION (Starship) ---"
+echo "--- 4. SHELL CONFIGURATION (zsh with Starship) ---"
+sudo chsh -s $(which zsh) $USER
 if ! grep -q "starship init zsh" "$HOME/.zshrc"; then
     echo 'eval "$(starship init zsh)"' >> "$HOME/.zshrc"
 fi
