@@ -2,6 +2,8 @@
 
 `baguette-box` 🥖 helps rapidly set up a new developer workstation. It is a reproducible system for starting up an AI-augmented development environment instance.
 
+Note: This is beta quality code so backup before using, read the docs, and scan the source before running.
+
 - [Google/ChromeOS](https://www.chromium.org/chromium-os/developer-library/guides/containers/containers-and-vms/) 🐧 primary
 - [GNU/Linux](https://www.linuxfoundation.org/) 🐧 secondary
 - [Apple/Mac](https://www.apple.com/mac/) 🐧 future
@@ -16,8 +18,8 @@ CLI
 
 Languages
 
-- [Python](https://www.python.org/) via ([uv](https://docs.astral.sh/uv/getting-started/features/))
-- [JavaScript](https://developer.mozilla.org/en-US/docs/Web/JavaScript) via ([Node](https://nodejs.org/))
+- [Python](https://www.python.org/) via [uv](https://docs.astral.sh/uv/getting-started/features/)
+- [JavaScript](https://developer.mozilla.org/en-US/docs/Web/JavaScript) via [Node](https://nodejs.org/)
 - [Go](https://go.dev/)
 - [Rust](https://rust-lang.org/)
 
@@ -53,3 +55,11 @@ Next, run the code
 
 1. **bootstrap:** Installs zsh with starship, core language runtimes, and system-level fixes; read `bootstrap.md`
 1. **ide:** Installs VS Code with a curated suite of extensions; read `ide.md`
+
+## Secrets
+
+🐧 Secrets include credentials (access tokens, API keys, username/password, etc) for applications, databases, websites, network logins, etc.
+
+- View: [`seahorse` aka "Passwords and Keys"](https://wiki.gnome.org/Apps/Seahorse) is a graphical frontend for the GNOME Keyring system; helpful for inspection or verification
+- Store: `echo -n "YOUR_ACTUAL_API_KEY" | secret-tool store --label="Gemini API Unbilled Key" service google-ai account unbilled-gemini-key`
+- Retrieve: `export GEMINI_API_KEY=$(secret-tool lookup service google-ai account unbilled-gemini-key)`

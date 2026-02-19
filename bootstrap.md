@@ -15,14 +15,6 @@ Bootstrap your developer workstation. This script provides a reproducible enviro
 
 🐧 For quick file modifications, the [Nano](https://www.nano-editor.org/docs.php) is often bundled with your distribution.
 
-## Secrets
-
-🐧 Secrets include credentials (access tokens, API keys, username/password, etc) for applications, databases, websites, network logins, etc.
-
-- View: [Seahorse aka "Passwords and Keys"](https://wiki.gnome.org/Apps/Seahorse) is a graphical frontend for the GNOME Keyring system; helpful for inspection or verification
-- Store: `echo -n "YOUR_ACTUAL_API_KEY" | secret-tool store --label="Gemini API Unbilled Key" service google-ai account unbilled-gemini-key`
-- Retrieve: `export GEMINI_API_KEY=$(secret-tool lookup service google-ai account unbilled-gemini-key)`
-
 ## Caveats & Warnings
 
 ⚠ Important ⚠
