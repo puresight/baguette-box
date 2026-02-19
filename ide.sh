@@ -69,11 +69,12 @@ if [ -n "$VSCODE_SETTINGS" ]; then
     if [ ! -f "$VSCODE_SETTINGS" ]; then
         echo "{}" > "$VSCODE_SETTINGS"
     fi
-    # Example configurations using jaq
+    echo "DEBUG jaq start"
     tmp=$(mktemp)
     jaq '.["editor.formatOnSave"] = true |
-         .["editor.inlineSuggest.enabled"] = true |
-         .["files.insertFinalNewline"] = true' "$VSCODE_SETTINGS" > "$tmp" && mv "$tmp" "$VSCODE_SETTINGS"
+         .["editor.inlineSuggest.enabled"] = true' "$VSCODE_SETTINGS" > "$tmp" && mv "$tmp" "$VSCODE_SETTINGS"
+    # FIXME: Error: failed to parse: string expected
+    echo "DEBUG jaq end"
 else
     echo "Unsupported OS for automated VS Code settings configuration."
 fi
