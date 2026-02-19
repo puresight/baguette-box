@@ -1,32 +1,17 @@
 # IDE
 
-IDE setup installs Microsoft **VS Code** and a curated suite of verified extensions.
+IDE setup installs Microsoft **VS Code** and some extensions.
 
-## Installation
+The cross-platform support is nascent; the `ide.sh` script tries to detect if it is running on Darwin (macOS) or Linux and adjusts the installation method accordingly (Brew Cask vs. Apt).
 
-1. Ensure the base `bootstrap.sh` has been executed.
-1. Run `./ide.sh`.
-
-## Security & Maintenance
-
-### Verified Extensions
-
-To maintain workstation integrity, the `ide.sh` script only installs extensions from verified, reputable publishers. 
-
-### AI Extensions
-
-The following extensions are highly useful for AI-driven development but are not installed automatically. Review their permissions before manual installation:
-
-- Roo Code (`rooveterinaryinc.roo-cline`): Required for autonomous coding tasks.
-- Aider (extension-specific alternatives): If using VS Code wrappers for Aider.
-
-### Upkeep
-
-- on Linux: VS Code is integrated into the system package manager via the Microsoft repository. Run `sudo apt upgrade` to update.
+- on Linux: VS Code is integrated into the system package manager via the Microsoft repository?
 - on Mac: VS Code manages its own updates via the Microsoft Update service.
 
-## Cross-Platform Support
+## VS Code Extensions
 
-**This is evolving.**
+Before you run the script, inspect the extensions that it will install. To maintain workstation integrity, only install extensions from verified authors that regularly address issues with updates.
 
-The `ide.sh` script detects if it is running on **Darwin (macOS)** or **Linux** and adjusts the installation method accordingly (Brew Cask vs. Apt).
+## How to Use
+
+1. Ensure the base `bootstrap.sh` has already been executed
+1. Run `./ide.sh`
