@@ -1,8 +1,13 @@
-# baguette-box
+# Baguette Box
 
-This software helps you rapidly set up a new developer workstation. It is a reproducible system for starting up an AI-augmented development environment instance. Originally designed for high-performance Chromebooks (Crostini), it's evolving towards being cross-platform ([Linux](https://www.linuxfoundation.org/) / [Mac](https://www.apple.com/mac/) / [Chromebook](https://www.chromium.org/chromium-os/developer-library/guides/containers/containers-and-vms/) / [WSL2](https://learn.microsoft.com/en-us/windows/wsl/about)).
+`baguette-box` helps rapidly set up a new developer workstation. It is a reproducible system for starting up an AI-augmented development environment instance.
 
-## Tech stack
+- [Linux](https://www.linuxfoundation.org/)
+- [Chromebook](https://www.chromium.org/chromium-os/developer-library/guides/containers/containers-and-vms/)
+- [Mac](https://www.apple.com/mac/) future
+- [WSL2](https://learn.microsoft.com/en-us/windows/wsl/about) future
+
+## Tech Stack
 
 Languages
 
@@ -10,7 +15,11 @@ Languages
 - [JavaScript](https://developer.mozilla.org/en-US/docs/Web/JavaScript) ([Node](https://nodejs.org/))
 - [Go](https://go.dev/)
 - [Rust](https://rust-lang.org/)
-- [Zsh](https://zsh.sourceforge.io/) shell and [Starship](https://starship.rs/) prompt
+
+CLI
+
+- [zsh](https://zsh.sourceforge.io/) shell and [Starship](https://starship.rs/) prompt
+- [Github CLI](https://cli.github.com/)
 
 AI pairing
 
@@ -21,7 +30,7 @@ DevOps
 
 - [Homebrew](http://docs.brew.sh/Homebrew-on-Linux) for OS packages
 
-## Prepare Your System
+## Prepare
 
 First, prepare your system
 
@@ -36,7 +45,7 @@ First, prepare your system
 
 ## Scripts
 
-Next, run the scripts
+Next, run the code
 
-- **bootstrap:** Installs zsh with starship, core language runtimes, and system-level fixes; read `bootstrap.md`
-- **ide:** Installs VS Code with a curated suite of extensions; read `ide.md`
+1. **bootstrap:** Installs zsh with starship, core language runtimes, and system-level fixes; read `bootstrap.md`
+1. **ide:** Installs VS Code with a curated suite of extensions; read `ide.md`
