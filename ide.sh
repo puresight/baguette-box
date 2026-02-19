@@ -32,7 +32,11 @@ if ! command -v code &> /dev/null; then
             echo "{}" > "$ARGV_JSON"
         fi
         tmp=$(mktemp)
-        jaq '.["enable-crash-reporter"] = "false" | .["password-store"] = "gnome-libsecret"' "$ARGV_JSON" > "$tmp" && mv "$tmp" "$ARGV_JSON"
+        echo "Stripping out comments"
+        npx strip-json-comments-cli "$ARGV_JSON" | jaq '.["enable-crash-reporter"] = "false" |
+            .["password-store"] = "gnome-libsecret"' > "$tmp" && mv "$tmp" "$ARGV_JSON"
+        echo "Changes saved"
+
     elif [ "$OS_TYPE" == "Darwin" ]; then
         brew install --cask visual-studio-code
     fi
@@ -69,12 +73,11 @@ if [ -n "$VSCODE_SETTINGS" ]; then
     if [ ! -f "$VSCODE_SETTINGS" ]; then
         echo "{}" > "$VSCODE_SETTINGS"
     fi
-    echo "DEBUG jaq start"
     tmp=$(mktemp)
-    jaq '.["editor.formatOnSave"] = true |
-         .["editor.inlineSuggest.enabled"] = true' "$VSCODE_SETTINGS" > "$tmp" && mv "$tmp" "$VSCODE_SETTINGS"
-    # FIXME: Error: failed to parse: string expected
-    echo "DEBUG jaq end"
+    echo "Stripping out comments"
+    npx strip-json-comments-cli "$VSCODE_SETTINGS" | jaq '.["editor.formatOnSave"] = true |
+        .["editor.inlineSuggest.enabled"] = true' > "$tmp" && mv "$tmp" "$VSCODE_SETTINGS"
+    echo "Changes saved"
 else
     echo "Unsupported OS for automated VS Code settings configuration."
 fi
