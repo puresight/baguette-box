@@ -4,10 +4,10 @@
 
 Note: This is beta quality code so backup before using, read the docs, and scan the source before running.
 
-- [Google/ChromeOS](https://www.chromium.org/chromium-os/developer-library/guides/containers/containers-and-vms/) 🐧 primary
-- [GNU/Linux](https://www.linuxfoundation.org/) 🐧 secondary
-- [Apple/Mac](https://www.apple.com/mac/) 🐧 future
-- [Microsoft/WSL2](https://learn.microsoft.com/en-us/windows/wsl/about) 🐧 future
+- [Google/ChromeOS](https://chromeos.dev/en/linux) 🐧 primary
+- [Debian Linux](https://www.debian.org/) 🐧 secondary
+- [Apple/Mac](https://www.apple.com/mac/) future
+- [Microsoft/WSL2](https://learn.microsoft.com/en-us/windows/wsl/about) future
 
 ## Tech Stack
 
@@ -40,11 +40,13 @@ DevOps
 
 First, prepare your system
 
-- [ChromeOS](https://www.chromium.org/chromium-os/developer-library/guides/containers/containers-and-vms/) 🐧 you must have a password: `sudo passwd $USER`
-- Linux 🐧 `sudo apt update && sudo apt install git -y`
-- [Git First Time Setup](https://git-scm.com/book/ms/v2/Getting-Started-First-Time-Git-Setup)
-- SSH: Ensure your SSH keys are generated and added to your version control provider
-  - [Github](https://docs.github.com/en/authentication/connecting-to-github-with-ssh/adding-a-new-ssh-key-to-your-github-account)
+- ChromeOS: Set a password
+  - `sudo passwd $USER`
+- Linux: Update your packages and install Git
+  - `sudo apt update && sudo apt install git -y`
+- Git [First Time Setup](https://git-scm.com/book/ms/v2/Getting-Started-First-Time-Git-Setup) e.g.
+  - `git config --global user.name "Jane Doe"`
+  - `git config --global user.email "janedoe@example.com"`
 - Clone the repo:
   - `git clone <repo-link>`
   - `cd <repo-name>`
@@ -58,8 +60,8 @@ Next, run the code
 
 ## Secrets
 
-🐧 Secrets include credentials (access tokens, API keys, username/password, etc) for applications, databases, websites, network logins, etc.
+🐧 Secrets include credentials (access tokens, API keys, username/password, etc) for applications, databases, websites, network logins, etc. VS Code is going to use this system anyway, so you might as well too.
 
-- View: [`seahorse` aka "Passwords and Keys"](https://wiki.gnome.org/Apps/Seahorse) is a graphical frontend for the GNOME Keyring system; helpful for inspection or verification
-- Store: `echo -n "YOUR_ACTUAL_API_KEY" | secret-tool store --label="Gemini API Unbilled Key" service google-ai account unbilled-gemini-key`
-- Retrieve: `export GEMINI_API_KEY=$(secret-tool lookup service google-ai account unbilled-gemini-key)`
+- **View:** [`seahorse` aka "Passwords and Keys"](https://wiki.gnome.org/Apps/Seahorse) is a graphical frontend for the GNOME Keyring system; helpful for inspection or verification
+- **Store:** `echo -n "YOUR_ACTUAL_API_KEY" | secret-tool store --label="Gemini API Unbilled Key" service google-ai account unbilled-gemini-key`
+- **Retrieve:** `export GEMINI_API_KEY=$(secret-tool lookup service google-ai account unbilled-gemini-key)`

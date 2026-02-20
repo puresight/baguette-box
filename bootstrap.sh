@@ -63,6 +63,8 @@ echo "Persisting in ~/.zshrc"
 
 echo
 echo "--- ROOTLESS PODMAN FIX ---"
+# The Problem: By default, a Linux user only has one UID (yours). To run a container, Podman needs to pretend to be "root" inside the container while remaining a "normal user" outside. It does this by mapping a range of UIDs from the host to the container.
+# The Fix: By adding $USER:100000:65536 to /etc/subuid and subgid, you are granting your user permission to "own" 65,536 subordinate IDs.
 if [ ! -f "/etc/subuid" ] || ! grep -q "$USER" /etc/subuid; then
     echo "Defining a range of subordinate user IDs that the standard user account is permitted to use for User Namespaces"
     echo "$USER:100000:65536" | sudo tee -a /etc/subuid
@@ -72,6 +74,7 @@ if [ ! -f "/etc/subuid" ] || ! grep -q "$USER" /etc/subuid; then
     echo "Applying any changes to the current session"
 fi
 podman --version
+# Refresh the runtime to recognize these new mappings. This prevents the common ERRO[0000] user namespaces are not enabled error.
 podman system migrate
 
 echo
