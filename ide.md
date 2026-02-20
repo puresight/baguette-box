@@ -1,11 +1,8 @@
 # IDE
 
-This IDE setup `ide.sh` script installs Microsoft **VS Code** and some extensions.
+This IDE setup `ide.sh` script installs and configures Microsoft **VS Code** and some extensions.
 
-The cross-platform support is nascent; the script tries to detect if it is running on Darwin (macOS) or Linux and adjusts the installation method accordingly (Brew Cask vs. Apt).
-
-- on Linux 🐧 VS Code is integrated into the system package manager via the Microsoft repository
-- on Mac: VS Code manages its own updates via the Microsoft Update service.
+🌱 The cross-platform support is nascent; the script tries to detect if it is running on Darwin (macOS) or (Debian) Linux and adjusts the installation method accordingly.
 
 ## Extensions
 
@@ -13,7 +10,7 @@ The extensions to be installed are listed in the `CodeExtensions` file. To maint
 
 ## Configuration
 
-The script uses updates your `argv.json` and `settings.json` without overwriting your existing configurations.
+The script uses updates your `argv.json` and `settings.json` without overwriting your existing configurations although any/all JSON comments shall be removed.
 
 ## How to Use
 

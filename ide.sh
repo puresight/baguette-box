@@ -1,30 +1,12 @@
 #!/bin/bash
 set -e
-
 OS_TYPE=$(uname -s)
 
 echo
-echo "--- IDE SETUP START ---"
-
-echo
-echo "--- ADD packages.microsoft.com ---"
-if [ "$OS_TYPE" == "Linux" ]; then
-    sudo apt update && sudo apt install -y wget gpg
-    wget -qO- https://packages.microsoft.com/keys/microsoft.asc | gpg --dearmor > packages.microsoft.gpg
-    sudo install -D -o root -g root -m 644 packages.microsoft.gpg /etc/apt/keyrings/packages.microsoft.gpg
-    sudo sh -c 'echo "deb [arch=amd64,arm64,armhf signed-by=/etc/apt/keyrings/packages.microsoft.gpg] https://packages.microsoft.com/repos/code stable main" > /etc/apt/sources.list.d/vscode.list'
-    rm -f packages.microsoft.gpg
-    sudo apt update
-else
-    echo "Skipping APT source on $OS_TYPE"
-fi
-
-echo
-echo "--- INSTALLING VS CODE ($OS_TYPE) ---"
+echo "--- VS CODE ($OS_TYPE) ---"
 if ! command -v code &> /dev/null; then
     if [ "$OS_TYPE" == "Linux" ]; then
         sudo apt install -y code
-
         echo "Configuring VS Code runtime arguments (argv.json)..."
         mkdir -p ~/.vscode
         ARGV_JSON="$HOME/.vscode/argv.json"
@@ -45,7 +27,7 @@ else
 fi
 
 echo
-echo "--- UPDATE VSCODE EXTENSIONS ---"
+echo "--- EXTENSIONS ---"
 if [ -f "CodeExtensions" ]; then
     while IFS= read -r extension || [ -n "$extension" ]; do
         # Ignore comments and empty lines
@@ -57,10 +39,10 @@ if [ -f "CodeExtensions" ]; then
 else
     echo "Error: CodeExtensions file not found! skipping extension installation."
 fi
-code --list-extensions
+# code --list-extensions
 
 echo
-echo "--- CONFIGURE VSCODE & EXTENSIONS ---"
+echo "--- CONFIGURATION ---"
 if [ "$OS_TYPE" == "Linux" ]; then
     VSCODE_SETTINGS="$HOME/.config/Code/User/settings.json"
 elif [ "$OS_TYPE" == "Darwin" ]; then
@@ -83,4 +65,4 @@ else
 fi
 
 echo
-echo "--- IDE SETUP END ---"
+echo "Ready."
