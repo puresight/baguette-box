@@ -6,6 +6,8 @@ Aider can understand and modify multiple files simultaneously to complete comple
 
 ## Pairing
 
+For ideas about how to pair with Aider, read [Usage](https://aider.chat/docs/usage.html).
+
 Pairing with Aider requires a shift from traditional manual coding to an "editor-in-chief" mindset. Since **Aider integrates with git,** your main role is to guide its logic and audit its commits.
 
 - **Use Architect Mode:** Start complex tasks with `/architect`. This forces Aider to propose a plan before writing code, allowing you to catch logic errors before they are committed.
@@ -27,3 +29,8 @@ One way to work with VS Code and Aider simultaneously is to run Aier in VS Code'
 - Architecting: Run `/architect` in the terminal. As Aider describes the plan, open those files in VS Code tabs to follow along.
 - Real-time Audit: As Aider writes code, watch the gutter indicators (blue/green/red bars next to line numbers) in VS Code. If a bar appears in a section Aider shouldn't be touching, interrupt it.
 - The "Commit Review" Ritual: Before moving to the next task, click the Git icon in VS Code. Review the auto-generated commit message and the diff. If it’s wrong, type `/undo` in the terminal; if it’s right, keep going.
+- If you find Aider’s auto-commits too aggressive for your workflow, you can disable them in your `~/.aider.conf.yml` file. This lets you use Aider to generate code and then use VS Code to manually review and commit the "dirty" files yourself.
+  ```yaml
+  auto-commits: false
+  dirty-commits: false
+  ```
