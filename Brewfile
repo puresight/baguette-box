@@ -1,4 +1,3 @@
-brew "jaq"
 brew "starship"
 brew "node"
 brew "uv"

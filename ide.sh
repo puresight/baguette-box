@@ -3,25 +3,25 @@ set -e
 OS_TYPE=$(uname -s)
 
 echo
+echo "--- IDE ---"
+npm install -g jsonc-cli
+
+echo
 echo "--- VS CODE ($OS_TYPE) ---"
 if ! command -v code &> /dev/null; then
     if [ "$OS_TYPE" == "Linux" ]; then
         sudo apt install -y code
-        echo "Configuring VS Code runtime arguments (argv.json)..."
-        mkdir -p ~/.vscode
-        ARGV_JSON="$HOME/.vscode/argv.json"
-        if [ ! -f "$ARGV_JSON" ]; then
-            echo "{}" > "$ARGV_JSON"
-        fi
-        tmp=$(mktemp)
-        echo "Stripping out comments"
-        npx strip-json-comments-cli "$ARGV_JSON" | jaq '.["enable-crash-reporter"] = "false" |
-            .["password-store"] = "gnome-libsecret"' > "$tmp" && mv "$tmp" "$ARGV_JSON"
-        echo "Changes saved"
-
     elif [ "$OS_TYPE" == "Darwin" ]; then
         brew install --cask visual-studio-code
     fi
+    echo "Configuring VS Code runtime arguments (argv.json)..."
+    mkdir -p ~/.vscode
+    ARGV_JSON="$HOME/.vscode/argv.json"
+    if [ ! -f "$ARGV_JSON" ]; then
+        echo "{}" > "$ARGV_JSON"
+    fi
+    jsonc set "$ARGV_JSON" "enable-crash-reporter" "false"
+    jsonc set "$ARGV_JSON" "password-store" "gnome-libsecret"
 else
     echo "VS Code: $(code --version)"
 fi
@@ -55,11 +55,8 @@ if [ -n "$VSCODE_SETTINGS" ]; then
     if [ ! -f "$VSCODE_SETTINGS" ]; then
         echo "{}" > "$VSCODE_SETTINGS"
     fi
-    tmp=$(mktemp)
-    echo "Stripping out comments"
-    npx strip-json-comments-cli "$VSCODE_SETTINGS" | jaq '.["editor.formatOnSave"] = true |
-        .["editor.inlineSuggest.enabled"] = true' > "$tmp" && mv "$tmp" "$VSCODE_SETTINGS"
-    echo "Changes saved"
+    jsonc set "$VSCODE_SETTINGS" '"editor.formatOnSave"' true
+    jsonc set "$VSCODE_SETTINGS" '"editor.inlineSuggest.enabled"' true
 else
     echo "Unsupported OS for automated VS Code settings configuration."
 fi
