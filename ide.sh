@@ -1,10 +1,15 @@
 #!/bin/bash
 set -e
+set -o pipefail
+
 OS_TYPE=$(uname -s)
+SCRIPTDIR=$(cd -- "$(dirname -- "${BASH_SOURCE:-$0}")" && pwd)
+VSCODEUSERSETTINGS="vscode-user-settings.json"
+VSCODEARGV="vscode-argv.json"
 
 echo
-echo "--- IDE ---"
-npm install -g jsonc-cli
+echo "--- IDE START ---"
+source ./update_json.sh
 
 echo
 echo "--- VS CODE ($OS_TYPE) ---"
@@ -14,14 +19,16 @@ if ! command -v code &> /dev/null; then
     elif [ "$OS_TYPE" == "Darwin" ]; then
         brew install --cask visual-studio-code
     fi
-    echo "Configuring VS Code runtime arguments (argv.json)..."
+    echo "Configuring VS Code runtime arguments"
     mkdir -p ~/.vscode
     ARGV_JSON="$HOME/.vscode/argv.json"
-    if [ ! -f "$ARGV_JSON" ]; then
-        echo "{}" > "$ARGV_JSON"
+    if [ -n "$ARGV_JSON" ]; then
+        UPDATE_JSON "$SCRIPTDIR/$VSCODEARGV" $ARGV_JSON
+        if [ $? -ne 0 ]; then
+            echo "Argv update failed."
+            exit 1
+        fi
     fi
-    jsonc set "$ARGV_JSON" "enable-crash-reporter" "false"
-    jsonc set "$ARGV_JSON" "password-store" "gnome-libsecret"
 else
     echo "VS Code: $(code --version)"
 fi
@@ -44,21 +51,20 @@ fi
 echo
 echo "--- CONFIGURATION ---"
 if [ "$OS_TYPE" == "Linux" ]; then
-    VSCODE_SETTINGS="$HOME/.config/Code/User/settings.json"
+    TARGET_JSON="$HOME/.config/Code/User/settings.json"
 elif [ "$OS_TYPE" == "Darwin" ]; then
-    VSCODE_SETTINGS="$HOME/Library/Application Support/Code/User/settings.json"
+    TARGET_JSON="$HOME/Library/Application Support/Code/User/settings.json"
 fi
-
-if [ -n "$VSCODE_SETTINGS" ]; then
-    echo "Configuring VS Code settings at $VSCODE_SETTINGS..."
-    mkdir -p "$(dirname "$VSCODE_SETTINGS")"
-    if [ ! -f "$VSCODE_SETTINGS" ]; then
-        echo "{}" > "$VSCODE_SETTINGS"
+if [ -n "$TARGET_JSON" ]; then
+    mkdir -p "$(dirname "$TARGET_JSON")"
+    UPDATE_JSON "$SCRIPTDIR/$VSCODEUSERSETTINGS" $TARGET_JSON
+    if [ $? -ne 0 ]; then
+        echo "Settings update failed."
+        exit 1
     fi
-    jsonc set "$VSCODE_SETTINGS" '"editor.formatOnSave"' true
-    jsonc set "$VSCODE_SETTINGS" '"editor.inlineSuggest.enabled"' true
 else
     echo "Unsupported OS for automated VS Code settings configuration."
+    exit 1
 fi
 
 echo

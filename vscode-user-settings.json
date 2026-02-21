@@ -1,0 +1,64 @@
+{
+  "workbench.colorTheme": "Monokai",
+  "workbench.startupEditor": "none",
+  "telemetry.telemetryLevel": "off",
+  "workbench.enableExperiments": false,
+  "appService.zipIgnore": ["node_modules", ".git"],
+  "update.showReleaseNotes": false,
+  "extensions.autoCheckUpdates": true,
+  "extensions.autoUpdate": "onlyEnabledExtensions",
+  "workbench.settings.enableNaturalLanguageSearch": false,
+  "typescript.surveys.enabled": false,
+  "github.copilot.enable": {
+    "*": false
+  },
+  "redhat.telemetry.enabled": false,
+
+  "gitlens.plusFeatures.enabled": false,
+  "gitlens.showWelcomeView": false,
+  "gitlens.showUpdatedCheck": false,
+  "gitlens.menus": {
+    "editorGroup": { "blame": false, "compare": false }
+  },
+  "gitlens.hovers.enabled": true, // Keep this for the "who changed this" info
+  "gitlens.currentLine.enabled": true, // The famous inline blame
+
+  "editor.formatOnSave": true,
+  "editor.defaultFormatter": "esbenp.prettier-vscode", // Default for most files
+
+  "[python]": {
+    "editor.defaultFormatter": "charliermarsh.ruff",
+    "editor.codeActionsOnSave": {
+      "source.organizeImports.ruff": "explicit"
+    }
+  },
+
+  "[rust]": {
+    "editor.defaultFormatter": "rust-lang.rust-analyzer"
+  },
+
+  "[go]": {
+    "editor.defaultFormatter": "golang.go"
+  },
+
+  "roo-cline.debug": false,
+  "roo-cline.allowedCommands": [
+    "git log",
+    "git diff",
+    "git show",
+    "node -v",
+    "node",
+    "python3 --version",
+    "python3",
+    "ruff --version",
+    "ruff",
+    "mkdir",
+    "uv run python3",
+    "uv venv",
+    "uv pip",
+    "mkdir -p .roo/rules/",
+    "mkdir -p .roo/rules"
+  ],
+  "roo-cline.deniedCommands": [],
+  "roo-cline.useAgentRules": true
+}

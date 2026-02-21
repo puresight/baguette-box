@@ -13,7 +13,7 @@ echo
 echo "--- APT PACKAGE INSTALLS ---"
 if [ "$OS_TYPE" == "Linux" ]; then
     # Add apt source packages.microsoft.com
-    sudo apt install -y wget gpg
+    sudo apt install -y wget gpg zsh gnome-keyring libsecret-1-dev libsecret-tools seahorse fuse-overlayfs podman git curl jq build-essential
     # Download the key to the standard location the package expects
     wget -qO- https://packages.microsoft.com/keys/microsoft.asc | gpg --dearmor | sudo tee /usr/share/keyrings/microsoft.gpg > /dev/null
     # Create the source file using the standard path
@@ -22,8 +22,6 @@ if [ "$OS_TYPE" == "Linux" ]; then
     sudo rm -f /etc/apt/keyrings/packages.microsoft.gpg
     # Update
     sudo apt update
-    # Install other stuff
-    sudo apt install -y zsh gnome-keyring libsecret-1-dev libsecret-tools seahorse fuse-overlayfs podman git curl build-essential
 else
     echo "Skipping APT on $OS_TYPE"
 fi
