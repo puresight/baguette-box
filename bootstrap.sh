@@ -1,17 +1,32 @@
 #!/bin/bash
 set -e
 OS_TYPE=$(uname -s)
+PLATFORM="unknown"
+if [ "$OS_TYPE" == "Darwin" ]; then
+    PLATFORM="macos"
+elif [ "$OS_TYPE" == "Linux" ]; then
+    PLATFORM="linux"
+fi
+
+function log_unsupported() {
+    echo "ERROR: Unsupported platform ($OS_TYPE / $PLATFORM). Only Linux (Crostini/Debian) and MacOS are supported." >&2
+    exit 1
+}
+
+if [ "$PLATFORM" == "unknown" ]; then
+    log_unsupported
+fi
 
 echo
 echo "--- BOOTSTRAP START ---"
 # update
-if [ "$OS_TYPE" == "Linux" ]; then
+if [ "$PLATFORM" == "linux" ]; then
     sudo apt update
 fi
 
 echo
 echo "--- APT PACKAGE INSTALLS ---"
-if [ "$OS_TYPE" == "Linux" ]; then
+if [ "$PLATFORM" == "linux" ]; then
     # Add apt source packages.microsoft.com
     sudo apt install -y wget gpg zsh gnome-keyring libsecret-1-dev libsecret-tools seahorse fuse-overlayfs podman git curl jq build-essential
     # Download the key to the standard location the package expects
@@ -23,7 +38,7 @@ if [ "$OS_TYPE" == "Linux" ]; then
     # Update
     sudo apt update
 else
-    echo "Skipping APT on $OS_TYPE"
+    echo "Skipping APT on $PLATFORM"
 fi
 
 echo
@@ -33,16 +48,26 @@ if ! command -v brew &> /dev/null; then
     /bin/bash -c "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/HEAD/install.sh)"
 fi
 echo "Setting up environment"
-if [ -d "/home/linuxbrew/.linuxbrew" ]; then
-    BREW_PATH="/home/linuxbrew/.linuxbrew/bin/brew"
-elif [ -d "$HOME/.linuxbrew" ]; then
-    BREW_PATH="$HOME/.linuxbrew/bin/brew"
+if [ "$PLATFORM" == "linux" ]; then
+    if [ -d "/home/linuxbrew/.linuxbrew" ]; then
+        BREW_PATH="/home/linuxbrew/.linuxbrew/bin/brew"
+    elif [ -d "$HOME/.linuxbrew" ]; then
+        BREW_PATH="$HOME/.linuxbrew/bin/brew"
+    fi
+elif [ "$PLATFORM" == "macos" ]; then
+    if [ -f "/opt/homebrew/bin/brew" ]; then
+        BREW_PATH="/opt/homebrew/bin/brew"
+    elif [ -f "/usr/local/bin/brew" ]; then
+        BREW_PATH="/usr/local/bin/brew"
+    fi
 fi
-eval "$($BREW_PATH shellenv)"
 
-echo "Persisting in ~/.zprofile"
-if ! grep -q "shellenv" "$HOME/.zprofile"; then
-    (echo; echo "eval \"\$($BREW_PATH shellenv)\"") >> "$HOME/.zprofile"
+if [ -n "$BREW_PATH" ]; then
+    eval "$($BREW_PATH shellenv)"
+    echo "Persisting in ~/.zprofile"
+    if ! grep -q "shellenv" "$HOME/.zprofile"; then
+        (echo; echo "eval \"\$($BREW_PATH shellenv)\"") >> "$HOME/.zprofile"
+    fi
 fi
 
 echo
@@ -61,19 +86,23 @@ echo "Persisting in ~/.zshrc"
 
 echo
 echo "--- ROOTLESS PODMAN FIX ---"
-# The Problem: By default, a Linux user only has one UID (yours). To run a container, Podman needs to pretend to be "root" inside the container while remaining a "normal user" outside. It does this by mapping a range of UIDs from the host to the container.
-# The Fix: By adding $USER:100000:65536 to /etc/subuid and subgid, you are granting your user permission to "own" 65,536 subordinate IDs.
-if [ ! -f "/etc/subuid" ] || ! grep -q "$USER" /etc/subuid; then
-    echo "Defining a range of subordinate user IDs that the standard user account is permitted to use for User Namespaces"
-    echo "$USER:100000:65536" | sudo tee -a /etc/subuid
-    echo "Defining a range of subordinate group IDs that the standard user account is permitted to use for User Namespaces"
-    echo "$USER:100000:65536" | sudo tee -a /etc/subgid
-    echo "See https://github.com/containers/podman/blob/main/troubleshooting.md"
-    echo "Applying any changes to the current session"
+if [ "$PLATFORM" == "linux" ]; then
+    # The Problem: By default, a Linux user only has one UID (yours). To run a container, Podman needs to pretend to be "root" inside the container while remaining a "normal user" outside. It does this by mapping a range of UIDs from the host to the container.
+    # The Fix: By adding $USER:100000:65536 to /etc/subuid and subgid, you are granting your user permission to "own" 65,536 subordinate IDs.
+    if [ ! -f "/etc/subuid" ] || ! grep -q "$USER" /etc/subuid; then
+        echo "Defining a range of subordinate user IDs that the standard user account is permitted to use for User Namespaces"
+        echo "$USER:100000:65536" | sudo tee -a /etc/subuid
+        echo "Defining a range of subordinate group IDs that the standard user account is permitted to use for User Namespaces"
+        echo "$USER:100000:65536" | sudo tee -a /etc/subgid
+        echo "See https://github.com/containers/podman/blob/main/troubleshooting.md"
+        echo "Applying any changes to the current session"
+    fi
+    podman --version
+    # Refresh the runtime to recognize these new mappings. This prevents the common ERRO[0000] user namespaces are not enabled error.
+    podman system migrate
+else
+    echo "Skipping Podman fix on $PLATFORM"
 fi
-podman --version
-# Refresh the runtime to recognize these new mappings. This prevents the common ERRO[0000] user namespaces are not enabled error.
-podman system migrate
 
 echo
 echo "--- CURRENT VERSIONS ---"

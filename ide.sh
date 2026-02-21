@@ -3,6 +3,22 @@ set -e
 set -o pipefail
 
 OS_TYPE=$(uname -s)
+PLATFORM="unknown"
+if [ "$OS_TYPE" == "Darwin" ]; then
+    PLATFORM="macos"
+elif [ "$OS_TYPE" == "Linux" ]; then
+    PLATFORM="linux"
+fi
+
+function log_unsupported() {
+    echo "ERROR: Unsupported platform ($OS_TYPE / $PLATFORM). Only Linux (Crostini/Debian) and MacOS are supported." >&2
+    exit 1
+}
+
+if [ "$PLATFORM" == "unknown" ]; then
+    log_unsupported
+fi
+
 SCRIPTDIR=$(cd -- "$(dirname -- "${BASH_SOURCE:-$0}")" && pwd)
 VSCODEUSERSETTINGS="vscode-user-settings.json"
 VSCODEARGV="vscode-argv.json"
@@ -14,9 +30,9 @@ source ./update_json.sh
 echo
 echo "--- VS CODE ($OS_TYPE) ---"
 if ! command -v code &> /dev/null; then
-    if [ "$OS_TYPE" == "Linux" ]; then
+    if [ "$PLATFORM" == "linux" ]; then
         sudo apt install -y code
-    elif [ "$OS_TYPE" == "Darwin" ]; then
+    elif [ "$PLATFORM" == "macos" ]; then
         brew install --cask visual-studio-code
     fi
     echo "Configuring VS Code runtime arguments"
@@ -50,9 +66,9 @@ fi
 
 echo
 echo "--- CONFIGURATION ---"
-if [ "$OS_TYPE" == "Linux" ]; then
+if [ "$PLATFORM" == "linux" ]; then
     TARGET_JSON="$HOME/.config/Code/User/settings.json"
-elif [ "$OS_TYPE" == "Darwin" ]; then
+elif [ "$PLATFORM" == "macos" ]; then
     TARGET_JSON="$HOME/Library/Application Support/Code/User/settings.json"
 fi
 if [ -n "$TARGET_JSON" ]; then
