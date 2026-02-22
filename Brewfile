@@ -1,6 +1,5 @@
 brew "starship"
 brew "node"
 brew "uv"
-brew "go"
 brew "aider"
 brew "gh"

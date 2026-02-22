@@ -21,6 +21,9 @@ if [ "$PLATFORM" == "linux" ]; then
     sudo rm -f /etc/apt/keyrings/packages.microsoft.gpg
     # Update
     sudo apt update
+    # Add APT source for Debian Backports. Backports are deactivated by default to prevent accidental upgrades. You must explicitly tell APT to use the backports target:
+    echo "deb http://deb.debian.org/debian bookworm-backports main" | sudo tee /etc/apt/sources.list.d/backports.list
+    sudo apt update
 else
     echo "Skipping APT on $PLATFORM"
 fi
@@ -44,6 +47,10 @@ if [ "$PLATFORM" == "linux" ]; then
 else
     echo "Skipping Podman fix on $PLATFORM"
 fi
+
+echo
+echo "--- GO language ---"
+sudo apt install -t bookworm-backports golang-go -y
 
 echo
 echo "--- RUST ---"

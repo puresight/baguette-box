@@ -21,3 +21,11 @@ This script is idempotent. You can run it again anytime.
 
 To maintain workstation integrity, only install code from reputable & verified authors that regularly address issues with code updates.
 The packages to be installed are listed in the `Brewfile` including Aider ✨
+
+## Rust
+
+Rust is installed in the best way using Rustup.
+
+## Go
+
+Go is installed using APT's Debian Backports source. Check if the version is ok for you.
