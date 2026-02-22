@@ -89,15 +89,38 @@ else
 fi
 
 echo
-echo "--- CURRENT VERSIONS ---"
-echo "Brew: $(brew --version | head -n 1)"
-echo "Node: $(node -v)"
-echo "UV: $(uv --version)"
-if command -v rustc &> /dev/null; then
-    echo "Rust: $(rustc --version)"
-elif command -v rustup &> /dev/null; then
-    echo "Rustup: $(rustup --version | head -n 1)"
+echo "--- RUST ---"
+if command -v rustup &> /dev/null; then
+    rustup update
 else
-    echo "Rust: Not installed"
+    # Rust APT dependencies: build-essential curl
+    # We download and run the rustup-init script non-interactively
+    #   -sSf: Silent, show errors, fail on server errors
+    #   -y: Auto-confirm default installation options
+    curl --proto '=https' --tlsv1.2 -sSf https://sh.rustup.rs | sh -s -- -y
+    source "$HOME/.cargo/env"
 fi
-echo "Go: $(go version)"
+
+echo
+echo "--- ENVIRONMENT ---"
+if [ "$PLATFORM" == "linux" ]; then
+    if command -v hostnamectl &> /dev/null; then
+        hostnamectl
+    else
+        cat /etc/os-release
+    fi
+elif [ "$PLATFORM" == "macos" ]; then
+    sw_vers
+fi
+
+echo
+echo "--- CURRENT VERSIONS ---"
+echo "$(brew --version | head -n 1)"
+echo "Node $(node -v)"
+echo "$(uv --version)"
+if command -v rustc &> /dev/null; then
+    echo "$(rustc --version)"
+elif command -v rustup &> /dev/null; then
+    echo "$(rustup --version | head -n 1)"
+fi
+echo "$(go version)"
