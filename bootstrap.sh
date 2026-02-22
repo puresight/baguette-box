@@ -12,17 +12,15 @@ echo
 echo "--- APT PACKAGE INSTALLS ---"
 if [ "$PLATFORM" == "linux" ]; then
     # Add apt source packages.microsoft.com
-    sudo apt install -y wget gpg zsh gnome-keyring libsecret-1-dev libsecret-tools seahorse fuse-overlayfs podman git curl jq build-essential
+    sudo apt install -y wget gpg zsh gnome-keyring libsecret-1-dev libsecret-tools seahorse fuse-overlayfs podman git curl jq build-essential software-properties-common
+    #   unattended-upgrades apt-listchanges
+    # sudo dpkg-reconfigure unattended-upgrades
     # Download the key to the standard location the package expects
     wget -qO- https://packages.microsoft.com/keys/microsoft.asc | gpg --dearmor | sudo tee /usr/share/keyrings/microsoft.gpg > /dev/null
     # Create the source file using the standard path
     sudo sh -c 'echo "deb [arch=amd64,arm64,armhf signed-by=/usr/share/keyrings/microsoft.gpg] https://packages.microsoft.com/repos/code stable main" > /etc/apt/sources.list.d/vscode.list'
     # Clean up any existing conflicting files before updating
     sudo rm -f /etc/apt/keyrings/packages.microsoft.gpg
-    # Update
-    sudo apt update
-    # Add APT source for Debian Backports. Backports are deactivated by default to prevent accidental upgrades. You must explicitly tell APT to use the backports target:
-    echo "deb http://deb.debian.org/debian bookworm-backports main" | sudo tee /etc/apt/sources.list.d/backports.list
     sudo apt update
 else
     echo "Skipping APT on $PLATFORM"
@@ -48,9 +46,17 @@ else
     echo "Skipping Podman fix on $PLATFORM"
 fi
 
-echo
-echo "--- GO language ---"
-sudo apt install -t bookworm-backports golang-go -y
+# echo
+# echo "--- GO language ---"
+# Add APT source for Debian Backports. Backports are deactivated by default to prevent accidental upgrades. You must explicitly tell APT to use the backports target:
+# echo "deb http://deb.debian.org/debian bookworm-backports main" | sudo tee /etc/apt/sources.list.d/backports.list
+# sudo apt install -t bookworm-backports golang-go -y
+# ^^^ Failed: because version updates are sloth slow
+#
+# This is a little better (just enterprisey):
+# sudo add-apt-repository ppa:longsleep/golang-backports -y
+# sudo apt update
+# sudo apt install golang-go -y
 
 echo
 echo "--- RUST ---"

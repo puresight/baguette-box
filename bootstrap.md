@@ -24,8 +24,4 @@ The packages to be installed are listed in the `Brewfile` including Aider ✨
 
 ## Rust
 
-Rust is installed in the best way using Rustup.
-
-## Go
-
-Go is installed using APT's Debian Backports source. Check if the version is ok for you.
+Rust is installed using [rustup](https://rustup.rs/).
