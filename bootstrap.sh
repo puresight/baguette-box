@@ -1,8 +1,6 @@
 #!/bin/bash
 set -e
 
-echo
-echo "--- BOOTSTRAP START ---"
 source ./lib/functions.sh
 if [ "$PLATFORM" == "linux" ]; then
     sudo apt update
@@ -72,6 +70,16 @@ else
 fi
 
 echo
+echo "--- JAVA ---"
+echo "Installing Microsoft OpenJDK version 21..."
+source lib/java.sh
+INSTALL_MS_OPENJDK 21
+# echo "Installing Microsoft OpenJDK versions 17, 21, 25 ..."
+# INSTALL_MS_OPENJDK 21 17 25
+echo
+java -version
+
+echo
 echo "--- HOMEBREW INSTALL ---"
 
 if ! command -v brew &> /dev/null; then
@@ -136,3 +144,4 @@ echo "$(uv --version)"
 echo "$(rustc --version)"
 echo "$(cargo --version)"
 echo "$(go version)"
+echo "$(javac -version)"

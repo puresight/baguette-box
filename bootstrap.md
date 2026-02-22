@@ -24,4 +24,8 @@ The packages to be installed are listed in the `Brewfile` including Aider ✨
 
 ## Rust
 
-Rust is installed using [rustup](https://rustup.rs/).
+[Rust](https://rust-lang.org/) is installed using [rustup](https://rustup.rs/).
+
+## Java
+
+[OpenJDK](https://openjdk.org/) [21](https://docs.oracle.com/en/java/javase/21/) is installed from [Microsoft's APT repository](https://learn.microsoft.com/en-us/linux/packages).

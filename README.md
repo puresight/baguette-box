@@ -18,7 +18,8 @@ CLI
 
 Languages
 
-- [Python](https://www.python.org/) via [uv](https://docs.astral.sh/uv/getting-started/features/)
+- [Java](https://dev.java/) ☕ as [OpenJDK](https://openjdk.org/)
+- [Python](https://www.python.org/) 🐍 via [uv](https://docs.astral.sh/uv/getting-started/features/)
 - [JavaScript](https://developer.mozilla.org/en-US/docs/Web/JavaScript) via [Node](https://nodejs.org/)
 - [Go](https://go.dev/)
 - [Rust](https://rust-lang.org/)
