@@ -1,8 +1,5 @@
 #!/bin/bash
 
-echo "Uses jsonc-cli"
-npm install -g jsonc-cli
-
 OS_TYPE=$(uname -s)
 PLATFORM="unknown"
 if [ "$OS_TYPE" == "Darwin" ]; then
@@ -19,6 +16,14 @@ LOG_UNSUPPORTED() {
 
 if [ "$PLATFORM" == "unknown" ]; then
     LOG_UNSUPPORTED
+fi
+# Needed for UPDATE_JSON
+if command -v npm &> /dev/null; then
+    echo "Uses jsonc-cli"
+    npm install -g jsonc-cli
+else
+    # caller is not ready to continue so
+    return
 fi
 
 # Function ------------------------------------------------------------
