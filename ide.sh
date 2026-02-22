@@ -2,30 +2,13 @@
 set -e
 set -o pipefail
 
-OS_TYPE=$(uname -s)
-PLATFORM="unknown"
-if [ "$OS_TYPE" == "Darwin" ]; then
-    PLATFORM="macos"
-elif [ "$OS_TYPE" == "Linux" ]; then
-    PLATFORM="linux"
-fi
-
-function log_unsupported() {
-    echo "ERROR: Unsupported platform ($OS_TYPE / $PLATFORM). Only Linux (Crostini/Debian) and MacOS are supported." >&2
-    exit 1
-}
-
-if [ "$PLATFORM" == "unknown" ]; then
-    log_unsupported
-fi
-
 SCRIPTDIR=$(cd -- "$(dirname -- "${BASH_SOURCE:-$0}")" && pwd)
 VSCODEUSERSETTINGS="vscode-user-settings.json"
 VSCODEARGV="vscode-argv.json"
 
 echo
 echo "--- IDE START ---"
-source ./update_json.sh
+source ./lib/functions.sh
 
 echo
 echo "--- VS CODE ($OS_TYPE) ---"
