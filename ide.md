@@ -10,9 +10,12 @@ The extensions to be installed are listed in the `CodeExtensions` file, includin
 
 ## Configuration
 
-The script updates your `argv.json` and `settings.json`
+The script updates your `argv.json` and `settings.json`.
+Unfortunately (as a consequence) it disintegrates the comments that were in them.
 
 ## How to Use
 
 1. Ensure the base `bootstrap.sh` has already been executed
 1. Run `./ide.sh`
+
+This script is idempotent. You can run it again anytime.

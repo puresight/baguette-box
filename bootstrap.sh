@@ -26,49 +26,6 @@ else
 fi
 
 echo
-echo "--- HOMEBREW SETUP ---"
-
-if ! command -v brew &> /dev/null; then
-    /bin/bash -c "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/HEAD/install.sh)"
-fi
-echo "Setting up environment"
-if [ "$PLATFORM" == "linux" ]; then
-    if [ -d "/home/linuxbrew/.linuxbrew" ]; then
-        BREW_PATH="/home/linuxbrew/.linuxbrew/bin/brew"
-    elif [ -d "$HOME/.linuxbrew" ]; then
-        BREW_PATH="$HOME/.linuxbrew/bin/brew"
-    fi
-elif [ "$PLATFORM" == "macos" ]; then
-    if [ -f "/opt/homebrew/bin/brew" ]; then
-        BREW_PATH="/opt/homebrew/bin/brew"
-    elif [ -f "/usr/local/bin/brew" ]; then
-        BREW_PATH="/usr/local/bin/brew"
-    fi
-fi
-
-if [ -n "$BREW_PATH" ]; then
-    eval "$($BREW_PATH shellenv)"
-    echo "Persisting in ~/.zprofile"
-    if ! grep -q "shellenv" "$HOME/.zprofile"; then
-        (echo; echo "eval \"\$($BREW_PATH shellenv)\"") >> "$HOME/.zprofile"
-    fi
-fi
-
-echo
-echo "--- INSTALL HOMEBREW Brewfile ---"
-brew bundle --file=./Brewfile
-
-echo
-echo "--- SHELL CONFIGURATION ---"
-sudo chsh -s $(which zsh) $USER
-if ! grep -q "starship init zsh" "$HOME/.zshrc"; then
-    echo 'eval "$(starship init zsh)"' >> "$HOME/.zshrc"
-fi
-echo "Shell $SHELL ($($SHELL --version | head -n 1))"
-echo "Prompt $(starship --version | head -n 1)"
-echo "Persisting in ~/.zshrc"
-
-echo
 echo "--- ROOTLESS PODMAN FIX ---"
 if [ "$PLATFORM" == "linux" ]; then
     # The Problem: By default, a Linux user only has one UID (yours). To run a container, Podman needs to pretend to be "root" inside the container while remaining a "normal user" outside. It does this by mapping a range of UIDs from the host to the container.
@@ -102,6 +59,49 @@ else
 fi
 
 echo
+echo "--- HOMEBREW INSTALL ---"
+
+if ! command -v brew &> /dev/null; then
+    /bin/bash -c "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/HEAD/install.sh)"
+fi
+echo "Setting up environment"
+if [ "$PLATFORM" == "linux" ]; then
+    if [ -d "/home/linuxbrew/.linuxbrew" ]; then
+        BREW_PATH="/home/linuxbrew/.linuxbrew/bin/brew"
+    elif [ -d "$HOME/.linuxbrew" ]; then
+        BREW_PATH="$HOME/.linuxbrew/bin/brew"
+    fi
+elif [ "$PLATFORM" == "macos" ]; then
+    if [ -f "/opt/homebrew/bin/brew" ]; then
+        BREW_PATH="/opt/homebrew/bin/brew"
+    elif [ -f "/usr/local/bin/brew" ]; then
+        BREW_PATH="/usr/local/bin/brew"
+    fi
+fi
+
+if [ -n "$BREW_PATH" ]; then
+    eval "$($BREW_PATH shellenv)"
+    echo "Persisting in ~/.zprofile"
+    if ! grep -q "shellenv" "$HOME/.zprofile"; then
+        (echo; echo "eval \"\$($BREW_PATH shellenv)\"") >> "$HOME/.zprofile"
+    fi
+fi
+
+echo
+echo "--- HOMEBREW Brewfile ---"
+brew bundle --file=./Brewfile
+
+echo
+echo "--- SHELL CONFIGURATION ---"
+sudo chsh -s $(which zsh) $USER
+if ! grep -q "starship init zsh" "$HOME/.zshrc"; then
+    echo 'eval "$(starship init zsh)"' >> "$HOME/.zshrc"
+fi
+echo "Shell $SHELL ($($SHELL --version | head -n 1))"
+echo "Prompt $(starship --version | head -n 1)"
+echo "Persisting in ~/.zshrc"
+
+echo
 echo "--- ENVIRONMENT ---"
 if [ "$PLATFORM" == "linux" ]; then
     if command -v hostnamectl &> /dev/null; then
@@ -117,10 +117,9 @@ echo
 echo "--- CURRENT VERSIONS ---"
 echo "$(brew --version | head -n 1)"
 echo "Node $(node -v)"
+echo "npm $(npm -v)"
 echo "$(uv --version)"
-if command -v rustc &> /dev/null; then
-    echo "$(rustc --version)"
-elif command -v rustup &> /dev/null; then
-    echo "$(rustup --version | head -n 1)"
-fi
+# echo "$(rustup --version | head -n 1)"
+echo "$(rustc --version)"
+echo "$(cargo --version)"
 echo "$(go version)"

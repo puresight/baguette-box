@@ -11,6 +11,8 @@ Bootstrap your developer workstation. This script provides a reproducible enviro
 - `./bootstrap.sh`
 - Restart your shell: Close and reopen the terminal (or run `exec zsh`) to activate Starship and Homebrew paths
 
+This script is idempotent. You can run it again anytime.
+
 ## Quick-Start Editor
 
 🐧 For quick file modifications, the [Nano](https://www.nano-editor.org/docs.php) is often bundled with your distribution.
