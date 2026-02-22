@@ -3,8 +3,8 @@ set -e
 set -o pipefail
 
 SCRIPTDIR=$(cd -- "$(dirname -- "${BASH_SOURCE:-$0}")" && pwd)
-VSCODEUSERSETTINGS="vscode-user-settings.json"
-VSCODEARGV="vscode-argv.json"
+VSCODEUSERSETTINGS="vscode-updates/user-settings.json"
+VSCODEARGV="vscode-updates/argv.json"
 
 echo
 echo "--- IDE START ---"
