@@ -7,10 +7,10 @@ if [ "$PLATFORM" == "linux" ]; then
 fi
 
 echo
-echo "--- APT PACKAGE INSTALLS ---"
+echo "--- APT ---"
 if [ "$PLATFORM" == "linux" ]; then
     # Add apt source packages.microsoft.com
-    sudo apt install -y wget gpg zsh gnome-keyring libsecret-1-dev libsecret-tools seahorse fuse-overlayfs podman git curl jq build-essential software-properties-common
+    sudo apt install -y gpg zsh gnome-keyring libsecret-1-dev libsecret-tools seahorse fuse-overlayfs podman git jq build-essential software-properties-common wget curl unzip
     #   unattended-upgrades apt-listchanges
     # sudo dpkg-reconfigure unattended-upgrades
     # Download the key to the standard location the package expects
@@ -23,6 +23,43 @@ if [ "$PLATFORM" == "linux" ]; then
 else
     echo "Skipping APT on $PLATFORM"
 fi
+
+echo
+echo "--- SHELL ---"
+export PATH=$PATH:~/.local/bin
+# Install Oh-My-Posh
+if [ "$PLATFORM" == "linux" ]; then
+    # change shell to zsh
+    sudo chsh -s $(which zsh) $USER
+
+    if command -v oh-my-posh &> /dev/null; then
+        oh-my-posh upgrade
+    else
+        curl -s https://ohmyposh.dev/install.sh | bash -s
+    fi
+    if ! grep -q "oh-my-posh init zsh" "$HOME/.zshrc"; then
+        echo 'eval "oh-my-posh init zsh --config https://raw.githubusercontent.com/JanDeDobbeleer/oh-my-posh/main/themes/jandedobbeleer.omp.json"' >> "$HOME/.zshrc"
+        echo "Persisting in ~/.zshrc"
+    fi
+
+    # --- STARSHIP ---
+    # TODO prune this dead code section; starship was removed
+    # Install starship
+    # if ! grep -q "starship init zsh" "$HOME/.zshrc"; then
+    #     echo 'eval "$(starship init zsh)"' >> "$HOME/.zshrc"
+    # fi
+    # echo "Prompt $(starship --version | head -n 1)"
+elif [ "$PLATFORM" == "macos" ]; then
+    if command -v oh-my-posh &> /dev/null; then
+        oh-my-posh upgrade
+    else
+        brew install jandedobbeleer/oh-my-posh/oh-my-posh
+    fi
+else
+    echo "Unsupported platform."
+fi
+echo "Shell: $SHELL ($($SHELL --version | head -n 1))"
+echo "Prompt: oh-my-posh $(oh-my-posh version)"
 
 echo
 echo "--- ROOTLESS PODMAN FIX ---"
@@ -71,9 +108,9 @@ fi
 
 echo
 echo "--- JAVA ---"
-echo "Installing Microsoft OpenJDK version 21..."
+echo "Installing Microsoft OpenJDK version 25..."
 source lib/java.sh
-INSTALL_MS_OPENJDK 21
+INSTALL_MS_OPENJDK 25
 # echo "Installing Microsoft OpenJDK versions 17, 21, 25 ..."
 # INSTALL_MS_OPENJDK 21 17 25
 echo
@@ -111,16 +148,6 @@ fi
 echo
 echo "--- HOMEBREW Brewfile ---"
 brew bundle --file=./Brewfile
-
-echo
-echo "--- SHELL CONFIGURATION ---"
-sudo chsh -s $(which zsh) $USER
-if ! grep -q "starship init zsh" "$HOME/.zshrc"; then
-    echo 'eval "$(starship init zsh)"' >> "$HOME/.zshrc"
-fi
-echo "Shell $SHELL ($($SHELL --version | head -n 1))"
-echo "Prompt $(starship --version | head -n 1)"
-echo "Persisting in ~/.zshrc"
 
 echo
 echo "--- ENVIRONMENT ---"

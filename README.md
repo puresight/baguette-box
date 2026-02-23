@@ -13,7 +13,7 @@ Note: This is beta quality code so backup before using, read the docs, and scan 
 
 CLI
 
-- [Zsh](https://zsh.sourceforge.io/) shell and [Starship](https://starship.rs/) prompt
+- [Zsh](https://zsh.sourceforge.io/) shell and [Oh My Posh](https://ohmyposh.dev/) prompt
 - [Github CLI](https://cli.github.com/)
 
 Languages
@@ -56,7 +56,7 @@ First, prepare your system
 
 Next, run the code
 
-1. **bootstrap:** Installs zsh with starship, core language runtimes, and system-level fixes; read `bootstrap.md`
+1. **bootstrap:** Installs zsh, core language runtimes, and system-level fixes; read `bootstrap.md`
 1. **ide:** Installs VS Code with a curated suite of extensions; read `ide.md`
 
 ## Secrets

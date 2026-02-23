@@ -1,4 +1,3 @@
-brew "starship"
 brew "go"
 brew "node"
 brew "uv"

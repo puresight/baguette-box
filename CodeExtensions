@@ -3,6 +3,7 @@ esbenp.prettier-vscode
 eamodio.gitlens
 redhat.vscode-xml
 redhat.vscode-yaml
+hilleer.yaml-plus-json
 
 vscjava.vscode-maven
 vscjava.vscode-gradle

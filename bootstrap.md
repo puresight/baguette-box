@@ -4,12 +4,11 @@ Bootstrap your developer workstation. This script provides a reproducible enviro
 
 - **System Layer:** APT handles OS-level packages
 - **Package Manager:** Homebrew manages the language stack and CLI tools
-- **Shell UI:** Starship prompt
 
 ## How to Use
 
 - `./bootstrap.sh`
-- Restart your shell: Close and reopen the terminal (or run `exec zsh`) to activate Starship and Homebrew paths
+- Restart your shell: Close and reopen the terminal.
 
 This script is idempotent. You can run it again anytime.
 
@@ -28,4 +27,4 @@ The packages to be installed are listed in the `Brewfile` including Aider ✨
 
 ## Java
 
-[OpenJDK](https://openjdk.org/) [21](https://docs.oracle.com/en/java/javase/21/) is installed from [Microsoft's APT repository](https://learn.microsoft.com/en-us/linux/packages).
+[OpenJDK](https://openjdk.org/) [25](https://docs.oracle.com/en/java/javase/25/) is installed from [Microsoft's APT repository](https://learn.microsoft.com/en-us/linux/packages).
