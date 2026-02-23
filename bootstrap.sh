@@ -25,6 +25,15 @@ else
 fi
 
 echo
+echo "--- .NET ---"
+if [ "$PLATFORM" == "linux" ]; then
+    sudo apt install -y dotnet-sdk-10.0
+    sudo apt install -y powershell
+else
+    echo ".NET not yet supported on $PLATFORM"
+fi
+
+echo
 echo "--- SHELL ---"
 export PATH=$PATH:~/.local/bin
 # Install Oh-My-Posh
@@ -177,3 +186,5 @@ echo "$(rustc --version)"
 echo "$(cargo --version)"
 echo "$(go version)"
 echo "$(javac -version)"
+echo "dotnet $(dotnet --version)"
+echo "pwsh $(pwsh --version)"

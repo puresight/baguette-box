@@ -37,3 +37,7 @@ Usage: Replace `cargo install <package>` with `cargo binstall <package>`
 How to cope with multiple versions? Learn about `update-alternatives`
 
 - 📖 [2024/7 Baeldung: The `update-alternatives` Command in Linux](https://www.baeldung.com/linux/update-alternatives-command)
+
+## .NET
+
+[Microsoft .NET](https://dotnet.microsoft.com/) [SDK 10](https://learn.microsoft.com/en-us/dotnet/core/whats-new/dotnet-10/overview) and [Powershell](https://learn.microsoft.com/en-us/powershell/) (`pwsh`) are installed from Microsoft's APT repository.

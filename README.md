@@ -13,12 +13,15 @@ Note: This is beta quality code so backup before using, read the docs, and scan 
 
 CLI
 
-- [Zsh](https://zsh.sourceforge.io/) shell and [Oh My Posh](https://ohmyposh.dev/) prompt
-- [Github CLI](https://cli.github.com/)
+- [Zsh](https://zsh.sourceforge.io/) shell
+- [Powershell](https://learn.microsoft.com/en-us/powershell/) shell
+- [Oh My Posh](https://ohmyposh.dev/) prompt
+- [Github CLI](https://cli.github.com/) tools
 
 Languages
 
 - [Java](https://dev.java/) ☕ as [OpenJDK](https://openjdk.org/)
+- [C#](https://learn.microsoft.com/en-us/dotnet/csha) as [.NET SDK](https://dotnet.microsoft.com/)
 - [Python](https://www.python.org/) 🐍 via [uv](https://docs.astral.sh/uv/getting-started/features/)
 - [JavaScript](https://developer.mozilla.org/en-US/docs/Web/JavaScript) via [Node](https://nodejs.org/)
 - [Go](https://go.dev/)
