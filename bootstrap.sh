@@ -1,23 +1,25 @@
 #!/bin/bash
 set -e
 
-source ./lib/functions.sh
+source ./lib/platforms.sh
 
 echo
 echo "--- APT ---"
 if [ "$PLATFORM" == "linux" ]; then
+    # Update & upgrade
     sudo apt update -qq && sudo apt upgrade -y
-    # Add apt source packages.microsoft.com
-    sudo apt install -y software-properties-common build-essential git curl wget jq vim tmux zsh dnsutils htop ripgrep ca-certificates unzip zip xz-utils p7zip-full gpg gnome-keyring libsecret-1-dev libsecret-tools seahorse fuse-overlayfs podman
-    #   unattended-upgrades apt-listchanges
-    # sudo dpkg-reconfigure unattended-upgrades
-    # Download the key to the standard location the package expects
-    wget -qO- https://packages.microsoft.com/keys/microsoft.asc | gpg --dearmor | sudo tee /usr/share/keyrings/microsoft.gpg > /dev/null
-    # Create the source file using the standard path
-    sudo sh -c 'echo "deb [arch=amd64,arm64,armhf signed-by=/usr/share/keyrings/microsoft.gpg] https://packages.microsoft.com/repos/code stable main" > /etc/apt/sources.list.d/vscode.list'
-    # Clean up any existing conflicting files before updating
-    sudo rm -f /etc/apt/keyrings/packages.microsoft.gpg
-    sudo apt update
+    sudo apt autoremove -y
+
+    # Add all APT sources for Microsoft packages
+    source lib/apt.sh
+
+    # Now install APT packages for this bootstrap
+    sudo apt install -y software-properties-common build-essential git  \
+        curl wget jq vim tmux zsh dnsutils htop ripgrep ca-certificates \
+        unzip zip xz-utils p7zip-full gpg \
+        gnome-keyring libsecret-1-dev libsecret-tools \
+        seahorse fuse-overlayfs podman
+    # TODO for servers? learn what,why, if we should do this: sudo dpkg-reconfigure unattended-upgrades apt-listchanges
 else
     echo "Skipping APT on $PLATFORM"
 fi
@@ -111,11 +113,11 @@ fi
 
 echo
 echo "--- JAVA ---"
-echo "Installing Microsoft OpenJDK version 25..."
 source lib/java.sh
-INSTALL_MS_OPENJDK 25
-# echo "Installing Microsoft OpenJDK versions 17, 21, 25 ..."
-# INSTALL_MS_OPENJDK 21 17 25
+echo "Installing Microsoft OpenJDK versions: 21..."
+# The first JDK version will be made the active one:
+INSTALL_MS_OPENJDK 21
+# multiple are possible for example INSTALL_MS_OPENJDK 21 17 25
 echo
 java -version
 

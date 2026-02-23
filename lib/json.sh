@@ -1,30 +1,7 @@
 #!/bin/bash
 
-OS_TYPE=$(uname -s)
-PLATFORM="unknown"
-if [ "$OS_TYPE" == "Darwin" ]; then
-    PLATFORM="macos"
-elif [ "$OS_TYPE" == "Linux" ]; then
-    PLATFORM="linux"
-fi
-
-# Function ------------------------------------------------------------
-LOG_UNSUPPORTED() {
-    echo "ERROR: Unsupported platform ($OS_TYPE / $PLATFORM). Only Linux (Crostini/Debian) and MacOS are supported." >&2
-    exit 1
-}
-
-if [ "$PLATFORM" == "unknown" ]; then
-    LOG_UNSUPPORTED
-fi
-# Needed for UPDATE_JSON
-if command -v npm &> /dev/null; then
-    echo "Uses jsonc-cli"
-    npm install -g jsonc-cli
-else
-    # caller is not ready to continue so
-    return
-fi
+echo "Uses jsonc-cli"
+npm install -g jsonc-cli
 
 # Function ------------------------------------------------------------
 UPDATE_JSON() {
@@ -35,7 +12,7 @@ UPDATE_JSON() {
     echo "Source: $source_file"
     echo "Target: $target_file"
 
-    # Existence Logic
+    # Files exist?
     if [[ ! -f "$source_file" && ! -f "$target_file" ]]; then
         echo "Error: files not found." >&2
         return 1

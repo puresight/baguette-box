@@ -32,7 +32,7 @@ Usage: Replace `cargo install <package>` with `cargo binstall <package>`
 
 ## Java
 
-[OpenJDK](https://openjdk.org/) [25](https://docs.oracle.com/en/java/javase/25/) is installed from [Microsoft's APT repository](https://learn.microsoft.com/en-us/linux/packages).
+[OpenJDK](https://openjdk.org/) [21](https://docs.oracle.com/en/java/javase/21/) is installed from [Microsoft's APT repository](https://learn.microsoft.com/en-us/linux/packages).
 
 How to cope with multiple versions? Learn about `update-alternatives`
 

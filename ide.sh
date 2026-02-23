@@ -8,7 +8,8 @@ VSCODEARGV="vscode-updates/argv.json"
 
 echo
 echo "--- IDE START ---"
-source ./lib/functions.sh
+source ./lib/platforms.sh
+source ./lib/json.sh
 
 echo
 echo "--- VS CODE ($OS_TYPE) ---"

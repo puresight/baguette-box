@@ -1,26 +1,5 @@
 #!/bin/bash
 
-source /etc/os-release
-MS_GPG_URL="https://packages.microsoft.com/keys/microsoft.asc"
-MS_KEYRING="/usr/share/keyrings/microsoft-archive-keyring.gpg"
-MS_REPO_LIST="/etc/apt/sources.list.d/microsoft-prod.list"
-
-sudo mkdir -p /usr/share/keyrings
-
-# Download and dearmor the GPG key
-if [ ! -f "$MS_KEYRING" ]; then
-    curl -sSL "$MS_GPG_URL" | sudo gpg --dearmor -o "$MS_KEYRING"
-fi
-
-# Create the source list using the 'signed-by' attribute (Debian 12 specific)
-# This prevents the GPG NO_PUBKEY errors globally.
-if [ ! -f "$MS_REPO_LIST" ]; then
-    echo "deb [arch=amd64,arm64,armhf signed-by=$MS_KEYRING] https://packages.microsoft.com/$ID/$VERSION_ID/prod $VERSION_CODENAME main" | \
-    sudo tee "$MS_REPO_LIST" > /dev/null
-fi
-
-sudo apt update -qq
-
 # Function ------------------------------------------------------------
 INSTALL_MS_OPENJDK() {
     # Arguments are JDK versions to install
@@ -38,6 +17,7 @@ INSTALL_MS_OPENJDK() {
     for ver in "$@"; do
         sudo apt-get install -y "msopenjdk-$ver"
     done
+    sudo apt autoremove -y
 
     # Configure the system default
     local JAVA_PATH="/usr/lib/jvm/msopenjdk-$DEFAULT_VER-$ARCH/bin/java"
