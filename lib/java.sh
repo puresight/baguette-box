@@ -19,7 +19,7 @@ if [ ! -f "$MS_REPO_LIST" ]; then
     sudo tee "$MS_REPO_LIST" > /dev/null
 fi
 
-sudo apt update
+sudo apt update -qq
 
 # Function ------------------------------------------------------------
 INSTALL_MS_OPENJDK() {

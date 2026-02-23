@@ -2,15 +2,13 @@
 set -e
 
 source ./lib/functions.sh
-if [ "$PLATFORM" == "linux" ]; then
-    sudo apt update
-fi
 
 echo
 echo "--- APT ---"
 if [ "$PLATFORM" == "linux" ]; then
+    sudo apt update -qq && sudo apt upgrade -y
     # Add apt source packages.microsoft.com
-    sudo apt install -y gpg zsh gnome-keyring libsecret-1-dev libsecret-tools seahorse fuse-overlayfs podman git jq build-essential software-properties-common wget curl unzip
+    sudo apt install -y software-properties-common build-essential git curl wget jq vim tmux zsh dnsutils htop ripgrep ca-certificates unzip zip xz-utils p7zip-full gpg gnome-keyring libsecret-1-dev libsecret-tools seahorse fuse-overlayfs podman
     #   unattended-upgrades apt-listchanges
     # sudo dpkg-reconfigure unattended-upgrades
     # Download the key to the standard location the package expects
@@ -97,13 +95,18 @@ echo
 echo "--- RUST ---"
 if command -v rustup &> /dev/null; then
     rustup update
+    cargo install-update -a
 else
     # Rust APT dependencies: build-essential curl
     # We download and run the rustup-init script non-interactively
     #   -sSf: Silent, show errors, fail on server errors
     #   -y: Auto-confirm default installation options
+    echo "Installing Rust"
     curl --proto '=https' --tlsv1.2 -sSf https://sh.rustup.rs | sh -s -- -y
     source "$HOME/.cargo/env"
+    echo "Adding cargo-binstall"
+    curl -L https://raw.githubusercontent.com/cargo-bins/cargo-binstall/main/install-from-binstall-release.sh | bash
+    cargo binstall cargo-update --no-confirm
 fi
 
 echo
