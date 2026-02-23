@@ -10,6 +10,7 @@ vscjava.vscode-gradle
 ms-kubernetes-tools.vscode-kubernetes-tools
 ms-azuretools.vscode-containers
 
+ms-dotnettools.csharp
 golang.go
 rust-lang.rust-analyzer
 redhat.java
