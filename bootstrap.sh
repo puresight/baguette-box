@@ -36,20 +36,27 @@ fi
 echo
 echo "--- SHELL ---"
 export PATH=$PATH:~/.local/bin
-# Install Oh-My-Posh
+# Install Oh-My-Posh and config in both zsh & pwsh
 if [ "$PLATFORM" == "linux" ]; then
     # change shell to zsh
     sudo chsh -s $(which zsh) $USER
 
+    # Posh exists? upgrade it! No posh, install it.
     if command -v oh-my-posh &> /dev/null; then
         oh-my-posh upgrade
     else
         curl -s https://ohmyposh.dev/install.sh | bash -s
     fi
+
+    # Posh's config persists in .zshrc
     if ! grep -q "oh-my-posh init zsh" "$HOME/.zshrc"; then
-        echo 'eval "oh-my-posh init zsh --config https://raw.githubusercontent.com/JanDeDobbeleer/oh-my-posh/main/themes/jandedobbeleer.omp.json"' >> "$HOME/.zshrc"
+        # echo 'eval "oh-my-posh init zsh --config https://raw.githubusercontent.com/JanDeDobbeleer/oh-my-posh/main/themes/jandedobbeleer.omp.json"' >> "$HOME/.zshrc"
+        echo 'eval "$(oh-my-posh init zsh --config https://raw.githubusercontent.com/JanDeDobbeleer/oh-my-posh/main/themes/pure.omp.json)"' >> "$HOME/.zshrc"
         echo "Persisting in ~/.zshrc"
     fi
+
+    # Configure Posh for Powershell
+    pwsh -NoProfile -File ./bootstrap.ps1
 
     # --- STARSHIP ---
     # TODO prune this dead code section; starship was removed
