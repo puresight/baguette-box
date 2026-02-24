@@ -2,8 +2,10 @@
 
 Bootstrap your developer workstation. This script provides a reproducible environment for the tech stack.
 
-- **System Layer:** APT handles OS-level packages
-- **Package Manager:** Homebrew manages the language stack and CLI tools
+- APT handles OS-level packages
+- Homebrew is used for **some** the language stack and CLI tools but not these:
+  - [AWS](https://docs.aws.amazon.com/cli/) tools
+  - [Github](https://cli.github.com/) tools
 
 ## How to Use
 

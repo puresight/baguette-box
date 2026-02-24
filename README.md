@@ -16,7 +16,8 @@ CLI
 - [Zsh](https://zsh.sourceforge.io/) shell
 - [Powershell](https://learn.microsoft.com/en-us/powershell/) shell
 - [Oh My Posh](https://ohmyposh.dev/) prompt
-- [Github CLI](https://cli.github.com/) tools
+- [AWS](https://docs.aws.amazon.com/cli/) tools
+- [Github](https://cli.github.com/) tools
 
 Languages
 
@@ -29,6 +30,7 @@ Languages
 
 AI pairing
 
+- [Goose](https://block.github.io/goose/docs/category/guides) (CLI)
 - [Aider](https://aider.chat/) (CLI)
 - [Roo Code](https://roocode.com/) (in [VS Code](https://code.visualstudio.com/))
 

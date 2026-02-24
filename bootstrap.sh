@@ -3,7 +3,7 @@ set -e
 
 source ./lib/platforms.sh
 
-echo
+echo ":::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::"
 echo "--- APT ---"
 if [ "$PLATFORM" == "linux" ]; then
     # Update & upgrade
@@ -16,7 +16,7 @@ if [ "$PLATFORM" == "linux" ]; then
     # Now install APT packages for this bootstrap
     sudo apt install -y software-properties-common build-essential git  \
         curl wget jq vim tmux zsh dnsutils htop ripgrep ca-certificates \
-        unzip zip xz-utils p7zip-full gpg \
+        pkg-config libssl-dev unzip zip xz-utils p7zip-full gpg \
         gnome-keyring libsecret-1-dev libsecret-tools \
         seahorse fuse-overlayfs podman \
         awscli
@@ -28,9 +28,13 @@ fi
 echo
 echo "--- GOOSE ---"
 if [ "$PLATFORM" == "linux" ]; then
-    curl -fsSL https://github.com/block/goose/releases/download/stable/download_cli.sh | bash
+    if ! command -v goose --version &> /dev/null; then
+        curl -fsSL https://github.com/block/goose/releases/download/stable/download_cli.sh | CONFIGURE=false bash
+    else
+        echo "Goose $(goose --version) was already installed."
+    fi
 else
-    echo ".NET not yet supported on $PLATFORM"
+    echo "Not yet supported on $PLATFORM"
 fi
 
 echo
@@ -39,7 +43,7 @@ if [ "$PLATFORM" == "linux" ]; then
     sudo apt install -y dotnet-sdk-10.0
     sudo apt install -y powershell
 else
-    echo ".NET not yet supported on $PLATFORM"
+    echo "Not yet supported on $PLATFORM"
 fi
 
 echo
@@ -80,7 +84,7 @@ echo "Shell: $SHELL ($($SHELL --version | head -n 1))"
 echo "Prompt: oh-my-posh $(oh-my-posh version)"
 
 echo
-echo "--- ROOTLESS PODMAN FIX ---"
+echo "--- PODMAN ---"
 if [ "$PLATFORM" == "linux" ]; then
     # The Problem: By default, a Linux user only has one UID (yours). To run a container, Podman needs to pretend to be "root" inside the container while remaining a "normal user" outside. It does this by mapping a range of UIDs from the host to the container.
     # The Fix: By adding $USER:100000:65536 to /etc/subuid and subgid, you are granting your user permission to "own" 65,536 subordinate IDs.
@@ -115,7 +119,9 @@ echo
 echo "--- RUST ---"
 if command -v rustup &> /dev/null; then
     rustup update
-    cargo install-update -a
+
+    # TODO investigate re-enabling this; it compiled from source 157 packages (too much) last time
+    # cargo install-update -a
 else
     # Rust APT dependencies: build-essential curl
     # We download and run the rustup-init script non-interactively
@@ -140,10 +146,12 @@ echo
 java -version
 
 echo
-echo "--- HOMEBREW INSTALL ---"
+echo "--- HOMEBREW ---"
 
 if ! command -v brew &> /dev/null; then
     /bin/bash -c "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/HEAD/install.sh)"
+else
+    echo "$(brew --version | head -n 1) already installed."
 fi
 echo "Setting up environment"
 if [ "$PLATFORM" == "linux" ]; then
@@ -186,7 +194,6 @@ fi
 
 echo
 echo "--- CURRENT VERSIONS ---"
-echo "$(brew --version | head -n 1)"
 echo "$(javac -version)"
 echo "dotnet $(dotnet --version)"
 echo "pwsh $(pwsh --version)"
