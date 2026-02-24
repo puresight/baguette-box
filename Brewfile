@@ -1,5 +1,4 @@
 brew "go"
 brew "node"
-brew "uv"
-brew "aider"
 brew "gh"
+brew "aider"

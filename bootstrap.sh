@@ -29,6 +29,25 @@ install_apt_packages() {
     fi
 }
 
+# Function to handle UV installation
+install_uv() {
+    local platform="$1"
+    echo
+    echo "--- UV ---"
+    if [ "$platform" == "linux" ]; then
+        if ! command -v uv; then
+            curl -LsSf https://astral.sh/uv/install.sh | sh
+            grep -qF 'export UV_NO_BUILD=1' ~/.zshrc || echo 'export UV_NO_BUILD=1' >> ~/.zshrc
+        else
+            echo "$(uv --version) was already installed."
+            uv self update
+        fi
+        uv python install
+    else
+        echo "Not yet supported on $platform"
+    fi
+}
+
 # Function to handle MISE installation per https://mise.jdx.dev/installing-mise.html
 install_mise() {
     local platform="$1"
@@ -245,19 +264,21 @@ display_environment() {
 display_versions() {
     echo
     echo "--- CURRENT VERSIONS ---"
+    echo "$(uv --version)"
+    echo "$(python3 --version)"
+    echo "$(rustc --version)"
+    echo "$(cargo --version)"
+    echo "$(go version)"
     echo "$(javac -version)"
     echo "dotnet $(dotnet --version)"
     echo "pwsh $(pwsh --version)"
     echo "Node $(node -v)"
     echo "npm $(npm -v)"
-    echo "$(uv --version)"
-    echo "$(rustc --version)"
-    echo "$(cargo --version)"
-    echo "$(go version)"
 }
 
 # Main execution
 install_apt_packages "$PLATFORM"
+install_uv          "$PLATFORM"
 install_mise        "$PLATFORM" zsh
 install_goose       "$PLATFORM"
 install_dotnet      "$PLATFORM" 10
