@@ -11,7 +11,7 @@ The extensions to be installed are listed in the `CodeExtensions` file, includin
 ## Configuration
 
 The script updates your `argv.json` and `settings.json`.
-Unfortunately (as a consequence) it disintegrates the comments that were in them.
+Unfortunately (as a consequence) it disintegrates the comments that were in them. The JSON updates come from the files in `vscode-updates` directory.
 
 ## How to Use
 

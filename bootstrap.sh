@@ -18,10 +18,19 @@ if [ "$PLATFORM" == "linux" ]; then
         curl wget jq vim tmux zsh dnsutils htop ripgrep ca-certificates \
         unzip zip xz-utils p7zip-full gpg \
         gnome-keyring libsecret-1-dev libsecret-tools \
-        seahorse fuse-overlayfs podman
+        seahorse fuse-overlayfs podman \
+        awscli
     # TODO for servers? learn what,why, if we should do this: sudo dpkg-reconfigure unattended-upgrades apt-listchanges
 else
     echo "Skipping APT on $PLATFORM"
+fi
+
+echo
+echo "--- GOOSE ---"
+if [ "$PLATFORM" == "linux" ]; then
+    curl -fsSL https://github.com/block/goose/releases/download/stable/download_cli.sh | bash
+else
+    echo ".NET not yet supported on $PLATFORM"
 fi
 
 echo
@@ -58,13 +67,6 @@ if [ "$PLATFORM" == "linux" ]; then
     # Configure Posh for Powershell
     pwsh -NoProfile -File ./bootstrap.ps1
 
-    # --- STARSHIP ---
-    # TODO prune this dead code section; starship was removed
-    # Install starship
-    # if ! grep -q "starship init zsh" "$HOME/.zshrc"; then
-    #     echo 'eval "$(starship init zsh)"' >> "$HOME/.zshrc"
-    # fi
-    # echo "Prompt $(starship --version | head -n 1)"
 elif [ "$PLATFORM" == "macos" ]; then
     if command -v oh-my-posh &> /dev/null; then
         oh-my-posh upgrade
@@ -185,13 +187,12 @@ fi
 echo
 echo "--- CURRENT VERSIONS ---"
 echo "$(brew --version | head -n 1)"
-echo "Node $(node -v)"
-echo "npm $(npm -v)"
-echo "$(uv --version)"
-# echo "$(rustup --version | head -n 1)"
-echo "$(rustc --version)"
-echo "$(cargo --version)"
-echo "$(go version)"
 echo "$(javac -version)"
 echo "dotnet $(dotnet --version)"
 echo "pwsh $(pwsh --version)"
+echo "Node $(node -v)"
+echo "npm $(npm -v)"
+echo "$(uv --version)"
+echo "$(rustc --version)"
+echo "$(cargo --version)"
+echo "$(go version)"
