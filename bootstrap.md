@@ -1,11 +1,8 @@
 # Bootstrap
 
-Bootstrap your developer workstation. This script provides a reproducible environment for the tech stack.
+Bootstrap your workstation. This script provides a reproducible environment for the tech stack.
 
-- APT handles OS-level packages
-- Homebrew is used for **some** the language stack and CLI tools but not these:
-  - [AWS](https://docs.aws.amazon.com/cli/) tools
-  - [Github](https://cli.github.com/) tools
+_To maintain workstation integrity, only install code from reputable & verified authors that regularly address issues with code updates._
 
 ## How to Use
 
@@ -14,14 +11,15 @@ Bootstrap your developer workstation. This script provides a reproducible enviro
 
 This script is idempotent. You can run it again anytime.
 
-## Quick-Start Editor
+## DevOps
 
-🐧 For quick file modifications, the [Nano](https://www.nano-editor.org/docs.php) is often bundled with your distribution.
+APT handles OS-level packages, and
 
-## Software
+- [AWS](https://docs.aws.amazon.com/cli/) tools
+- [Github](https://cli.github.com/) tools
 
-To maintain workstation integrity, only install code from reputable & verified authors that regularly address issues with code updates.
-The packages to be installed are listed in the `Brewfile` including Aider ✨
+Homebrew is used for **some** the language stack and CLI tools. The packages to be installed are listed in the `Brewfile`  
+including Goose & Aider ✨
 
 ## Rust
 
