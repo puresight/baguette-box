@@ -1,13 +1,15 @@
 # Baguette Box
 
-`baguette-box` 🥖 helps rapidly set up a new developer workstation. It is a reproducible system for starting up an AI-augmented development environment instance.
+_This is beta quality code so backup before using, read the docs, and scan the source before running._
 
-Note: This is beta quality code so backup before using, read the docs, and scan the source before running.
+`baguette-box` 🥖 helps rapidly set up a new developer workstation. It is a reproducible system for starting up an AI-augmented development environment instance, on
 
-- [Google/ChromeOS](https://chromeos.dev/en/linux) 🐧 primary
-- [Debian Linux](https://www.debian.org/) 🐧 secondary
-- [Apple/Mac](https://www.apple.com/mac/) future
-- [Microsoft/WSL2](https://learn.microsoft.com/en-us/windows/wsl/about) future
+- [Google/ChromeOS](https://chromeos.dev/en/linux) 🐧 _primary_
+- [Debian Linux](https://www.debian.org/) 🐧 _secondary_
+<!-- --
+- [Apple/Mac](https://www.apple.com/mac/) _future_
+- [Microsoft/WSL2](https://learn.microsoft.com/en-us/windows/wsl/about) _future_
+<!-- -->
 
 ## Tech Stack
 
@@ -24,7 +26,7 @@ Languages
 - [Java](https://dev.java/) ☕ as [OpenJDK](https://openjdk.org/)
 - [C#](https://learn.microsoft.com/en-us/dotnet/csharp) as [.NET SDK](https://dotnet.microsoft.com/)
 - [Python](https://www.python.org/) 🐍 via [uv](https://docs.astral.sh/uv/getting-started/features/)
-- [JavaScript](https://developer.mozilla.org/en-US/docs/Web/JavaScript) via [Node](https://nodejs.org/)
+- [Typescript](https://www.typescriptlang.org/docs/)/[JS](https://developer.mozilla.org/en-US/docs/Web/JavaScript) via [Node](https://nodejs.org/)
 - [Go](https://go.dev/)
 - [Rust](https://rust-lang.org/)
 
@@ -61,12 +63,14 @@ First, prepare your system
 
 Next, run the code
 
-1. **bootstrap:** Installs zsh, core language runtimes, and system-level fixes; read `bootstrap.md`
-1. **ide:** Installs VS Code with a curated suite of extensions; read `ide.md`
+1. **Bootstrap:** Installs zsh, core language runtimes, and system-level fixes; read `bootstrap.md`
+1. **IDE:** Installs VS Code with a curated suite of extensions; read `ide.md`
 
-## Secrets
+The setup is simple to get you up & running, quickly. Enjoy it. Stay in touch to let us know about bugs & improvements.
 
-🐧 Secrets include credentials (access tokens, API keys, username/password, etc) for applications, databases, websites, network logins, etc. VS Code is going to use this system anyway, so you might as well too.
+## Secrets Handling
+
+🐧 [GNOME Keyring](https://wiki.gnome.org/Projects/GnomeKeyring) is a collection of components in the Linux environment that securely stores secrets, making them available to applications. It was designed to run as a daemon, automatically unlocking stored secrets when a user logs into their session. Since VS Code is going to use this system anyway, you might as well use it, too. Secrets include credentials for apps, virtual private networks, shared drives, databases, signed messaging, secure tunnels, SSL/TLS certificates, et cetera. How to:
 
 - **View:** [`seahorse` aka "Passwords and Keys"](https://wiki.gnome.org/Apps/Seahorse) is a graphical frontend for the GNOME Keyring system; helpful for inspection or verification
 - **Store:** `echo -n "YOUR_ACTUAL_API_KEY" | secret-tool store --label="Gemini API Unbilled Key" service google-ai account unbilled-gemini-key`
