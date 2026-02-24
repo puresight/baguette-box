@@ -39,6 +39,7 @@ AI pairing
 DevOps
 
 - [APT](https://wiki.debian.org/AptCLI) 🐧 Advanced Package Tool is a command-line utility used in Debian-based Linux systems (Ubuntu, Mint) to manage software packages. It automates installing, upgrading, and removing software, including handling dependencies by accessing repositories defined in `/etc/apt/sources.list`
+- [Mise en place](https://mise.jdx.dev/)
 - [Homebrew](http://docs.brew.sh/Homebrew-on-Linux) 🍺 Linuxbrew package manager
 - [uv](https://docs.astral.sh/uv/getting-started/features/): Python's package manager
 - [npm](https://www.npmjs.com/): Node's package manager
@@ -59,9 +60,9 @@ First, prepare your system
   - `git clone <repo-link>`
   - `cd <repo-name>`
 
-## Scripts
+## Proceed
 
-Next, run the code
+Next, run the scripts
 
 1. **Bootstrap:** Installs zsh, core language runtimes, and system-level fixes; read `bootstrap.md`
 1. **IDE:** Installs VS Code with a curated suite of extensions; read `ide.md`

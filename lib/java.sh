@@ -1,34 +1,39 @@
 #!/bin/bash
 
+# ------ # ------ # ------ # ------ # ------ # ------ # ------ # ------
+# Dependencies:
+#   - APT source for Microsoft Linux repo must exist
+#   - update-alternatives
+# ------ # ------ # ------ # ------ # ------ # ------ # ------ # ------
+
 # Function ------------------------------------------------------------
 INSTALL_MS_OPENJDK() {
-    # Arguments are JDK versions to install
-    # The first argument is the JDK to make active
+    # Arguments are JDK versions to install; the first shall be active.
 
     if [[ $# -eq 0 ]]; then
-        echo "Error: No version numbers provided. Usage: install_ms_openjdk <default_version> [additional_versions...]" >&2
+        echo "Error: No version numbers provided. Usage: install_ms_openjdk <active_version> [additional_versions...]" >&2
         return 1
     fi
 
-    local DEFAULT_VER=$1
-    local ARCH
-    ARCH=$(dpkg --print-architecture)
+    local active_version=$1
+    local arch
+    arch=$(dpkg --print-architecture)
 
     for ver in "$@"; do
-        sudo apt-get install -y "msopenjdk-$ver"
+        sudo apt install -y "msopenjdk-$ver"
     done
     sudo apt autoremove -y
 
     # Configure the system default
-    local JAVA_PATH="/usr/lib/jvm/msopenjdk-$DEFAULT_VER-$ARCH/bin/java"
-    local JAVAC_PATH="/usr/lib/jvm/msopenjdk-$DEFAULT_VER-$ARCH/bin/javac"
+    local java_path="/usr/lib/jvm/msopenjdk-$active_version-$arch/bin/java"
+    local javac_path="/usr/lib/jvm/msopenjdk-$active_version-$arch/bin/javac"
 
-    if [[ -x "$JAVA_PATH" ]]; then
+    if [[ -x "$java_path" ]]; then
         # Use sudo to update the system-wide alternatives
-        sudo update-alternatives --set java "$JAVA_PATH" > /dev/null 2>&1
-        sudo update-alternatives --set javac "$JAVAC_PATH" > /dev/null 2>&1
+        sudo update-alternatives --set java "$java_path" > /dev/null 2>&1
+        sudo update-alternatives --set javac "$javac_path" > /dev/null 2>&1
     else
-        echo "Error: Could not set $DEFAULT_VER as default. Binary not found at $JAVA_PATH." >&2
+        echo "Error: Could not set $active_version as default. Binary not found at $java_path." >&2
         return 1
     fi
 }

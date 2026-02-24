@@ -1,9 +1,13 @@
 #!/bin/bash
 
 # ------ # ------ # ------ # ------ # ------ # ------ # ------ # ------
-# Purpose:
-#   This shell script installs APT sources for any package repository
-#   Supports GPG key management and repository configuration
+#
+#   This library script has functions that install APT sources
+#   for any package repository, supporting GPG key management
+#   and repository configuration.
+#
+#   Dependencies: none
+#
 # ------ # ------ # ------ # ------ # ------ # ------ # ------ # ------
 
 # Function to download and dearmor a GPG key
@@ -49,7 +53,7 @@ add_apt_repository() {
     
     # Create the source list
     if [ ! -f "$list_file" ]; then
-        echo "Adding repository: $repo_url"
+        echo "Adding source: $repo_url"
         
         # Build the deb line with appropriate options
         local deb_line="deb"
@@ -64,9 +68,9 @@ add_apt_repository() {
         echo "$deb_line $options $repo_url $suite main" | sudo tee "$list_file" > /dev/null
         
         if [ $? -eq 0 ]; then
-            echo "Successfully added repository to $list_file"
+            echo "Added source to $list_file"
         else
-            echo "Error: Failed to add repository"
+            echo "Error: Failed to add repository" >&2
             return 1
         fi
     else
@@ -78,17 +82,16 @@ add_apt_repository() {
 update_package_lists() {
     echo "Updating package lists..."
     sudo apt update -qq
-    if [ $? -eq 0 ]; then
-        echo "Package lists updated successfully"
-    else
-        echo "Error: Failed to update package lists"
+    if ! [ $? -eq 0 ]; then
+        echo "Error: Failed to update package lists" >&2
         return 1
     fi
 }
 
 # Main script execution
 main() {
-    # Example usage - these can be customized or removed
+    # Fetch the ID, VERSION_ID, VERSION_CODENAME
+    source /etc/os-release
 
     # Microsoft Linux repository
     add_apt_repository \
@@ -117,6 +120,5 @@ main() {
 
 # Execute main function if script is run directly
 if [[ "${BASH_SOURCE[0]}" == "${0}" ]]; then
-    source /etc/os-release
     main "$@"
 fi

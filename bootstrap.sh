@@ -1,11 +1,13 @@
 #!/bin/bash
 set -e
 
+# Load platform detection
 source ./lib/platforms.sh
 
 # Function to handle APT package installation
 install_apt_packages() {
-    if [ "$PLATFORM" == "linux" ]; then
+    local platform="$1"
+    if [ "$platform" == "linux" ]; then
         echo "--- APT ---"
         # Update & upgrade
         sudo apt update -qq && sudo apt upgrade -y
@@ -23,47 +25,71 @@ install_apt_packages() {
             awscli
         # TODO for servers? learn what,why, if we should do this: sudo dpkg-reconfigure unattended-upgrades apt-listchanges
     else
-        echo "Skipping APT on $PLATFORM"
+        echo "Skipping APT on $platform"
+    fi
+}
+
+# Function to handle MISE installation per https://mise.jdx.dev/installing-mise.html
+install_mise() {
+    local platform="$1"
+    local shell="$2"
+    echo
+    echo "--- MISE ---"
+    if [ "$platform" == "linux" ]; then
+        if ! command -v mise; then
+            # Install mise and add activation to ~/.zshrc
+            curl https://mise.run/$shell | sh
+        else
+            mise v
+            mise up
+        fi
+    else
+        echo "Not yet supported on $platform"
     fi
 }
 
 # Function to handle GOOSE installation
 install_goose() {
+    local platform="$1"
     echo
     echo "--- GOOSE ---"
-    if [ "$PLATFORM" == "linux" ]; then
+    if [ "$platform" == "linux" ]; then
         if ! command -v goose --version &> /dev/null; then
             curl -fsSL https://github.com/block/goose/releases/download/stable/download_cli.sh | CONFIGURE=false bash
         else
             echo "Goose $(goose --version) was already installed."
         fi
     else
-        echo "Not yet supported on $PLATFORM"
+        echo "Not yet supported on $platform"
     fi
 }
 
 # Function to handle .NET installation
 install_dotnet() {
+    local platform="$1"
     echo
     echo "--- .NET ---"
-    if [ "$PLATFORM" == "linux" ]; then
+    if [ "$platform" == "linux" ]; then
         for arg in "$@"; do
-            echo "Installing .NET SDK $arg..."
-            sudo apt install -y "dotnet-sdk-$arg.0"
+            if [ "$arg" != "$platform" ]; then
+                echo "Installing .NET SDK $arg..."
+                sudo apt install -y "dotnet-sdk-$arg.0"
+            fi
         done
         sudo apt install -y powershell
     else
-        echo "Not yet supported on $PLATFORM"
+        echo "Not yet supported on $platform"
     fi
 }
 
 # Function to handle shell configuration
 configure_shell() {
+    local platform="$1"
     echo
     echo "--- SHELL ---"
     export PATH=$PATH:~/.local/bin
     
-    if [ "$PLATFORM" == "linux" ]; then
+    if [ "$platform" == "linux" ]; then
         # change shell to zsh
         sudo chsh -s $(which zsh) $USER
 
@@ -83,7 +109,7 @@ configure_shell() {
         # Configure Posh for Powershell
         pwsh -NoProfile -File ./bootstrap.ps1
 
-    elif [ "$PLATFORM" == "macos" ]; then
+    elif [ "$platform" == "macos" ]; then
         if command -v oh-my-posh &> /dev/null; then
             oh-my-posh upgrade
         else
@@ -98,9 +124,10 @@ configure_shell() {
 
 # Function to handle Podman configuration
 configure_podman() {
+    local platform="$1"
     echo
     echo "--- PODMAN ---"
-    if [ "$PLATFORM" == "linux" ]; then
+    if [ "$platform" == "linux" ]; then
         # The Problem: By default, a Linux user only has one UID (yours). To run a container, Podman needs to pretend to be "root" inside the container while remaining a "normal user" outside. It does this by mapping a range of UIDs from the host to the container.
         # The Fix: By adding $USER:100000:65536 to /etc/subuid and subgid, you are granting your user permission to "own" 65,536 subordinate IDs.
         if [ ! -f "/etc/subuid" ] || ! grep -q "$USER" /etc/subuid; then
@@ -115,12 +142,13 @@ configure_podman() {
         # Refresh the runtime to recognize these new mappings. This prevents the common ERRO[0000] user namespaces are not enabled error.
         podman system migrate
     else
-        echo "Skipping Podman fix on $PLATFORM"
+        echo "Skipping Podman fix on $platform"
     fi
 }
 
 # Function to handle Rust installation
 install_rust() {
+    local platform="$1"
     echo
     echo "--- RUST ---"
     if command -v rustup &> /dev/null; then
@@ -144,11 +172,13 @@ install_rust() {
 
 # Function to handle Java installation
 install_java() {
+    local platform="$1"
+    local java_version="$2"
     echo
     echo "--- JAVA ---"
     source lib/java.sh
-    echo "Installing Microsoft OpenJDK version $1..."
-    INSTALL_MS_OPENJDK $1
+    echo "Installing Microsoft OpenJDK version $java_version..."
+    INSTALL_MS_OPENJDK $java_version
     # The first JDK version will be made the active one;
     # multiple are possible for example INSTALL_MS_OPENJDK 21 17 25
     echo
@@ -157,6 +187,7 @@ install_java() {
 
 # Function to handle Homebrew installation
 install_homebrew() {
+    local platform="$1"
     echo
     echo "--- HOMEBREW ---"
 
@@ -166,13 +197,14 @@ install_homebrew() {
         echo "$(brew --version | head -n 1) already installed."
     fi
     echo "Setting up environment"
-    if [ "$PLATFORM" == "linux" ]; then
+    local BREW_PATH=""
+    if [ "$platform" == "linux" ]; then
         if [ -d "/home/linuxbrew/.linuxbrew" ]; then
             BREW_PATH="/home/linuxbrew/.linuxbrew/bin/brew"
         elif [ -d "$HOME/.linuxbrew" ]; then
             BREW_PATH="$HOME/.linuxbrew/bin/brew"
         fi
-    elif [ "$PLATFORM" == "macos" ]; then
+    elif [ "$platform" == "macos" ]; then
         if [ -f "/opt/homebrew/bin/brew" ]; then
             BREW_PATH="/opt/homebrew/bin/brew"
         elif [ -f "/usr/local/bin/brew" ]; then
@@ -195,15 +227,16 @@ install_homebrew() {
 
 # Function to display environment information
 display_environment() {
+    local platform="$1"
     echo
     echo "--- ENVIRONMENT ---"
-    if [ "$PLATFORM" == "linux" ]; then
+    if [ "$platform" == "linux" ]; then
         if command -v hostnamectl &> /dev/null; then
             hostnamectl
         else
             cat /etc/os-release
         fi
-    elif [ "$PLATFORM" == "macos" ]; then
+    elif [ "$platform" == "macos" ]; then
         sw_vers
     fi
 }
@@ -224,13 +257,14 @@ display_versions() {
 }
 
 # Main execution
-install_apt_packages
-install_goose
-install_dotnet 10
-configure_shell
-configure_podman
-install_rust
-install_java 21
-install_homebrew
-display_environment
+install_apt_packages "$PLATFORM"
+install_mise        "$PLATFORM" zsh
+install_goose       "$PLATFORM"
+install_dotnet      "$PLATFORM" 10
+configure_shell     "$PLATFORM"
+configure_podman    "$PLATFORM"
+install_rust        "$PLATFORM"
+install_java        "$PLATFORM" 21
+install_homebrew    "$PLATFORM"
+display_environment "$PLATFORM"
 display_versions
