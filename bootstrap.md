@@ -36,7 +36,7 @@ Bootstrap uses APT to install packages in the `Aptfile`
 
 ### Homebrew
 
-Bootstrap uses [Homebrew](http://docs.brew.sh/Homebrew-on-Linux) 🍺 to install packages inn the `Brewfile`
+Bootstrap uses [Homebrew](http://docs.brew.sh/Homebrew-on-Linux) 🍺 to install packages in the `Brewfile`
 
 - [Go](https://go.dev/) language
 - [Node](https://nodejs.org/) engine
@@ -45,7 +45,7 @@ Bootstrap uses [Homebrew](http://docs.brew.sh/Homebrew-on-Linux) 🍺 to install
 
 ### UV
 
-[uv](https://docs.astral.sh/uv/getting-started/features/) installs
+[UV](https://docs.astral.sh/uv/getting-started/features/), the unified tool that replaces utilities in the Python ecosystem (pip, pip-tools, pyenv, virtualenv, pipx, poetry, twine), installs
 
 - Python
 
@@ -54,7 +54,7 @@ Bootstrap uses [Homebrew](http://docs.brew.sh/Homebrew-on-Linux) 🍺 to install
 _These have a custom setup_
 
 - [Oh My Posh](https://ohmyposh.dev/) prompt (self-updating)
-- [JetBrains Mono](https://www.jetbrains.com/lp/mono/) [Nerd Font](https://www.nerdfonts.com/font-downloads) glyph support (non-updating)
+- [Nerd Fonts](https://www.nerdfonts.com/font-downloads) glyph support (non-updating)
 - [Goose](https://block.github.io/goose/docs/category/guides) ✨ CLI (relies on bootstrap)
 - [Rust](https://rust-lang.org/) is installed using [rustup](https://rustup.rs/).
   The _cargo binstall_ tool is added for quick package installation because the standard _cargo install_ command downloads source code and compiles it on your machine, which can be slow. To bypass this and install pre-compiled binaries, use the community-standard tools like [cargo-binstall](https://github.com/cargo-bins/cargo-binstall). This is the most popular method. it automatically searches for pre-compiled releases on GitHub or other registries.
