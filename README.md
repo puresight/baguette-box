@@ -2,13 +2,14 @@
 
 _This is beta quality code so backup before using, read the docs, and scan the source before running._
 
-`baguette-box` 🥖 helps rapidly set up a new developer workstation. It is a reproducible system for starting up an AI-augmented development environment instance, on
+`baguette-box` helps rapidly set up a new developer workstation. It is a reproducible system for starting up an AI augmented development environment instance on
+💻 [Debian Linux](https://www.debian.org/) and its derivatives including [ChromeOS](https://chromeos.dev/en/linux), Ubuntu, Linux Mint, and Raspberry Pi.
 
-- [Google/ChromeOS](https://chromeos.dev/en/linux) 🐧 _primary_
-- [Debian Linux](https://www.debian.org/) 🐧 _secondary_
 <!-- --
 - [Apple/Mac](https://www.apple.com/mac/) _future_
 - [Microsoft/WSL2](https://learn.microsoft.com/en-us/windows/wsl/about) _future_
+⏱🏎🏍
+_From laptop purchase to vibe coding in an hour&hellip;_
 <!-- -->
 
 ## Tech Stack
@@ -30,11 +31,11 @@ Languages
 - [Go](https://go.dev/)
 - [Rust](https://rust-lang.org/)
 
-AI pairing
+Agentic AI & pairing
 
-- [Goose](https://block.github.io/goose/docs/category/guides) (CLI)
-- [Aider](https://aider.chat/) (CLI)
-- [Roo Code](https://roocode.com/) (in [VS Code](https://code.visualstudio.com/))
+- [Goose](https://block.github.io/goose/docs/category/guides) ✨ CLI
+- [Aider](https://aider.chat/) ✨ CLI
+- [Roo Code](https://roocode.com/) in [VS Code](https://code.visualstudio.com/)
 
 DevOps
 
@@ -68,7 +69,7 @@ Next, run the scripts
 1. **Bootstrap:** Installs zsh, core language runtimes, and system-level fixes; read `bootstrap.md`
 1. **IDE:** Installs VS Code with a curated suite of extensions; read `ide.md`
 
-The setup is simple to get you up & running, quickly. Enjoy it. Stay in touch to let us know about bugs & improvements.
+The setup is simple to get you up & running. Stay in touch to let us know about bugs & improvements.
 
 ## Secrets Handling
 
