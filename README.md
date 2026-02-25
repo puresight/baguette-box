@@ -2,7 +2,7 @@
 
 _This is beta quality code so backup before using, read the docs, and scan the source before running._
 
-`baguette-box` helps rapidly set up a new developer workstation. It is a reproducible system for starting up an AI augmented development environment instance on
+`baguette-box` 🥖 helps in setting up a new developer workstation. It is a reproducible system for starting up an AI augmented development environment instance on
 💻 [Debian Linux](https://www.debian.org/) and its derivatives including [ChromeOS](https://chromeos.dev/en/linux), Ubuntu, Linux Mint, and Raspberry Pi.
 
 <!-- --
