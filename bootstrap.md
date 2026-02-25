@@ -18,10 +18,11 @@ APT handles OS-level packages, and
 - [AWS](https://docs.aws.amazon.com/cli/) tools
 - [Github](https://cli.github.com/) tools
 
-[Mise](https://mise.jdx.dev/) is a tool that manages installations of programming language runtimes and other tools for local development. For example, it can be used to manage multiple versions of Node.js, Python, Ruby, Go, etc. on the same machine.
+Homebrew is used for **some** the language stack and CLI tools:
 
-Homebrew is used for **some** the language stack and CLI tools. The packages to be installed are listed in the `Brewfile`  
-including Goose & Aider ✨
+- `Brewfile` enumerates the packages it installs
+
+[Mise](https://mise.jdx.dev/) is a tool that manages installations of programming language runtimes and other tools for local development. _It could be used to manage multiple versions of Node.js, Go, or Ruby on the same machine._
 
 ## Rust
 

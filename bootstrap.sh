@@ -7,23 +7,24 @@ source ./lib/platforms.sh
 # Function to handle APT package installation
 install_apt_packages() {
     local platform="$1"
+    local apt_file="$2"
     if [ "$platform" == "linux" ]; then
-        echo "--- APT ---"
+        echo "--- APT $2 ---"
         # Update & upgrade
-        sudo apt update -qq && sudo apt upgrade -y
+        sudo apt update -qq
         sudo apt autoremove -y
 
         # Add all APT sources for Microsoft packages
         source lib/apt.sh
 
-        # Now install APT packages for this bootstrap
-        sudo apt install -y software-properties-common build-essential git  \
-            curl wget jq vim tmux zsh dnsutils htop ripgrep ca-certificates \
-            pkg-config libssl-dev unzip zip xz-utils p7zip-full gpg \
-            gnome-keyring libsecret-1-dev libsecret-tools \
-            seahorse fuse-overlayfs podman \
-            awscli
-        # TODO for servers? learn what,why, if we should do this: sudo dpkg-reconfigure unattended-upgrades apt-listchanges
+        # Now install APT packages from file
+        if [ -f "$apt_file" ]; then
+            echo "Installing packages from $apt_file..."
+            sudo apt install -y $(cat "$apt_file" | sed 's/#.*$//' | sed '/^[[:space:]]*$/d' | tr '\n' ' ')
+        else
+            echo "Error: file '$apt_file' not found" >&2
+            exit 1
+        fi
     else
         echo "Skipping APT on $platform"
     fi
@@ -238,10 +239,16 @@ install_homebrew() {
             (echo; echo "eval \"\$($BREW_PATH shellenv)\"") >> "$HOME/.zprofile"
         fi
     fi
+}
+
+# Function to install a Homebrew bundle
+brew_bundle() {
+    local platform="$1"
+    local apt_file="$2"
 
     echo
-    echo "--- HOMEBREW Brewfile ---"
-    brew bundle --file=./Brewfile
+    echo "--- HOMEBREW $2 ---"
+    brew bundle --file="./$2"
 }
 
 # Function to display environment information
@@ -277,7 +284,7 @@ display_versions() {
 }
 
 # Main execution
-install_apt_packages "$PLATFORM"
+install_apt_packages "$PLATFORM" Aptfile
 install_uv          "$PLATFORM"
 install_mise        "$PLATFORM" zsh
 install_goose       "$PLATFORM"
@@ -287,5 +294,6 @@ configure_podman    "$PLATFORM"
 install_rust        "$PLATFORM"
 install_java        "$PLATFORM" 21
 install_homebrew    "$PLATFORM"
+brew_bundle         "$PLATFORM" Brewfile
 display_environment "$PLATFORM"
 display_versions

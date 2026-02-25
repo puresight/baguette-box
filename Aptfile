@@ -1,0 +1,10 @@
+# APT will install these packages
+
+# Comments are allowed to document why you want things. Use as many lines as you want. Line breaks and/or blank lines are helpful for grouping.
+
+software-properties-common build-essential git
+curl wget jq vim tmux zsh dnsutils htop ripgrep ca-certificates
+pkg-config libssl-dev unzip zip xz-utils p7zip-full gpg
+gnome-keyring libsecret-1-dev libsecret-tools
+seahorse fuse-overlayfs podman
+awscli

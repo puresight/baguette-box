@@ -1,3 +1,5 @@
+# Extensions to install in vscode
+
 dbaeumer.vscode-eslint
 esbenp.prettier-vscode
 eamodio.gitlens

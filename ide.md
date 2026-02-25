@@ -5,7 +5,7 @@ This IDE setup `ide.sh` script installs and configures Microsoft **VS Code** and
 ## Extensions
 
 To maintain workstation integrity, only install extensions from reputable & verified authors that regularly address issues with code updates.
-The extensions to be installed are listed in the `CodeExtensions` file, including
+The extensions to be installed are listed in the `vscodeExtensions` file, including
 [Roo Code](https://marketplace.visualstudio.com/items?itemName=RooVeterinaryInc.roo-cline) ✨
 
 ## Configuration

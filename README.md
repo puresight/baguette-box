@@ -51,8 +51,9 @@ First, prepare your system
 
 - ChromeOS: Set a password
   - `sudo passwd $USER`
-- Linux: Update your packages and install Git
-  - `sudo apt update && sudo apt install git -y`
+- Linux: Update, upgrade, and install git
+  - `sudo apt update && sudo apt upgrade -y`
+  - `sudo apt install git`
 - Git [First Time Setup](https://git-scm.com/book/ms/v2/Getting-Started-First-Time-Git-Setup) e.g.
   - `git config --global user.name "Jane Doe"`
   - `git config --global user.email "janedoe@example.com"`

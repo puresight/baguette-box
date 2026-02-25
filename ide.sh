@@ -34,16 +34,16 @@ install_vscode() {
 install_extensions() {
     echo
     echo "--- EXTENSIONS ---"
-    if [ -f "CodeExtensions" ]; then
+    if [ -f "vscodeExtensions" ]; then
         while IFS= read -r extension || [ -n "$extension" ]; do
             # Ignore comments and empty lines
             [[ "$extension" =~ ^#.*$ ]] && continue
             [[ -z "$extension" ]] && continue
             echo "Installing extension: $extension"
             code --install-extension "$extension"
-        done < "CodeExtensions"
+        done < "vscodeExtensions"
     else
-        echo "Error: CodeExtensions file not found! skipping extension installation." >&2
+        echo "Error: vscodeExtensions file not found! skipping extension installation." >&2
     fi
 }
 
