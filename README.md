@@ -18,7 +18,7 @@ CLI
 
 - [Zsh](https://zsh.sourceforge.io/) shell
 - [Powershell](https://learn.microsoft.com/en-us/powershell/) shell
-- [Oh My Posh](https://ohmyposh.dev/) prompt _with_ [JetBrains Mono](https://www.jetbrains.com/lp/mono/) [Nerd Font](https://www.nerdfonts.com/font-downloads) (for glyph support)
+- [Oh My Posh](https://ohmyposh.dev/) prompt _with_ [JetBrains Mono](https://www.jetbrains.com/lp/mono/) [Nerd Font](https://www.nerdfonts.com/font-downloads)
 - [AWS](https://docs.aws.amazon.com/cli/) tools
 - [Github](https://cli.github.com/) tools
 
@@ -64,16 +64,26 @@ First, prepare your system
 
 ## Proceed
 
-Next, run the scripts
+Next, run the scripts, in sequence:
 
-1. **Bootstrap:** Installs zsh, core language runtimes, and system-level fixes; read `bootstrap.md`
-1. **IDE:** Installs VS Code with a curated suite of extensions; read `ide.md`
+- **Bootstrap:** Installs zsh, core language runtimes, and system-level fixes
+  - 📖 read `bootstrap.md`
+  - Run `./bootstrap.sh`
+  - Restart your shell: `exit` and reopen the terminal tab.
+- **IDE:** Installs VS Code with a curated suite of extensions
+  - 📖 read `ide.md`
+  - Run `./ide.sh`
 
 The setup is simple to get you up & running. Stay in touch to let us know about bugs & improvements.
 
-## Secrets Handling
+## Passkeys
 
-🐧 [GNOME Keyring](https://wiki.gnome.org/Projects/GnomeKeyring) is a collection of components in the Linux environment that securely stores secrets, making them available to applications. It was designed to run as a daemon, automatically unlocking stored secrets when a user logs into their session. Since VS Code is going to use this system anyway, you might as well use it, too. Secrets include credentials for apps, virtual private networks, shared drives, databases, signed messaging, secure tunnels, SSL/TLS certificates, et cetera. How to:
+🐧 [GNOME Keyring](https://wiki.gnome.org/Projects/GnomeKeyring) is a collection of components in the Linux environment that securely stores secrets, making them available to applications.
+Since VS Code is going to use this system anyway, you might as well use it, too. Secrets include credentials for apps, virtual private networks, shared drives, databases, signed messaging, secure tunnels, SSL/TLS certificates, etc. How to:
+
+<!-- --
+It was designed to run as a daemon, automatically unlocking stored secrets when a user logs into their session.
+<!-- -->
 
 - **View:** [`seahorse` aka "Passwords and Keys"](https://wiki.gnome.org/Apps/Seahorse) is a graphical frontend for the GNOME Keyring system; helpful for inspection or verification
 - **Store:** `echo -n "YOUR_ACTUAL_API_KEY" | secret-tool store --label="Gemini API Unbilled Key" service google-ai account unbilled-gemini-key`
