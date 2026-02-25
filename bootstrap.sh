@@ -7,17 +7,22 @@ source ./lib/java.sh
 source ./lib/fonts.sh
 source ./lib/bootstrap.sh
 
-install_apt_packages "$PLATFORM" Aptfile
-install_uv           "$PLATFORM"
-install_mise         "$PLATFORM" zsh
-install_goose        "$PLATFORM"
-install_dotnet       "$PLATFORM" 10
-configure_shell      "$PLATFORM"
-install_nerd_font
-configure_podman     "$PLATFORM"
-install_rust         "$PLATFORM"
-install_java         "$PLATFORM" 21
-install_homebrew     "$PLATFORM"
-brew_bundle          "$PLATFORM" Brewfile
-display_environment  "$PLATFORM"
-display_versions
+# Main execution
+main() {
+    local shell=zsh
+    install_apt_packages Aptfile
+    install_uv $shell
+    install_mise $shell
+    install_goose
+    install_dotnet 10
+    configure_shell $shell
+    install_nerd_font
+    configure_podman
+    install_rust
+    install_java 21
+    install_homebrew $shell
+    brew_bundle Brewfile
+    display_environment
+    display_versions
+}
+main "$@"

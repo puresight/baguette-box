@@ -1,11 +1,15 @@
 #!/bin/bash
 
+# ------ # ------ # ------ # ------ # ------ # ------ # ------ # ------
+# Dependencies:
+#   - PLATFORM global variable
+# ------ # ------ # ------ # ------ # ------ # ------ # ------ # ------
+
 # Function to handle APT package installation
 install_apt_packages() {
-    local platform="$1"
-    local apt_file="$2"
-    if [ "$platform" == "linux" ]; then
-        echo "--- APT $2 ---"
+    local apt_file="$1"
+    if [ "$PLATFORM" == "linux" ]; then
+        echo "--- APT $1 ---"
         # Update & upgrade
         sudo apt update -qq
         sudo apt autoremove -y
@@ -22,36 +26,35 @@ install_apt_packages() {
             exit 1
         fi
     else
-        echo "Skipping APT on $platform"
+        echo "Skipping APT on $PLATFORM"
     fi
 }
 
 # Function to handle UV installation
 install_uv() {
-    local platform="$1"
+    local shell="${1:-bash}"
     echo
     echo "--- UV ---"
-    if [ "$platform" == "linux" ]; then
+    if [ "$PLATFORM" == "linux" ]; then
         if ! command -v uv; then
             curl -LsSf https://astral.sh/uv/install.sh | sh
-            grep -qF 'export UV_NO_BUILD=1' ~/.zshrc || echo 'export UV_NO_BUILD=1' >> ~/.zshrc
+            grep -qF 'export UV_NO_BUILD=1' ~/.${shell}rc || echo 'export UV_NO_BUILD=1' >> ~/.${shell}rc
         else
-            echo "$(uv --version) was already installed."
+            echo "$(uv --version) was already installed for $shell"
             uv self update
         fi
         uv python install
     else
-        echo "Not yet supported on $platform"
+        echo "Not yet supported on $PLATFORM"
     fi
 }
 
 # Function to handle MISE installation per https://mise.jdx.dev/installing-mise.html
 install_mise() {
-    local platform="$1"
-    local shell="$2"
+    local shell="${1:-bash}"
     echo
     echo "--- MISE ---"
-    if [ "$platform" == "linux" ]; then
+    if [ "$PLATFORM" == "linux" ]; then
         if ! command -v mise; then
             # Install mise and add activation to ~/.zshrc
             curl https://mise.run/$shell | sh
@@ -60,54 +63,52 @@ install_mise() {
             mise up
         fi
     else
-        echo "Not yet supported on $platform"
+        echo "Not yet supported on $PLATFORM"
     fi
 }
 
 # Function to handle GOOSE installation
 install_goose() {
-    local platform="$1"
     echo
     echo "--- GOOSE ---"
-    if [ "$platform" == "linux" ]; then
+    if [ "$PLATFORM" == "linux" ]; then
         if ! command -v goose --version &> /dev/null; then
             curl -fsSL https://github.com/block/goose/releases/download/stable/download_cli.sh | CONFIGURE=false bash
         else
             echo "Goose $(goose --version) was already installed."
         fi
     else
-        echo "Not yet supported on $platform"
+        echo "Not yet supported on $PLATFORM"
     fi
 }
 
 # Function to handle .NET installation
 install_dotnet() {
-    local platform="$1"
     echo
     echo "--- .NET ---"
-    if [ "$platform" == "linux" ]; then
+    if [ "$PLATFORM" == "linux" ]; then
         for arg in "$@"; do
-            if [ "$arg" != "$platform" ]; then
+            if [ "$arg" != "$PLATFORM" ]; then
                 echo "Installing .NET SDK $arg..."
                 sudo apt install -y "dotnet-sdk-$arg.0"
             fi
         done
         sudo apt install -y powershell
     else
-        echo "Not yet supported on $platform"
+        echo "Not yet supported on $PLATFORM"
     fi
 }
 
 # Function to handle shell configuration
 configure_shell() {
-    local platform="$1"
+    local shell="${1:-bash}"
     echo
     echo "--- SHELL ---"
     export PATH=$PATH:~/.local/bin
     
-    if [ "$platform" == "linux" ]; then
-        # change shell to zsh
-        sudo chsh -s $(which zsh) $USER
+    if [ "$PLATFORM" == "linux" ]; then
+        # change shell
+        sudo chsh -s $(which $shell) $USER
 
         # Posh exists? upgrade it! No posh, install it.
         if command -v oh-my-posh &> /dev/null; then
@@ -116,16 +117,16 @@ configure_shell() {
             curl -s https://ohmyposh.dev/install.sh | bash -s
         fi
 
-        # Posh's config persists in .zshrc
-        if ! grep -q "oh-my-posh init zsh" "$HOME/.zshrc"; then
-            echo 'eval "$(oh-my-posh init zsh --config https://raw.githubusercontent.com/JanDeDobbeleer/oh-my-posh/main/themes/pure.omp.json)"' >> "$HOME/.zshrc"
-            echo "Persisting in ~/.zshrc"
+        # Posh's config persists in shell's .rc file
+        if ! grep -q "oh-my-posh init $shell" "$HOME/.${shell}rc"; then
+            echo 'eval "$(oh-my-posh init $shell --config https://raw.githubusercontent.com/JanDeDobbeleer/oh-my-posh/main/themes/pure.omp.json)"' >> "$HOME/.${shell}rc"
+            echo "Persisting in ~/.${shell}rc"
         fi
 
         # Configure Posh for Powershell
         pwsh -NoProfile -File ./bootstrap.ps1
 
-    elif [ "$platform" == "macos" ]; then
+    elif [ "$PLATFORM" == "macos" ]; then
         if command -v oh-my-posh &> /dev/null; then
             oh-my-posh upgrade
         else
@@ -140,10 +141,9 @@ configure_shell() {
 
 # Function to handle Podman configuration
 configure_podman() {
-    local platform="$1"
     echo
     echo "--- PODMAN ---"
-    if [ "$platform" == "linux" ]; then
+    if [ "$PLATFORM" == "linux" ]; then
         # The Problem: By default, a Linux user only has one UID (yours). To run a container, Podman needs to pretend to be "root" inside the container while remaining a "normal user" outside. It does this by mapping a range of UIDs from the host to the container.
         # The Fix: By adding $USER:100000:65536 to /etc/subuid and subgid, you are granting your user permission to "own" 65,536 subordinate IDs.
         if [ ! -f "/etc/subuid" ] || ! grep -q "$USER" /etc/subuid; then
@@ -158,13 +158,12 @@ configure_podman() {
         # Refresh the runtime to recognize these new mappings. This prevents the common ERRO[0000] user namespaces are not enabled error.
         podman system migrate
     else
-        echo "Skipping Podman fix on $platform"
+        echo "Fix not yet supported on $PLATFORM"
     fi
 }
 
 # Function to handle Rust installation
 install_rust() {
-    local platform="$1"
     echo
     echo "--- RUST ---"
     if command -v rustup &> /dev/null; then
@@ -188,8 +187,7 @@ install_rust() {
 
 # Function to handle Java installation
 install_java() {
-    local platform="$1"
-    local java_version="$2"
+    local java_version="$1"
     echo
     echo "--- JAVA ---"
     source lib/java.sh
@@ -203,24 +201,27 @@ install_java() {
 
 # Function to handle Homebrew installation
 install_homebrew() {
-    local platform="$1"
+    local shell="${1:-bash}"
     echo
     echo "--- HOMEBREW ---"
 
+    # Install
     if ! command -v brew &> /dev/null; then
         /bin/bash -c "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/HEAD/install.sh)"
     else
         echo "$(brew --version | head -n 1) already installed."
+        brew update
     fi
+
     echo "Setting up environment"
     local BREW_PATH=""
-    if [ "$platform" == "linux" ]; then
+    if [ "$PLATFORM" == "linux" ]; then
         if [ -d "/home/linuxbrew/.linuxbrew" ]; then
             BREW_PATH="/home/linuxbrew/.linuxbrew/bin/brew"
         elif [ -d "$HOME/.linuxbrew" ]; then
             BREW_PATH="$HOME/.linuxbrew/bin/brew"
         fi
-    elif [ "$platform" == "macos" ]; then
+    elif [ "$PLATFORM" == "macos" ]; then
         if [ -f "/opt/homebrew/bin/brew" ]; then
             BREW_PATH="/opt/homebrew/bin/brew"
         elif [ -f "/usr/local/bin/brew" ]; then
@@ -228,37 +229,35 @@ install_homebrew() {
         fi
     fi
 
+    # Persist in shell's .rc file
     if [ -n "$BREW_PATH" ]; then
+        echo "Persisting in ~/.${shell}rc"
         eval "$($BREW_PATH shellenv)"
-        echo "Persisting in ~/.zprofile"
-        if ! grep -q "shellenv" "$HOME/.zprofile"; then
-            (echo; echo "eval \"\$($BREW_PATH shellenv)\"") >> "$HOME/.zprofile"
+        if ! grep -q "shellenv" "$HOME/.${shell}rc"; then
+            (echo; echo "eval \"\$($BREW_PATH shellenv)\"") >> "$HOME/.${shell}rc"
         fi
     fi
 }
 
 # Function to install a Homebrew bundle
 brew_bundle() {
-    local platform="$1"
-    local apt_file="$2"
-
+    local apt_file="$1"
     echo
-    echo "--- HOMEBREW $2 ---"
-    brew bundle --file="./$2"
+    echo "--- HOMEBREW $1 ---"
+    brew bundle --file="./$1"
 }
 
 # Function to display environment information
 display_environment() {
-    local platform="$1"
     echo
     echo "--- ENVIRONMENT ---"
-    if [ "$platform" == "linux" ]; then
+    if [ "$PLATFORM" == "linux" ]; then
         if command -v hostnamectl &> /dev/null; then
             hostnamectl
         else
             cat /etc/os-release
         fi
-    elif [ "$platform" == "macos" ]; then
+    elif [ "$PLATFORM" == "macos" ]; then
         sw_vers
     fi
 }

@@ -2,7 +2,10 @@
 
 # ------ # ------ # ------ # ------ # ------ # ------ # ------ # ------
 #   This library script has functions that install Nerd Fonts.
-#   Dependencies: unzip
+#
+#   Dependencies:
+#   - unzip
+#   - PLATFORM global variable
 # ------ # ------ # ------ # ------ # ------ # ------ # ------ # ------
 
 # Function to download and install a Nerd Font
@@ -11,7 +14,13 @@ install_nerd_font() {
     # Arguments
     local font_name="${1:-JetBrainsMono}"
     local version="${2:-v3.3.0}"
-    
+
+    # TODO support multiple platforms like macos    
+    if ! [ "$PLATFORM" == "linux" ]; then
+        echo "install_nerd_font is not yet supported on $PLATFORM" >&2
+        return 1
+    fi
+
     # Internal variables
     local base_tmp="${TMPDIR:-/tmp}"
     local font_zip="${font_name}.zip"
@@ -22,8 +31,8 @@ install_nerd_font() {
     # Check for a specific file to avoid re-downloading. 
     # Most Nerd Fonts include a "Nerd Font" suffix in the filename.
     if ls "${target_dir}/${font_name}"*"NerdFont"* >/dev/null 2>&1; then
-        echo "$font_name Nerd Font appears to be already installed."
-        return 0
+        echo "Font: $font_name is already installed."
+        return
     fi
 
     echo "Installing $font_name Nerd Font ($version)..."

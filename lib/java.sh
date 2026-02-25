@@ -7,6 +7,7 @@
 # ------ # ------ # ------ # ------ # ------ # ------ # ------ # ------
 
 # Function ------------------------------------------------------------
+# TODO support multi-PLATFORM, like macos
 INSTALL_MS_OPENJDK() {
     # Arguments are JDK versions to install; the first shall be active.
 

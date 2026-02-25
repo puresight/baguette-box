@@ -1,20 +1,24 @@
 #!/bin/bash
 
+# ------ # ------ # ------ # ------ # ------ # ------ # ------ # ------
+# Dependencies:
+#   - PLATFORM global variable
+# ------ # ------ # ------ # ------ # ------ # ------ # ------ # ------
+
 # Function to install VS Code
 install_vscode() {
     local repo_path="$(cd -- "$(dirname -- "${BASH_SOURCE:-$0}")" && cd .. && pwd)"
-    local platform="$1"
-    local vscode_argv="$repo_path/$2"
+    local vscode_argv="$repo_path/$1"
 
     echo
-    echo "--- VS CODE ($platform) ---"
+    echo "--- VS CODE ($PLATFORM) ---"
     if ! command -v code &> /dev/null; then
-        if [ "$platform" == "linux" ]; then
+        if [ "$PLATFORM" == "linux" ]; then
             sudo apt install -y code
-        elif [ "$platform" == "macos" ]; then
+        elif [ "$PLATFORM" == "macos" ]; then
             brew install --cask visual-studio-code
         else
-            echo "Unsupported platform $platform"
+            echo "Unsupported platform $PLATFORM"
         fi
 
         echo "Configuring VS Code runtime arguments (argv.json)..."
@@ -34,32 +38,32 @@ install_vscode() {
 
 # Function to install VS Code extensions
 install_extensions() {
+    local ext_file="$1"
     echo
     echo "--- EXTENSIONS ---"
-    if [ -f "vscodeExtensions" ]; then
+    if [ -f $ext_file ]; then
         while IFS= read -r extension || [ -n "$extension" ]; do
             # Ignore comments and empty lines
             [[ "$extension" =~ ^#.*$ ]] && continue
             [[ -z "$extension" ]] && continue
             echo "Installing extension: $extension"
             code --install-extension "$extension"
-        done < "vscodeExtensions"
+        done < "$ext_file"
     else
-        echo "Error: vscodeExtensions file not found! skipping extension installation." >&2
+        echo "Error: $ext_file file not found! skipping extension installation." >&2
     fi
 }
 
 # Function to configure VS Code settings
 configure_vscode() {
     local repo_path="$(cd -- "$(dirname -- "${BASH_SOURCE:-$0}")" && cd .. && pwd)"
-    local platform="$1"
-    local vscode_user_settings="$repo_path/$2"
+    local vscode_user_settings="$repo_path/$1"
 
     echo
     echo "--- CONFIGURATION ---"
-    if [ "$platform" == "linux" ]; then
+    if [ "$PLATFORM" == "linux" ]; then
         TARGET_JSON="$HOME/.config/Code/User/settings.json"
-    elif [ "$platform" == "macos" ]; then
+    elif [ "$PLATFORM" == "macos" ]; then
         TARGET_JSON="$HOME/Library/Application Support/Code/User/settings.json"
     fi
     if [ -n "$TARGET_JSON" ]; then
