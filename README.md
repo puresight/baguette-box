@@ -26,7 +26,7 @@ Languages
 
 - [Java](https://dev.java/) ☕ as [OpenJDK](https://openjdk.org/)
 - [C#](https://learn.microsoft.com/en-us/dotnet/csharp) as [.NET SDK](https://dotnet.microsoft.com/)
-- [Python](https://www.python.org/) 🐍 via [uv](https://docs.astral.sh/uv/getting-started/features/)
+- [Python](https://www.python.org/) via [uv](https://docs.astral.sh/uv/getting-started/features/)
 - [Typescript](https://www.typescriptlang.org/docs/)/[JS](https://developer.mozilla.org/en-US/docs/Web/JavaScript) via [Node](https://nodejs.org/)
 - [Go](https://go.dev/)
 - [Rust](https://rust-lang.org/)
