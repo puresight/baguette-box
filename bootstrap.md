@@ -33,6 +33,7 @@ _These have a custom setup:_
 
 - [uv](https://docs.astral.sh/uv/getting-started/features/) and [Python](https://www.python.org/)
 - [Oh My Posh](https://ohmyposh.dev/) prompt
+- [JetBrains Mono](https://www.jetbrains.com/lp/mono/) [Nerd Font](https://www.nerdfonts.com/font-downloads) glyph support
 - [Goose](https://block.github.io/goose/docs/category/guides) ✨ CLI
 
 _These are planned for future integration:_

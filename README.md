@@ -18,7 +18,7 @@ CLI
 
 - [Zsh](https://zsh.sourceforge.io/) shell
 - [Powershell](https://learn.microsoft.com/en-us/powershell/) shell
-- [Oh My Posh](https://ohmyposh.dev/) prompt
+- [Oh My Posh](https://ohmyposh.dev/) prompt _with_ [JetBrains Mono](https://www.jetbrains.com/lp/mono/) [Nerd Font](https://www.nerdfonts.com/font-downloads) (for glyph support)
 - [AWS](https://docs.aws.amazon.com/cli/) tools
 - [Github](https://cli.github.com/) tools
 

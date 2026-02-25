@@ -4,6 +4,7 @@ set -e
 source ./lib/platforms.sh
 source ./lib/apt.sh
 source ./lib/java.sh
+source ./lib/fonts.sh
 source ./lib/bootstrap.sh
 
 install_apt_packages "$PLATFORM" Aptfile
@@ -12,6 +13,7 @@ install_mise         "$PLATFORM" zsh
 install_goose        "$PLATFORM"
 install_dotnet       "$PLATFORM" 10
 configure_shell      "$PLATFORM"
+install_nerd_font
 configure_podman     "$PLATFORM"
 install_rust         "$PLATFORM"
 install_java         "$PLATFORM" 21
