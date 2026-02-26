@@ -22,6 +22,7 @@ CLI
 - [kubectl](https://kubernetes.io/docs/reference/kubectl/) K8s tool
 - [Google Cloud](https://cloud.google.com/cli) ☁ tools
 - [AWS](https://docs.aws.amazon.com/cli/) ☁ tools
+- [Azure](https://learn.microsoft.com/en-us/powershell/azure/) ☁ tools
 - [Github](https://cli.github.com/) tools
 
 Languages

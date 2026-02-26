@@ -18,16 +18,16 @@ This script is idempotent. You can run it again anytime.
 Bootstrap connects [APT](https://wiki.debian.org/AptCLI) to these repository [sources](https://wiki.debian.org/SourcesList) &mdash;
 
 - [Google Cloud CLI](https://docs.cloud.google.com/sdk/docs/install-sdk#deb) `google-cloud` <packages.cloud.google.com/apt>
-- [Microsoft prod](https://learn.microsoft.com/en-us/linux/packages) `microsoft-prod` <packages.microsoft.com/debian/12/prod>
 - [Azure Cloud CLI](https://learn.microsoft.com/en-us/cli/azure/) `azure-cli` <packages.microsoft.com/repos/azure-cli/>
+- [Microsoft prod](https://learn.microsoft.com/en-us/linux/packages) `microsoft-prod` <packages.microsoft.com/debian/12/prod>
 - [VS Code](https://code.visualstudio.com/docs/setup/linux#_debian-and-ubuntu-based-distributions) `vscode` <packages.microsoft.com/repos/code>
 
 Bootstrap uses APT to install packages in the [`Aptfile`](./Aptfile) like
 
 - [Zsh](https://zsh.sourceforge.io/) shell
 - [kubectl](https://kubernetes.io/docs/reference/kubectl/) tool
-- [gcloud CLI](https://cloud.google.com/cli) tools
-- [aws CLI](https://docs.aws.amazon.com/cli/) tools
+- [gcloud CLI](https://cloud.google.com/cli) ☁ tools
+- [aws CLI](https://docs.aws.amazon.com/cli/) ☁ tools
 - †[.NET](https://dotnet.microsoft.com/) [SDK 10](https://learn.microsoft.com/en-us/dotnet/core/whats-new/dotnet-10/overview) framework
 - †[Powershell](https://learn.microsoft.com/en-us/powershell/) shell
 - †Java [OpenJDK](https://openjdk.org/) [21](https://docs.oracle.com/en/java/javase/21/)
@@ -57,6 +57,7 @@ Bootstrap sets these up &mdash;
 
 - [Oh My Posh](https://ohmyposh.dev/) prompt (self-updating)
 - [Nerd Fonts](https://www.nerdfonts.com/font-downloads) glyph support (non-updating)
+- [Azure PowerShell](https://learn.microsoft.com/en-us/powershell/azure/) (aka [`Az`](https://www.powershellgallery.com/packages/az)) CLI ☁
 - [Goose](https://block.github.io/goose/docs/category/guides) ✨ CLI (relies on bootstrap)
 - [Rust](https://rust-lang.org/) is installed using [rustup](https://rustup.rs/) (self-updating)
   - [cargo-binstall](https://github.com/cargo-bins/cargo-binstall) tool is added for quick package installation because the standard _cargo install_ command downloads source code and compiles it on your machine, which can be slow. To bypass this and install pre-compiled binaries, use the community-standard tools like cargo-binstall. This is the most popular method. it automatically searches for pre-compiled releases on GitHub or other registries.
