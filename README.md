@@ -20,8 +20,8 @@ CLI
 - [Powershell](https://learn.microsoft.com/en-us/powershell/) shell
 - [Oh My Posh](https://ohmyposh.dev/) prompt _with_ [JetBrains Mono](https://www.jetbrains.com/lp/mono/) [Nerd Font](https://www.nerdfonts.com/font-downloads)
 - [kubectl](https://kubernetes.io/docs/reference/kubectl/) K8s tool
-- [Google Cloud CLI](https://cloud.google.com/cli) tools
-- [AWS](https://docs.aws.amazon.com/cli/) tools
+- [Google Cloud](https://cloud.google.com/cli) ☁ tools
+- [AWS](https://docs.aws.amazon.com/cli/) ☁ tools
 - [Github](https://cli.github.com/) tools
 
 Languages

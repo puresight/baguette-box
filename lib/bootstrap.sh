@@ -124,6 +124,7 @@ configure_shell() {
         fi
 
         # Configure Posh for Powershell
+        echo "pwsh $(pwsh --version)" 
         pwsh -NoProfile -File ./bootstrap.ps1
 
     elif [ "$PLATFORM" == "macos" ]; then
@@ -266,6 +267,9 @@ display_environment() {
 display_versions() {
     echo
     echo "--- CURRENT VERSIONS ---"
+    echo "$(gcloud --version)"
+    echo "Amazon Web Services: $(aws --version)"
+    echo "Github: $(gh --version)"
     echo "$(uv --version)"
     echo "$(python3 --version)"
     echo "$(rustc --version)"

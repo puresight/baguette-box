@@ -139,6 +139,15 @@ main() {
         "stable" \
         "main"
 
+    # Microsoft Azure CLI repository
+    add_apt_repository \
+        "azure-cli.sources" \
+        "https://packages.microsoft.com/repos/azure-cli/" \
+        "https://packages.microsoft.com/keys/microsoft.asc" \
+        "$(lsb_release -cs)" \
+        "main" \
+        "$(dpkg --print-architecture)"
+
     # Google Cloud CLI repository
     add_apt_repository \
         "google-cloud-cli.sources" \
