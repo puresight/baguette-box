@@ -2,79 +2,107 @@
 
 # ------ # ------ # ------ # ------ # ------ # ------ # ------ # ------
 #
-#   This library script has functions that install APT sources
-#   for any package repository, supporting GPG key management
-#   and repository configuration.
+#       Install APT sources for any APT package repositories.
+#   Supports GPG key management and repository configuration
+#   using the newer DEB822 format (.sources).
 #
-#   Dependencies: none
+#   Why not just use [software-properties-common](https://packages.debian.org/sid/software-properties-common)?
+#   Because that Ubuntu package will hit stable in Debian 14
+#   or maybe 13 but in 12 it cannot do DEB822.
+#
+#   Dependencies:
+#       none
+#
+#   Entry point:
+#       This script is self-sufficient and can be run independently.
 #
 # ------ # ------ # ------ # ------ # ------ # ------ # ------ # ------
 
 # Function to download and dearmor a GPG key
-# Parameters: $1 - GPG key URL, $2 - Keyring file path
+# Parameters: $1 - GPG key URL, $2 - Keyring filename
 install_gpg_key() {
     local gpg_url="$1"
-    local keyring_path="$2"
-    
-    # Create keyrings directory if it doesn't exist
-    sudo mkdir -p "$(dirname "$keyring_path")"
-    
-    # Download and dearmor the GPG key if it doesn't exist
-    if [ ! -f "$keyring_path" ]; then
-        echo "Downloading GPG key from $gpg_url..."
-        curl -sSL "$gpg_url" | sudo gpg --dearmor -o "$keyring_path"
-        if [ $? -eq 0 ]; then
-            echo "Successfully installed GPG key to $keyring_path"
-        else
+    local keyring_dir="/etc/apt/keyrings"
+    local keyring_file="$2"
+
+    sudo mkdir -p $keyring_dir
+    keyring_file="$keyring_dir/$keyring_file"
+    if [ -f "$keyring_file" ]; then
+        echo "$keyring_file exists already."
+    else
+        echo "Downloading GPG key from $gpg_url"
+        curl -sSL "$gpg_url" | sudo gpg --dearmor -o "$keyring_file"
+        if [ $? -ne 0 ]; then
             echo "Error: Failed to install GPG key"
             return 1
         fi
-    else
-        echo "GPG key already exists at $keyring_path"
+        echo "Successfully installed GPG key to $keyring_file"
     fi
 }
 
-# Function to add an APT repository
-# Parameters: $1 - Repository URL, $2 - List file path, $3 - Suite (optional), $4 - GPG key URL (optional), $5 - Keyring path (optional)
+# Function to add an APT repository using DEB822 format
+# Parameters: $1 - Sources file path, $2 - Repository URL, $3 - GPG key URL (optional), $4 - Suites (optional), $5 - Components (optional), $6 - Architectures (optional)
 add_apt_repository() {
-    local repo_url="$1"
-    local list_file="$2"
-    local suite="${3:-main}"
-    local gpg_url="$4"
-    local keyring_path="${5:-/usr/share/keyrings/$(basename "$list_file" .list).gpg}"
-    
+    local sources_file="$1"
+    local repo_url="$2"
+    local gpg_url="$3"
+    local suites="${4:-main}"
+    local components="${5:-main}"
+    local architectures="${6:-amd64 arm64 armhf}"
+
+    local sources_path="/etc/apt/sources.list.d"
+
+    # Check for required arguments
+    if [ -z "$sources_file" ] || [ -z "$repo_url" ]; then
+        echo "Error: Missing required arguments. Usage: add_apt_repository <sources_file> <repo_url> [gpg_url] [suites] [components] [architectures]" >&2
+        echo 'Help: example invocation...'
+        echo '--'
+        echo '  add_apt_repository \'
+        echo '    example.sources \'
+        echo '    https://example.com/repo \'
+        echo '    https://example.com/key.gpg \'
+        echo '    main \'
+        echo '    main \'
+        echo '    amd64'
+        echo '--'
+        return 1
+    fi
+
     # Install GPG key if provided
     if [ -n "$gpg_url" ]; then
-        install_gpg_key "$gpg_url" "$keyring_path"
+        install_gpg_key "$gpg_url" "$(basename "$sources_file" .sources).gpg"
         if [ $? -ne 0 ]; then
             return 1
         fi
     fi
-    
-    # Create the source list
-    if [ ! -f "$list_file" ]; then
-        echo "Adding source: $repo_url"
-        
-        # Build the deb line with appropriate options
-        local deb_line="deb"
-        local options=""
-        
-        # Add GPG keyring if available
-        if [ -f "$keyring_path" ]; then
-            options="[arch=amd64,arm64,armhf signed-by=$keyring_path]"
-        fi
-        
-        # Create the repository file
-        echo "$deb_line $options $repo_url $suite main" | sudo tee "$list_file" > /dev/null
-        
-        if [ $? -eq 0 ]; then
-            echo "Added source to $list_file"
-        else
+
+    # Create the source file in DEB822 format
+    sources_file="$sources_path/$sources_file"
+    if [ -f "$sources_file" ]; then
+        echo "$sources_file exists already."
+    else
+
+        local sources_content=$(cat << EOF
+Types: deb
+URIs: $repo_url
+Suites: $suites
+Components: $components
+Architectures: $architectures
+Signed-By: $keyring_path
+Description: $repo_url
+Origin: $(basename "$sources_file" .sources)
+EOF
+)
+        echo
+        echo "$sources_content"
+        sudo tee "$sources_file" > /dev/null <<< "$sources_content"
+
+        if [ $? -ne 0 ]; then
             echo "Error: Failed to add repository" >&2
             return 1
         fi
-    else
-        echo "Repository already exists at $list_file"
+        echo "» $sources_file"
+        echo
     fi
 }
 
@@ -90,30 +118,35 @@ update_package_lists() {
 
 # Main script execution
 main() {
+    echo "--- ${0} ---"
+
     # Fetch the ID, VERSION_ID, VERSION_CODENAME
     source /etc/os-release
 
     # Microsoft Linux repository
     add_apt_repository \
+        "microsoft-prod.sources" \
         "https://packages.microsoft.com/$ID/$VERSION_ID/prod" \
-        "/etc/apt/sources.list.d/microsoft-prod.list" \
+        "https://packages.microsoft.com/keys/microsoft.asc" \
         "$VERSION_CODENAME" \
-        "https://packages.microsoft.com/keys/microsoft.asc"
+        "main"
 
     # Microsoft VS Code repository
     add_apt_repository \
+        "vscode.sources" \
         "https://packages.microsoft.com/repos/code" \
-        "/etc/apt/sources.list.d/vscode.list" \
+        "https://packages.microsoft.com/keys/microsoft.asc" \
         "stable" \
-        "https://packages.microsoft.com/keys/microsoft.asc"
+        "main"
 
-    # Google Cloud repository
+    # Google Cloud CLI repository
     add_apt_repository \
+        "google-cloud-cli.sources" \
         "https://packages.cloud.google.com/apt" \
-        "/etc/apt/sources.list.d/google-cloud-sdk.list" \
-        "main" \
-        "https://packages.cloud.google.com/apt/doc/apt-key.gpg"
-    
+        "https://packages.cloud.google.com/apt/doc/apt-key.gpg" \
+        "cloud-sdk" \
+        "main"
+
     # Update package lists after adding repositories
     update_package_lists
 }

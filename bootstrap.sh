@@ -1,5 +1,6 @@
 #!/bin/bash
 set -e
+set -o pipefail
 
 source ./lib/platforms.sh
 source ./lib/apt.sh
@@ -7,8 +8,8 @@ source ./lib/java.sh
 source ./lib/fonts.sh
 source ./lib/bootstrap.sh
 
-# Main execution
 main() {
+    echo "--- ${0} ---"
     local shell=zsh
     install_apt_packages Aptfile
     install_uv $shell

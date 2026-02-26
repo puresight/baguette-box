@@ -15,9 +15,8 @@ This script is idempotent. You can run it again anytime.
 
 ### APT
 
-Bootstrap connects [APT](https://wiki.debian.org/AptCLI) to repository [sources](https://wiki.debian.org/SourcesList) &mdash;
+Bootstrap connects [APT](https://wiki.debian.org/AptCLI) to additional repository [sources](https://wiki.debian.org/SourcesList) &mdash;
 
-- [Debian Stable](https://wiki.debian.org/SourcesList#Introduction) `stable <deb.debian.org/debian>` (built-in)
 - [Google Cloud CLI](https://docs.cloud.google.com/sdk/docs/install-sdk#deb) `google-cloud <packages.cloud.google.com/apt>`
 - [Microsoft prod](https://learn.microsoft.com/en-us/linux/packages) `microsoft-prod <packages.microsoft.com/debian/12/prod>`
 - [VS Code](https://code.visualstudio.com/docs/setup/linux#_debian-and-ubuntu-based-distributions) `vscode <packages.microsoft.com/repos/code>`
@@ -25,6 +24,8 @@ Bootstrap connects [APT](https://wiki.debian.org/AptCLI) to repository [sources]
 Bootstrap uses APT to install packages in the [`Aptfile`](./Aptfile) like
 
 - [Zsh](https://zsh.sourceforge.io/) shell
+- [kubectl](https://kubernetes.io/docs/reference/kubectl/)
+- [Google Cloud CLI](https://cloud.google.com/cli)
 - [AWS CLI](https://docs.aws.amazon.com/cli/) tools
 - †[.NET](https://dotnet.microsoft.com/) [SDK 10](https://learn.microsoft.com/en-us/dotnet/core/whats-new/dotnet-10/overview) framework
 - †[Powershell](https://learn.microsoft.com/en-us/powershell/) shell

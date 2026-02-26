@@ -8,3 +8,4 @@ pkg-config libssl-dev unzip zip xz-utils p7zip-full gpg
 gnome-keyring libsecret-1-dev libsecret-tools
 seahorse fuse-overlayfs podman
 awscli
+google-cloud-cli kubectl
