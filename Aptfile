@@ -1,8 +1,7 @@
 #%#%#%#%#%#%#%#%#%#%#%#%#%#%#%#%#%#%#%#%#%#%#%#%#%#%#%#%#%#%#%#%#%#%#%#%#%#%#%
-# APT will install these packages
+# --- System & Package Management ---
 #%#%#%#%#%#%#%#%#%#%#%#%#%#%#%#%#%#%#%#%#%#%#%#%#%#%#%#%#%#%#%#%#%#%#%#%#%#%#%
 
-# --- System & Package Management ---
 software-properties-common
 # Manage the repositories that you install software from - https://packages.ubuntu.com/jammy/software-properties-common
 apt-transport-https
@@ -12,7 +11,10 @@ lsb-release
 ca-certificates
 # Common CA certificates - https://packages.debian.org/sid/ca-certificates
 
+#%#%#%#%#%#%#%#%#%#%#%#%#%#%#%#%#%#%#%#%#%#%#%#%#%#%#%#%#%#%#%#%#%#%#%#%#%#%#%
 # --- Network & Transfer ---
+#%#%#%#%#%#%#%#%#%#%#%#%#%#%#%#%#%#%#%#%#%#%#%#%#%#%#%#%#%#%#%#%#%#%#%#%#%#%#%
+
 curl
 # Command line tool for transferring data with URL syntax - https://curl.se/
 wget
@@ -24,7 +26,10 @@ rclone
 dnsutils
 # Clients provided with BIND (dig, nslookup, etc.) - https://packages.debian.org/sid/dnsutils
 
+#%#%#%#%#%#%#%#%#%#%#%#%#%#%#%#%#%#%#%#%#%#%#%#%#%#%#%#%#%#%#%#%#%#%#%#%#%#%#%
 # --- Shell & Terminal Environment ---
+#%#%#%#%#%#%#%#%#%#%#%#%#%#%#%#%#%#%#%#%#%#%#%#%#%#%#%#%#%#%#%#%#%#%#%#%#%#%#%
+
 zsh
 # Shell with lots of features - https://www.zsh.org/
 tmux
@@ -32,7 +37,10 @@ tmux
 vim
 # Vi IMproved - enhanced vi editor - https://www.vim.org/
 
+#%#%#%#%#%#%#%#%#%#%#%#%#%#%#%#%#%#%#%#%#%#%#%#%#%#%#%#%#%#%#%#%#%#%#%#%#%#%#%
 # --- Development & Version Control ---
+#%#%#%#%#%#%#%#%#%#%#%#%#%#%#%#%#%#%#%#%#%#%#%#%#%#%#%#%#%#%#%#%#%#%#%#%#%#%#%
+
 build-essential
 # Informational list of build-essential packages - https://packages.debian.org/sid/build-essential
 pkg-config
@@ -44,7 +52,10 @@ git
 gh
 # GitHub's official command line tool - https://cli.github.com/
 
+#%#%#%#%#%#%#%#%#%#%#%#%#%#%#%#%#%#%#%#%#%#%#%#%#%#%#%#%#%#%#%#%#%#%#%#%#%#%#%
 # --- Text & Data Processing ---
+#%#%#%#%#%#%#%#%#%#%#%#%#%#%#%#%#%#%#%#%#%#%#%#%#%#%#%#%#%#%#%#%#%#%#%#%#%#%#%
+
 ripgrep
 # Recursively searches directories for a regex pattern - https://github.com/BurntSushi/ripgrep
 jq
@@ -52,7 +63,10 @@ jq
 sqlite3
 # Command line interface for SQLite 3 - https://www.sqlite.org/index.html
 
+#%#%#%#%#%#%#%#%#%#%#%#%#%#%#%#%#%#%#%#%#%#%#%#%#%#%#%#%#%#%#%#%#%#%#%#%#%#%#%
 # --- Archiving & Compression ---
+#%#%#%#%#%#%#%#%#%#%#%#%#%#%#%#%#%#%#%#%#%#%#%#%#%#%#%#%#%#%#%#%#%#%#%#%#%#%#%
+
 zip
 # Archiver for .zip files - http://www.info-zip.org/Zip.html
 unzip
@@ -62,7 +76,10 @@ xz-utils
 p7zip-full
 # 7z and 7za file archivers with high compression ratio - http://p7zip.sourceforge.net/
 
+#%#%#%#%#%#%#%#%#%#%#%#%#%#%#%#%#%#%#%#%#%#%#%#%#%#%#%#%#%#%#%#%#%#%#%#%#%#%#%
 # --- Security & Secret Management ---
+#%#%#%#%#%#%#%#%#%#%#%#%#%#%#%#%#%#%#%#%#%#%#%#%#%#%#%#%#%#%#%#%#%#%#%#%#%#%#%
+
 gnupg
 # GNU privacy guard - a free PGP replacement - https://gnupg.org/
 gnome-keyring
@@ -74,7 +91,10 @@ libsecret-tools
 seahorse
 # GNOME front-end for GnuPG - https://wiki.gnome.org/Apps/Seahorse
 
+#%#%#%#%#%#%#%#%#%#%#%#%#%#%#%#%#%#%#%#%#%#%#%#%#%#%#%#%#%#%#%#%#%#%#%#%#%#%#%
 # --- Containers & Cloud Infrastructure ---
+#%#%#%#%#%#%#%#%#%#%#%#%#%#%#%#%#%#%#%#%#%#%#%#%#%#%#%#%#%#%#%#%#%#%#%#%#%#%#%
+
 fuse-overlayfs
 # FUSE implementation for overlayfs - https://github.com/containers/fuse-overlayfs
 podman
@@ -86,14 +106,15 @@ awscli
 google-cloud-cli
 # Official CLI for Google Cloud Platform - https://cloud.google.com/sdk/docs/install
 
+#%#%#%#%#%#%#%#%#%#%#%#%#%#%#%#%#%#%#%#%#%#%#%#%#%#%#%#%#%#%#%#%#%#%#%#%#%#%#%
 # --- System Utilities ---
+#%#%#%#%#%#%#%#%#%#%#%#%#%#%#%#%#%#%#%#%#%#%#%#%#%#%#%#%#%#%#%#%#%#%#%#%#%#%#%
+
 htop
 # Interactive processes viewer - https://htop.dev/
 
-
-# -=-=-=- # -=-=-=- # -=-=-=- # -=-=-=- # -=-=-=- # -=-=-=- # -=-=-=- # -=-=-=-
+#%#%#%#%#%#%#%#%#%#%#%#%#%#%#%#%#%#%#%#%#%#%#%#%#%#%#%#%#%#%#%#%#%#%#%#%#%#%#%
+#%#%#%#%#%#%#%#%#%#%#%#%#%#%#%#%#%#%#%#%#%#%#%#%#%#%#%#%#%#%#%#%#%#%#%#%#%#%#%
 
 # flatpak
 # Application sandboxing and distribution framework - https://flatpak.org/
-
-#%#%#%#%#%#%#%#%#%#%#%#%#%#%#%#%#%#%#%#%#%#%#%#%#%#%#%#%#%#%#%#%#%#%#%#%#%#%#%

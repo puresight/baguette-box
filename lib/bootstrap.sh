@@ -5,6 +5,26 @@
 #   - PLATFORM global variable
 # ------ # ------ # ------ # ------ # ------ # ------ # ------ # ------
 
+# Function to display help information
+print_help() {
+    cat << EOF
+Usage: ${0} [OPTIONS]
+
+Options:
+  -h, --help      Show this help message and exit
+  -i, --install   Install all VS Code components (default)
+EOF
+#   -d, --dry-run   Zero mutations, but display what would be done
+#   -u, --update    Install only minor updates
+#   -g, --upgrade   Install major version upgrades
+
+# Examples:
+#   ${0}                    # Install all components
+#   ${0} --dry-run          # Show what would be installed
+#   ${0} --update           # Update minor versions
+#   ${0} --upgrade          # Upgrade to major versions
+}
+
 # Function to handle APT package installation
 install_apt_packages() {
     local apt_file="$1"

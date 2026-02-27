@@ -5,13 +5,13 @@
 #   - jq
 # ------ # ------ # ------ # ------ # ------ # ------ # ------ # ------
 
-echo "Uses jsonc-cli"
-npm install -g jsonc-cli
-
 # Function ------------------------------------------------------------
 UPDATE_JSON() {
     local source_file="$1"
     local target_file="$2"
+
+    echo "Uses jsonc-cli"
+    npm install -g jsonc-cli
 
     echo "Source: $source_file"
     echo "Target: $target_file"
