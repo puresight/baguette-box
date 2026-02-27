@@ -7,10 +7,9 @@
 # ------ # ------ # ------ # ------ # ------ # ------ # ------ # ------
 
 # Function ------------------------------------------------------------
-# TODO support multi-PLATFORM, like macos
+# Arguments are JDK versions to install; the first shall be active.
 INSTALL_MS_OPENJDK() {
-    # Arguments are JDK versions to install; the first shall be active.
-
+    # TODO support multi-PLATFORM, like macos
     if [[ $# -eq 0 ]]; then
         echo "Error: No version numbers provided. Usage: install_ms_openjdk <active_version> [additional_versions...]" >&2
         return 1
@@ -38,3 +37,8 @@ INSTALL_MS_OPENJDK() {
         return 1
     fi
 }
+
+# Execute INSTALL_MS_OPENJDK function if script is run directly
+if [[ "${BASH_SOURCE[0]}" == "${0}" ]]; then
+    INSTALL_MS_OPENJDK "$@"
+fi

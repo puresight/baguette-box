@@ -67,3 +67,8 @@ install_nerd_font() {
         echo "Font installation complete."
     fi
 }
+
+# Execute install_nerd_font function if script is run directly
+if [[ "${BASH_SOURCE[0]}" == "${0}" ]]; then
+    install_nerd_font "$@"
+fi

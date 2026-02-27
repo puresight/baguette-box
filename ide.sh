@@ -13,4 +13,7 @@ main() {
     configure_vscode vscode-updates/user-settings.json
 }
 
-main "$@"
+# Execute main function if script is run directly
+if [[ "${BASH_SOURCE[0]}" == "${0}" ]]; then
+    main "$@"
+fi

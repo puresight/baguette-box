@@ -267,9 +267,9 @@ display_environment() {
 display_versions() {
     echo
     echo "--- CURRENT VERSIONS ---"
-    echo "$(gcloud --version)"
+    # echo "$(gcloud --version)" # FIXME too verbose: we just want the main gcloud version
     echo "Amazon Web Services: $(aws --version)"
-    echo "Github: $(gh --version)"
+    # echo "Github: $(gh --version)" # FIXME too verbose: just the GH version please
     echo "$(uv --version)"
     echo "$(python3 --version)"
     echo "$(rustc --version)"

@@ -25,7 +25,7 @@ install_gpg_key() {
     local keyring_dir="/etc/apt/keyrings"
     local keyring_file="$2"
 
-    sudo mkdir -p $keyring_dir
+    sudo mkdir -p -m 755 $keyring_dir
     keyring_file="$keyring_dir/$keyring_file"
     if [ -f "$keyring_file" ]; then
         echo "$keyring_file exists already."
@@ -156,7 +156,15 @@ main() {
         "cloud-sdk" \
         "main"
 
-    # Update package lists after adding repositories
+    # Github CLI repository
+    add_apt_repository \
+        "github-cli.sources" \
+        "https://cli.github.com/packages" \
+        "https://cli.github.com/packages/githubcli-archive-keyring.gpg" \
+        "stable" \
+        "main" \
+        "$(dpkg --print-architecture)"
+
     update_package_lists
 }
 

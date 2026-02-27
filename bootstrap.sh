@@ -9,8 +9,9 @@ source ./lib/fonts.sh
 source ./lib/bootstrap.sh
 
 main() {
-    echo "--- ${0} ---"
     local shell=zsh
+    echo "--- ${0} ---"
+
     install_apt_packages Aptfile
     install_uv $shell
     install_mise $shell
@@ -26,4 +27,8 @@ main() {
     display_environment
     display_versions
 }
-main "$@"
+
+# Execute main function if script is run directly
+if [[ "${BASH_SOURCE[0]}" == "${0}" ]]; then
+    main "$@"
+fi

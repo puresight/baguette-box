@@ -15,19 +15,27 @@ This script is idempotent. You can run it again anytime.
 
 ### APT
 
+Advanced Package Tool (APT) is the primary software management system for Debian OS and its derivatives, automating installation, removal, and updating of software packages.
+
+#### Sources
+
 Bootstrap connects [APT](https://wiki.debian.org/AptCLI) to these repository [sources](https://wiki.debian.org/SourcesList) &mdash;
 
 - [Google Cloud CLI](https://docs.cloud.google.com/sdk/docs/install-sdk#deb) `google-cloud` <packages.cloud.google.com/apt>
 - [Azure Cloud CLI](https://learn.microsoft.com/en-us/cli/azure/) `azure-cli` <packages.microsoft.com/repos/azure-cli/>
+- [Github CLI](https://cli.github.com/) `github-cli` <cli.github.com/packages>
 - [Microsoft prod](https://learn.microsoft.com/en-us/linux/packages) `microsoft-prod` <packages.microsoft.com/debian/12/prod>
 - [VS Code](https://code.visualstudio.com/docs/setup/linux#_debian-and-ubuntu-based-distributions) `vscode` <packages.microsoft.com/repos/code>
+
+#### Software Packages
 
 Bootstrap uses APT to install packages in the [`Aptfile`](./Aptfile) like
 
 - [Zsh](https://zsh.sourceforge.io/) shell
-- [kubectl](https://kubernetes.io/docs/reference/kubectl/) tool
-- [gcloud CLI](https://cloud.google.com/cli) ☁ tools
 - [aws CLI](https://docs.aws.amazon.com/cli/) ☁ tools
+- [gcloud CLI](https://cloud.google.com/cli) ☁ tools
+- [kubectl](https://kubernetes.io/docs/reference/kubectl/) tool
+- [Github](https://cli.github.com/) tools
 - †[.NET](https://dotnet.microsoft.com/) [SDK 10](https://learn.microsoft.com/en-us/dotnet/core/whats-new/dotnet-10/overview) framework
 - †[Powershell](https://learn.microsoft.com/en-us/powershell/) shell
 - †Java [OpenJDK](https://openjdk.org/) [21](https://docs.oracle.com/en/java/javase/21/)
@@ -42,7 +50,6 @@ Bootstrap uses [Homebrew](http://docs.brew.sh/Homebrew-on-Linux) 🍺 to install
 
 - [Go](https://go.dev/) language
 - [Node](https://nodejs.org/) engine
-- [Github](https://cli.github.com/) tools
 - [Aider](https://aider.chat/) ✨ CLI
 
 ### UV

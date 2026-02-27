@@ -13,7 +13,6 @@ UPDATE_JSON() {
     local source_file="$1"
     local target_file="$2"
 
-    # Arguments
     echo "Source: $source_file"
     echo "Target: $target_file"
 
@@ -66,3 +65,8 @@ UPDATE_JSON() {
         return 1
     fi
 }
+
+# Execute UPDATE_JSON function if script is run directly
+if [[ "${BASH_SOURCE[0]}" == "${0}" ]]; then
+    UPDATE_JSON "$@"
+fi
