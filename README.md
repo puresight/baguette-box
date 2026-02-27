@@ -33,8 +33,7 @@ Languages
 
 Agentic AI & pairing
 
-- [Goose](https://block.github.io/goose/docs/category/guides) ✨ CLI
-- [Aider](https://aider.chat/) ✨ CLI
+- [Goose](https://block.github.io/goose/docs/category/guides) CLI
 - [Roo Code](https://roocode.com/) in [VS Code](https://code.visualstudio.com/) 🖥
 
 CLI

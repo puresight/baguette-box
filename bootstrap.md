@@ -57,7 +57,9 @@ Bootstrap uses [Homebrew](http://docs.brew.sh/Homebrew-on-Linux) 🍺 to install
 
 - [Go](https://go.dev/) language
 - [Node](https://nodejs.org/) engine
-- [Aider](https://aider.chat/) ✨ CLI
+<!-- --
+- [Aider](https://aider.chat/) CLI
+<!-- -->
 
 ### UV
 

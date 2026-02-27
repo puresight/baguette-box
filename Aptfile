@@ -1,14 +1,99 @@
+#%#%#%#%#%#%#%#%#%#%#%#%#%#%#%#%#%#%#%#%#%#%#%#%#%#%#%#%#%#%#%#%#%#%#%#%#%#%#%
 # APT will install these packages
+#%#%#%#%#%#%#%#%#%#%#%#%#%#%#%#%#%#%#%#%#%#%#%#%#%#%#%#%#%#%#%#%#%#%#%#%#%#%#%
 
-# Comments are allowed to document why you want things. Use as many lines as you want. Line breaks and/or blank lines are helpful for grouping.
+# --- System & Package Management ---
+software-properties-common
+# Manage the repositories that you install software from - https://packages.ubuntu.com/jammy/software-properties-common
+apt-transport-https
+# HTTPS transport for APT - https://packages.debian.org/sid/apt-transport-https
+lsb-release
+# Linux Standard Base version reporting utility - https://packages.debian.org/sid/lsb-release
+ca-certificates
+# Common CA certificates - https://packages.debian.org/sid/ca-certificates
 
-software-properties-common build-essential git
-apt-transport-https ca-certificates gnupg lsb-release
-curl wget rsync jq vim tmux zsh dnsutils htop ripgrep
-pkg-config libssl-dev unzip zip xz-utils p7zip-full
-gnome-keyring libsecret-1-dev libsecret-tools
-seahorse fuse-overlayfs podman
-awscli gh
-google-cloud-cli kubectl
-sqlite3 rclone
-# flatpaq
+# --- Network & Transfer ---
+curl
+# Command line tool for transferring data with URL syntax - https://curl.se/
+wget
+# Retrieves files from the web - https://www.gnu.org/software/wget/
+rsync
+# Fast, versatile, remote (and local) file-copying tool - https://rsync.samba.org/
+rclone
+# RSYNC for cloud storage - https://rclone.org/
+dnsutils
+# Clients provided with BIND (dig, nslookup, etc.) - https://packages.debian.org/sid/dnsutils
+
+# --- Shell & Terminal Environment ---
+zsh
+# Shell with lots of features - https://www.zsh.org/
+tmux
+# Terminal multiplexer - https://github.com/tmux/tmux/wiki
+vim
+# Vi IMproved - enhanced vi editor - https://www.vim.org/
+
+# --- Development & Version Control ---
+build-essential
+# Informational list of build-essential packages - https://packages.debian.org/sid/build-essential
+pkg-config
+# Manage compile and link flags for libraries - https://www.freedesktop.org/wiki/Software/pkg-config/
+libssl-dev
+# Secure Sockets Layer toolkit - development files - https://www.openssl.org/
+git
+# Fast, scalable, distributed revision control system - https://git-scm.com/
+gh
+# GitHub's official command line tool - https://cli.github.com/
+
+# --- Text & Data Processing ---
+ripgrep
+# Recursively searches directories for a regex pattern - https://github.com/BurntSushi/ripgrep
+jq
+# Lightweight and flexible command-line JSON processor - https://stedolan.github.io/jq/
+sqlite3
+# Command line interface for SQLite 3 - https://www.sqlite.org/index.html
+
+# --- Archiving & Compression ---
+zip
+# Archiver for .zip files - http://www.info-zip.org/Zip.html
+unzip
+# De-archiver for .zip files - http://www.info-zip.org/UnZip.html
+xz-utils
+# XZ-format compression utilities - https://tukaani.org/xz/
+p7zip-full
+# 7z and 7za file archivers with high compression ratio - http://p7zip.sourceforge.net/
+
+# --- Security & Secret Management ---
+gnupg
+# GNU privacy guard - a free PGP replacement - https://gnupg.org/
+gnome-keyring
+# GNOME keyring services (daemon and tools) - https://wiki.gnome.org/Projects/GnomeKeyring
+libsecret-1-dev
+# GObject based library for accessing the Secret Service API (development files) - https://wiki.gnome.org/Projects/Libsecret
+libsecret-tools
+# Secret Service tools - https://wiki.gnome.org/Projects/Libsecret
+seahorse
+# GNOME front-end for GnuPG - https://wiki.gnome.org/Apps/Seahorse
+
+# --- Containers & Cloud Infrastructure ---
+fuse-overlayfs
+# FUSE implementation for overlayfs - https://github.com/containers/fuse-overlayfs
+podman
+# Engine for managing OCI containers and pods - https://podman.io/
+kubectl
+# Command line tool for controlling Kubernetes clusters - https://kubernetes.io/docs/reference/kubectl/
+awscli
+# Universal Command Line Interface for Amazon Web Services - https://aws.amazon.com/cli/
+google-cloud-cli
+# Official CLI for Google Cloud Platform - https://cloud.google.com/sdk/docs/install
+
+# --- System Utilities ---
+htop
+# Interactive processes viewer - https://htop.dev/
+
+
+# -=-=-=- # -=-=-=- # -=-=-=- # -=-=-=- # -=-=-=- # -=-=-=- # -=-=-=- # -=-=-=-
+
+# flatpak
+# Application sandboxing and distribution framework - https://flatpak.org/
+
+#%#%#%#%#%#%#%#%#%#%#%#%#%#%#%#%#%#%#%#%#%#%#%#%#%#%#%#%#%#%#%#%#%#%#%#%#%#%#%

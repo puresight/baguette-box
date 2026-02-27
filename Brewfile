@@ -2,4 +2,4 @@
 
 brew "go"
 brew "node"
-brew "aider"
+# brew "aider"
