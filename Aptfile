@@ -95,6 +95,10 @@ seahorse
 # --- Containers & Cloud Infrastructure ---
 #%#%#%#%#%#%#%#%#%#%#%#%#%#%#%#%#%#%#%#%#%#%#%#%#%#%#%#%#%#%#%#%#%#%#%#%#%#%#%
 
+fuse3
+# Filesystem in Userspace https://docs.kernel.org/filesystems/fuse/fuse.html
+libfuse2
+#  Required for AppImages on Debian 12 bookworm https://github.com/appimage/appimagekit/wiki/fuse
 fuse-overlayfs
 # FUSE implementation for overlayfs - https://github.com/containers/fuse-overlayfs
 podman

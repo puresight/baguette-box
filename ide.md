@@ -15,7 +15,7 @@ Unfortunately (as a consequence) it disintegrates the comments that were in them
 
 ## How to Use
 
-1. Ensure the base `bootstrap.sh` has already been executed
-1. Run `./ide.sh`
+1. Ensure the base `bootstrap.sh` install already run;
+1. Command `./ide.sh --install`
 
 This script is idempotent. You can run it again anytime.

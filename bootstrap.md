@@ -6,7 +6,7 @@ _To maintain workstation integrity, only install code from reputable & verified 
 
 ## How to Use
 
-- `./bootstrap.sh`
+- `./bootstrap.sh --install`
 - Restart your shell: Close and reopen the terminal.
 
 This script is idempotent. You can run it again anytime.
