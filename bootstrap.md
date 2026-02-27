@@ -15,10 +15,13 @@ This script is idempotent. You can run it again anytime.
 
 ### APT
 
-Advanced Package Tool (APT) is the primary software management system for Debian OS and its derivatives, automating installation, removal, and updating of software packages.
+Advanced Package Tool (APT) is the primary software management system
+used in Debian-based Linux systems to manage software packages.
+It automates installing, upgrading, and removing software, including handling dependencies by accessing repositories defined in `/etc/apt/sources.list`
 
 #### Sources
 
+Using [DEB822](https://repolib.readthedocs.io/en/latest/deb822-format.html)
 Bootstrap connects [APT](https://wiki.debian.org/AptCLI) to these repository [sources](https://wiki.debian.org/SourcesList) &mdash;
 
 - [Google Cloud CLI](https://docs.cloud.google.com/sdk/docs/install-sdk#deb) `google-cloud` <packages.cloud.google.com/apt>

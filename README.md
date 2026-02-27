@@ -47,7 +47,7 @@ CLI
 
 DevOps
 
-- [APT](https://wiki.debian.org/AptCLI) 🐧 Advanced Package Tool is a command-line utility used in Debian-based Linux systems (Ubuntu, Mint) to manage software packages. It automates installing, upgrading, and removing software, including handling dependencies by accessing repositories defined in `/etc/apt/sources.list`
+- [APT](https://wiki.debian.org/AptCLI) 🐧 Advanced Package Tool
 - [Homebrew](http://docs.brew.sh/Homebrew-on-Linux) 🍺 Linuxbrew package manager
 - [uv](https://docs.astral.sh/uv/getting-started/features/): Python's package manager
 - [npm](https://www.npmjs.com/): Node's package manager
