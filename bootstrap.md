@@ -51,16 +51,6 @@ Bootstrap uses APT to install packages in the [`Aptfile`](./Aptfile) like
 
 †These packages are _added to_ what's already in the [Aptfile](./Aptfile).
 
-### Homebrew
-
-Bootstrap uses [Homebrew](http://docs.brew.sh/Homebrew-on-Linux) 🍺 to install packages in the [`Brewfile`](./Brewfile) like
-
-- [Go](https://go.dev/) language
-- [Node](https://nodejs.org/) engine
-<!-- --
-- [Aider](https://aider.chat/) CLI
-<!-- -->
-
 ### UV
 
 [UV](https://docs.astral.sh/uv/getting-started/features/), the unified tool that replaces utilities in the Python ecosystem (pip, pip-tools, pyenv, virtualenv, pipx, poetry, twine), installs
@@ -81,6 +71,21 @@ Bootstrap sets these up &mdash;
     - 📖 [2024/11 Ben Brandt: A Better Cargo Install Workflow: How I manage to keep the tools I've installed with cargo up-to-date](https://benjaminbrandt.com/a-better-cargo-install-workflow/)
     - 📖 [2025/12 Sam Schlinkert: A curated list of command-line utilities written in Rust](https://github.com/sts10/rust-command-line-utilities)
 
+### Homebrew
+
+Bootstrap uses [Homebrew](http://docs.brew.sh/Homebrew-on-Linux) 🍺 to install packages in the [`Brewfile`](./Brewfile) like
+
+- [Go](https://go.dev/) language
+- [Node](https://nodejs.org/) engine
+<!-- --
+- [Aider](https://aider.chat/) CLI
+<!-- -->
+
 ### Mise en place
 
 **[Mise](https://mise.jdx.dev/)** is a tool with potential to manage installations of languages and tools for development. It could be used to manage multiple versions of Node.js, Go, or Ruby in the future. Under construction.
+
+<!-- --
+- [Go](https://go.dev/) language
+- [Node](https://nodejs.org/) engine
+<!-- -->

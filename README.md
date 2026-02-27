@@ -11,7 +11,7 @@ sets up an AI-enabled developer environment on
 [Raspberry Pi](https://www.raspberrypi.com/software/#raspberry-pi-os),
 [ChromeOS](https://chromeos.dev/en/linux)
 [Linux](https://www.linuxfoundation.org/))
-with tooling for cloud, compute, cache, storage, and data management.
+with tooling for coding, cloud, compute, cache, storage, and data management.
 
 <!-- --
 - [Apple/Mac](https://www.apple.com/mac/) _future_
@@ -47,10 +47,13 @@ CLI
 DevOps
 
 - [APT](https://wiki.debian.org/AptCLI) 🐧 Advanced Package Tool
-- [Homebrew](http://docs.brew.sh/Homebrew-on-Linux) 🍺 Linuxbrew package manager
 - [uv](https://docs.astral.sh/uv/getting-started/features/): Python's package manager
 - [npm](https://www.npmjs.com/): Node's package manager
 - [cargo](https://doc.rust-lang.org/cargo/): Rust's package manager
+
+<!-- --
+- [Homebrew](http://docs.brew.sh/Homebrew-on-Linux) 🍺 Linuxbrew package manager
+<!-- -->
 
 ## Prepare
 
