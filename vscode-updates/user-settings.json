@@ -23,6 +23,7 @@
   "gitlens.hovers.enabled": true, // Keep this for the "who changed this" info
   "gitlens.currentLine.enabled": true, // The famous inline blame
 
+  "editor.fontFamily": "'JetBrains Mono', 'Droid Sans Mono', monospace",
   "editor.formatOnSave": true,
   "editor.defaultFormatter": "esbenp.prettier-vscode", // Default for most files
 

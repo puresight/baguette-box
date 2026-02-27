@@ -4,9 +4,10 @@
 
 software-properties-common build-essential git
 apt-transport-https ca-certificates gnupg lsb-release
-curl wget jq vim tmux zsh dnsutils htop ripgrep
+curl wget rsync jq vim tmux zsh dnsutils htop ripgrep
 pkg-config libssl-dev unzip zip xz-utils p7zip-full
 gnome-keyring libsecret-1-dev libsecret-tools
 seahorse fuse-overlayfs podman
 awscli
 google-cloud-cli kubectl
+flatpaq sqlite3 rclone

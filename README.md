@@ -2,8 +2,16 @@
 
 _This is beta quality code so backup before using, read the docs, and scan the source before running._
 
-`baguette-box` 🥖 helps in setting up a new developer workstation. It is a reproducible system for starting up an AI augmented development environment instance on
-💻 [Debian Linux](https://www.debian.org/) and its derivatives including [ChromeOS](https://chromeos.dev/en/linux), Ubuntu, Linux Mint, and Raspberry Pi.
+`baguette-box` 🥖
+sets up an AI-enabled developer environment on
+[Debian](https://www.debian.org/)-based systems
+([Ubuntu](https://docs.ubuntu.com/),
+[Mint](https://linuxmint.com/),
+[Pop!\_OS](https://system76.com/pop/),
+[Raspberry Pi](https://www.raspberrypi.com/software/#raspberry-pi-os),
+[ChromeOS](https://chromeos.dev/en/linux)
+[Linux](https://www.linuxfoundation.org/))
+with tooling for cloud, compute, cache, storage, and data management.
 
 <!-- --
 - [Apple/Mac](https://www.apple.com/mac/) _future_
@@ -14,21 +22,12 @@ _From laptop purchase to vibe coding in an hour&hellip;_
 
 ## Tech Stack
 
-CLI
-
-- [Zsh](https://zsh.sourceforge.io/) shell
-- [Powershell](https://learn.microsoft.com/en-us/powershell/) shell
-- [Oh My Posh](https://ohmyposh.dev/) prompt _with_ [JetBrains Mono](https://www.jetbrains.com/lp/mono/) [Nerd Font](https://www.nerdfonts.com/font-downloads)
-- [AWS](https://docs.aws.amazon.com/cli/), [Azure](https://learn.microsoft.com/en-us/powershell/azure/), [Google Cloud](https://cloud.google.com/cli) ☁ tools
-- [kubectl](https://kubernetes.io/docs/reference/kubectl/) tool
-- [Github](https://cli.github.com/) tools
-
 Languages
 
-- [Java](https://dev.java/) ☕ as [OpenJDK](https://openjdk.org/)
+- [Java](https://dev.java/) as [OpenJDK](https://openjdk.org/)
 - [C#](https://learn.microsoft.com/en-us/dotnet/csharp) as [.NET SDK](https://dotnet.microsoft.com/)
-- [Python](https://www.python.org/) via [uv](https://docs.astral.sh/uv/getting-started/features/)
 - [Typescript](https://www.typescriptlang.org/docs/)/[JS](https://developer.mozilla.org/en-US/docs/Web/JavaScript) via [Node](https://nodejs.org/)
+- [Python](https://www.python.org/) via [UV](https://docs.astral.sh/uv/getting-started/features/)
 - [Go](https://go.dev/)
 - [Rust](https://rust-lang.org/)
 
@@ -36,13 +35,20 @@ Agentic AI & pairing
 
 - [Goose](https://block.github.io/goose/docs/category/guides) ✨ CLI
 - [Aider](https://aider.chat/) ✨ CLI
-- [Roo Code](https://roocode.com/) in [VS Code](https://code.visualstudio.com/)
+- [Roo Code](https://roocode.com/) in [VS Code](https://code.visualstudio.com/) 🖥
+
+CLI
+
+- [Zsh](https://zsh.sourceforge.io/) & [pwsh](https://learn.microsoft.com/en-us/powershell/) shells
+- [Oh My Posh](https://ohmyposh.dev/) prompt _with_ [JetBrains Mono](https://www.jetbrains.com/lp/mono/) [nerd font](https://www.nerdfonts.com/font-downloads)
+- [AWS](https://docs.aws.amazon.com/cli/), [Azure](https://learn.microsoft.com/en-us/powershell/azure/), [Google Cloud](https://cloud.google.com/cli) ☁ tools
+- [kubectl](https://kubernetes.io/docs/reference/kubectl/) tool
+- [Github](https://cli.github.com/) tools
 
 DevOps
 
 - [APT](https://wiki.debian.org/AptCLI) 🐧 Advanced Package Tool is a command-line utility used in Debian-based Linux systems (Ubuntu, Mint) to manage software packages. It automates installing, upgrading, and removing software, including handling dependencies by accessing repositories defined in `/etc/apt/sources.list`
 - [Homebrew](http://docs.brew.sh/Homebrew-on-Linux) 🍺 Linuxbrew package manager
-- [Mise en place](https://mise.jdx.dev/)
 - [uv](https://docs.astral.sh/uv/getting-started/features/): Python's package manager
 - [npm](https://www.npmjs.com/): Node's package manager
 - [cargo](https://doc.rust-lang.org/cargo/): Rust's package manager
