@@ -13,11 +13,15 @@ This script is idempotent. You can run it again anytime.
 
 ## System Architecture
 
+Bootstrap relies on several code package management systems to install & update things,
+including: APT, Homebrew, UV, and mise en place.
+
 ### APT
 
 Advanced Package Tool (APT) is the primary software management system
 used in Debian-based Linux systems to manage software packages.
-It automates installing, upgrading, and removing software, including handling dependencies by accessing repositories defined in `/etc/apt/sources.list`
+It automates installing, upgrading, and removing software, including handling dependencies.
+It relies on the `/etc/apt/sources.list` file and the `/etc/apt/sources.list.d` directory to locate released package repositories.
 
 #### Sources
 
