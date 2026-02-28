@@ -22,11 +22,10 @@
 # Parameters: $1 - GPG key URL, $2 - Keyring filename
 install_gpg_key() {
     local gpg_url="$1"
-    local keyring_dir="/etc/apt/keyrings"
     local keyring_file="$2"
+    echo "${FUNCNAME[0]}"
 
     sudo mkdir -p -m 755 $keyring_dir
-    keyring_file="$keyring_dir/$keyring_file"
     if [ -f "$keyring_file" ]; then
         echo "$keyring_file exists already."
     else
@@ -50,7 +49,8 @@ add_apt_repository() {
     local components="${5:-main}"
     local architectures="${6:-amd64 arm64 armhf}"
 
-    local sources_path="/etc/apt/sources.list.d"
+    local sources_path="/etc/apt/sources.list.d" # Platform Constant
+    echo "${FUNCNAME[0]}"
 
     # Check for required arguments
     if [ -z "$sources_file" ] || [ -z "$repo_url" ]; then
@@ -70,7 +70,9 @@ add_apt_repository() {
 
     # Install GPG key if provided
     if [ -n "$gpg_url" ]; then
-        install_gpg_key "$gpg_url" "$(basename "$sources_file" .sources).gpg"
+        local keyring_dir="/etc/apt/keyrings" # Platform Constant
+        local keyring_path="$keyring_dir/$(basename "$sources_file" .sources).gpg"
+        install_gpg_key "$gpg_url" "$keyring_path"
         if [ $? -ne 0 ]; then
             return 1
         fi
@@ -108,7 +110,7 @@ EOF
 
 # Function to update package lists
 update_package_lists() {
-    echo "Updating package lists..."
+    echo "${FUNCNAME[0]}"
     sudo apt update -qq
     if ! [ $? -eq 0 ]; then
         echo "Error: Failed to update package lists" >&2
@@ -116,9 +118,8 @@ update_package_lists() {
     fi
 }
 
-# Main script execution
-main() {
-    echo "--- ${0} ---"
+add_apt_sources() {
+    echo "${FUNCNAME[0]}"
 
     # Fetch the ID, VERSION_ID, VERSION_CODENAME
     source /etc/os-release
@@ -168,7 +169,7 @@ main() {
     update_package_lists
 }
 
-# Execute main function if script is run directly
+# Execute add_apt_sources function if script is run directly
 if [[ "${BASH_SOURCE[0]}" == "${0}" ]]; then
-    main "$@"
+    add_apt_sources "$@"
 fi

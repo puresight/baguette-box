@@ -13,6 +13,7 @@ UPDATE_JSON() {
     echo "Uses jsonc-cli"
     npm install -g jsonc-cli
 
+    echo "${FUNCNAME[0]}"
     echo "Source: $source_file"
     echo "Target: $target_file"
 

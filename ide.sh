@@ -2,12 +2,8 @@
 set -e
 set -o pipefail
 
-source ./lib/platforms.sh   # PLATFORM variable
-source ./lib/json.sh
-source ./lib/ide.sh
-
-# Global variable
-MODE="install"
+SCRIPTROOT=$(dirname "${BASH_SOURCE[0]}") # Global
+source "$SCRIPTROOT/lib/ide.sh"
 
 main() {
     echo "--- ${0} ---"
@@ -16,6 +12,7 @@ main() {
     configure_vscode vscode-updates/user-settings.json
 }
 
+# Global variable
 MODE="install"
 
 # Parse command-line arguments

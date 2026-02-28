@@ -5,6 +5,12 @@
 #   - PLATFORM global variable
 # ------ # ------ # ------ # ------ # ------ # ------ # ------ # ------
 
+# --- load library code ---
+source "$SCRIPTROOT/lib/platforms.sh" || { echo "Error: lib/platforms.sh not found."; exit 1; }
+source "$SCRIPTROOT/lib/apt.sh"
+source "$SCRIPTROOT/lib/fonts.sh"
+source "$SCRIPTROOT/lib/java.sh"
+
 # Function to display help information
 print_help() {
     cat << EOF
@@ -30,12 +36,10 @@ install_apt_packages() {
     local apt_file="$1"
     if [ "$PLATFORM" == "linux" ]; then
         echo "--- APT $1 ---"
-        # Update & upgrade
+
         sudo apt update -qq
         sudo apt autoremove -y
-
-        # Add all APT sources for Microsoft packages
-        source lib/apt.sh
+        add_apt_sources
 
         # Now install APT packages from file
         if [ -f "$apt_file" ]; then
@@ -207,13 +211,20 @@ install_rust() {
 }
 
 # Function to handle Java installation
+install_font() {
+    echo
+    echo "--- FONT ---"
+    install_nerd_font "$@"
+}
+
+# Function to handle Java installation
 install_java() {
     local java_version="$1"
     echo
     echo "--- JAVA ---"
-    source lib/java.sh
     echo "Installing Microsoft OpenJDK version $java_version..."
     INSTALL_MS_OPENJDK $java_version
+
     # The first JDK version will be made the active one;
     # multiple are possible for example INSTALL_MS_OPENJDK 21 17 25
     echo

@@ -2,23 +2,19 @@
 set -e
 set -o pipefail
 
-source ./lib/platforms.sh
-source ./lib/apt.sh
-source ./lib/java.sh
-source ./lib/fonts.sh
-source ./lib/bootstrap.sh
+SCRIPTROOT=$(dirname "${BASH_SOURCE[0]}") # Global
+source "$SCRIPTROOT/lib/bootstrap.sh"
 
 main() {
     local shell=zsh
     echo "--- ${0} ---"
-
     install_apt_packages Aptfile
     install_uv $shell
     install_mise $shell
     install_goose
     install_dotnet 10
     configure_shell $shell
-    install_nerd_font
+    install_font JetBrainsMono v3.3.0
     configure_podman
     install_rust
     install_java 21

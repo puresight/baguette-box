@@ -9,6 +9,7 @@
 # Function ------------------------------------------------------------
 # Arguments are JDK versions to install; the first shall be active.
 INSTALL_MS_OPENJDK() {
+    echo "${FUNCNAME[0]}"
     # TODO support multi-PLATFORM, like macos
     if [[ $# -eq 0 ]]; then
         echo "Error: No version numbers provided. Usage: install_ms_openjdk <active_version> [additional_versions...]" >&2

@@ -5,6 +5,9 @@
 #   - PLATFORM global variable
 # ------ # ------ # ------ # ------ # ------ # ------ # ------ # ------
 
+source "$SCRIPTROOT/lib/platforms.sh" || { echo "Error: platforms.sh not found."; exit 1; }
+source "$SCRIPTROOT/lib/json.sh" 
+
 # Function to display help information
 print_help() {
     cat << EOF

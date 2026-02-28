@@ -5,6 +5,7 @@
 #
 #   Dependencies:
 #   - unzip
+#   - fontconfig (fc-cache command)
 #   - PLATFORM global variable
 # ------ # ------ # ------ # ------ # ------ # ------ # ------ # ------
 
@@ -14,10 +15,13 @@ install_nerd_font() {
     # Arguments
     local font_name="${1:-JetBrainsMono}"
     local version="${2:-v3.3.0}"
+    local fonts_dir="${3:-"$HOME/.local/share/fonts"}"
+
+    echo "${FUNCNAME[0]}"
 
     # TODO support multiple platforms like macos    
     if ! [ "$PLATFORM" == "linux" ]; then
-        echo "install_nerd_font is not yet supported on $PLATFORM" >&2
+        echo "Fonts not supported on $PLATFORM" >&2
         return 1
     fi
 
@@ -25,21 +29,20 @@ install_nerd_font() {
     local base_tmp="${TMPDIR:-/tmp}"
     local font_zip="${font_name}.zip"
     local download_url="https://github.com/ryanoasis/nerd-fonts/releases/download/${version}/${font_zip}"
-    local target_dir="$HOME/.local/share/fonts"
     local temp_file="${base_tmp}/${font_zip}"
 
     # Check for a specific file to avoid re-downloading. 
     # Most Nerd Fonts include a "Nerd Font" suffix in the filename.
-    if ls "${target_dir}/${font_name}"*"NerdFont"* >/dev/null 2>&1; then
-        echo "Font: $font_name is already installed."
+    if ls "${fonts_dir}/${font_name}"*"NerdFont"* >/dev/null 2>&1; then
+        echo "$font_name is already installed."
         return
     fi
 
     echo "Installing $font_name Nerd Font ($version)..."
 
     # Preparation
-    mkdir -p "$target_dir" || {
-        echo "Error: Failed to create font directory at $target_dir" >&2
+    mkdir -p "$fonts_dir" || {
+        echo "Error: Failed to create font directory at $fonts_dir" >&2
         return 1
     }
 
@@ -51,8 +54,8 @@ install_nerd_font() {
     fi
 
     # Extraction
-    echo "Extracting files to $target_dir..."
-    if ! unzip -qjo "$temp_file" -d "$target_dir"; then
+    echo "Extracting files to $fonts_dir..."
+    if ! unzip -qjo "$temp_file" -d "$fonts_dir"; then
         echo "Error: Failed to extract $temp_file" >&2
         rm -f "$temp_file"
         return 1
