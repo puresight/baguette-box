@@ -10,6 +10,7 @@ source "$SCRIPTROOT/lib/platforms.sh" || { echo "Error: lib/platforms.sh not fou
 source "$SCRIPTROOT/lib/apt.sh"
 source "$SCRIPTROOT/lib/fonts.sh"
 source "$SCRIPTROOT/lib/java.sh"
+source "$SCRIPTROOT/lib/mc.sh"
 
 # Function to display help information
 print_help() {
@@ -207,6 +208,30 @@ install_rust() {
         echo "Adding cargo-binstall"
         curl -L https://raw.githubusercontent.com/cargo-bins/cargo-binstall/main/install-from-binstall-release.sh | bash
         cargo binstall cargo-update --no-confirm
+    fi
+}
+
+# Function to handle Java installation
+install_storage_tools() {
+    echo
+    echo "--- STORAGE TOOLS ---"
+    rclone --version
+
+    local current_mc=$(command -v mc)
+    local update_every_days=90          # Policy Constant for Update
+
+    # if 'mc' is completely missing...
+    if [ -z "$current_mc" ]; then
+        install_minio_client "$@"
+
+    # if 'mc' is older than 90 days (+90)...
+    #   'find' returns the filename only if it matches the age criteria
+    elif [ -n "$(find "$current_mc" -mtime +$update_every_days)" ]; then
+        echo "MinIO Client is older than $update_every_days days. Updating..."
+        install_minio_client
+
+    else
+        echo "MinIO Client (mc) is installed and up-to-date."
     fi
 }
 

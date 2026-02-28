@@ -2,13 +2,14 @@
 set -e
 set -o pipefail
 
-SCRIPTROOT=$(dirname "${BASH_SOURCE[0]}") # Global
+SCRIPTROOT=$(dirname "${BASH_SOURCE[0]}") # Global var
 source "$SCRIPTROOT/lib/bootstrap.sh"
 
 main() {
     local shell=zsh
     echo "--- ${0} ---"
     install_apt_packages Aptfile
+    install_storage_tools
     install_uv $shell
     install_mise $shell
     install_goose
@@ -24,38 +25,26 @@ main() {
     display_versions
 }
 
-MODE="install"
-
-# Parse command-line arguments
+# Determine mode of operation; the default is help.
 while [[ $# -gt 0 ]]; do
     case "$1" in
-        -h|--help)
-            print_help
-            exit 0
-            ;;
         -i|--install)
-            echo "Install mode" # default
-            shift
-            ;;
+            MODE="install"; echo "Install mode"; shift;;
+        -h|--help)
+            print_help; exit 0;;
         -u|--update)
-            echo "Update mode is not implemented yet"
-            echo
-            print_help
-            exit 1
-            ;;
+            MODE="update";  echo "Update is not implemented"; echo; print_help; exit 1;;
         -g|--upgrade)
-            echo "Upgrade mode is not implemented"
-            echo
-            print_help
-            exit 1
-            ;;
+            MODE="upgrade"; echo "Upgrade is not implemented"; echo; print_help; exit 1;;
+        -n|--dry-run|--noop|--whatif)
+            MODE="dry-run"; echo "Dry run is not implemented"; echo; print_help; exit 1;;
         *)
-            echo "Unknown option: $1"
-            echo
-            print_help
-            exit 1
-            ;;
+            echo "Unknown option: $1"; echo; print_help; exit 1;;
     esac
 done
 
-main "$@"
+if [ "$MODE" = "install" ]; then
+    main "$@"
+else
+    print_help
+fi

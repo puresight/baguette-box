@@ -39,6 +39,7 @@ Bootstrap connects [APT](https://wiki.debian.org/AptCLI) to these repository [so
 Bootstrap uses APT to install packages in the [`Aptfile`](./Aptfile) like
 
 - [Zsh](https://zsh.sourceforge.io/) shell
+- [Rclone](https://rclone.org/docs/) is a tool for mounting nearly any cloud service as a local file system
 - [aws CLI](https://docs.aws.amazon.com/cli/) ☁ tools
 - [gcloud CLI](https://cloud.google.com/cli) ☁ tools
 - [kubectl](https://kubernetes.io/docs/reference/kubectl/) tool
@@ -65,6 +66,7 @@ Bootstrap sets these up &mdash;
 - [Nerd Fonts](https://www.nerdfonts.com/font-downloads) glyph support (non-updating)
 - [Azure PowerShell](https://learn.microsoft.com/en-us/powershell/azure/) (aka [`Az`](https://www.powershellgallery.com/packages/az)) CLI ☁
 - [Goose](https://block.github.io/goose/docs/category/guides) ✨ CLI (relies on bootstrap)
+- [MinIO Client](https://github.com/minio/mc) `mc` is a tool for managing files on Amazon S3-compatible cloud storage.
 - [Rust](https://rust-lang.org/) is installed using [rustup](https://rustup.rs/) (self-updating)
   - [cargo-binstall](https://github.com/cargo-bins/cargo-binstall) tool is added for quick package installation because the standard _cargo install_ command downloads source code and compiles it on your machine, which can be slow. To bypass this and install pre-compiled binaries, use the community-standard tools like cargo-binstall. This is the most popular method. it automatically searches for pre-compiled releases on GitHub or other registries.
     Usage: Replace `cargo install <package>` with `cargo binstall <package>`
