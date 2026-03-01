@@ -11,6 +11,7 @@ main() {
     install_apt_packages Aptfile
     install_storage_tools
     install_uv $shell
+    install_flatpak
     install_mise $shell
     install_goose
     install_dotnet 10

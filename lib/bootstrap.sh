@@ -236,6 +236,16 @@ install_storage_tools() {
 }
 
 # Function to handle Java installation
+install_flatpak() {
+    local remote_name="${1:-flathub}"
+    local remote_url="${2:-'https://dl.flathub.org/repo/flathub.flatpakrepo'}"
+    echo
+    echo "--- FLATPAK ---"
+    flatpak --version
+    sudo flatpak remote-add --if-not-exists $remote_name $remote_url
+}
+
+# Function to handle Java installation
 install_font() {
     echo
     echo "--- FONT ---"

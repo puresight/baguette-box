@@ -25,8 +25,9 @@ It relies on the `/etc/apt/sources.list` file and the `/etc/apt/sources.list.d` 
 
 #### Sources
 
-Using [DEB822](https://repolib.readthedocs.io/en/latest/deb822-format.html)
-Bootstrap connects [APT](https://wiki.debian.org/AptCLI) to these repository [sources](https://wiki.debian.org/SourcesList) &mdash;
+Bootstrap connects [APT](https://wiki.debian.org/AptCLI)
+using [DEB822](https://repolib.readthedocs.io/en/latest/deb822-format.html)
+to these repository [sources](https://wiki.debian.org/SourcesList) &mdash;
 
 - [Google Cloud CLI](https://docs.cloud.google.com/sdk/docs/install-sdk#deb) `google-cloud` <packages.cloud.google.com/apt>
 - [Azure Cloud CLI](https://learn.microsoft.com/en-us/cli/azure/) `azure-cli` <packages.microsoft.com/repos/azure-cli/>
@@ -40,6 +41,10 @@ Bootstrap uses APT to install packages in the [`Aptfile`](./Aptfile) like
 
 - [Zsh](https://zsh.sourceforge.io/) shell
 - [Rclone](https://rclone.org/docs/) is a tool for mounting nearly any cloud service as a local file system
+- [SQLite 3 CLI](https://www.sqlite.org/) that allows you to manually run SQL queries, create tables, and manage database files
+- [PostgreSQL CLI](https://www.postgresql.org/docs/current/reference-client.html) has `psql`, `pgdump`, `createdb` clients for Postgres
+- [MariaDB CLI](https://mariadb.com/docs/server/clients-and-utilities/mariadb-client) shell for MySQL-compatible servers
+- [Redis CLI](https://redis.io/docs/latest/develop/tools/) tools for sending commands to the server
 - [aws CLI](https://docs.aws.amazon.com/cli/) ☁ tools
 - [gcloud CLI](https://cloud.google.com/cli) ☁ tools
 - [kubectl](https://kubernetes.io/docs/reference/kubectl/) tool
@@ -91,3 +96,11 @@ Bootstrap uses [Homebrew](http://docs.brew.sh/Homebrew-on-Linux) 🍺 to install
 - [Go](https://go.dev/) language
 - [Node](https://nodejs.org/) engine
 <!-- -->
+
+### AppImage & Flatpak
+
+[AppImage](https://appimage.org/) is a portable software format for Linux that bundles an application and its dependencies into a single file. Apps require only that the file be made executable! [AppImageHub](https://www.appimagehub.com/) indexes over 1500+ apps.
+
+[Flatpak](https://flathub.org/) is a Linux package management system that bundles an app with all its necessary dependencies in a container with isolation from the rest of the system. [Flathub](https://flathub.org/) lists 3300+ applications.
+
+📖 Read the [docs](./docs/).

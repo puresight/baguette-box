@@ -10,6 +10,10 @@ lsb-release
 # Linux Standard Base version reporting utility - https://packages.debian.org/sid/lsb-release
 ca-certificates
 # Common CA certificates - https://packages.debian.org/sid/ca-certificates
+flatpak
+# Application sandboxing and distribution framework - https://flatpak.org/
+# gnome-software-plugin-flatpak
+# Lets GNOME Software center to discover, install, update, & manage Flatpak applications and runtimes https://flatpak.org/setup/Debian
 
 #%#%#%#%#%#%#%#%#%#%#%#%#%#%#%#%#%#%#%#%#%#%#%#%#%#%#%#%#%#%#%#%#%#%#%#%#%#%#%
 # --- Network & Transfer ---
@@ -61,7 +65,13 @@ ripgrep
 jq
 # Lightweight and flexible command-line JSON processor - https://stedolan.github.io/jq/
 sqlite3
-# Command line interface for SQLite 3 - https://www.sqlite.org/index.html
+# Command line interface for SQLite 3 - https://www.sqlite.org/
+postgresql-client
+# psql pgdump createdb etc CLI clients for Postgres https://www.postgresql.org/docs/current/reference-client.html
+mariadb-client
+# mariadb CLI shell for MySQL-compatible servers https://mariadb.com/docs/server/clients-and-utilities/mariadb-client
+redis-tools
+# redis-cli for sending commands to the server https://redis.io/docs/latest/develop/tools/
 
 #%#%#%#%#%#%#%#%#%#%#%#%#%#%#%#%#%#%#%#%#%#%#%#%#%#%#%#%#%#%#%#%#%#%#%#%#%#%#%
 # --- Archiving & Compression ---
@@ -116,9 +126,3 @@ google-cloud-cli
 
 htop
 # Interactive processes viewer - https://htop.dev/
-
-#%#%#%#%#%#%#%#%#%#%#%#%#%#%#%#%#%#%#%#%#%#%#%#%#%#%#%#%#%#%#%#%#%#%#%#%#%#%#%
-#%#%#%#%#%#%#%#%#%#%#%#%#%#%#%#%#%#%#%#%#%#%#%#%#%#%#%#%#%#%#%#%#%#%#%#%#%#%#%
-
-# flatpak
-# Application sandboxing and distribution framework - https://flatpak.org/
