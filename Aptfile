@@ -13,7 +13,7 @@ ca-certificates
 gnome-software
 # Graphical app store to browse, install, & update apps https://apps.gnome.org/Software/
 gnome-packagekit
-# Suite of tools for advanced system package management https://directory.fsf.org/wiki/Gnome-packagekit
+# Suite of tools for advanced system package management https://www.freedesktop.org/software/PackageKit/
 flatpak
 # Application sandboxing and distribution framework - https://flatpak.org/
 gnome-software-plugin-flatpak
