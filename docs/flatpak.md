@@ -10,8 +10,9 @@
 
 [DBeaver](https://dbeaver.io/) (community edition) is a comprehensive universal database tool for developers and database administrators. It's a universal database manager with excellent support for PostgreSQL (including extensions like pgvector), MariaDB/MySQL, Redis, and dozens more. Tree-based browser for schemas/tables/keys, powerful SQL editor with autocompletion, data viewer/editor, ER diagrams, export/import, SSH tunneling for secure remote access. It's Java-based but runs smoothly via Flatpak, with a modern dark mode support and doesn't feel out of place. Best for multi-database workflows, heavy Postgres/MariaDB use + occasional Redis. `flatpak install flathub io.dbeaver.DBeaverCommunity`
 
-[DB Browser for SQLite](https://sqlitebrowser.org/) (formerly SQLiteBrowser) is a high-quality visual tool to create, design, and edit database files compatible with SQLite. It provides a visual, spreadsheet-like interface for managing databases without requiring complex SQL commands. Caveat: Since it is built using the Qt framework, the initial installation may trigger a download of the KDE Application Platform runtime (approx. 700MB) if you don't already have it installed. `flatpak install flathub org.sqlitebrowser.sqlitebrowser`
+<sup>&dagger;</sup>[DB Browser for SQLite](https://sqlitebrowser.org/) (formerly SQLiteBrowser) is a high-quality visual tool to create, design, and edit database files compatible with SQLite. It provides a visual, spreadsheet-like interface for managing databases without requiring complex SQL commands. Caveat: Since it is built using the Qt framework, the initial installation may trigger a download of the KDE Application Platform runtime (approx. 700MB) if you don't already have it installed. `flatpak install flathub org.sqlitebrowser.sqlitebrowser`
 
-[KDevelop](https://kdevelop.org/) is a feature-rich, plugin-extensible IDE for (C++ and other) programming languages. `flatpak install flathub org.kde.kdevelop`
+<sup>&dagger;</sup>[KDevelop](https://kdevelop.org/) is a feature-rich, plugin-extensible IDE for (C++ and other) programming languages. `flatpak install flathub org.kde.kdevelop`
 
-&hellip;
+&mdash;&mdash;  
+<sup>&dagger;</sup>Qt KDE applications sometimes require manual tweaking of environment variables (like `QT_AUTO_SCREEN_SCALE_FACTOR`) to size correctly on high-resolution Chromebook screens.

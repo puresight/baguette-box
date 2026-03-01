@@ -1,5 +1,6 @@
 # Roadmap
 
+- Test & troubleshoot fresh installation
 - Mise: onboard Go & Node
 - Homebrew: deprecate and make it optional
 - Modes: architect install, update, upgrade, ?

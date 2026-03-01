@@ -10,9 +10,13 @@ lsb-release
 # Linux Standard Base version reporting utility - https://packages.debian.org/sid/lsb-release
 ca-certificates
 # Common CA certificates - https://packages.debian.org/sid/ca-certificates
+gnome-software
+# Graphical app store to browse, install, & update apps https://apps.gnome.org/Software/
+gnome-packagekit
+# Suite of tools for advanced system package management https://directory.fsf.org/wiki/Gnome-packagekit
 flatpak
 # Application sandboxing and distribution framework - https://flatpak.org/
-# gnome-software-plugin-flatpak
+gnome-software-plugin-flatpak
 # Lets GNOME Software center to discover, install, update, & manage Flatpak applications and runtimes https://flatpak.org/setup/Debian
 
 #%#%#%#%#%#%#%#%#%#%#%#%#%#%#%#%#%#%#%#%#%#%#%#%#%#%#%#%#%#%#%#%#%#%#%#%#%#%#%
