@@ -97,3 +97,13 @@ It was designed to run as a daemon, automatically unlocking stored secrets when 
 - **View:** [`seahorse` aka "Passwords and Keys"](https://wiki.gnome.org/Apps/Seahorse) is a graphical frontend for the GNOME Keyring system; helpful for inspection or verification
 - **Store:** `echo -n "YOUR_ACTUAL_API_KEY" | secret-tool store --label="Gemini API Unbilled Key" service google-ai account unbilled-gemini-key`
 - **Retrieve:** `export GEMINI_API_KEY=$(secret-tool lookup service google-ai account unbilled-gemini-key)`
+
+## Licensing Notice (Temporary - March 2026)
+
+This repository is currently **source-available** but not formally licensed for redistribution or modification.
+
+If you're interested in using, forking, adapting, or redistributing any part of this project (even non-commercially), please reach out to me first at @puresight on X/GitHub.
+
+I intend to choose a restrictive open-source license (likely GPL-3.0 or AGPL-3.0) in the coming weeks/months after gathering feedback and use cases. Direct conversation helps me understand needs and decide the best path.
+
+Thank you for your interest!

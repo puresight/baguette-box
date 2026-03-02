@@ -104,6 +104,12 @@ libsecret-tools
 # Secret Service tools - https://wiki.gnome.org/Projects/Libsecret
 seahorse
 # GNOME front-end for GnuPG - https://wiki.gnome.org/Apps/Seahorse
+bubblewrap
+# Low-level unprivileged sandboxing tool for Linux https://github.com/containers/bubblewrap
+apparmor-profiles
+# Extra security profiles for AppArmor (non-default) https://gitlab.com/apparmor/apparmor/-/wikis/Documentation
+apparmor-utils
+# Command-line utilities for AppArmor profile management https://packages.debian.org/sid/apparmor-utils
 
 #%#%#%#%#%#%#%#%#%#%#%#%#%#%#%#%#%#%#%#%#%#%#%#%#%#%#%#%#%#%#%#%#%#%#%#%#%#%#%
 # --- Containers & Cloud Infrastructure ---
