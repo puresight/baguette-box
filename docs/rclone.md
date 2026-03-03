@@ -23,5 +23,5 @@ For [Proton Drive](https://proton.me/drive)
 
 ## Articles
 
-- [2026/1 IBM Cloud: Using rclone](https://cloud.ibm.com/docs/cloud-object-storage?topic=cloud-object-storage-rclone)
-- [2023/7 Akamai Cloud: Use Rclone to Sync Files to Linode Object Storage](https://www.linode.com/docs/guides/rclone-object-storage-file-sync/)
+- 📖 [2026/1 IBM Cloud: Using rclone](https://cloud.ibm.com/docs/cloud-object-storage?topic=cloud-object-storage-rclone)
+- 📖 [2023/7 Akamai Cloud: Use Rclone to Sync Files to Linode Object Storage](https://www.linode.com/docs/guides/rclone-object-storage-file-sync/)

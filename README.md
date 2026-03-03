@@ -39,7 +39,7 @@ Agentic AI & pairing
 CLI
 
 - [Zsh](https://zsh.sourceforge.io/) & [pwsh](https://learn.microsoft.com/en-us/powershell/) shells
-- [Oh My Posh](https://ohmyposh.dev/) prompt _with_ [JetBrains Mono](https://www.jetbrains.com/lp/mono/) [nerd font](https://www.nerdfonts.com/font-downloads)
+- [Oh My Posh](https://ohmyposh.dev/) prompt _with_ [nerd fonts](https://www.nerdfonts.com/font-downloads)
 - [AWS](https://docs.aws.amazon.com/cli/), [Azure](https://learn.microsoft.com/en-us/powershell/azure/), [Google Cloud](https://cloud.google.com/cli) ☁ tools
 - [kubectl](https://kubernetes.io/docs/reference/kubectl/) tool
 - [Github](https://cli.github.com/) tools
@@ -102,8 +102,8 @@ It was designed to run as a daemon, automatically unlocking stored secrets when 
 
 This repository is currently **source-available** but not formally licensed for redistribution or modification.
 
-If you're interested in using, forking, adapting, or redistributing any part of this project (even non-commercially), please reach out to me first at @puresight on X/GitHub.
+If you're interested in using, forking, adapting, or redistributing any part of this project (even non-commercially), please reach out to me first on Github or on [𝕏 (Twitter)](https://x.com/puresight).
 
-I intend to choose a restrictive open-source license (likely GPL-3.0 or AGPL-3.0) in the coming weeks/months after gathering feedback and use cases. Direct conversation helps me understand needs and decide the best path.
+I intend to choose a restrictive open-source license (likely GPL-3.0) in the coming months after gathering feedback and use cases. Direct conversation helps me understand needs and decide the best path.
 
 Thank you for your interest!

@@ -16,4 +16,4 @@ R - Repeatability: Test the prompt across different models
 
 - [anthropics/skills](https://github.com/anthropics/skills) Claude skills
 - [travisvn/awesome-claude-skills](https://github.com/travisvn/awesome-claude-skills) Travis Van Nimwegen skills
-- [Crafting Effective Prompts for Agentic AI Systems: Patterns and Practices](https://github.com/dontriskit/awesome-ai-system-prompts/blob/main/README.md). Curated collection of system prompts for top AI tools. Perfect for AI agent builders and prompt engineers. Incuding: ChatGPT, Claude, Perplexity, Manus, Claude-Code, Loveable, v0, Grok, same new, windsurf, notion, and MetaAI.
+- 📖 [Crafting Effective Prompts for Agentic AI Systems: Patterns and Practices](https://github.com/dontriskit/awesome-ai-system-prompts/blob/main/README.md). Curated collection of system prompts for top AI tools. Perfect for AI agent builders and prompt engineers. Incuding: ChatGPT, Claude, Perplexity, Manus, Claude-Code, Loveable, v0, Grok, same new, windsurf, notion, and MetaAI.
