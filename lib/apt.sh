@@ -157,6 +157,14 @@ add_apt_sources() {
         "cloud-sdk" \
         "main"
 
+    # Google Antigravity repository
+    add_apt_repository \
+        "antigravity.sources" \
+        "https://us-central1-apt.pkg.dev/projects/antigravity-auto-updater-dev/" \
+        "https://us-central1-apt.pkg.dev/doc/repo-signing-key.gpg" \
+        "antigravity-debian" \
+        "main"
+
     # Github CLI repository
     add_apt_repository \
         "github-cli.sources" \

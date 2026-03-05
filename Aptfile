@@ -36,8 +36,6 @@ zsh
 # Shell with lots of features - https://www.zsh.org/
 tmux
 # Terminal multiplexer - https://github.com/tmux/tmux/wiki
-vim
-# Vi IMproved - enhanced vi editor - https://www.vim.org/
 
 #%#%#%#%#%#%#%#%#%#%#%#%#%#%#%#%#%#%#%#%#%#%#%#%#%#%#%#%#%#%#%#%#%#%#%#%#%#%#%
 # --- Development & Version Control ---
@@ -48,9 +46,7 @@ build-essential
 pkg-config
 # Manage compile and link flags for libraries - https://www.freedesktop.org/wiki/Software/pkg-config/
 libssl-dev
-# Secure Sockets Layer toolkit - development files - https://www.openssl.org/
-git
-# Fast, scalable, distributed revision control system - https://git-scm.com/
+# Secure Sockets Layer toolkit development files - https://www.openssl.org/
 gh
 # GitHub's official command line tool - https://cli.github.com/
 
@@ -96,14 +92,12 @@ libsecret-1-dev
 # GObject based library for accessing the Secret Service API (development files) - https://wiki.gnome.org/Projects/Libsecret
 libsecret-tools
 # Secret Service tools - https://wiki.gnome.org/Projects/Libsecret
-seahorse
-# GNOME front-end for GnuPG - https://wiki.gnome.org/Apps/Seahorse
 bubblewrap
 # Low-level unprivileged sandboxing tool for Linux https://github.com/containers/bubblewrap
 apparmor-profiles
 # Extra security profiles for AppArmor (non-default) https://gitlab.com/apparmor/apparmor/-/wikis/Documentation
 apparmor-utils
-# Command-line utilities for AppArmor profile management https://packages.debian.org/sid/apparmor-utils
+# utilities for AppArmor profile management https://packages.debian.org/sid/apparmor-utils
 
 #%#%#%#%#%#%#%#%#%#%#%#%#%#%#%#%#%#%#%#%#%#%#%#%#%#%#%#%#%#%#%#%#%#%#%#%#%#%#%
 # --- Containers & Cloud Infrastructure ---
@@ -122,7 +116,7 @@ kubectl
 awscli
 # Universal Command Line Interface for Amazon Web Services - https://aws.amazon.com/cli/
 google-cloud-cli
-# Official CLI for Google Cloud Platform - https://cloud.google.com/sdk/docs/install
+# CLI for Google Cloud Platform - https://cloud.google.com/sdk/docs/install
 
 #%#%#%#%#%#%#%#%#%#%#%#%#%#%#%#%#%#%#%#%#%#%#%#%#%#%#%#%#%#%#%#%#%#%#%#%#%#%#%
 # --- System Utilities ---
@@ -130,3 +124,12 @@ google-cloud-cli
 
 htop
 # Interactive processes viewer - https://htop.dev/
+
+#%#%#%#%#%#%#%#%#%#%#%#%#%#%#%#%#%#%#%#%#%#%#%#%#%#%#%#%#%#%#%#%#%#%#%#%#%#%#%
+# --- Desktop Applications ---
+#%#%#%#%#%#%#%#%#%#%#%#%#%#%#%#%#%#%#%#%#%#%#%#%#%#%#%#%#%#%#%#%#%#%#%#%#%#%#%
+
+antigravity
+# AI agentic IDE for autonomous software engineering https://Antigravity.Google/
+seahorse
+# a GNOME front-end for GnuPG aka "Passwords & Keys" - https://wiki.gnome.org/Apps/Seahorse
