@@ -21,7 +21,7 @@ including: APT, Homebrew, UV, and mise en place.
 Advanced Package Tool (APT) is the primary software management system
 used in Debian-based Linux systems to manage software packages.
 It automates installing, upgrading, and removing software, including handling dependencies.
-It relies on the `/etc/apt/sources.list` file and the `/etc/apt/sources.list.d` directory to locate released package repositories.
+It relies on the `/etc/apt/sources.list.d` directory to locate release package repositories.
 
 #### Sources
 
@@ -30,18 +30,18 @@ using [DEB822](https://repolib.readthedocs.io/en/latest/deb822-format.html)
 to these repository [sources](https://wiki.debian.org/SourcesList) &mdash;
 
 - [Google Cloud CLI](https://docs.cloud.google.com/sdk/docs/install-sdk#deb) `google-cloud` <packages.cloud.google.com/apt>
-- Google Antigravity
+- [Google Antigravity](https://antigravity.google/) `antigravity` <us-central1-apt.pkg.dev/projects/antigravity-auto-updater-dev/>
 - [Azure Cloud CLI](https://learn.microsoft.com/en-us/cli/azure/) `azure-cli` <packages.microsoft.com/repos/azure-cli/>
 - [Github CLI](https://cli.github.com/) `github-cli` <cli.github.com/packages>
 - [Microsoft prod](https://learn.microsoft.com/en-us/linux/packages) `microsoft-prod` <packages.microsoft.com/debian/12/prod>
 - [VS Code](https://code.visualstudio.com/docs/setup/linux#_debian-and-ubuntu-based-distributions) `vscode` <packages.microsoft.com/repos/code>
 
-#### Software Packages
+#### Packages
 
 Bootstrap uses APT to install packages in the [`Aptfile`](./Aptfile) like
 
 - [Zsh](https://zsh.sourceforge.io/) shell
-- [Rclone](https://rclone.org/docs/) is a tool for mounting nearly any cloud service as a local file system
+- [Rclone](./docs/rclone.md) is a tool for mounting nearly any cloud service as a local file system
 - [SQLite 3 CLI](https://www.sqlite.org/) that allows you to manually run SQL queries, create tables, and manage database files
 - [PostgreSQL CLI](https://www.postgresql.org/docs/current/reference-client.html) has `psql`, `pgdump`, `createdb` clients for Postgres
 - [MariaDB CLI](https://mariadb.com/docs/server/clients-and-utilities/mariadb-client) shell for MySQL-compatible servers
@@ -53,7 +53,7 @@ Bootstrap uses APT to install packages in the [`Aptfile`](./Aptfile) like
 - [Google Antigravity](https://antigravity.google/) IDE
 - †[.NET](https://dotnet.microsoft.com/) [SDK 10](https://learn.microsoft.com/en-us/dotnet/core/whats-new/dotnet-10/overview) framework
 - †[Powershell](https://learn.microsoft.com/en-us/powershell/) shell
-- †Java [OpenJDK](https://openjdk.org/) [21](https://docs.oracle.com/en/java/javase/21/)
+- †[Java](./docs/java.md)
   - How to manage with multiple versions? Learn about `update-alternatives`
     - 📖 [2024/7 Baeldung: The `update-alternatives` Command in Linux](https://www.baeldung.com/linux/update-alternatives-command)
 
@@ -79,6 +79,7 @@ Bootstrap sets these up &mdash;
     Usage: Replace `cargo install <package>` with `cargo binstall <package>`
     - 📖 [2024/11 Ben Brandt: A Better Cargo Install Workflow: How I manage to keep the tools I've installed with cargo up-to-date](https://benjaminbrandt.com/a-better-cargo-install-workflow/)
     - 📖 [2025/12 Sam Schlinkert: A curated list of command-line utilities written in Rust](https://github.com/sts10/rust-command-line-utilities)
+- [Podman](./docs/podman.md)
 
 ### Homebrew
 
@@ -86,9 +87,6 @@ Bootstrap uses [Homebrew](http://docs.brew.sh/Homebrew-on-Linux) 🍺 to install
 
 - [Go](https://go.dev/) language
 - [Node](https://nodejs.org/) engine
-<!-- --
-- [Aider](https://aider.chat/) CLI
-<!-- -->
 
 ### Mise en place
 
@@ -101,8 +99,8 @@ Bootstrap uses [Homebrew](http://docs.brew.sh/Homebrew-on-Linux) 🍺 to install
 
 ### AppImage & Flatpak
 
-[AppImage](https://appimage.org/) is a portable software format for Linux that bundles an application and its dependencies into a single file. Apps require only that the file be made executable! [AppImageHub](https://www.appimagehub.com/) indexes over 1500+ apps.
+[AppImage](./docs/appimage.md) is a portable software format for Linux that bundles an application and its dependencies into a single file. Apps require only that the file be made executable! [AppImageHub](https://www.appimagehub.com/) indexes over 1500+ apps.
 
-[Flatpak](https://flathub.org/) is a Linux package management system that bundles an app with all its necessary dependencies in a container with isolation from the rest of the system. [Flathub](https://flathub.org/) lists 3300+ applications.
+[Flatpak](./docs/flatpak.md) is a Linux package management system that bundles an app with all its necessary dependencies in a container with isolation from the rest of the system. [Flathub](https://flathub.org/) lists 3300+ applications.
 
 📖 Read the [docs](./docs/).

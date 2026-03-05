@@ -24,7 +24,7 @@ _From laptop purchase to vibe coding in an hour&hellip;_
 
 Languages
 
-- [Java](https://dev.java/) as [OpenJDK](https://openjdk.org/)
+- [Java](./docs/java.md)
 - [C#](https://learn.microsoft.com/en-us/dotnet/csharp) as [.NET SDK](https://dotnet.microsoft.com/)
 - [Typescript](https://www.typescriptlang.org/docs/)/[JS](https://developer.mozilla.org/en-US/docs/Web/JavaScript) via [Node](https://nodejs.org/)
 - [Python](https://www.python.org/) via [UV](./docs/uv.md)
@@ -51,10 +51,6 @@ DevOps
 - [uv](./docs/uv.md): Python's package manager
 - [npm](./docs/npm.md): Node's package manager
 - [cargo](https://doc.rust-lang.org/cargo/): Rust's package manager
-
-<!-- --
-- [Homebrew](http://docs.brew.sh/Homebrew-on-Linux) 🍺 Linuxbrew package manager
-<!-- -->
 
 ## Prepare
 

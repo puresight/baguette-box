@@ -1,6 +1,8 @@
 # Java
 
-Bootstrap installs [Microsoft's OpenJDK](https://www.microsoft.com/openjdk).
+Bootstrap installs [Microsoft's](https://www.microsoft.com/openjdk)
+[OpenJDK](https://openjdk.org/)
+[21](https://docs.oracle.com/en/java/javase/21/).
 
 How to manage with multiple versions? Learn about `update-alternatives`
 
