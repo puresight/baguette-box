@@ -1,7 +1,7 @@
 # Roadmap
 
 - Test & troubleshoot fresh installation
-- ngrok, or alternative?
+- ngrok or alternative
 - add help: [tldr](https://github.com/tldr-pages/tldr) & [navi](https://github.com/denisidoro/navi)
 - Mise: onboard Go & Node
 - Homebrew: deprecate and make it optional
