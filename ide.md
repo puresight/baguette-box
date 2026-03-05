@@ -5,8 +5,8 @@ This IDE setup `ide.sh` script installs and configures Microsoft [VS Code](https
 ## Extensions
 
 To maintain workstation integrity, only install extensions from reputable & verified authors that regularly address issues with code updates.
-The extensions to be installed are listed in the [`vscodeExtensions`](./vscodeExtensions) file, including
-[Roo Code](https://marketplace.visualstudio.com/items?itemName=RooVeterinaryInc.roo-cline) ✨
+The extensions to be installed are listed in the [`vscodeExtensions`](./vscodeExtensions) file (including
+[Roo Code](https://marketplace.visualstudio.com/items?itemName=RooVeterinaryInc.roo-cline) and [Gemini Code Assist](https://marketplace.visualstudio.com/items?itemName=Google.geminicodeassist)).
 
 ## Configuration
 

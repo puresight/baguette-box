@@ -1,24 +1,67 @@
-# Extensions to install in vscode
+#%#%#%#%#%#%#%#%#%#%#%#%#%#%#%#%#%#%#%#%#%#%#%#%#%#%#%#%#%#%#%#%#%#%#%#%#%#%#%
+# --- Checkers & Formatters ---
+#%#%#%#%#%#%#%#%#%#%#%#%#%#%#%#%#%#%#%#%#%#%#%#%#%#%#%#%#%#%#%#%#%#%#%#%#%#%#%
 
 dbaeumer.vscode-eslint
+# ESLint - Linting for JavaScript and TypeScript <https://marketplace.visualstudio.com/items?itemName=dbaeumer.vscode-eslint>
 esbenp.prettier-vscode
-eamodio.gitlens
-redhat.vscode-xml
-redhat.vscode-yaml
-hilleer.yaml-plus-json
+# Prettier - Code formatter <https://marketplace.visualstudio.com/items?itemName=esbenp.prettier-vscode>
 
-vscjava.vscode-maven
-vscjava.vscode-gradle
-ms-kubernetes-tools.vscode-kubernetes-tools
-ms-azuretools.vscode-containers
+#%#%#%#%#%#%#%#%#%#%#%#%#%#%#%#%#%#%#%#%#%#%#%#%#%#%#%#%#%#%#%#%#%#%#%#%#%#%#%
+# --- Source Revisions Management ---
+#%#%#%#%#%#%#%#%#%#%#%#%#%#%#%#%#%#%#%#%#%#%#%#%#%#%#%#%#%#%#%#%#%#%#%#%#%#%#%
+
+eamodio.gitlens
+# GitLens - Git supercharged <https://marketplace.visualstudio.com/items?itemName=eamodio.gitlens>
+
+#%#%#%#%#%#%#%#%#%#%#%#%#%#%#%#%#%#%#%#%#%#%#%#%#%#%#%#%#%#%#%#%#%#%#%#%#%#%#%
+# --- Language support ---
+#%#%#%#%#%#%#%#%#%#%#%#%#%#%#%#%#%#%#%#%#%#%#%#%#%#%#%#%#%#%#%#%#%#%#%#%#%#%#%
 
 ms-dotnettools.csharp
+# C# - C# development <https://marketplace.visualstudio.com/items?itemName=ms-dotnettools.csharp>
 ms-vscode.PowerShell
+# PowerShell - PowerShell support <https://marketplace.visualstudio.com/items?itemName=ms-vscode.PowerShell>
 golang.go
+# Go - Go language support <https://marketplace.visualstudio.com/items?itemName=golang.go>
 rust-lang.rust-analyzer
+# Rust Analyzer - Rust language support <https://marketplace.visualstudio.com/items?itemName=rust-lang.rust-analyzer>
 redhat.java
+# Java - Java language support <https://marketplace.visualstudio.com/items?itemName=redhat.java>
+vscjava.vscode-maven
+# Maven for Java - Maven support <https://marketplace.visualstudio.com/items?itemName=vscjava.vscode-maven>
+vscjava.vscode-gradle
+# Gradle for Java - Gradle support <https://marketplace.visualstudio.com/items?itemName=vscjava.vscode-gradle>
 ms-python.python
+# Python - Python language support <https://marketplace.visualstudio.com/items?itemName=ms-python.python>
 charliermarsh.ruff
+# Ruff - Python linter and formatter <https://marketplace.visualstudio.com/items?itemName=charliermarsh.ruff>
+
+#%#%#%#%#%#%#%#%#%#%#%#%#%#%#%#%#%#%#%#%#%#%#%#%#%#%#%#%#%#%#%#%#%#%#%#%#%#%#%
+# --- Data Representation & Transformation ---
+#%#%#%#%#%#%#%#%#%#%#%#%#%#%#%#%#%#%#%#%#%#%#%#%#%#%#%#%#%#%#%#%#%#%#%#%#%#%#%
+
+redhat.vscode-xml
+# XML - XML language support <https://marketplace.visualstudio.com/items?itemName=redhat.vscode-xml>
+redhat.vscode-yaml
+# YAML - YAML language support <https://marketplace.visualstudio.com/items?itemName=redhat.vscode-yaml>
+hilleer.yaml-plus-json
+# YAML Plus JSON - Enhanced YAML and JSON support <https://marketplace.visualstudio.com/items?itemName=hilleer.yaml-plus-json>
+
+#%#%#%#%#%#%#%#%#%#%#%#%#%#%#%#%#%#%#%#%#%#%#%#%#%#%#%#%#%#%#%#%#%#%#%#%#%#%#%
+# --- AI ---
+#%#%#%#%#%#%#%#%#%#%#%#%#%#%#%#%#%#%#%#%#%#%#%#%#%#%#%#%#%#%#%#%#%#%#%#%#%#%#%
 
 rooveterinaryinc.roo-cline
+# AI assistant <https://marketplace.visualstudio.com/items?itemName=rooveterinaryinc.roo-cline>
 Google.geminicodeassist
+# AI coding assistant <https://marketplace.visualstudio.com/items?itemName=Google.geminicodeassist>
+
+#%#%#%#%#%#%#%#%#%#%#%#%#%#%#%#%#%#%#%#%#%#%#%#%#%#%#%#%#%#%#%#%#%#%#%#%#%#%#%
+# --- Clouds & Clusters ---
+#%#%#%#%#%#%#%#%#%#%#%#%#%#%#%#%#%#%#%#%#%#%#%#%#%#%#%#%#%#%#%#%#%#%#%#%#%#%#%
+
+ms-kubernetes-tools.vscode-kubernetes-tools
+# Kubernetes - Kubernetes tools <https://marketplace.visualstudio.com/items?itemName=ms-kubernetes-tools.vscode-kubernetes-tools>
+ms-azuretools.vscode-containers
+# Docker - Docker tools <https://marketplace.visualstudio.com/items?itemName=ms-azuretools.vscode-containers>

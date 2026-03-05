@@ -30,6 +30,7 @@ using [DEB822](https://repolib.readthedocs.io/en/latest/deb822-format.html)
 to these repository [sources](https://wiki.debian.org/SourcesList) &mdash;
 
 - [Google Cloud CLI](https://docs.cloud.google.com/sdk/docs/install-sdk#deb) `google-cloud` <packages.cloud.google.com/apt>
+- Google Antigravity
 - [Azure Cloud CLI](https://learn.microsoft.com/en-us/cli/azure/) `azure-cli` <packages.microsoft.com/repos/azure-cli/>
 - [Github CLI](https://cli.github.com/) `github-cli` <cli.github.com/packages>
 - [Microsoft prod](https://learn.microsoft.com/en-us/linux/packages) `microsoft-prod` <packages.microsoft.com/debian/12/prod>
@@ -49,6 +50,7 @@ Bootstrap uses APT to install packages in the [`Aptfile`](./Aptfile) like
 - [gcloud CLI](https://cloud.google.com/cli) ☁ tools
 - [kubectl](https://kubernetes.io/docs/reference/kubectl/) tool
 - [Github](https://cli.github.com/) tools
+- [Google Antigravity](https://antigravity.google/) IDE
 - †[.NET](https://dotnet.microsoft.com/) [SDK 10](https://learn.microsoft.com/en-us/dotnet/core/whats-new/dotnet-10/overview) framework
 - †[Powershell](https://learn.microsoft.com/en-us/powershell/) shell
 - †Java [OpenJDK](https://openjdk.org/) [21](https://docs.oracle.com/en/java/javase/21/)
@@ -59,7 +61,7 @@ Bootstrap uses APT to install packages in the [`Aptfile`](./Aptfile) like
 
 ### UV
 
-[UV](https://docs.astral.sh/uv/getting-started/features/), the unified tool that replaces utilities in the Python ecosystem (pip, pip-tools, pyenv, virtualenv, pipx, poetry, twine), installs
+[UV](./docs/uv.md), the unified tool that replaces utilities in the Python ecosystem (pip, pip-tools, pyenv, virtualenv, pipx, poetry, twine), installs
 
 - [Python](https://www.python.org/)
 

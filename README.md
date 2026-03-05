@@ -27,14 +27,15 @@ Languages
 - [Java](https://dev.java/) as [OpenJDK](https://openjdk.org/)
 - [C#](https://learn.microsoft.com/en-us/dotnet/csharp) as [.NET SDK](https://dotnet.microsoft.com/)
 - [Typescript](https://www.typescriptlang.org/docs/)/[JS](https://developer.mozilla.org/en-US/docs/Web/JavaScript) via [Node](https://nodejs.org/)
-- [Python](https://www.python.org/) via [UV](https://docs.astral.sh/uv/getting-started/features/)
+- [Python](https://www.python.org/) via [UV](./docs/uv.md)
 - [Go](https://go.dev/)
 - [Rust](https://rust-lang.org/)
 
 Agentic AI & pairing
 
 - [Goose](https://block.github.io/goose/docs/category/guides) CLI
-- [Roo Code](https://roocode.com/) in [VS Code](https://code.visualstudio.com/) 🖥
+- [Google Antigravity](https://antigravity.google/) IDE
+- [Roo Code](https://roocode.com/) and [Gemini Code Assist](https://marketplace.visualstudio.com/items?itemName=Google.geminicodeassist) in [VS Code](https://code.visualstudio.com/) IDE
 
 CLI
 
@@ -47,8 +48,8 @@ CLI
 DevOps
 
 - [APT](https://wiki.debian.org/AptCLI) 🐧 Advanced Package Tool
-- [uv](https://docs.astral.sh/uv/getting-started/features/): Python's package manager
-- [npm](https://www.npmjs.com/): Node's package manager
+- [uv](./docs/uv.md): Python's package manager
+- [npm](./docs/npm.md): Node's package manager
 - [cargo](https://doc.rust-lang.org/cargo/): Rust's package manager
 
 <!-- --
