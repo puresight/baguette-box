@@ -37,8 +37,6 @@ EOF
 install_apt_packages() {
     local apt_file="$1"
     if [ "$PLATFORM" == "linux" ]; then
-        echo "--- APT $1 ---"
-
         sudo apt update -qq
         sudo apt autoremove -y
         add_apt_sources
@@ -57,24 +55,17 @@ install_apt_packages() {
 }
 
 # Function to install/upgrade yq from https://github.com/mikefarah/yq
-#   dependencies: jq (Aptfile)
+#   dependencies:
+#       - called `install_apt_packages Aptfile` to get jq`
 install_yamljson() {
-    # local shell="${1:-true}"
-    local BIN_DIR="$HOME/.local/bin"
-    local REPO="mikefarah/yq"
-    local ARCH
-
-    echo
-    echo "--- YAML/JSON ---"
-    jq --version
+    # jq --version
     install_yq
 }
 
 # Function to handle UV installation
 install_uv() {
-    local shell="${1:-bash}"
-    echo
-    echo "--- UV ---"
+    local shell="${1:-zsh}"
+
     if [ "$PLATFORM" == "linux" ]; then
         if ! command -v uv; then
             curl -LsSf https://astral.sh/uv/install.sh | sh
@@ -91,9 +82,8 @@ install_uv() {
 
 # Function to handle MISE installation per https://mise.jdx.dev/installing-mise.html
 install_mise() {
-    local shell="${1:-bash}"
-    echo
-    echo "--- MISE ---"
+    local shell="${1:-zsh}"
+
     if [ "$PLATFORM" == "linux" ]; then
         if ! command -v mise; then
             # Install mise and add activation to ~/.zshrc
@@ -109,8 +99,6 @@ install_mise() {
 
 # Function to handle GOOSE installation
 install_goose() {
-    echo
-    echo "--- GOOSE ---"
     if [ "$PLATFORM" == "linux" ]; then
         if ! command -v goose --version &> /dev/null; then
             curl -fsSL https://github.com/block/goose/releases/download/stable/download_cli.sh | CONFIGURE=false bash
@@ -124,8 +112,6 @@ install_goose() {
 
 # Function to handle .NET installation
 install_dotnet() {
-    echo
-    echo "--- .NET ---"
     if [ "$PLATFORM" == "linux" ]; then
         for arg in "$@"; do
             if [ "$arg" != "$PLATFORM" ]; then
@@ -141,9 +127,7 @@ install_dotnet() {
 
 # Function to handle shell configuration
 configure_shell() {
-    local shell="${1:-bash}"
-    echo
-    echo "--- SHELL ---"
+    local shell="${1:-zsh}"
     export PATH=$PATH:~/.local/bin
     
     if [ "$PLATFORM" == "linux" ]; then
@@ -182,8 +166,6 @@ configure_shell() {
 
 # Function to handle Podman configuration
 configure_podman() {
-    echo
-    echo "--- PODMAN ---"
     if [ "$PLATFORM" == "linux" ]; then
         # The Problem: By default, a Linux user only has one UID (yours). To run a container, Podman needs to pretend to be "root" inside the container while remaining a "normal user" outside. It does this by mapping a range of UIDs from the host to the container.
         # The Fix: By adding $USER:100000:65536 to /etc/subuid and subgid, you are granting your user permission to "own" 65,536 subordinate IDs.
@@ -205,8 +187,6 @@ configure_podman() {
 
 # Function to handle Rust installation
 install_rust() {
-    echo
-    echo "--- RUST ---"
     if command -v rustup &> /dev/null; then
         echo "Rust needs an update! Run `rustup update` soon."
         # rustup update # TODO disabled because it takes too long / several minutes.
@@ -229,8 +209,6 @@ install_rust() {
 
 # Function to handle Java installation
 install_storage_tools() {
-    echo
-    echo "--- STORAGE TOOLS ---"
     rclone --version
 
     local current_mc=$(command -v mc)
@@ -251,28 +229,23 @@ install_storage_tools() {
     fi
 }
 
-# Function to handle Java installation
+# Function
 install_flatpak() {
     local remote_name="${1:-flathub}"
     local remote_url="${2:-'https://dl.flathub.org/repo/flathub.flatpakrepo'}"
-    echo
-    echo "--- FLATPAK ---"
     flatpak --version
+    echo "Adding remote $remote_name = $remote_url"
     sudo flatpak remote-add --if-not-exists $remote_name $remote_url
 }
 
-# Function to handle Java installation
+# Function
 install_font() {
-    echo
-    echo "--- FONT ---"
     install_nerd_font "$@"
 }
 
-# Function to handle Java installation
+# Function
 install_java() {
     local java_version="$1"
-    echo
-    echo "--- JAVA ---"
     echo "Installing Microsoft OpenJDK version $java_version..."
     INSTALL_MS_OPENJDK $java_version
 
@@ -282,11 +255,9 @@ install_java() {
     java -version
 }
 
-# Function to handle Homebrew installation
+# Function
 install_homebrew() {
-    local shell="${1:-bash}"
-    echo
-    echo "--- HOMEBREW ---"
+    local shell="${1:-zsh}"
 
     # Install
     if ! command -v brew &> /dev/null; then
@@ -325,15 +296,11 @@ install_homebrew() {
 # Function to install a Homebrew bundle
 brew_bundle() {
     local apt_file="$1"
-    echo
-    echo "--- HOMEBREW $1 ---"
     brew bundle --file="./$1"
 }
 
 # Function to display environment information
 display_environment() {
-    echo
-    echo "--- ENVIRONMENT ---"
     if [ "$PLATFORM" == "linux" ]; then
         if command -v hostnamectl &> /dev/null; then
             hostnamectl
@@ -347,8 +314,6 @@ display_environment() {
 
 # Function to display current versions
 display_versions() {
-    echo
-    echo "--- CURRENT VERSIONS ---"
     # echo "$(gcloud --version)" # FIXME too verbose: we just want the main gcloud version
     echo "Amazon Web Services: $(aws --version)"
     # echo "Github: $(gh --version)" # FIXME too verbose: just the GH version please

@@ -5,26 +5,28 @@ set -o pipefail
 SCRIPTROOT=$(dirname "${BASH_SOURCE[0]}") # Global var
 source "$SCRIPTROOT/lib/bootstrap.sh"
 
+# Function that drives execution using bootstrap.yaml
 main() {
-    local shell=zsh
+    local config_file="$SCRIPTROOT/bootstrap.yaml"
     echo "--- ${0} ---"
-    install_apt_packages Aptfile
-    install_yamljson
-    install_storage_tools
-    install_uv $shell
-    install_flatpak
-    install_mise $shell
-    install_goose
-    install_dotnet 10
-    configure_shell $shell
-    install_font JetBrainsMono v3.3.0
-    configure_podman
-    install_rust
-    install_java 21
-    install_homebrew $shell
-    brew_bundle Brewfile
-    display_environment
-    display_versions
+
+    # Prerequisites: yq must be installed to continue
+    if ! command -v yq &> /dev/null; then
+        # install_apt_packages Aptfile
+        install_yamljson
+    fi
+
+    # Extract enabled steps and loop through them
+    local steps
+    steps=$(yq -r '.install_steps[] | select(.enabled != false) | .name + " " + (.args | join(" "))' "$config_file")
+
+    while read -r cmd; do
+        if [ -n "$cmd" ]; then
+            echo
+            echo "--- $cmd ---"
+            eval "$cmd"
+        fi
+    done <<< "$steps"
 }
 
 # Determine mode of operation; the default is help.
