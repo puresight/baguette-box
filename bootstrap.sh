@@ -9,6 +9,7 @@ main() {
     local shell=zsh
     echo "--- ${0} ---"
     install_apt_packages Aptfile
+    install_yamljson
     install_storage_tools
     install_uv $shell
     install_flatpak

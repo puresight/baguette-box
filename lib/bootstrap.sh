@@ -11,6 +11,7 @@ source "$SCRIPTROOT/lib/apt-sources.sh"
 source "$SCRIPTROOT/lib/fonts.sh"
 source "$SCRIPTROOT/lib/java.sh"
 source "$SCRIPTROOT/lib/mc.sh"
+source "$SCRIPTROOT/lib/yq.sh"
 
 # Function to display help information
 print_help() {
@@ -53,6 +54,20 @@ install_apt_packages() {
     else
         echo "Skipping APT on $PLATFORM"
     fi
+}
+
+# Function to install/upgrade yq from https://github.com/mikefarah/yq
+#   dependencies: jq (Aptfile)
+install_yamljson() {
+    # local shell="${1:-true}"
+    local BIN_DIR="$HOME/.local/bin"
+    local REPO="mikefarah/yq"
+    local ARCH
+
+    echo
+    echo "--- YAML/JSON ---"
+    jq --version
+    install_yq
 }
 
 # Function to handle UV installation
@@ -193,7 +208,8 @@ install_rust() {
     echo
     echo "--- RUST ---"
     if command -v rustup &> /dev/null; then
-        rustup update
+        echo "Rust needs an update! Run `rustup update` soon."
+        # rustup update # TODO disabled because it takes too long / several minutes.
 
         # TODO investigate re-enabling this; it compiled from source 157 packages (too much) last time
         # cargo install-update -a
