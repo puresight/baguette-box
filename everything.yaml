@@ -34,7 +34,7 @@ tasks:
       - Brewfile
   - task: install_code
     arguments:
-      - vscode-updates/argv.json
+      - code-update/argv.json
     enabled: true
   - task: install_code_extensions
     arguments:
@@ -42,7 +42,7 @@ tasks:
     enabled: true
   - task: configure_code
     arguments:
-      - vscode-updates/user-settings.json
+      - code-update/user-settings.json
     enabled: true
   - task: display_environment
   - task: display_versions

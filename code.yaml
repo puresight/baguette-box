@@ -1,11 +1,11 @@
 tasks:
   - task: install_code
     arguments:
-      - vscode-updates/argv.json
+      - code-update/argv.json
   - task: install_code_extensions
     arguments:
       - codeExtensions
   - task: configure_code
     arguments:
-      - vscode-updates/user-settings.json
+      - code-update/user-settings.json
     enabled: true
