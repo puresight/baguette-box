@@ -4,11 +4,12 @@ set -o pipefail
 
 SCRIPTROOT=$(dirname "${BASH_SOURCE[0]}") # Global var
 source "$SCRIPTROOT/lib/bootstrap.sh"
+source "$SCRIPTROOT/lib/code.sh"
 
 # Function that drives execution using config.yaml
 main() {
-    local config_file="$SCRIPTROOT/config.yaml"
-    echo "--- ${0} ---"
+    local config_file="$1"
+    echo "--- ${0} $config_file ---"
 
     # Prerequisites: yq must be installed to continue
     if ! command -v yq &> /dev/null; then
@@ -18,7 +19,7 @@ main() {
 
     # Extract enabled steps and loop through them
     local steps
-    steps=$(yq -r '.bootstrap[] | select(.enabled != false) | .name + " " + (.args | join(" "))' "$config_file")
+    steps=$(yq -r '.tasks[] | select(.enabled != false) | .task + " " + (.arguments | join(" "))' "$config_file")
 
     while read -r cmd; do
         if [ -n "$cmd" ]; then
@@ -29,13 +30,17 @@ main() {
     done <<< "$steps"
 }
 
+# -- Process Arguments & Switches --
+
 # Determine mode of operation; the default is help.
 while [[ $# -gt 0 ]]; do
     case "$1" in
         -i|--install)
             MODE="install"; echo "Install mode"; shift;;
+        -c|--config)
+            CONFIG_FILE="$2"; shift 2;;
         -h|--help)
-            print_help; exit 0;;
+            MODE="help"; print_help; exit 0;;
         -u|--update)
             MODE="update";  echo "Update is not implemented"; echo; print_help; exit 1;;
         -g|--upgrade)
@@ -48,7 +53,12 @@ while [[ $# -gt 0 ]]; do
 done
 
 if [ "$MODE" = "install" ]; then
-    main "$@"
+    if [ -z "$CONFIG_FILE" ]; then
+        echo "Error: --config <file> is required."
+        print_help
+        exit 1
+    fi
+    main "$CONFIG_FILE"
 else
     print_help
 fi

@@ -6,8 +6,8 @@ _To maintain workstation integrity, only install code from reputable & verified 
 
 ## How to Use
 
-- Customize the `config.yaml` file if you want to
-- Run command `./bootstrap.sh --install`
+- Customize the config YAML file if you want to
+- Run command `./box.sh --install --config bootstrap.yaml`
 - Restart your shell: close and reopen the terminal
 
 This script is idempotent. You can run it again anytime.

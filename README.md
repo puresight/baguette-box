@@ -69,15 +69,15 @@ First, prepare your system
 
 ## Proceed
 
-Next, run the scripts, in sequence:
+Next, run the script config YAML's in sequence:
 
 - **Bootstrap:** Installs zsh, core language runtimes, and system-level fixes
-  - 📖 read [`docs/`](./docs/README.md)
-  - Run `./bootstrap.sh --install`
+  - 📖 read [`docs/README.md`](./docs/README.md)
+  - Run `./box.sh --install --config bootstrap.yaml`
   - Restart your shell: `exit` and reopen the terminal tab.
-- **IDE:** Installs VS Code with a curated suite of extensions
+- **Code:** Installs VS Code with a suite of extensions
   - 📖 read [`docs/code.md`](./docs/code.md)
-  - Run `./ide.sh --install`
+  - Run `./box.sh --install --config code.yaml`
 
 The setup is simple to get up & running. But it is also configurable; read the docs for more info.
 

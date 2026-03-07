@@ -1,11 +1,11 @@
 # Code
 
-This IDE setup `ide.sh` script installs and configures Microsoft [VS Code](https://code.visualstudio.com/) and some [extensions](https://marketplace.visualstudio.com/vscode).
+This code setup config of box installs and configures Microsoft [VS Code](https://code.visualstudio.com/) and some [extensions](https://marketplace.visualstudio.com/vscode).
 
 ## Extensions
 
 To maintain workstation integrity, only install extensions from reputable & verified authors that regularly address issues with code updates.
-The extensions to be installed are listed in the [`vscodeExtensions`](./vscodeExtensions) file (including
+The extensions to be installed are listed in the [`codeExtensions`](./codeExtensions) file (including
 [Roo Code](https://marketplace.visualstudio.com/items?itemName=RooVeterinaryInc.roo-cline) and [Gemini Code Assist](https://marketplace.visualstudio.com/items?itemName=Google.geminicodeassist)).
 
 ## Configuration
@@ -15,8 +15,8 @@ Unfortunately (as a consequence) it disintegrates the comments that were in them
 
 ## How to Use
 
-1. Ensure the base `bootstrap.sh` install already been run;
-1. Customize the `vscodeExtensions` if you want to
-1. Run command `./ide.sh --install`
+1. Ensure the base bootstrap YAML config has already been installed;
+1. Customize the `codeExtensions` if you want to
+1. Run command `./box.sh --install --config code.yaml`
 
 This script is idempotent. You can run it again anytime.

@@ -21,6 +21,7 @@ Usage: ${0} [OPTIONS]
 Options:
   -h, --help      Show this help message and exit
   -i, --install   Install all VS Code components (default)
+  -c, --config    Specify configuration file (required)
 EOF
 #   -d, --dry-run   Zero mutations, but display what would be done
 #   -u, --update    Install only minor updates
@@ -35,7 +36,8 @@ EOF
 
 # Function to handle APT package installation
 install_apt_packages() {
-    local apt_file="$1"
+    local apt_file="${1:-Aptfile}"
+
     if [ "$PLATFORM" == "linux" ]; then
         sudo apt update -qq
         sudo apt autoremove -y

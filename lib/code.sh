@@ -8,26 +8,8 @@
 source "$SCRIPTROOT/lib/platforms.sh" || { echo "Error: platforms.sh not found."; exit 1; }
 source "$SCRIPTROOT/lib/json.sh" 
 
-# Function to display help information
-print_help() {
-    cat << EOF
-Usage: ${0} [OPTIONS]
-
-Options:
-  -h, --help      Show this help message and exit
-  -i, --install   Install all VS Code components (default)
-EOF
-#   -d, --dry-run   Zero mutations, but display what would be done
-#   -u, --update    Install only minor updates
-
-# Examples:
-#   ${0}                    # Install all components
-#   ${0} --dry-run          # Show what would be installed
-#   ${0} --update           # Update minor versions
-}
-
 # Function to install VS Code
-install_vscode() {
+install_code() {
     local repo_path="$(cd -- "$(dirname -- "${BASH_SOURCE:-$0}")" && cd .. && pwd)"
     local vscode_argv="$repo_path/$1"
 
@@ -56,7 +38,7 @@ install_vscode() {
 }
 
 # Function to install VS Code extensions
-install_extensions() {
+install_code_extensions() {
     local ext_file="$1"
 
     if [ -f $ext_file ]; then
@@ -73,7 +55,7 @@ install_extensions() {
 }
 
 # Function to configure VS Code settings
-configure_vscode() {
+configure_code() {
     local repo_path="$(cd -- "$(dirname -- "${BASH_SOURCE:-$0}")" && cd .. && pwd)"
     local vscode_user_settings="$repo_path/$1"
 
