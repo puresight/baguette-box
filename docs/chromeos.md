@@ -1,5 +1,18 @@
 # ChromeOS
 
+## Getting Started
+
+Linux Development Environment (Crostini) is the common way to run Linux apps alongside ChromeOS without wiping your data or compromising security.
+
+- Open Settings: Click the time in the bottom-right corner and select the Settings (gear) icon.
+- Turn on Linux: On the left sidebar, select About ChromeOS > Developers. Next to Linux development environment, select Set up.
+- Configure: Follow the on-screen prompts to choose a username and disk size (10 GB is the standard recommendation).
+- Open Terminal: Once finished, a Terminal window will automatically open. You now have a Debian-based environment where you can run commands.
+- Update System: It is best practice to immediately update your packages by typing the following in the terminal and pressing Enter:  
+   `sudo apt update && sudo apt upgrade -y`
+
+To continue, you will need to set a password via `sudo passwd $USER`
+
 ## File Storage
 
 - **Google Drive:** Since it's built into the Chromebook Files app, you can right-click any folder and select "Share with Linux". It will appear in Crostini at `/mnt/chromeos/GoogleDrive/MyDrive/`
