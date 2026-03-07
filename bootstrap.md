@@ -6,10 +6,15 @@ _To maintain workstation integrity, only install code from reputable & verified 
 
 ## How to Use
 
-- `./bootstrap.sh --install`
-- Restart your shell: Close and reopen the terminal.
+- Customize the `config.yaml` file if you want to
+- Run command `./bootstrap.sh --install`
+- Restart your shell: close and reopen the terminal
 
 This script is idempotent. You can run it again anytime.
+
+## GUI applications
+
+[Flatpak](./docs/flatpak.md) is the preferred method for installing GUI applications on this system. This approach ensures applications run in isolated environments with their own dependencies, preventing conflicts with system libraries and keeping the host OS clean. It also provides access to the latest versions of applications regardless of the distribution's release cycle. Read the `/docs` for more info!
 
 ## System Architecture
 
@@ -96,11 +101,3 @@ Bootstrap uses [Homebrew](http://docs.brew.sh/Homebrew-on-Linux) 🍺 to install
 - [Go](https://go.dev/) language
 - [Node](https://nodejs.org/) engine
 <!-- -->
-
-### AppImage & Flatpak
-
-[AppImage](./docs/appimage.md) is a portable software format for Linux that bundles an application and its dependencies into a single file. Apps require only that the file be made executable! [AppImageHub](https://www.appimagehub.com/) indexes over 1500+ apps.
-
-[Flatpak](./docs/flatpak.md) is a Linux package management system that bundles an app with all its necessary dependencies in a container with isolation from the rest of the system. [Flathub](https://flathub.org/) lists 3300+ applications.
-
-📖 Read the [docs](./docs/).

@@ -15,7 +15,8 @@ Unfortunately (as a consequence) it disintegrates the comments that were in them
 
 ## How to Use
 
-1. Ensure the base `bootstrap.sh` install already run;
-1. Command `./ide.sh --install`
+1. Ensure the base `bootstrap.sh` install already been run;
+1. Customize the `vscodeExtensions` if you want to
+1. Run command `./ide.sh --install`
 
 This script is idempotent. You can run it again anytime.
