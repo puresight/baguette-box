@@ -31,8 +31,6 @@ install_vscode() {
     local repo_path="$(cd -- "$(dirname -- "${BASH_SOURCE:-$0}")" && cd .. && pwd)"
     local vscode_argv="$repo_path/$1"
 
-    echo
-    echo "--- VS CODE ($PLATFORM) ---"
     if ! command -v code &> /dev/null; then
         if [ "$PLATFORM" == "linux" ]; then
             sudo apt install -y code
@@ -60,8 +58,7 @@ install_vscode() {
 # Function to install VS Code extensions
 install_extensions() {
     local ext_file="$1"
-    echo
-    echo "--- EXTENSIONS ---"
+
     if [ -f $ext_file ]; then
         while IFS= read -r extension || [ -n "$extension" ]; do
             # Ignore comments and empty lines
@@ -80,8 +77,6 @@ configure_vscode() {
     local repo_path="$(cd -- "$(dirname -- "${BASH_SOURCE:-$0}")" && cd .. && pwd)"
     local vscode_user_settings="$repo_path/$1"
 
-    echo
-    echo "--- CONFIGURATION ---"
     if [ "$PLATFORM" == "linux" ]; then
         TARGET_JSON="$HOME/.config/Code/User/settings.json"
     elif [ "$PLATFORM" == "macos" ]; then

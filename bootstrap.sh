@@ -5,9 +5,9 @@ set -o pipefail
 SCRIPTROOT=$(dirname "${BASH_SOURCE[0]}") # Global var
 source "$SCRIPTROOT/lib/bootstrap.sh"
 
-# Function that drives execution using bootstrap.yaml
+# Function that drives execution using config.yaml
 main() {
-    local config_file="$SCRIPTROOT/bootstrap.yaml"
+    local config_file="$SCRIPTROOT/config.yaml"
     echo "--- ${0} ---"
 
     # Prerequisites: yq must be installed to continue
@@ -18,7 +18,7 @@ main() {
 
     # Extract enabled steps and loop through them
     local steps
-    steps=$(yq -r '.install_steps[] | select(.enabled != false) | .name + " " + (.args | join(" "))' "$config_file")
+    steps=$(yq -r '.bootstrap[] | select(.enabled != false) | .name + " " + (.args | join(" "))' "$config_file")
 
     while read -r cmd; do
         if [ -n "$cmd" ]; then

@@ -234,7 +234,7 @@ install_flatpak() {
     local remote_name="${1:-flathub}"
     local remote_url="${2:-'https://dl.flathub.org/repo/flathub.flatpakrepo'}"
     flatpak --version
-    echo "Adding remote $remote_name = $remote_url"
+    echo "remote $remote_name = $remote_url"
     sudo flatpak remote-add --if-not-exists $remote_name $remote_url
 }
 

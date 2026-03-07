@@ -1,0 +1,47 @@
+bootstrap:
+  - name: install_apt_packages
+    args:
+      - Aptfile
+  - name: install_yamljson
+  - name: install_storage_tools
+  - name: install_uv
+  - name: install_flatpak
+    args:
+      - flathub
+      - https://dl.flathub.org/repo/flathub.flatpakrepo
+  - name: install_mise
+  - name: install_goose
+  - name: install_dotnet
+    args:
+      - 10
+  - name: configure_shell
+    args:
+      - zsh
+  - name: install_font
+    args:
+      - JetBrainsMono
+      - v3.3.0
+  - name: configure_podman
+    enabled: false
+  - name: install_rust
+    enabled: true
+  - name: install_java
+    args:
+      - 21
+  - name: install_homebrew
+  - name: brew_bundle
+    args:
+      - Brewfile
+  - name: display_environment
+  - name: display_versions
+
+ide:
+  - name: install_vscode
+    args:
+      - vscode-updates/argv.json
+  - name: install_extensions
+    args:
+      - vscodeExtensions
+  - name: configure_vscode
+    args:
+      - vscode-updates/user-settings.json

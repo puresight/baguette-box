@@ -1,8 +1,5 @@
-# Baguette Box
+# Baguette Box &nbsp; 🥖🥖🥖
 
-_This is beta quality code so backup before using, read the docs, and scan the source before running._
-
-`baguette-box` 🥖
 sets up an AI-enabled developer environment on
 [Debian](https://www.debian.org/)-based systems
 ([Ubuntu](https://docs.ubuntu.com/),
@@ -19,6 +16,8 @@ with tooling for coding, cloud, compute, cache, storage, and data management.
 ⏱🏎🏍
 _From laptop purchase to vibe coding in an hour&hellip;_
 <!-- -->
+
+_This is beta quality code so backup before using, read the docs, and scan the source before running._
 
 ## Tech Stack
 

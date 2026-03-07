@@ -5,11 +5,28 @@ set -o pipefail
 SCRIPTROOT=$(dirname "${BASH_SOURCE[0]}") # Global
 source "$SCRIPTROOT/lib/ide.sh"
 
+# Function that drives execution using config.yaml
 main() {
+    local config_file="$SCRIPTROOT/config.yaml"
     echo "--- ${0} ---"
-    install_vscode vscode-updates/argv.json
-    install_extensions vscodeExtensions
-    configure_vscode vscode-updates/user-settings.json
+
+    # Prerequisites: yq must be installed to continue
+    if ! command -v yq &> /dev/null; then
+        # install_apt_packages Aptfile
+        install_yamljson
+    fi
+
+    # Extract enabled steps and loop through them
+    local steps
+    steps=$(yq -r '.ide[] | select(.enabled != false) | .name + " " + (.args | join(" "))' "$config_file")
+
+    while read -r cmd; do
+        if [ -n "$cmd" ]; then
+            echo
+            echo "--- $cmd ---"
+            eval "$cmd"
+        fi
+    done <<< "$steps"
 }
 
 # Determine mode of operation
