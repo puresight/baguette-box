@@ -76,10 +76,14 @@ Next, run the scripts, in sequence:
   - Run `./bootstrap.sh --install`
   - Restart your shell: `exit` and reopen the terminal tab.
 - **IDE:** Installs VS Code with a curated suite of extensions
-  - 📖 read [`ide.md --install`](./ide.md)
-  - Run `./ide.sh`
+  - 📖 read [`ide.md`](./ide.md)
+  - Run `./ide.sh --install`
 
-The setup is simple to get you up & running. Stay in touch to let us know about bugs & improvements.
+The setup is simple to get up & running. But it is also configurable; read the docs for more info.
+
+<!-- --
+Stay in touch to let us know about bugs & improvements.
+<!-- -->
 
 ## Passkeys
 
