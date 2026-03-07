@@ -4,31 +4,26 @@ _To maintain workstation integrity, only install code from reputable & verified 
 
 ## How to Use
 
-- Create a custom config YAML file if you want to
 - Run command `./box.sh --install --config everything.yaml`
 - Restart your shell: close and reopen the terminal
 
 This script is idempotent. You can run it again anytime.
 
-## GUI applications
+## YAML tasks
 
-[Flatpak](.//flatpak.md) is the preferred method for installing GUI applications on this system. This approach ensures applications run in isolated environments with their own dependencies, preventing conflicts with system libraries and keeping the host OS clean. It also provides access to the latest versions of applications regardless of the distribution's release cycle. Read the [flatpak.md](./flatpak.md) docs for more info.
+The config file you supply feeds box tasks to do.
+Each task in sequence (with some arguments) will be executed - unless property `enabled` is `false`.
 
-## System Architecture
+While the full understanding of each is found in inspecting the bash source of the lib functions that implement them, the following is a summary.
 
-Bootstrap relies on several code package management systems to install & update things,
-including: APT, Homebrew, UV, and mise en place.
-
-### APT
+#### `install_apt_packages`
 
 Advanced Package Tool (APT) is the primary software management system
 used in Debian-based Linux systems to manage software packages.
 It automates installing, upgrading, and removing software, including handling dependencies.
 It relies on the `/etc/apt/sources.list.d` directory to locate release package repositories.
 
-#### Sources
-
-Bootstrap connects [APT](https://wiki.debian.org/AptCLI)
+This task connects [APT](https://wiki.debian.org/AptCLI)
 using [DEB822](https://repolib.readthedocs.io/en/latest/deb822-format.html)
 to these repository [sources](https://wiki.debian.org/SourcesList) &mdash;
 
@@ -39,9 +34,7 @@ to these repository [sources](https://wiki.debian.org/SourcesList) &mdash;
 - [Microsoft prod](https://learn.microsoft.com/en-us/linux/packages) `microsoft-prod` <packages.microsoft.com/debian/12/prod>
 - [VS Code](https://code.visualstudio.com/docs/setup/linux#_debian-and-ubuntu-based-distributions) `vscode` <packages.microsoft.com/repos/code>
 
-##### Packages
-
-Bootstrap uses APT to install packages in the [`Aptfile`](./Aptfile) like
+And runs _apt install_ on packages listed in the _Aptfile_ like
 
 - [Zsh](https://zsh.sourceforge.io/) shell
 - [Rclone](.//rclone.md) is a tool for mounting nearly any cloud service as a local file system
@@ -53,64 +46,7 @@ Bootstrap uses APT to install packages in the [`Aptfile`](./Aptfile) like
 - [gcloud CLI](https://cloud.google.com/cli) ☁ tools
 - [kubectl](https://kubernetes.io/docs/reference/kubectl/) tool
 - [Github](https://cli.github.com/) tools
-- [Google Antigravity](https://antigravity.google/) IDE
-- †[.NET](https://dotnet.microsoft.com/) [SDK 10](https://learn.microsoft.com/en-us/dotnet/core/whats-new/dotnet-10/overview) framework
-- †[Powershell](https://learn.microsoft.com/en-us/powershell/) shell
-- †[Java](.//java.md)
-  - How to manage with multiple versions? Learn about `update-alternatives`
-    - 📖 [2024/7 Baeldung: The `update-alternatives` Command in Linux](https://www.baeldung.com/linux/update-alternatives-command)
-
-†These packages are _added to_ what's already in the [Aptfile](./Aptfile).
-
-### UV
-
-[UV](.//uv.md), the unified tool that replaces utilities in the Python ecosystem (pip, pip-tools, pyenv, virtualenv, pipx, poetry, twine), installs
-
-- [Python](https://www.python.org/)
-
-### Independent
-
-Bootstrap sets these up &mdash;
-
-- [Oh My Posh](https://ohmyposh.dev/) prompt (self-updating)
-- [Nerd Fonts](https://www.nerdfonts.com/font-downloads) glyph support (non-updating)
-- [Azure PowerShell](https://learn.microsoft.com/en-us/powershell/azure/) (aka [`Az`](https://www.powershellgallery.com/packages/az)) CLI ☁
-- [Goose](https://block.github.io/goose/docs/category/guides) ✨ CLI (relies on bootstrap)
-- [MinIO Client](https://github.com/minio/mc) `mc` is a tool for managing files on Amazon S3-compatible cloud storage.
-- [Rust](https://rust-lang.org/) is installed using [rustup](https://rustup.rs/) (self-updating)
-  - [cargo-binstall](https://github.com/cargo-bins/cargo-binstall) tool is added for quick package installation because the standard _cargo install_ command downloads source code and compiles it on your machine, which can be slow. To bypass this and install pre-compiled binaries, use the community-standard tools like cargo-binstall. This is the most popular method. it automatically searches for pre-compiled releases on GitHub or other registries.
-    Usage: Replace `cargo install <package>` with `cargo binstall <package>`
-    - 📖 [2024/11 Ben Brandt: A Better Cargo Install Workflow: How I manage to keep the tools I've installed with cargo up-to-date](https://benjaminbrandt.com/a-better-cargo-install-workflow/)
-    - 📖 [2025/12 Sam Schlinkert: A curated list of command-line utilities written in Rust](https://github.com/sts10/rust-command-line-utilities)
-- [Podman](.//podman.md)
-
-### Homebrew
-
-Bootstrap uses [Homebrew](http://docs.brew.sh/Homebrew-on-Linux) 🍺 to install packages in the [`Brewfile`](./Brewfile) like
-
-- [Go](https://go.dev/) language
-- [Node](https://nodejs.org/) engine
-
-### Mise en place
-
-**[Mise](https://mise.jdx.dev/)** is a tool with potential to manage installations of languages and tools for development. It could be used to manage multiple versions of Node.js, Go, or Ruby in the future. Under construction.
-
-<!-- --
-- [Go](https://go.dev/) language
-- [Node](https://nodejs.org/) engine
-<!-- -->
-
-## YAML Config
-
-The yaml file you supply to box lists tasks.
-Each task in sequence (with some arguments) will be executed - unless property `enabled` is `false`.
-
-While the full understanding of each is found in inspecting the bash source of the lib functions that implement them, here is an overview
-
-#### `install_apt_packages`
-
-This task adds the necessary APT repository sources (in DEB822 format) to the system.
-And runs _apt install_ on packages listed in the _Aptfile_
+- [Google Antigravity](https://antigravity.google/) AI IDE
 
 #### `install_yamljson`
 
@@ -121,59 +57,83 @@ This task installs dependencies needed by the system to work with JSON or YAML t
 
 #### `install_storage_tools`
 
-This task installs file system utilities such as
-
-- rclone
+This task installs utilities such as
+[MinIO Client](https://github.com/minio/mc) `mc` a tool for managing files on Amazon S3-compatible cloud storage.
 
 #### `install_uv`
 
-This task installs the swiss knife of the Python ecosystem called UV.
+This task installs [UV](.//uv.md),
+the unified tool for the Python ecosystem.
+And [Python](https://www.python.org/).
 
 #### `install_flatpak`
 
-This task installs the flatpak utility and adds the upstream source for
-the Flathub app marketplace.
+This task installs flatpak and adds the remote source for the Flathub app marketplace.
+
+[Flatpak](./flatpak.md) is the preferred method for installing GUI applications on this system. This approach ensures applications run in isolated environments with their own dependencies, preventing conflicts with system libraries and keeping the host OS clean. It also provides access to the latest versions of applications regardless of the distribution's release cycle. Read the [flatpak.md](./flatpak.md) docs for more info.
 
 #### `install_mise`
 
-This task installs Mise.
+This task installs Mise en place. **[Mise](https://mise.jdx.dev/)** is a tool with potential to manage installations of languages and tools for development. It could be used to manage multiple versions of Node.js, Go, or Ruby in the future. Under construction.
+
+<!-- --
+- [Go](https://go.dev/) language
+- [Node](https://nodejs.org/) engine
+<!-- -->
 
 #### `install_goose`
 
-This task installs Block's _Goose_ IDE.
+This task installs Block's [Goose](https://block.github.io/goose/docs/category/guides) AI CLI.
 
 #### `install_dotnet`
 
-This task installs a Microsoft .NET software development kit.
+This task installs a Microsoft [.NET](https://dotnet.microsoft.com/) SDK release e.g.
+[10](https://learn.microsoft.com/en-us/dotnet/core/whats-new/dotnet-10/overview).
+And installs the [Powershell](https://learn.microsoft.com/en-us/powershell/) shell.
 
 #### `configure_shell`
 
 This task changes the system's default shell to zsh (which was installed in the Aptfile),
-installs Microsoft Powershell, runs a pwsh script to install Azure `Az` powershell modules, and installs the Oh My Posh prompt for the zsh and pwsh shells.
+runs a _pwsh_ script to install [Azure PowerShell](https://learn.microsoft.com/en-us/powershell/azure/)
+(aka [`Az`](https://www.powershellgallery.com/packages/az)) CLI.
+
+And installs the [Oh My Posh](https://ohmyposh.dev/) prompt
+for the zsh and pwsh shells.
 
 #### `install_font`
 
-This task installs a Nerd Font on the system, e.g. JetBrainsMono v3.3.0
+This task _installs_ a [Nerd Font](https://www.nerdfonts.com/font-downloads)
+on the system, e.g. JetBrainsMono v3.3.0;
+it neither updates nor remove fonts.
 
 #### `configure_podman`
 
-This task configures Podman.
+This task configures [Podman](.//podman.md).
 
 #### `install_rust`
 
-This task uses Rustup to install Rust.
+This task uses [Rustup](https://rustup.rs/) to install the [Rust](https://rust-lang.org/) language.
+
+And adds [cargo-binstall](https://github.com/cargo-bins/cargo-binstall) tool for quick package installation. Because the standard _cargo install_ command downloads source code and compiles it on your machine, which can be slow. So to bypass this and install pre-compiled binaries, use the community-standard tools like cargo-binstall. This is the most popular method. it automatically searches for pre-compiled releases on GitHub or other registries. Usage: Replace `cargo install <package>` with `cargo binstall <package>`
+
+- 📖 [2024/11 Ben Brandt: A Better Cargo Install Workflow: How I manage to keep the tools I've installed with cargo up-to-date](https://benjaminbrandt.com/a-better-cargo-install-workflow/)
+- 📖 [2025/12 Sam Schlinkert: A curated list of command-line utilities written in Rust](https://github.com/sts10/rust-command-line-utilities)
 
 #### `install_java`
 
-This task installs one or more of the Microsoft releases of OpenJDK.
+This task installs one of the Microsoft releases of OpenJDK [Java](.//java.md).
 
 #### `install_homebrew`
 
-This task installs Homebrew's tool management system itself.
+This task installs (or updates)
+[Homebrew](http://docs.brew.sh/Homebrew-on-Linux) 🍺 software management system.
 
 #### `brew_bundle`
 
-This task uses Homebrew to install packages listed in a _Brewfile_
+This task uses Homebrew to install packages in the [`Brewfile`](./Brewfile) like
+
+- [Go](https://go.dev/) language
+- [Node](https://nodejs.org/) engine
 
 #### `display_environment`
 
@@ -198,6 +158,6 @@ _To maintain workstation integrity, only install extensions from reputable & ver
 
 #### `configure_code`
 
-This task updates Code's user settings.json file with some configuration.
+This task updates (doing a shallow merge) Code's user settings.json file.
 
 _Unfortunately (as a consequence of implementation), it erases the comments that were in them._

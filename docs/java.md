@@ -1,6 +1,6 @@
 # Java
 
-Bootstrap installs [Microsoft's](https://www.microsoft.com/openjdk)
+Box installs [Microsoft's](https://www.microsoft.com/openjdk)
 [OpenJDK](https://openjdk.org/)
 [21](https://docs.oracle.com/en/java/javase/21/).
 

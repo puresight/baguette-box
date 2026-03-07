@@ -2,7 +2,7 @@
 
 ## Getting Started
 
-Crostini is the official, first-party environment that enables Linux application support on [ChromeOS](https://chromeos.dev/en/linux) without requiring users to compromise their device's security by enabling Developer Mode. It functions through a highly secure "defense in depth" architecture that runs a Debian-based Linux container inside a specialized, sandboxed virtual machine (VM) called Termina. This setup allows you to run a wide range of Linux-only command-line tools, code editors, and graphical IDEs that integrate seamlessly with the standard ChromeOS desktop, appearing in the app launcher and sharing files through the native Files app. Designed primarily for developers and advanced users, Crostini provides the flexibility of a full Linux workstation while maintaining the speed and security of a standard Chromebook.
+Crostini is the official, first-party environment that enables Linux application support on [ChromeOS](https://chromeos.dev/en/linux) without requiring users to compromise their device's security by enabling Developer Mode. It functions through a highly secure "defense in depth" architecture that runs a Debian-based Linux container inside a specialized, sandboxed virtual machine (VM) called Termina. This setup allows you to run a wide range of Linux-only command-line tools, code editors, and graphical IDEs that integrate seamlessly with the standard ChromeOS desktop, appearing in the app launcher and sharing files through the native Files app. Crostini provides the flexibility of a Linux workstation while maintaining the speed and security of a standard Chromebook.
 
 - Open Settings: Click the time in the bottom-right corner and select the Settings (gear) icon.
 - Turn on Linux: On the left sidebar, select About ChromeOS > Developers. Next to Linux development environment, select Set up.
@@ -47,9 +47,9 @@ If you want to run Podman in rootless mode on [Crostini](https://www.chromium.or
 
 #### Adjustments
 
-- **Enable Nesting:** Run `lxc config set <container_name> security.nesting true` (requires access to the ChromeOS Termina VM).
+- **Enable Nesting:** Run `lxc config set <container_name> security.nesting true` from the ChromeOS Termina VM.
 - **Adjust Storage:** Edit `/etc/containers/storage.conf` to use a compatible driver like Btrfs if OverlayFS fails.
-- **Configure Sub-UIDs:** Add a range (e.g., 100000-165535) to `/etc/subuid` and `/etc/subgid` for your username. The `bootstrap.sh` fix does this to help with the User Namespaces challenge.
+- **Configure Sub-UIDs:** Add a range (e.g., 100000-165535) to `/etc/subuid` and `/etc/subgid` for your username. The fix does this to help with the User Namespaces challenge.
 
 #### Ahead
 
