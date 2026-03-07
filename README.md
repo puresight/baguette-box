@@ -32,9 +32,9 @@ Languages
 
 Agentic AI & pairing
 
-- [Goose](https://block.github.io/goose/docs/category/guides) CLI
 - [Google Antigravity](https://antigravity.google/) IDE
 - [Roo Code](https://roocode.com/) and [Gemini Code Assist](https://marketplace.visualstudio.com/items?itemName=Google.geminicodeassist) in [VS Code](https://code.visualstudio.com/) IDE
+- [Goose](https://block.github.io/goose/docs/category/guides) CLI
 
 CLI
 
@@ -69,17 +69,15 @@ First, prepare your system
 
 ## Proceed
 
-Next, run the script config YAML's in sequence:
+Read the [`docs/README.md`](./docs/README.md) before you go for it&hellip;
 
 - **Bootstrap:** Installs zsh, core language runtimes, and system-level fixes
-  - 📖 read [`docs/README.md`](./docs/README.md)
   - Run `./box.sh --install --config bootstrap.yaml`
   - Restart your shell: `exit` and reopen the terminal tab.
-- **Code:** Installs VS Code with a suite of extensions
-  - 📖 read [`docs/code.md`](./docs/code.md)
+- **Code:** Installs VS Code with some settings and extensions
   - Run `./box.sh --install --config code.yaml`
 
-The setup is simple to get up & running. But it is also configurable; read the docs for more info.
+It gets the machine up & running in a couple of minutes.
 
 <!-- --
 Stay in touch to let us know about bugs & improvements.

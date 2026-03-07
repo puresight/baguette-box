@@ -1,3 +1,5 @@
-# VS Code Updates
+# Code Update
 
-The files in this folder contain updates that shall be applied (in a shall merge) when VS Code is installed & configured by the `ide.sh` script.
+Files in this directory contain configuration updates
+that shall be applied (in a shallow merge)
+when a Code IDE is installed or configured by box.
