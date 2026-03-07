@@ -6,7 +6,7 @@ sets up an AI-enabled developer environment on
 [Mint](https://linuxmint.com/),
 [Pop!\_OS](https://system76.com/pop/),
 [Raspberry Pi](https://www.raspberrypi.com/software/#raspberry-pi-os),
-[ChromeOS](https://chromeos.dev/en/linux)
+[ChromeOS](./docs/chromeos.md)
 [Linux](https://www.linuxfoundation.org/))
 with tooling for coding, cloud, compute, cache, storage, and data management.
 
@@ -55,7 +55,7 @@ DevOps
 
 First, prepare your system
 
-- ChromeOS: Set a password
+- [ChromeOS](./docs/chromeos.md): Set a password
   - `sudo passwd $USER`
 - Linux: Update, upgrade, and install git
   - `sudo apt update && sudo apt upgrade -y`
