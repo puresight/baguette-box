@@ -1,4 +1,4 @@
-# IDE
+# Code
 
 This IDE setup `ide.sh` script installs and configures Microsoft [VS Code](https://code.visualstudio.com/) and some [extensions](https://marketplace.visualstudio.com/vscode).
 
