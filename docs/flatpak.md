@@ -6,6 +6,8 @@
 
 **[Flathub](https://flathub.org/)** lists 3300+ applications
 
+📝 [AppFlowy](https://appflowy.com/) is a customizable productivity suite for individuals and teams who prioritize data ownership and high-speed performance. Built with Rust and Flutter, it provides a "local-first" experience that functions seamlessly offline, offering advanced database features like **Kanban boards, Grids, and Calendars** that can be linked via two-way relations. It acts as a versatile command center to _manage complex roadmaps, feature backlogs, and personal knowledge bases_ without relying on third-party cloud hosting. `flatpak install flathub io.appflowy.AppFlowy`
+
 [Slack](https://slack.com/resources/why-use-slack/what-is-slack-and-how-does-it-work) is a communication platform that connects people to the information they need. It brings team communication and collaboration into one place so you can get more work done. `flatpak install flathub com.slack.Slack`
 
 [Insomnia](https://developer.konghq.com/insomnia/) is an open-source API client for GraphQL, REST, WebSockets, Server-sent events (SSE), and gRPC. It allows you to debug APIs, design APIs using OpenAPI, and test APIs. `flatpak install flathub rest.insomnia.Insomnia`
