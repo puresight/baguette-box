@@ -72,7 +72,7 @@ First, prepare your system
 Next, run the scripts, in sequence:
 
 - **Bootstrap:** Installs zsh, core language runtimes, and system-level fixes
-  - 📖 read [`bootstrap.md`](./bootstrap.md)
+  - 📖 read [`bootstrap.md`](./docs/)
   - Run `./bootstrap.sh --install`
   - Restart your shell: `exit` and reopen the terminal tab.
 - **IDE:** Installs VS Code with a curated suite of extensions
