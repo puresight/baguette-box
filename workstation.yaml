@@ -16,6 +16,11 @@ tasks:
 
   - task: install_mise
 
+  - task: install_mise_tools
+    arguments:
+      - go
+      - node
+
   - task: install_goose
 
   - task: install_dotnet
@@ -46,6 +51,7 @@ tasks:
   - task: brew_bundle
     arguments:
       - Brewfile
+    enabled: false
 
   - task: install_code
     arguments:

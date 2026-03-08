@@ -99,6 +99,12 @@ install_mise() {
     fi
 }
 
+# Function to install mise packages
+#   arguments: id's to install
+install_mise_tools() {
+    # TODO
+}
+
 # Function to handle GOOSE installation
 install_goose() {
     if [ "$PLATFORM" == "linux" ]; then
