@@ -2,47 +2,66 @@ tasks:
   - task: install_apt_packages
     arguments:
       - Aptfile
+
   - task: install_yamljson
+
   - task: install_storage_tools
+
   - task: install_uv
+
   - task: install_flatpak
     arguments:
       - flathub
       - https://dl.flathub.org/repo/flathub.flatpakrepo
+
   - task: install_mise
+
   - task: install_goose
+
   - task: install_dotnet
     arguments:
       - 10
+
   - task: configure_shell
     arguments:
       - zsh
+
   - task: install_font
     arguments:
       - JetBrainsMono
       - v3.3.0
+
   - task: configure_podman
     enabled: true
+
   - task: install_rust
     enabled: true
+
   - task: install_java
     arguments:
       - 21
+
   - task: install_homebrew
+
   - task: brew_bundle
     arguments:
       - Brewfile
+
   - task: install_code
     arguments:
       - code-update/argv.json
     enabled: true
+
   - task: install_code_extensions
     arguments:
       - codeExtensions
     enabled: true
+
   - task: configure_code
     arguments:
       - code-update/user-settings.json
     enabled: true
+
   - task: display_environment
+
   - task: display_versions

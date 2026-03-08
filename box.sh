@@ -2,11 +2,16 @@
 set -e
 set -o pipefail
 
+# ------ # ------ # ------ # ------ # ------ # ------ # ------ # ------
+#   This script is the main entry point. Read the docs to understand
+#   how to drive it through YAML configuration.
+# ------ # ------ # ------ # ------ # ------ # ------ # ------ # ------
+
 SCRIPTROOT=$(dirname "${BASH_SOURCE[0]}") # Global var
 source "$SCRIPTROOT/lib/bootstrap.sh"
 source "$SCRIPTROOT/lib/code.sh"
 
-# Function that drives execution using config.yaml
+# Function that drives execution using config file
 main() {
     local config_file="$1"
     echo "--- ${0} $config_file ---"
@@ -23,14 +28,20 @@ main() {
 
     while read -r cmd; do
         if [ -n "$cmd" ]; then
-            echo
-            echo "--- $cmd ---"
-            eval "$cmd"
+            local func_name="${cmd%% *}"
+            if declare -F "$func_name" > /dev/null; then
+                echo
+                echo "--- $cmd ---"
+                eval "$cmd"
+            else
+                echo "Error: invalid task name: correct '$func_name' in $config_file" >&2
+                exit 1
+            fi
         fi
     done <<< "$steps"
 }
 
-# -- Process Arguments & Switches --
+# -- Handle Arguments --
 
 # Determine mode of operation; the default is help.
 while [[ $# -gt 0 ]]; do
@@ -47,10 +58,16 @@ while [[ $# -gt 0 ]]; do
             MODE="upgrade"; echo "Upgrade is not implemented"; echo; print_help; exit 1;;
         -n|--dry-run|--noop|--whatif)
             MODE="dry-run"; echo "Dry run is not implemented"; echo; print_help; exit 1;;
-        *)
+        -*)
             echo "Unknown option: $1"; echo; print_help; exit 1;;
+        *)
+            CONFIG_FILE="$1"; shift;;
     esac
 done
+
+if [ -z "$MODE" ] && [ -n "$CONFIG_FILE" ]; then
+    MODE="install"
+fi
 
 if [ "$MODE" = "install" ]; then
     if [ -z "$CONFIG_FILE" ]; then

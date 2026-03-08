@@ -72,10 +72,10 @@ First, prepare your system
 Read the [`docs/README.md`](./docs/README.md) before you go for it&hellip;
 
 - **Bootstrap:** Installs zsh, core language runtimes, and system-level fixes
-  - Run `./box.sh --install --config bootstrap.yaml`
+  - Run `./box.sh bootstrap.yaml --install`
   - Restart your shell: `exit` and reopen the terminal tab.
 - **Code:** Installs VS Code with some settings and extensions
-  - Run `./box.sh --install --config code.yaml`
+  - Run `./box.sh code.yaml --install`
 
 It gets the machine up & running in a couple of minutes.
 

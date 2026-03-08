@@ -2,9 +2,11 @@ tasks:
   - task: install_code
     arguments:
       - code-update/argv.json
+
   - task: install_code_extensions
     arguments:
       - codeExtensions
+
   - task: configure_code
     arguments:
       - code-update/user-settings.json

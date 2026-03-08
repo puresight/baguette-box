@@ -4,7 +4,7 @@ _To maintain workstation integrity, only install code from reputable & verified 
 
 ## How to Use
 
-- Run command `./box.sh --install --config everything.yaml`
+- Run command `./box.sh everything.yaml --install`
 - Restart your shell: close and reopen the terminal
 
 This script is idempotent. You can run it again anytime.
@@ -159,5 +159,6 @@ _To maintain workstation integrity, only install extensions from reputable & ver
 #### `configure_code`
 
 This task updates (doing a shallow merge) Code's user settings.json file.
+It uses `jq` and Node/npm module `jsonc-cli`.
 
 _Unfortunately (as a consequence of implementation), it erases the comments that were in them._
