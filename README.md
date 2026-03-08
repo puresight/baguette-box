@@ -46,7 +46,7 @@ CLI
 
 ## Prepare
 
-First, prepare your system
+First, prepare your new system
 
 - On [ChromeOS](./docs/chromeos.md), set a password
   - `sudo passwd $USER`
@@ -62,15 +62,18 @@ First, prepare your system
 
 ## Proceed
 
-Read the [`docs/README.md`](./docs/README.md) before you go for it&hellip;
+Next, browse the [`docs/README.md`](./docs/README.md).
 
-- **Bootstrap:** Installs zsh, core language runtimes, and system-level fixes
-  - Run `./box.sh bootstrap.yaml --install`
-  - Restart your shell: `exit` and reopen the terminal tab.
-- **Code:** Installs VS Code with some settings and extensions
-  - Run `./box.sh code.yaml --install`
+Then go for it&hellip;
 
-It gets the machine up & running in a couple of minutes.
+1. **Bootstrap:** Install your shell, core language runtimes, system-level fixes, etc  
+   Run `./box.sh bootstrap.yaml --install`  
+   Restart your shell: `exit` and reopen the terminal tab.
+
+1. **Code:** Install VS Code with settings and extensions  
+   Run `./box.sh code.yaml --install`
+
+The workstation will be ready in a couple of minutes.
 
 <!-- --
 Stay in touch to let us know about bugs & improvements.
@@ -80,7 +83,7 @@ Stay in touch to let us know about bugs & improvements.
 
 This repository is currently **source-available** but not formally licensed for redistribution or modification.
 
-If you're interested in using, forking, adapting, or redistributing any part of this project (even non-commercially), please reach out to me first on Github or on [𝕏 (Twitter)](https://x.com/puresight).
+If you're interested in using, forking, adapting, or redistributing any part of this project (even non-commercially), please reach out to me first on [𝕏 (Twitter)](https://x.com/puresight).
 
 I intend to choose a restrictive open-source license (likely GPL-3.0) in the coming months after gathering feedback and use cases. Direct conversation helps me understand needs and decide the best path.
 

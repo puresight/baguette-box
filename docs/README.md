@@ -4,7 +4,7 @@ _To maintain workstation integrity, only install code from reputable & verified 
 
 ## How to Use
 
-- Run command `./box.sh everything.yaml --install`
+- Run command `./box.sh workstation.yaml --install`
 - Restart your shell: close and reopen the terminal
 
 This script is idempotent. You can run it again anytime.
