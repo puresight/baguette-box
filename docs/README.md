@@ -9,6 +9,21 @@ _To maintain workstation integrity, only install code from reputable & verified 
 
 This script is idempotent. You can run it again anytime.
 
+## System Architecture
+
+Every software you install must be able to receive updates for
+bugs or security vulnerabilities. It is always best to pick a
+package management system to help with the lifecycle of each program
+that you want on your machine. We use several including
+
+- [APT](https://wiki.debian.org/AptCLI) is Debian's Advanced Package Tool
+- [Flatpak](./flatpak.md) is the preferred method for installing GUI apps
+- [Homebrew](http://docs.brew.sh/Homebrew-on-Linux) for Node, Go
+- [Mise](https://mise.jdx.dev/)
+- [uv](./docs/uv.md) is a fast Python package manager
+- [npm](./docs/npm.md) is the default Node package manager
+- [Rustup](https://rustup.rs/) for Rust
+
 ## YAML tasks
 
 The config file you supply feeds box tasks to do.

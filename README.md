@@ -32,9 +32,9 @@ Languages
 
 Agentic AI & pairing
 
-- [Google Antigravity](https://antigravity.google/) IDE
-- [Roo Code](https://roocode.com/) and [Gemini Code Assist](https://marketplace.visualstudio.com/items?itemName=Google.geminicodeassist) in [VS Code](https://code.visualstudio.com/) IDE
-- [Goose](https://block.github.io/goose/docs/category/guides) CLI
+- [Google Antigravity](https://antigravity.google/) AI IDE
+- [Roo Code](https://roocode.com/) AI and [Gemini Code Assist](https://marketplace.visualstudio.com/items?itemName=Google.geminicodeassist) AI in [VS Code](https://code.visualstudio.com/) IDE
+- [Goose](https://block.github.io/goose/docs/category/guides) AI CLI
 
 CLI
 
@@ -43,13 +43,6 @@ CLI
 - [AWS](https://docs.aws.amazon.com/cli/), [Azure](https://learn.microsoft.com/en-us/powershell/azure/), [Google Cloud](https://cloud.google.com/cli) ☁ tools
 - [kubectl](https://kubernetes.io/docs/reference/kubectl/) tool
 - [Github](https://cli.github.com/) tools
-
-DevOps
-
-- [APT](https://wiki.debian.org/AptCLI) 🐧 Advanced Package Tool
-- [uv](./docs/uv.md): Python's package manager
-- [npm](./docs/npm.md): Node's package manager
-- [cargo](https://doc.rust-lang.org/cargo/): Rust's package manager
 
 ## Prepare
 
