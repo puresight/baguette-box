@@ -40,23 +40,23 @@ CLI
 
 - [Zsh](https://zsh.sourceforge.io/) & [pwsh](https://learn.microsoft.com/en-us/powershell/) shells
 - [Oh My Posh](https://ohmyposh.dev/) prompt _with_ [nerd fonts](https://www.nerdfonts.com/font-downloads)
-- [AWS](https://docs.aws.amazon.com/cli/), [Azure](https://learn.microsoft.com/en-us/powershell/azure/), [Google Cloud](https://cloud.google.com/cli) ☁ tools
-- [kubectl](https://kubernetes.io/docs/reference/kubectl/) tool
-- [Github](https://cli.github.com/) tools
+- [AWS](https://docs.aws.amazon.com/cli/), [Azure](https://learn.microsoft.com/en-us/powershell/azure/), [Google](https://cloud.google.com/cli), [kubectl](https://kubernetes.io/docs/reference/kubectl/) cloud tools
+- [MinIO Client](https://github.com/minio/mc), [Rclone](.//rclone.md) storage utilities
+- [Postgres](https://www.postgresql.org/docs/current/reference-client.html), [MySQL](https://mariadb.com/docs/server/clients-and-utilities/mariadb-client), [Redis](https://redis.io/docs/latest/develop/tools/), [SQLite](https://www.sqlite.org/) database clients
 
 ## Prepare
 
 First, prepare your system
 
-- [ChromeOS](./docs/chromeos.md): Set a password
+- On [ChromeOS](./docs/chromeos.md), set a password
   - `sudo passwd $USER`
-- Linux: Update, upgrade, and install git
+- On Linux: Update, upgrade, and get git
   - `sudo apt update && sudo apt upgrade -y`
   - `sudo apt install git`
-- Git [First Time Setup](https://git-scm.com/book/ms/v2/Getting-Started-First-Time-Git-Setup) e.g.
+- For git, do your [First Time Setup](https://git-scm.com/book/ms/v2/Getting-Started-First-Time-Git-Setup) e.g.
   - `git config --global user.name "Jane Doe"`
   - `git config --global user.email "janedoe@example.com"`
-- Clone the repo:
+- Clone this repo:
   - `git clone <repo-link>`
   - `cd <repo-name>`
 
