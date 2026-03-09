@@ -22,11 +22,12 @@ tasks:
   - task: install_dotnet
     arguments:
       - 10
-    enabled: false
+    enabled: true
 
   - task: configure_shell
     arguments:
       - zsh
+      - pwsh
 
   - task: install_font
     arguments:

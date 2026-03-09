@@ -189,7 +189,7 @@ configure_shell() {
 
         # Configure Posh for Powershell
         echo "pwsh $(pwsh --version)" 
-        pwsh -NoProfile -File ./bootstrap.ps1
+        pwsh -NoProfile -File ./powershell.ps1
 
     elif [ "$PLATFORM" == "macos" ]; then
         if command -v oh-my-posh &> /dev/null; then

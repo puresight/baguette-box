@@ -68,7 +68,7 @@ Next, browse the [`docs/README.md`](./docs/README.md)
 Then go for it&hellip;
 
 1. **Bootstrap:** Install your shell, core language runtimes, system-level fixes, etc  
-   Run `./box.sh bootstrap.yaml --install`  
+   Run `./box.sh begin.yaml --install`  
    Restart your shell: `exit` and reopen the terminal tab.
 
 1. **Code:** Install VS Code with settings and extensions  
