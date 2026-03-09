@@ -44,10 +44,11 @@ This plan folder contains the specs & plans for this repository. Baguette Box ("
 
 ## Monty's Repo Roadmap Items
 
+- !! Test & troubleshoot fresh installation
+- ! Add CLI tools: fzf, zoxide
 - Troubleshoot & test `./lib/eget.sh` install_eget()
-- Test & troubleshoot fresh installation
-- ngrok or alternative
-- add help: [tldr](https://github.com/tldr-pages/tldr) & [navi](https://github.com/denisidoro/navi)
+- ngrok or alternative for exposing local ports on Internet
+- meh: add help: [tldr](https://github.com/tldr-pages/tldr) & [navi](https://github.com/denisidoro/navi)
 - Modes: dry-run, install, update, upgrade, ?etc
 - Update mode: plan and implement
 - cross-platform
@@ -62,4 +63,3 @@ This plan folder contains the specs & plans for this repository. Baguette Box ("
 - Tailscale.com
 - Neon.com
 - Chezmoi for dotfiles
-- ?...

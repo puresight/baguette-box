@@ -29,7 +29,7 @@ add_apt_sources() {
         "azure-cli.sources" \
         "https://packages.microsoft.com/repos/azure-cli/" \
         "https://packages.microsoft.com/keys/microsoft.asc" \
-        "$(lsb_release -cs)" \
+        "$VERSION_CODENAME" \
         "main" \
         "$(dpkg --print-architecture)"
 

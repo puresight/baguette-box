@@ -1,7 +1,7 @@
 #!/bin/bash
 
 # ------ # ------ # ------ # ------ # ------ # ------ # ------ # ------
-#   This library script has a function to install Eget.
+#   This library script has a function to install Eget https://github.com/zyedidia/eget
 #   Dependencies:
 #   - Github CLI
 # ------ # ------ # ------ # ------ # ------ # ------ # ------ # ------
