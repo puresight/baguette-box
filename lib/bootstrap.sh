@@ -354,17 +354,18 @@ display_environment() {
 
 # Function to display current versions
 display_versions() {
-    # echo "$(gcloud --version)" # FIXME too verbose: we just want the main gcloud version
-    echo "Amazon Web Services: $(aws --version)"
-    # echo "Github: $(gh --version)" # FIXME too verbose: just the GH version please
-    echo "$(uv --version)"
-    echo "$(python3 --version)"
-    echo "$(rustc --version)"
-    echo "$(cargo --version)"
-    echo "$(go version)"
-    echo "$(javac -version)"
-    echo "dotnet $(dotnet --version)"
-    echo "pwsh $(pwsh --version)"
-    echo "Node $(node -v)"
-    echo "npm $(npm -v)"
+    # if command -v gcloud &> /dev/null; then echo "$(gcloud --version)"; fi # FIXME too verbose: we just want the main gcloud version
+    if command -v aws &>/dev/null; then echo "Amazon Web Services: $(aws --version)"; fi
+    # if command -v gh &> /dev/null; then echo "Github: $(gh --version)"; fi # FIXME too verbose: just the GH version please
+    if command -v uv &>/dev/null; then echo "$(uv --version)"; fi
+    if command -v python3 &>/dev/null; then echo "$(python3 --version)"; fi
+    if command -v rustc &>/dev/null; then echo "$(rustc --version)"; fi
+    if command -v cargo &>/dev/null; then echo "$(cargo --version)"; fi
+    if command -v go &>/dev/null; then echo "$(go version)"; fi
+    if command -v ruby &>/dev/null; then echo "$(ruby --version)"; fi
+    if command -v javac &>/dev/null; then echo "$(javac -version 2>&1)"; fi
+    if command -v dotnet &>/dev/null; then echo "dotnet $(dotnet --version)"; fi
+    if command -v pwsh &>/dev/null; then echo "pwsh $(pwsh --version)"; fi
+    if command -v node &>/dev/null; then echo "Node $(node -v)"; fi
+    if command -v npm &>/dev/null; then echo "npm $(npm -v)"; fi
 }
