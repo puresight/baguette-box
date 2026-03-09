@@ -15,7 +15,7 @@ This script is idempotent. You can run it again anytime.
 
 ## System Architecture
 
-Every software you install must be able to receive updates for
+Every piece of software you install must be able to receive updates for
 bugs or security vulnerabilities. It is always best to pick a
 package management system to help with the lifecycle of each program
 that you want on your machine. We use several including
@@ -35,7 +35,7 @@ Each task in sequence (with some arguments) will be executed (unless property `e
 
 While the full understanding of each is found in inspecting the bash source of the lib functions that implement them, the following is a summary.
 
-#### `install_apt_packages`
+### `install_apt_packages`
 
 connects [APT](https://wiki.debian.org/AptCLI)
 using [DEB822](https://repolib.readthedocs.io/en/latest/deb822-format.html)
@@ -67,35 +67,35 @@ It also runs _apt install_ on packages listed in the _Aptfile_ like
 - [Github](https://cli.github.com/) tools
 - [Google Antigravity](https://antigravity.google/) AI IDE
 
-#### `install_yamljson`
+### `install_yamljson`
 
 installs dependencies needed by the system to work with JSON or YAML text files
 
 - `yq` is installed by this task
 - `jq` was defined in the _Aptfile_.
 
-#### `install_storage_tools`
+### `install_storage_tools`
 
 installs utilities such as
 [MinIO Client](https://github.com/minio/mc) `mc` a tool for managing files on Amazon S3-compatible cloud storage.
 
-#### `install_uv`
+### `install_uv`
 
 installs [UV](.//uv.md),
 the unified tool for the Python ecosystem.
 And [Python](https://www.python.org/).
 
-#### `install_flatpak`
+### `install_flatpak`
 
 installs flatpak and adds the remote source for the Flathub app marketplace.
 
 [Flatpak](./flatpak.md) is the preferred method for installing GUI applications on this system. This approach ensures applications run in isolated environments with their own dependencies, preventing conflicts with system libraries and keeping the host OS clean. It also provides access to the latest versions of applications regardless of the distribution's release cycle. Read the [flatpak.md](./flatpak.md) docs for more info.
 
-#### `install_mise`
+### `install_mise`
 
 installs **[Mise](./mise.md)** en place, a tool to manage installations of languages and tools for development. It is used to manage multiple versions of e.g. language runtimes.
 
-#### `install_mise_tools`
+### `install_mise_tools`
 
 reads the `mise.toml` file in the root of the repository to install the specified tool versions. [Mise](./mise.md) manages:
 
@@ -103,21 +103,21 @@ reads the `mise.toml` file in the root of the repository to install the specifie
 - [Node](./node.md) engine (including npm)
 - [Ruby](./ruby.md) language (including RubyGems)
 
-#### `install_rails`
+### `install_rails`
 
 using [RubyGems](https://guides.rubygems.org/command-reference/), installs [Rails](https://guides.rubyonrails.org/getting_started.html).
 
-#### `install_goose`
+### `install_goose`
 
 installs Block's [Goose](https://block.github.io/goose/docs/category/guides) AI CLI.
 
-#### `install_dotnet`
+### `install_dotnet`
 
 installs a Microsoft [.NET](https://dotnet.microsoft.com/) SDK release e.g.
 [10](https://learn.microsoft.com/en-us/dotnet/core/whats-new/dotnet-10/overview).
 And installs the [Powershell](https://learn.microsoft.com/en-us/powershell/) shell.
 
-#### `configure_shell`
+### `configure_shell`
 
 changes the system's default shell to zsh (which was installed in the Aptfile),
 runs a _pwsh_ script to install [Azure PowerShell](https://learn.microsoft.com/en-us/powershell/azure/)
@@ -126,17 +126,17 @@ runs a _pwsh_ script to install [Azure PowerShell](https://learn.microsoft.com/e
 And installs the [Oh My Posh](https://ohmyposh.dev/) prompt
 for the zsh and pwsh shells.
 
-#### `install_font`
+### `install_font`
 
 installs a [Nerd Font](https://www.nerdfonts.com/font-downloads)
 on the system, e.g. JetBrainsMono v3.3.0;
 it neither updates nor remove fonts.
 
-#### `configure_podman`
+### `configure_podman`
 
 configures [Podman](.//podman.md).
 
-#### `install_rust`
+### `install_rust`
 
 uses [Rustup](https://rustup.rs/) to install the [Rust](https://rust-lang.org/) language.
 
@@ -145,44 +145,44 @@ And adds [cargo-binstall](https://github.com/cargo-bins/cargo-binstall) tool for
 - 📖 [2024/11 Ben Brandt: A Better Cargo Install Workflow: How I manage to keep the tools I've installed with cargo up-to-date](https://benjaminbrandt.com/a-better-cargo-install-workflow/)
 - 📖 [2025/12 Sam Schlinkert: A curated list of command-line utilities written in Rust](https://github.com/sts10/rust-command-line-utilities)
 
-#### `install_java`
+### `install_java`
 
 installs one of the Microsoft releases of OpenJDK [Java](.//java.md).
 
-#### `install_homebrew`
+### `install_homebrew`
 
 installs (or updates)
 [Homebrew](http://docs.brew.sh/Homebrew-on-Linux) 🍺 software management system.
 
-#### `brew_bundle`
+### `brew_bundle`
 
 uses Homebrew to install packages in the [`Brewfile`](./Brewfile) like
 
 - [Go](https://go.dev/) language
 - [Node](https://nodejs.org/) engine
 
-#### `display_environment`
+### `display_environment`
 
 displays attributes of the system environment.
 
-#### `display_versions`
+### `display_versions`
 
 displays versions of some of the main installed tools,
 especially languages or their package managers.
 
-#### `install_code`
+### `install_code`
 
 installs and configures Microsoft VS [Code](https://code.visualstudio.com/)
 and configures Code with updates for its _argv.json_ settings file.
 
-#### `install_code_extensions`
+### `install_code_extensions`
 
 installs the [extensions](https://marketplace.visualstudio.com/vscode)
 of Code listed in the _codeExtensions_ file.
 
 _To maintain workstation integrity, only install extensions from reputable & verified authors that regularly address issues with code updates._
 
-#### `configure_code`
+### `configure_code`
 
 updates (doing a shallow merge) Code's user settings.json file.
 It uses `jq` and Node/npm module `jsonc-cli`.
