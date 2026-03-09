@@ -3,36 +3,41 @@ set -e
 set -o pipefail
 
 # ------ # ------ # ------ # ------ # ------ # ------ # ------ # ------
-#   This script is the main entry point. Read the docs to understand
-#   how to drive it through YAML configuration.
+#   This is the entry point. Read the docs to understand how
+#   to drive it with YAML configuration.
 # ------ # ------ # ------ # ------ # ------ # ------ # ------ # ------
 
-SCRIPTROOT=$(dirname "${BASH_SOURCE[0]}") # Global var
+# GLobal variables
+BIN_DIR="$HOME/.local/bin"
+SCRIPTROOT=$(dirname "${BASH_SOURCE[0]}")
+
 source "$SCRIPTROOT/lib/bootstrap.sh"
 source "$SCRIPTROOT/lib/code.sh"
 
-# Function that drives execution using config file
-main() {
+# Prerequisites
+if ! command -v eget &> /dev/null; then
+    install_eget
+fi
+eget mikefarah/yq --asset '^tar.gz' --to "$BIN_DIR/yq"
+yq --version
+
+# Function
+do_yaml() {
     local config_file="$1"
-    echo "--- ${0} $config_file ---"
+    echo "--- $config_file ---"
 
-    # Prerequisites: yq must be installed to continue
-    if ! command -v yq &> /dev/null; then
-        # install_apt_packages Aptfile
-        install_yamljson
-    fi
-
-    # Extract enabled steps and loop through them
     local steps
-    steps=$(yq -r '.tasks[] | select(.enabled != false) | .task + " " + (.arguments | join(" "))' "$config_file")
-
-    while read -r cmd; do
-        if [ -n "$cmd" ]; then
-            local func_name="${cmd%% *}"
+    steps=$(yq -r \
+        '.tasks[] | select(.enabled != false) | .task + " " + (.arguments | join(" "))' \
+        "$config_file" \
+    )
+    while read -r task_cmd; do
+        if [ -n "$task_cmd" ]; then
+            local func_name="${task_cmd%% *}"
             if declare -F "$func_name" > /dev/null; then
                 echo
-                echo "--- $cmd ---"
-                eval "$cmd"
+                echo "--- $task_cmd ---"
+                eval "$task_cmd"
             else
                 echo "Error: invalid task name: correct '$func_name' in $config_file" >&2
                 exit 1
@@ -75,7 +80,7 @@ if [ "$MODE" = "install" ]; then
         print_help
         exit 1
     fi
-    main "$CONFIG_FILE"
+    do_yaml "$CONFIG_FILE"
 else
     print_help
 fi

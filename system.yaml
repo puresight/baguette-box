@@ -3,8 +3,6 @@ tasks:
     arguments:
       - Aptfile
 
-  - task: install_yamljson
-
   - task: install_storage_tools
     enabled: false
 

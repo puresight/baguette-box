@@ -11,8 +11,6 @@ source "$SCRIPTROOT/lib/apt-sources.sh"
 source "$SCRIPTROOT/lib/fonts.sh"
 source "$SCRIPTROOT/lib/java.sh"
 source "$SCRIPTROOT/lib/mc.sh"
-# source "$SCRIPTROOT/lib/ruby.sh"
-source "$SCRIPTROOT/lib/yq.sh"
 
 # Function to display help information
 print_help() {
@@ -57,12 +55,18 @@ install_apt_packages() {
     fi
 }
 
-# Function to install/upgrade yq from https://github.com/mikefarah/yq
-#   dependencies:
-#       - called `install_apt_packages Aptfile` to get jq`
-install_yamljson() {
-    # jq --version
-    install_yq
+# Function
+#   docs: https://github.com/zyedidia/eget?tab=readme-ov-file#readme
+install_eget() {
+    if ! command -v eget &> /dev/null; then
+        mkdir -p "$BIN_DIR"
+        (cd "$BIN_DIR" && curl -sSL https://zyedidia.github.io/eget.sh | sh)
+    fi
+    eget --version
+    local zshenv="$HOME/.zshenv"
+    if [ ! -f "$zshenv" ] || ! grep -q "EGET_BIN=" "$zshenv"; then
+        echo 'export EGET_BIN="$HOME/.local/bin"' >> "$zshenv"
+    fi
 }
 
 # Function to handle UV installation

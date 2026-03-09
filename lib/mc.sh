@@ -1,8 +1,8 @@
 #!/bin/bash
 
+# TODO eget
 # Function to install MinIO Client (mc)
 install_minio_client() {
-    local INSTALL_DIR="$HOME/.local/bin" # Platform Constant
     local BINARY_NAME="mc"
     local BASE_URL="https://dl.min.io/client/mc/release"
 
@@ -59,12 +59,12 @@ install_minio_client() {
     # Install
     chmod +x "$TMP_DIR/$BINARY_NAME"
     
-    echo "📦 Installing to $INSTALL_DIR (requires sudo)..."
-    if sudo mv "$TMP_DIR/$BINARY_NAME" "$INSTALL_DIR/$BINARY_NAME"; then
+    echo "📦 Installing to $BIN_DIR..."
+    if mv "$TMP_DIR/$BINARY_NAME" "$BIN_DIR/$BINARY_NAME"; then
         echo "🎉 Success! MinIO Client installed."
         rm -rf "$TMP_DIR"
         # Verify execution
-        "$INSTALL_DIR/$BINARY_NAME" --version
+        "$BIN_DIR/$BINARY_NAME" --version
     else
         echo "❌ Error: Failed to move binary. Check permissions."
         rm -rf "$TMP_DIR"
