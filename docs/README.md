@@ -25,7 +25,7 @@ that you want on your machine. We use several including
 - [Homebrew](http://docs.brew.sh/Homebrew-on-Linux)
 - [Mise](https://mise.jdx.dev/) for Node, Go
 - [uv](./docs/uv.md) is a fast Python package manager
-- [npm](./docs/npm.md) is the default Node package manager
+- [npm](./docs/node.md) is the default Node package manager
 - [Rustup](https://rustup.rs/) for Rust
 
 ## YAML tasks
@@ -97,11 +97,11 @@ installs **[Mise](./mise.md)** en place, a tool to manage installations of langu
 
 #### `install_mise_tools`
 
-executes _mise install_ which reads the `mise.toml` file in the root of the repository to install the specified tool versions. This is the best way to manage language runtimes. [Mise](./mise.md) manages:
+reads the `mise.toml` file in the root of the repository to install the specified tool versions. [Mise](./mise.md) manages:
 
-- [Go](https://go.dev/) language
-- [Node](https://nodejs.org/) engine (including [npm](./npm.md))
-- [Ruby](https://www.ruby-lang.org/) language
+- [Go](./go.md) language
+- [Node](./node.md) engine (including npm)
+- [Ruby](./ruby.md) language (including RubyGems)
 
 #### `install_rails`
 

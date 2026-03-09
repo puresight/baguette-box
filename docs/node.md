@@ -1,4 +1,10 @@
-# NPM
+# Node
+
+[Node is installed via Mise.](https://mise.jdx.dev/lang/node.html)
+
+For the [Typescript](https://www.typescriptlang.org/docs/) & [JS](https://developer.mozilla.org/en-US/docs/Web/JavaScript) languages
+
+## NPM
 
 [npm](https://www.npmjs.com/) (Node Package Manager) is the default package manager for the Node runtime environment.
 

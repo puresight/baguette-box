@@ -6,8 +6,10 @@ tasks:
   - task: install_yamljson
 
   - task: install_storage_tools
+    enabled: false
 
   - task: install_uv
+    enabled: false
 
   - task: install_flatpak
     arguments:
@@ -15,10 +17,12 @@ tasks:
       - https://dl.flathub.org/repo/flathub.flatpakrepo
 
   - task: install_goose
+    enabled: false
 
   - task: install_dotnet
     arguments:
       - 10
+    enabled: false
 
   - task: configure_shell
     arguments:
@@ -30,29 +34,35 @@ tasks:
       - v3.3.0
 
   - task: configure_podman
-    enabled: true
+    enabled: false
 
   - task: install_rust
-    enabled: true
+    enabled: false
 
   - task: install_java
     arguments:
       - 21
+    enabled: false
 
   - task: install_mise
 
+  # Depends on Mise
   - task: install_mise_tools
 
+  # Depends on Ruby, installed by Mise
+  - task: install_jekyll
+
+  # Depends on Ruby, installed by Mise
   - task: install_rails
     enabled: true
 
   - task: install_homebrew
-    enabled: true
+    enabled: false
 
   - task: brew_bundle
     arguments:
       - Brewfile
-    enabled: true
+    enabled: false
 
   - task: display_environment
 

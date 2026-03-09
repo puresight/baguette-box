@@ -133,3 +133,16 @@ antigravity
 # AI agentic IDE for autonomous software engineering https://Antigravity.Google/
 seahorse
 # a GNOME front-end for GnuPG aka "Passwords & Keys" - https://wiki.gnome.org/Apps/Seahorse
+
+#%#%#%#%#%#%#%#%#%#%#%#%#%#%#%#%#%#%#%#%#%#%#%#%#%#%#%#%#%#%#%#%#%#%#%#%#%#%#%
+# --- Jekyll Dependencies ---
+#%#%#%#%#%#%#%#%#%#%#%#%#%#%#%#%#%#%#%#%#%#%#%#%#%#%#%#%#%#%#%#%#%#%#%#%#%#%#%
+
+zlib1g-dev
+# header files and libraries needed to develop applications that use the zlib compression library, which implements the deflate algorithm used in gzip and PKZIP. It is essential for compiling software from source that requires zlib support 
+libffi-dev
+# header files and libraries necessary for building programs that use the libffi (Foreign Function Interface) library
+libyaml-dev
+# C library for parsing and emitting YAML 
+
+#%#%#%#%#%#%#%#%#%#%#%#%#%#%#%#%#%#%#%#%#%#%#%#%#%#%#%#%#%#%#%#%#%#%#%#%#%#%#%

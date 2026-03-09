@@ -24,12 +24,12 @@ _This is beta quality code so backup before using, read the docs, and scan the s
 Languages
 
 - [Java](./docs/java.md)
-- [C#](https://learn.microsoft.com/en-us/dotnet/csharp) as [.NET SDK](https://dotnet.microsoft.com/)
-- [Ruby](https://www.ruby-lang.org/) (on [Rails](https://guides.rubyonrails.org/getting_started.html))
-- [Typescript](https://www.typescriptlang.org/docs/)/[JS](https://developer.mozilla.org/en-US/docs/Web/JavaScript) via [Node](https://nodejs.org/)
-- [Python](https://www.python.org/) via [UV](./docs/uv.md)
-- [Go](https://go.dev/)
-- [Rust](https://rust-lang.org/)
+- [C# .NET](./dotnet.md)
+- [Ruby on Rails](./ruby.md)
+- [Typescript/JS via Node](./node.md)
+- [Python via UV](./docs/uv.md)
+- [Go](./go.md)
+- [Rust](./rust.md)
 
 Agentic AI & pairing
 

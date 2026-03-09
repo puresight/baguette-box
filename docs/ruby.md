@@ -1,7 +1,9 @@
 # Ruby
 
-Ruby is installed via mise.
+[Ruby is installed via mise.](https://mise.jdx.dev/lang/ruby.html)
 
-## Rails
+- [Ruby](https://www.ruby-lang.org/) language
+- [Rails](https://guides.rubyonrails.org/getting_started.html).
+- [Jekyll](https://jekyllrb.com/) static site generator
 
-There is a task to install Rails with gem, or you can do it yourself.
+There is a task to install Rails.

@@ -91,25 +91,49 @@ install_mise() {
         # Install mise and add activation to ~/.zshrc
         curl https://mise.run/$shell | sh
     else
-        mise v
+        # mise v
+        mise self-update -y
     fi
 }
 
 # Function to install mise tools
 install_mise_tools() {
-    mise trust -y
-    # mise up
-    mise install
+    local marker_file="$HOME/.cache/baguette-box/.mise-installed"
+    if [ ! -f "$marker_file" ]; then
+        mise trust -y
+        mise install
+        mkdir -p "$(dirname "$marker_file")"
+        touch "$marker_file"
+    else
+        echo "Mise tools were already installed."
+    fi
+
+    # Activate mise environment for the current shell
+    eval "$(mise hook-env)"
 }
 
 # Function to install Ruby on Rails
 #   dependencies: Mise, Ruby
 install_rails() {
-    if ! gem list -i "^rails$"; then
+    if ! gem list -i "^rails$" > /dev/null; then
         echo "Installing Rails..."
         gem install rails
     else
         echo "Rails is already installed."
+    fi
+}
+
+# Function to install Jekyll
+#   dependencies: Mise, Ruby
+install_jekyll() {
+    if ! gem list -i "^jekyll$" > /dev/null; then
+        echo "Installing Jekyll..."
+        gem install jekyll bundler
+        gem install logger
+        # Regenerate shims so 'jekyll' and 'bundle' commands work
+        mise reshim
+    else
+        echo "Jekyll is already installed."
     fi
 }
 
