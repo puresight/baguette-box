@@ -4,7 +4,7 @@ tasks:
       - Aptfile
 
   - task: install_storage_tools
-    enabled: false
+    enabled: true
 
   - task: install_uv
     enabled: false
