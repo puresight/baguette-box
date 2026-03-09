@@ -18,8 +18,10 @@ source "$SCRIPTROOT/lib/code.sh"
 if ! command -v eget &> /dev/null; then
     install_eget
 fi
-eget mikefarah/yq --asset '^tar.gz' --to "$BIN_DIR/yq"
-yq --version
+if ! command -v yq &> /dev/null; then
+    eget mikefarah/yq --asset '^tar.gz' --to "$BIN_DIR/yq"
+    yq --version
+fi
 
 # Function
 do_yaml() {
