@@ -101,6 +101,11 @@ executes _mise install_ which reads the `mise.toml` file in the root of the repo
 
 - [Go](https://go.dev/) language
 - [Node](https://nodejs.org/) engine (including [npm](./npm.md))
+- [Ruby](https://www.ruby-lang.org/) language
+
+#### `install_rails`
+
+using [RubyGems](https://guides.rubygems.org/command-reference/), installs [Rails](https://guides.rubyonrails.org/getting_started.html).
 
 #### `install_goose`
 

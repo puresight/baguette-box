@@ -11,6 +11,7 @@ source "$SCRIPTROOT/lib/apt-sources.sh"
 source "$SCRIPTROOT/lib/fonts.sh"
 source "$SCRIPTROOT/lib/java.sh"
 source "$SCRIPTROOT/lib/mc.sh"
+# source "$SCRIPTROOT/lib/ruby.sh"
 source "$SCRIPTROOT/lib/yq.sh"
 
 # Function to display help information
@@ -99,6 +100,17 @@ install_mise_tools() {
     mise trust -y
     # mise up
     mise install
+}
+
+# Function to install Ruby on Rails
+#   dependencies: Mise, Ruby
+install_rails() {
+    if ! gem list -i "^rails$"; then
+        echo "Installing Rails..."
+        gem install rails
+    else
+        echo "Rails is already installed."
+    fi
 }
 
 # Function to handle GOOSE installation

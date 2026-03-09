@@ -43,6 +43,9 @@ tasks:
 
   - task: install_mise_tools
 
+  - task: install_rails
+    enabled: true
+
   - task: install_homebrew
     enabled: true
 
