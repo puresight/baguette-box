@@ -86,23 +86,19 @@ install_uv() {
 install_mise() {
     local shell="${1:-zsh}"
 
-    if [ "$PLATFORM" == "linux" ]; then
-        if ! command -v mise; then
-            # Install mise and add activation to ~/.zshrc
-            curl https://mise.run/$shell | sh
-        else
-            mise v
-            mise up
-        fi
+    if ! command -v mise; then
+        # Install mise and add activation to ~/.zshrc
+        curl https://mise.run/$shell | sh
     else
-        echo "Not yet supported on $PLATFORM"
+        mise v
     fi
 }
 
-# Function to install mise packages
-#   arguments: id's to install
+# Function to install mise tools
 install_mise_tools() {
-    # TODO
+    mise trust -y
+    # mise up
+    mise install
 }
 
 # Function to handle GOOSE installation

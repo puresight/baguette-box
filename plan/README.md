@@ -32,7 +32,7 @@ This plan folder contains the specs & plans for this repository. Baguette Box ("
   - avoid compiling source code, for updates or installations
 - Configurable
   - YAML is the primary syntax for configuration
-    - Example: `./workstation.yaml`
+    - Example: `./bootstrap.yaml`
     - Tasks are functions sourced into box.sh from the ./lib directory, chiefly from bootstrap.sh or code.sh
 
 ### Flow of control

@@ -4,8 +4,12 @@ _To maintain workstation integrity, only install code from reputable & verified 
 
 ## How to Use
 
-- Run command `./box.sh workstation.yaml --install`
-- Restart your shell: close and reopen the terminal
+1. **Bootstrap:** Install your shell, core language runtimes, system-level fixes, etc  
+   Run `./box.sh bootstrap.yaml --install`  
+   Restart your shell: `exit` and reopen the terminal tab.
+
+1. **Code:** Install VS Code with settings and extensions  
+   Run `./box.sh code.yaml --install`
 
 This script is idempotent. You can run it again anytime.
 
@@ -89,12 +93,18 @@ This task installs flatpak and adds the remote source for the Flathub app market
 
 #### `install_mise`
 
-This task installs Mise en place. **[Mise](https://mise.jdx.dev/)** is a tool with potential to manage installations of languages and tools for development. It could be used to manage multiple versions of Node.js, Go, or Ruby in the future. Under construction.
+This task installs Mise en place. **[Mise](https://mise.jdx.dev/)** is a tool to manage installations of languages and tools for development. It is used to manage multiple versions of e.g. Node.js, Go, or Ruby.
 
-<!-- --
+#### `install_mise_tools`
+
+This task executes _mise install_ which reads the `mise.toml` file in the root of the repository to install the specified tool versions. This is the best way to manage language runtimes. See
+
+- 📖 [Mise configuration](https://mise.jdx.dev/configuration.html#mise-toml)
+
+Mise manages these:
+
 - [Go](https://go.dev/) language
 - [Node](https://nodejs.org/) engine
-<!-- -->
 
 #### `install_goose`
 

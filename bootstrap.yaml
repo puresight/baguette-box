@@ -14,8 +14,6 @@ tasks:
       - flathub
       - https://dl.flathub.org/repo/flathub.flatpakrepo
 
-  - task: install_mise
-
   - task: install_goose
 
   - task: install_dotnet
@@ -41,11 +39,17 @@ tasks:
     arguments:
       - 21
 
+  - task: install_mise
+
+  - task: install_mise_tools
+
   - task: install_homebrew
+    enabled: true
 
   - task: brew_bundle
     arguments:
       - Brewfile
+    enabled: true
 
   - task: display_environment
 
