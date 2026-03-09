@@ -25,6 +25,7 @@ Languages
 
 - [Java](./docs/java.md)
 - [C#](https://learn.microsoft.com/en-us/dotnet/csharp) as [.NET SDK](https://dotnet.microsoft.com/)
+- [Ruby](https://www.ruby-lang.org/) (on [Rails](https://guides.rubyonrails.org/getting_started.html))
 - [Typescript](https://www.typescriptlang.org/docs/)/[JS](https://developer.mozilla.org/en-US/docs/Web/JavaScript) via [Node](https://nodejs.org/)
 - [Python](https://www.python.org/) via [UV](./docs/uv.md)
 - [Go](https://go.dev/)
