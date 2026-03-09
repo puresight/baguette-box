@@ -97,11 +97,7 @@ This task installs Mise en place. **[Mise](https://mise.jdx.dev/)** is a tool to
 
 #### `install_mise_tools`
 
-This task executes _mise install_ which reads the `mise.toml` file in the root of the repository to install the specified tool versions. This is the best way to manage language runtimes. See
-
-- 📖 [Mise configuration](https://mise.jdx.dev/configuration.html#mise-toml)
-
-Mise manages these:
+This task executes _mise install_ which reads the `mise.toml` file in the root of the repository to install the specified tool versions. This is the best way to manage language runtimes. See [Mise configuration](https://mise.jdx.dev/configuration.html#mise-toml). Mise manages:
 
 - [Go](https://go.dev/) language
 - [Node](https://nodejs.org/) engine
