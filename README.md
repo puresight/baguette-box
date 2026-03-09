@@ -24,12 +24,12 @@ _This is beta quality code so backup before using, read the docs, and scan the s
 Languages
 
 - [Java](./docs/java.md)
-- [C# .NET](./dotnet.md)
-- [Ruby on Rails](./ruby.md)
-- [Typescript/JS via Node](./node.md)
+- [C# .NET](./docs/dotnet.md)
+- [Ruby on Rails](./docs/ruby.md)
+- [Typescript/JS via Node](./docs/node.md)
 - [Python via UV](./docs/uv.md)
-- [Go](./go.md)
-- [Rust](./rust.md)
+- [Go](./docs/go.md)
+- [Rust](./docs/rust.md)
 
 Agentic AI & pairing
 
@@ -63,7 +63,7 @@ First, prepare your new system
 
 ## Proceed
 
-Next, browse the [`docs/README.md`](./docs/README.md).
+Next, browse the [`docs/README.md`](./docs/README.md)
 
 Then go for it&hellip;
 
