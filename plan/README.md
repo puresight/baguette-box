@@ -42,23 +42,22 @@ This plan folder contains the specs & plans for this repository. Baguette Box ("
   - lib/bootstrap.sh has most functions for the bootstrap install tasks
   - lib/code.sh has functions for the VS code install tasks
 
-## Repo Roadmap Items
+## Monty's Repo Roadmap Items
 
-- Mise: onboard Go & Node
+- Troubleshoot & test `./lib/eget.sh` install_eget()
 - Test & troubleshoot fresh installation
 - ngrok or alternative
 - add help: [tldr](https://github.com/tldr-pages/tldr) & [navi](https://github.com/denisidoro/navi)
-- Homebrew: deprecate and make it optional
-- Modes: architect install, update, upgrade, ?
-- Update mode: plan, implement
+- Modes: dry-run, install, update, upgrade, ?etc
+- Update mode: plan and implement
 - cross-platform
   - architecture improvement for cross-platform
   - Pop!\_OS support
-  - Fedora atomic linux support
   - MacOS support
+  - Fedora atomic linux support
 - Security hardening
 
-## Research queue
+## Monty's research queue
 
 - Tailscale.com
 - Neon.com
