@@ -2,7 +2,7 @@
 
 This is a directory of library shell scripts that are sourced by main shell scripts.
 
-- `lib/bootstrap.sh` are the functions of the main script for bootstrapping;
+- `lib/bootstrap.sh` are the functions of the main script for bootstrapping the system;
 - `lib/ide.sh` has the functions of the main script for Code setup.
 
 &mdash;

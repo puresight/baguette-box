@@ -4,8 +4,8 @@ _To maintain workstation integrity, only install code from reputable & verified 
 
 ## How to Use
 
-1. **Bootstrap:** Install your shell, core language runtimes, system-level fixes, etc  
-   Run `./box.sh begin.yaml --install`  
+1. **Bootstrap your system:** Install your shell, core language runtimes, system-level fixes, etc  
+   Run `./box.sh system.yaml --install`  
    Restart your shell: `exit` and reopen the terminal tab.
 
 1. **Code:** Install VS Code with settings and extensions  
