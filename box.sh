@@ -8,20 +8,26 @@ set -o pipefail
 # ------ # ------ # ------ # ------ # ------ # ------ # ------ # ------
 
 # GLobal variables
-BIN_DIR="$HOME/.local/bin"
 SCRIPTROOT=$(dirname "${BASH_SOURCE[0]}")
+BIN_DIR="$HOME/.local/bin"
 
-source "$SCRIPTROOT/lib/bootstrap.sh"
-source "$SCRIPTROOT/lib/code.sh"
+# Ensure BIN_DIR is first in PATH for newly installed tools
+export PATH="$BIN_DIR:$PATH"
+
+. "$SCRIPTROOT/lib/bootstrap.sh"
+. "$SCRIPTROOT/lib/code.sh"
 
 # Prerequisites
 if ! command -v eget &> /dev/null; then
     install_eget
 fi
-if ! command -v yq &> /dev/null; then
-    eget mikefarah/yq --asset '^tar.gz' --to "$BIN_DIR/yq"
-    yq --version
+# eget --version || { echo "Error: eget install failed" >&2; exit 1; }
+
+# Install gomplate
+if ! command -v gomplate &> /dev/null || ! gomplate --version &> /dev/null; then
+    eget hairyhenderson/gomplate --to "$BIN_DIR/gomplate"
 fi
+(which gomplate && gomplate --version) || { echo "Error: gomplate install failed" >&2; exit 1; }
 
 # Function
 do_yaml() {
@@ -29,9 +35,9 @@ do_yaml() {
     echo "--- $config_file ---"
 
     local steps
-    steps=$(yq -r \
-        '.tasks[] | select(.enabled != false) | .task + " " + (.arguments | join(" "))' \
-        "$config_file" \
+    steps=$(gomplate \
+        --datasource "config=$config_file" \
+        --in '{{- range (ds "config").tasks -}}{{- if or (not (coll.Has . "enabled")) .enabled -}}{{ .task }}{{ if coll.Has . "arguments" }}{{- range .arguments }} {{ . }}{{ end }}{{ end }}{{ "\n" }}{{- end -}}{{- end -}}' \
     )
     while read -r task_cmd; do
         if [ -n "$task_cmd" ]; then
@@ -49,12 +55,11 @@ do_yaml() {
 }
 
 # -- Handle Arguments --
-
 # Determine mode of operation; the default is help.
 while [[ $# -gt 0 ]]; do
     case "$1" in
         -i|--install)
-            MODE="install"; echo "Install mode"; shift;;
+            MODE="install"; echo "Mode: $MODE"; shift;;
         -c|--config)
             CONFIG_FILE="$2"; shift 2;;
         -h|--help)
