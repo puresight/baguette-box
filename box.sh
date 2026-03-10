@@ -12,7 +12,7 @@ SCRIPTROOT=$(dirname "${BASH_SOURCE[0]}")
 BIN_DIR="$HOME/.local/bin"
 
 # Ensure BIN_DIR is first in PATH for newly installed tools
-export PATH="$BIN_DIR:$PATH"
+# export PATH="$BIN_DIR:$PATH"
 
 . "$SCRIPTROOT/lib/bootstrap.sh"
 . "$SCRIPTROOT/lib/code.sh"
@@ -37,7 +37,7 @@ do_yaml() {
     local steps
     steps=$(gomplate \
         --datasource "config=$config_file" \
-        --in '{{- range (ds "config").tasks -}}{{- if or (not (coll.Has . "enabled")) .enabled -}}{{ .task }}{{ if coll.Has . "arguments" }}{{- range .arguments }} {{ . }}{{ end }}{{ end }}{{ "\n" }}{{- end -}}{{- end -}}' \
+        --in '{{- range (ds "config").tasks -}}{{- if or (not (coll.Has . "enabled")) .enabled -}}{{ .task }}{{ if coll.Has . "arguments" }}{{- range .arguments }} {{ . | quote }}{{ end }}{{ end }}{{ "\n" }}{{- end -}}{{- end -}}' \
     )
     while read -r task_cmd; do
         if [ -n "$task_cmd" ]; then

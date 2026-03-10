@@ -32,6 +32,13 @@ tasks:
       - JetBrainsMono
       - v3.3.0
 
+  - task: install_using_uv
+    arguments:
+      - ansible-core
+      - ansible
+      - "localhost -m ping"
+    enabled: true
+
   - task: install_terminal_tools
     arguments:
       - zsh
