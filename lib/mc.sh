@@ -5,8 +5,8 @@
 #   Exported function: install_minio_client
 #
 #   Private functions
-#   -  install_minio_client_from_binary
-#   -  install_minio_client_from_source
+#   -  _install_minio_client_from_binary
+#   -  _install_minio_client_from_source
 #
 # ------ # ------ # ------ # ------ # ------ # ------ # ------ # ------
 
@@ -14,7 +14,7 @@
 
 # Private Function to install MinIO Client (mc) from the last available binary release.
 # This is used as a fallback if building from source fails.
-install_minio_client_from_binary() {
+_install_minio_client_from_binary() {
     if ! command -v eget &> /dev/null; then
         echo "Error: eget is not installed. Please run install_eget first."
         return 1
@@ -34,7 +34,7 @@ install_minio_client_from_binary() {
 }
 
 # Private Function to build and install the latest MinIO Client (mc) from source.
-install_minio_client_from_source() {
+_install_minio_client_from_source() {
     if ! command -v go &> /dev/null; then
         echo "Go compiler not found. Cannot build 'mc' from source."
         return 1
@@ -79,9 +79,9 @@ install_minio_client() {
     echo "Installing/Updating MinIO Client (mc)..."
     mkdir -p "$BIN_DIR"
 
-    install_minio_client_from_source || {
+    _install_minio_client_from_source || {
         echo "Build from source failed. Falling back to binary download."
-        install_minio_client_from_binary
+        _install_minio_client_from_binary
     }
 }
 

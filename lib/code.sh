@@ -1,12 +1,16 @@
 #!/bin/bash
 
-# ------ # ------ # ------ # ------ # ------ # ------ # ------ # ------
-# Dependencies:
-#   - PLATFORM global variable
-# ------ # ------ # ------ # ------ # ------ # ------ # ------ # ------
-
-source "$SCRIPTROOT/lib/platforms.sh" || { echo "Error: platforms.sh not found."; exit 1; }
 source "$SCRIPTROOT/lib/json.sh" 
+
+# Private function to handle VS Code installation/update on Debian.
+# It prevents interactive prompts and cleans up redundant repository files.
+_install_vscode_debian() {
+    # Use DEBIAN_FRONTEND=noninteractive to prevent interactive prompts from the package installer,
+    # which may try to add its own repository file.
+    sudo DEBIAN_FRONTEND=noninteractive apt install -y code
+    # This project manages sources via DEB822 files, so remove the legacy .list file if VS Code created it.
+    sudo rm -f /etc/apt/sources.list.d/vscode.list
+}
 
 # Function to install VS Code
 install_code() {
@@ -14,8 +18,9 @@ install_code() {
     local vscode_argv="$repo_path/$1"
 
     if ! command -v code &> /dev/null; then
-        if [ "$PLATFORM" == "linux" ]; then
-            sudo apt install -y code
+        echo "Installing VS Code..."
+        if [ "$PLATFORM" == "debian" ]; then
+            _install_vscode_debian
         elif [ "$PLATFORM" == "macos" ]; then
             brew install --cask visual-studio-code
         else
@@ -33,6 +38,12 @@ install_code() {
             fi
         fi
     else
+        echo "VS Code is already installed. Checking for updates..."
+        if [ "$PLATFORM" == "debian" ]; then
+            _install_vscode_debian
+        elif [ "$PLATFORM" == "macos" ]; then
+            brew upgrade --cask visual-studio-code
+        fi
         echo "VS Code: $(code --version)"
     fi
 }
@@ -59,7 +70,7 @@ configure_code() {
     local repo_path="$(cd -- "$(dirname -- "${BASH_SOURCE:-$0}")" && cd .. && pwd)"
     local vscode_user_settings="$repo_path/$1"
 
-    if [ "$PLATFORM" == "linux" ]; then
+    if [ "$PLATFORM" == "debian" ]; then
         TARGET_JSON="$HOME/.config/Code/User/settings.json"
     elif [ "$PLATFORM" == "macos" ]; then
         TARGET_JSON="$HOME/Library/Application Support/Code/User/settings.json"

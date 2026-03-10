@@ -19,12 +19,6 @@ install_nerd_font() {
 
     echo "${FUNCNAME[0]}"
 
-    # TODO support multiple platforms like macos    
-    if ! [ "$PLATFORM" == "linux" ]; then
-        echo "Fonts not supported on $PLATFORM" >&2
-        return 1
-    fi
-
     # Internal variables
     local base_tmp="${TMPDIR:-/tmp}"
     local font_zip="${font_name}.zip"

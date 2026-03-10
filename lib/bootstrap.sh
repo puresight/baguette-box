@@ -37,21 +37,16 @@ EOF
 install_apt_packages() {
     local apt_file="${1:-Aptfile}"
 
-    if [ "$PLATFORM" == "linux" ]; then
-        sudo apt update -qq
-        sudo apt autoremove -y
-        add_apt_sources
+    sudo apt update -qq
+    sudo apt autoremove -y
+    add_apt_sources
 
-        # Now install APT packages from file
-        if [ -f "$apt_file" ]; then
-            echo "Installing packages from $apt_file..."
-            sudo apt install -y $(cat "$apt_file" | sed 's/#.*$//' | sed '/^[[:space:]]*$/d' | tr '\n' ' ')
-        else
-            echo "Error: file '$apt_file' not found" >&2
-            exit 1
-        fi
+    echo "Installing packages from $apt_file..."
+    if [ -f "$apt_file" ]; then
+        sudo apt install -y $(cat "$apt_file" | sed 's/#.*$//' | sed '/^[[:space:]]*$/d' | tr '\n' ' ')
     else
-        echo "Skipping APT on $PLATFORM"
+        echo "Error: file '$apt_file' not found" >&2
+        exit 1
     fi
 }
 
@@ -73,20 +68,16 @@ install_eget() {
 install_uv() {
     local shell="${1:-zsh}"
 
-	if [ "$PLATFORM" == "linux" ]; then
-		if ! command -v uv &>/dev/null; then
-			echo "Installing uv..."
-			curl -LsSf https://astral.sh/uv/install.sh | sh
-			source "$HOME/.cargo/env"
-			grep -qF 'export UV_NO_BUILD=1' ~/.${shell}rc || echo 'export UV_NO_BUILD=1' >> ~/.${shell}rc
-		else
-			uv self update
-		fi
-		uv --version
-		uv python install
-	else
-		echo "Not yet supported on $PLATFORM"
-	fi
+    if ! command -v uv &>/dev/null; then
+        echo "Installing uv..."
+        curl -LsSf https://astral.sh/uv/install.sh | sh
+        source "$HOME/.cargo/env"
+        grep -qF 'export UV_NO_BUILD=1' ~/.${shell}rc || echo 'export UV_NO_BUILD=1' >> ~/.${shell}rc
+    else
+        uv self update
+    fi
+    uv --version
+    uv python install
 }
 
 # Function to handle MISE installation per https://mise.jdx.dev/installing-mise.html
@@ -194,39 +185,31 @@ install_jekyll() {
 
 # Function to handle GOOSE installation
 install_goose() {
-    if [ "$PLATFORM" == "linux" ]; then
-        if ! command -v goose --version &> /dev/null; then
-            curl -fsSL https://github.com/block/goose/releases/download/stable/download_cli.sh | CONFIGURE=false bash
-        fi
-        goose --version
-    else
-        echo "Not yet supported on $PLATFORM"
+    if ! command -v goose --version &> /dev/null; then
+        curl -fsSL https://github.com/block/goose/releases/download/stable/download_cli.sh | CONFIGURE=false bash
     fi
+    goose --version
 }
 
 # Function to handle .NET installation
 install_dotnet() {
-    if [ "$PLATFORM" == "linux" ]; then
-        for arg in "$@"; do
-            if [ "$arg" != "$PLATFORM" ]; then
-                echo "Installing .NET SDK $arg..."
-                sudo apt install -y "dotnet-sdk-$arg.0"
-            fi
-        done
-        sudo apt install -y powershell
-        dotnet --version
-        pwsh --version
-    else
-        echo "Not yet supported on $PLATFORM"
-    fi
+    for arg in "$@"; do
+        if [ "$arg" != "$PLATFORM" ]; then
+            echo "Installing .NET SDK $arg..."
+            sudo apt install -y "dotnet-sdk-$arg.0"
+        fi
+    done
+    sudo apt install -y powershell
+    dotnet --version
+    pwsh --version
 }
 
 # Function to handle shell configuration
 configure_shell() {
     local shell="${1:-zsh}"
     export PATH=$PATH:~/.local/bin
-    
-    if [ "$PLATFORM" == "linux" ]; then
+
+    if [ "$PLATFORM" == "debian" ]; then
         # change shell
         sudo chsh -s $(which $shell) $USER
 
@@ -262,23 +245,19 @@ configure_shell() {
 
 # Function to handle Podman configuration
 configure_podman() {
-    if [ "$PLATFORM" == "linux" ]; then
-        # The Problem: By default, a Linux user only has one UID (yours). To run a container, Podman needs to pretend to be "root" inside the container while remaining a "normal user" outside. It does this by mapping a range of UIDs from the host to the container.
-        # The Fix: By adding $USER:100000:65536 to /etc/subuid and subgid, you are granting your user permission to "own" 65,536 subordinate IDs.
-        if [ ! -f "/etc/subuid" ] || ! grep -q "$USER" /etc/subuid; then
-            echo "Defining a range of subordinate user IDs that the standard user account is permitted to use for User Namespaces"
-            echo "$USER:100000:65536" | sudo tee -a /etc/subuid
-            echo "Defining a range of subordinate group IDs that the standard user account is permitted to use for User Namespaces"
-            echo "$USER:100000:65536" | sudo tee -a /etc/subgid
-            echo "See https://github.com/containers/podman/blob/main/troubleshooting.md"
-            echo "Applying any changes to the current session"
-        fi
-        podman --version
-        # Refresh the runtime to recognize these new mappings. This prevents the common ERRO[0000] user namespaces are not enabled error.
-        podman system migrate
-    else
-        echo "Fix not yet supported on $PLATFORM"
+    # The Problem: By default, a Linux user only has one UID (yours). To run a container, Podman needs to pretend to be "root" inside the container while remaining a "normal user" outside. It does this by mapping a range of UIDs from the host to the container.
+    # The Fix: By adding $USER:100000:65536 to /etc/subuid and subgid, you are granting your user permission to "own" 65,536 subordinate IDs.
+    if [ ! -f "/etc/subuid" ] || ! grep -q "$USER" /etc/subuid; then
+        echo "Defining a range of subordinate user IDs that the standard user account is permitted to use for User Namespaces"
+        echo "$USER:100000:65536" | sudo tee -a /etc/subuid
+        echo "Defining a range of subordinate group IDs that the standard user account is permitted to use for User Namespaces"
+        echo "$USER:100000:65536" | sudo tee -a /etc/subgid
+        echo "See https://github.com/containers/podman/blob/main/troubleshooting.md"
+        echo "Applying any changes to the current session"
     fi
+    podman --version
+    # Refresh the runtime to recognize these new mappings. This prevents the common ERRO[0000] user namespaces are not enabled error.
+    podman system migrate
 }
 
 # Function to handle Rust installation with cargo-binstall
@@ -366,7 +345,7 @@ install_homebrew() {
 
     echo "Setting up environment"
     local BREW_PATH=""
-    if [ "$PLATFORM" == "linux" ]; then
+    if [ "$PLATFORM" == "debian" ]; then
         if [ -d "/home/linuxbrew/.linuxbrew" ]; then
             BREW_PATH="/home/linuxbrew/.linuxbrew/bin/brew"
         elif [ -d "$HOME/.linuxbrew" ]; then
@@ -399,7 +378,7 @@ brew_bundle() {
 
 # Function to display environment information
 display_environment() {
-    if [ "$PLATFORM" == "linux" ]; then
+    if [ "$PLATFORM" == "debian" ]; then
         if command -v hostnamectl &> /dev/null; then
             hostnamectl
         else

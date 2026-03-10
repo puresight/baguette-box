@@ -1,19 +1,25 @@
 #!/bin/bash
 
-# ------ # ------ # ------ # ------ # ------ # ------ # ------ # ------
-# Exports:
-#   - $PLATFORM global variable
-# ------ # ------ # ------ # ------ # ------ # ------ # ------ # ------
-
-OS_TYPE=$(uname -s)
+# Global variables
 PLATFORM="unknown"
-if [ "$OS_TYPE" == "Darwin" ]; then
-    PLATFORM="macos"
-elif [ "$OS_TYPE" == "Linux" ]; then
-    PLATFORM="linux"
-fi
 
-if [ "$PLATFORM" == "unknown" ]; then
-    echo "ERROR: Unsupported platform ($OS_TYPE / $PLATFORM). Only Debian Linux (and derivatives) or MacOS are supported." >&2
+case "$(uname -s)" in
+    Darwin*)
+        PLATFORM="macos"    # Unsupported
+        sw_vers
+        ;;
+    FreeBSD*)
+        PLATFORM="freebsd"  # Unsupported
+        cat /etc/freebsd-update.conf
+        ;;
+    Linux*)
+        . /etc/os-release   # Load the variables
+        PLATFORM=$ID # debian, ubuntu, raspbian, etc
+        ;;
+esac
+
+echo "Platform: $PLATFORM"
+if [ "$PLATFORM" != "debian" ]; then
+    echo "Error: Only Debian Linux is supported." >&2
     exit 1
 fi
