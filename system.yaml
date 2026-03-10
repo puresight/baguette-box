@@ -32,10 +32,10 @@ tasks:
       - JetBrainsMono
       - v3.3.0
 
-  - task: install_using_uv
+  - task: install_using_uv_with_executables_from
     arguments:
-      - ansible-core
-      - ansible
+      - "ansible"
+      - "ansible-core,ansible-lint"
       - "localhost -m ping"
     enabled: true
 

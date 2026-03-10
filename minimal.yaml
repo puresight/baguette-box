@@ -1,0 +1,11 @@
+# This config has the minimal tasks necessary to install ansible.
+tasks:
+  - task: install_uv
+
+  - task: install_using_uv_with_executables_from
+    arguments:
+      - "ansible"
+      - "ansible-core,ansible-lint"
+      - "localhost -m ping"
+
+  - task: display_environment

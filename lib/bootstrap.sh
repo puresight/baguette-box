@@ -81,38 +81,30 @@ install_uv() {
 }
 
 # Function to install using UV (e.g. Ansible)
-install_using_uv() {
-    local PKG_NAME="${1:-ansible-core}"
-    local CMD_NAME="${2:-$PKG_NAME}"
-    local TEST_ARG="${3:-localhost -m ping}"
+install_using_uv_with_executables_from() {
+    local pkg_name="${1:-ansible}"
+    local with_executables_from="${2:-ansible-core,ansible-lint}"
+    local test_arg="${3:-localhost -m ping}"
 
-    # # Check if the tool is already installed to provide better user feedback.
-    # if uv tool list | grep -q "^${PKG_NAME} "; then
-    #     echo "Tool '$PKG_NAME' is already installed. Checking for upgrades..."
-    # else
-    #     echo "Installing tool '$PKG_NAME' via uv..."
-    # fi
-
-    # `uv tool install` is idempotent: it will install the tool if it doesn't exist,
-    # or upgrade it if it's already present and a newer version is available.
-    if ! uv tool install "$PKG_NAME"; then
-        echo "Error: 'uv tool install $PKG_NAME' failed."
+# uv tool install --with-executables-from ansible-core,ansible-lint ansible
+    if ! uv tool install --with-executables-from "$with_executables_from" "$pkg_name"; then
+        echo "Error: failed: 'uv tool install --with-executables-from $with_executables_from $pkg_name'"
         return 1
     fi
 
     # Integrity Verification
     # While uv verifies on download, we can manually check the binary path
-    local PKG_PATH=$(which "$CMD_NAME" 2>/dev/null)
-    if [[ -z "$PKG_PATH" ]]; then
-        echo "Error: $CMD_NAME binary not found in PATH."
+    local pkg_path=$(which "$pkg_name" 2>/dev/null)
+    if [[ -z "$pkg_path" ]]; then
+        echo "Error: $pkg_name binary not found in PATH."
         return 1
     fi
-    "$CMD_NAME" --version | head -n 1
-    echo "$PKG_PATH"
+    "$pkg_name" --version | head -n 1
+    echo "$pkg_path"
 
     # Functional Test
-    echo "Ran test: '$CMD_NAME $TEST_ARG'"
-    if ! $CMD_NAME $TEST_ARG > /dev/null 2>&1; then
+    echo "Ran test: '$pkg_name $test_arg'"
+    if ! $pkg_name $test_arg > /dev/null 2>&1; then
         echo "Error: functional test failed." >&2
         return 1
     fi
