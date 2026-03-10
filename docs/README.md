@@ -1,8 +1,14 @@
 # Docs
 
-_To maintain workstation integrity, only install code from reputable & verified authors that regularly address issues with code updates._
+_This is beta quality code so backup before using, read the docs, and scan the source before running._
+
+To maintain workstation integrity, only install code from reputable & verified authors that regularly address issues with code updates.
 
 ## How to Use
+
+1. **Minimal for Ansible:** Install the latest uv, python, & ansible  
+   Run `./box.sh minimal.yaml --install`  
+   Restart your shell: `exit` and reopen the terminal tab.
 
 1. **Bootstrap your system:** Install your shell, core language runtimes, system-level fixes, etc  
    Run `./box.sh system.yaml --install`  
@@ -11,7 +17,7 @@ _To maintain workstation integrity, only install code from reputable & verified 
 1. **Code:** Install VS Code with settings and extensions  
    Run `./box.sh code.yaml --install`
 
-This script is idempotent. You can run it again anytime.
+This program is idempotent. You can run it again anytime.
 
 ## System Architecture
 

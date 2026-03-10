@@ -1,23 +1,23 @@
 # Baguette Box &nbsp; 🥖🥖🥖
 
 sets up an AI-enabled developer environment on
-[Debian](https://www.debian.org/)-based systems
-([Ubuntu](https://docs.ubuntu.com/),
-[Mint](https://linuxmint.com/),
-[Pop!\_OS](https://system76.com/pop/),
-[Raspberry Pi](https://www.raspberrypi.com/software/#raspberry-pi-os),
+[Debian](https://www.debian.org/)-based,
 [ChromeOS](./docs/chromeos.md)
-[Linux](https://www.linuxfoundation.org/))
+[Linux](https://www.linuxfoundation.org/)
+systems
 with tooling for coding, cloud, compute, cache, storage, and data management.
 
 <!-- --
-- [Apple/Mac](https://www.apple.com/mac/) _future_
-- [Microsoft/WSL2](https://learn.microsoft.com/en-us/windows/wsl/about) _future_
+[Ubuntu](https://docs.ubuntu.com/),
+[Mint](https://linuxmint.com/),
+[Pop!\_OS](https://system76.com/pop/),
+[Raspberry Pi](https://www.raspberrypi.com/software/#raspberry-pi-os)
+
+[Apple/Mac](https://www.apple.com/mac/) _future_
+[Microsoft/WSL2](https://learn.microsoft.com/en-us/windows/wsl/about) _future_
 ⏱🏎🏍
 _From laptop purchase to vibe coding in an hour&hellip;_
 <!-- -->
-
-_This is beta quality code so backup before using, read the docs, and scan the source before running._
 
 ## Tech Stack
 
@@ -45,9 +45,20 @@ CLI
 - [MinIO Client](https://github.com/minio/mc), [Rclone](.//rclone.md) storage utilities
 - [Postgres](https://www.postgresql.org/docs/current/reference-client.html), [MySQL](https://mariadb.com/docs/server/clients-and-utilities/mariadb-client), [Redis](https://redis.io/docs/latest/develop/tools/), [SQLite](https://www.sqlite.org/) database clients
 
+## Plan
+
+Take a minute to think about and write a markdown file about
+what you want to use this machine for,
+and what you require installed on it.
+
+Once you compose a page about your purpose, that document can help you
+or your AI agents to make it so.
+
+With tools to help you, it's best to not install more tools now than you need just for today.
+
 ## Prepare
 
-First, prepare your new system
+Next, prepare your new system
 
 - On [ChromeOS](./docs/chromeos.md), set a password
   - `sudo passwd $USER`
@@ -63,9 +74,11 @@ First, prepare your new system
 
 ## Proceed
 
-Next, browse the [`docs/README.md`](./docs/README.md)
+Finally, browse the [`docs/README.md`](./docs/README.md) and&hellip;
 
-Then go for it&hellip;
+1. **Minimal for Ansible:** Install the latest uv, python, & ansible  
+   Run `./box.sh minimal.yaml --install`  
+   Restart your shell: `exit` and reopen the terminal tab.
 
 1. **Bootstrap your system:** Install your shell, core language runtimes, system-level fixes, etc  
    Run `./box.sh system.yaml --install`  
