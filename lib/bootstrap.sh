@@ -73,31 +73,36 @@ install_eget() {
 install_uv() {
     local shell="${1:-zsh}"
 
-    if [ "$PLATFORM" == "linux" ]; then
-        if ! command -v uv; then
-            curl -LsSf https://astral.sh/uv/install.sh | sh
-            grep -qF 'export UV_NO_BUILD=1' ~/.${shell}rc || echo 'export UV_NO_BUILD=1' >> ~/.${shell}rc
-        else
-            echo "$(uv --version) was already installed for $shell"
-            uv self update
-        fi
-        uv python install
-    else
-        echo "Not yet supported on $PLATFORM"
-    fi
+	if [ "$PLATFORM" == "linux" ]; then
+		if ! command -v uv &>/dev/null; then
+			echo "Installing uv..."
+			curl -LsSf https://astral.sh/uv/install.sh | sh
+			source "$HOME/.cargo/env"
+			grep -qF 'export UV_NO_BUILD=1' ~/.${shell}rc || echo 'export UV_NO_BUILD=1' >> ~/.${shell}rc
+		else
+			uv self update
+		fi
+		uv --version
+		uv python install
+	else
+		echo "Not yet supported on $PLATFORM"
+	fi
 }
 
 # Function to handle MISE installation per https://mise.jdx.dev/installing-mise.html
 install_mise() {
     local shell="${1:-zsh}"
 
-    if ! command -v mise; then
+    export PATH="$HOME/.local/bin:$PATH"
+    if ! command -v mise &>/dev/null; then
         # Install mise and add activation to ~/.zshrc
+        echo "Installing mise..."
         curl https://mise.run/$shell | sh
     else
         # mise v
         mise self-update -y
     fi
+    mise --version
 }
 
 # Function to install mise tools
@@ -116,15 +121,61 @@ install_mise_tools() {
     eval "$(mise hook-env)"
 }
 
+# Function to install and configure fzf and zoxide terminal tools
+install_terminal_tools() {
+    local shell="${1:-zsh}"
+    local rc_file="$HOME/.${shell}rc"
+
+    echo "${FUNCNAME[0]}"
+
+    # --- Install fzf ---
+    # We use git clone and the official install script because it's the most
+    # reliable way to set up shell integration (key bindings, completion).
+    if [ ! -d "$HOME/.fzf" ]; then
+        echo "Installing fzf..."
+        git clone --depth 1 https://github.com/junegunn/fzf.git "$HOME/.fzf"
+        # The --all flag installs for bash, zsh, and fish non-interactively.
+        # It adds the necessary source line to the shell's rc file.
+        "$HOME/.fzf/install" --all
+    else
+        echo "fzf appears to be installed (found ~/.fzf)."
+    fi
+    fzf --version
+
+    # --- Install zoxide ---
+    if ! command -v zoxide &> /dev/null; then
+        echo "Installing zoxide..."
+        local zoxide="ajeetdsouza/zoxide"
+        if ! eget $zoxide --to "$BIN_DIR/zoxide"; then
+            echo "Error: Failed to install zoxide using eget." >&2
+            return 1
+        fi
+        echo "zoxide installed successfully to $BIN_DIR/zoxide."
+    else
+        echo "zoxide is already installed."
+    fi
+    zoxide --version
+
+    # --- Configure zoxide ---
+    # This adds the necessary hook to the shell's rc file to make zoxide work.
+    # The hook enables 'z' to work and integrates with fzf automatically if found.
+    if ! grep -q "zoxide init" "$rc_file"; then
+        echo "Configuring zoxide for $shell..."
+        echo '' >> "$rc_file"
+        echo '# Initialize zoxide for smart directory changing' >> "$rc_file"
+        echo 'eval "$(zoxide init '"$shell"')"' >> "$rc_file"
+        echo "zoxide configured in $rc_file."
+    fi
+}
+
 # Function to install Ruby on Rails
 #   dependencies: Mise, Ruby
 install_rails() {
     if ! gem list -i "^rails$" > /dev/null; then
         echo "Installing Rails..."
         gem install rails
-    else
-        echo "Rails is already installed."
     fi
+    rails --version
 }
 
 # Function to install Jekyll
@@ -136,9 +187,9 @@ install_jekyll() {
         gem install logger
         # Regenerate shims so 'jekyll' and 'bundle' commands work
         mise reshim
-    else
-        echo "Jekyll is already installed."
     fi
+    jekyll --version
+    bundle --version
 }
 
 # Function to handle GOOSE installation
@@ -146,9 +197,8 @@ install_goose() {
     if [ "$PLATFORM" == "linux" ]; then
         if ! command -v goose --version &> /dev/null; then
             curl -fsSL https://github.com/block/goose/releases/download/stable/download_cli.sh | CONFIGURE=false bash
-        else
-            echo "Goose $(goose --version) was already installed."
         fi
+        goose --version
     else
         echo "Not yet supported on $PLATFORM"
     fi
@@ -164,6 +214,8 @@ install_dotnet() {
             fi
         done
         sudo apt install -y powershell
+        dotnet --version
+        pwsh --version
     else
         echo "Not yet supported on $PLATFORM"
     fi
@@ -229,12 +281,11 @@ configure_podman() {
     fi
 }
 
-# Function to handle Rust installation
+# Function to handle Rust installation with cargo-binstall
 install_rust() {
     if command -v rustup &> /dev/null; then
-        echo "Rust needs an update! Run `rustup update` soon."
+        echo "Run 'rustup update' soon."
         # rustup update # TODO disabled because it takes too long / several minutes.
-
         # TODO investigate re-enabling this; it compiled from source 157 packages (too much) last time
         # cargo install-update -a
     else
@@ -249,9 +300,12 @@ install_rust() {
         curl -L https://raw.githubusercontent.com/cargo-bins/cargo-binstall/main/install-from-binstall-release.sh | bash
         cargo binstall cargo-update --no-confirm
     fi
+    rustc --version
+    cargo --version
+    cargo-binstall --version
 }
 
-# Function to handle Java installation
+# Function to install storage-related command-line tools
 install_storage_tools() {
     rclone --version
 
@@ -307,7 +361,6 @@ install_homebrew() {
     if ! command -v brew &> /dev/null; then
         /bin/bash -c "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/HEAD/install.sh)"
     else
-        echo "$(brew --version | head -n 1) already installed."
         brew update
     fi
 
@@ -334,6 +387,7 @@ install_homebrew() {
         if ! grep -q "shellenv" "$HOME/.${shell}rc"; then
             (echo; echo "eval \"\$($BREW_PATH shellenv)\"") >> "$HOME/.${shell}rc"
         fi
+        brew --version
     fi
 }
 

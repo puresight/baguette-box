@@ -32,6 +32,10 @@ tasks:
       - JetBrainsMono
       - v3.3.0
 
+  - task: install_terminal_tools
+    arguments:
+      - zsh
+
   - task: configure_podman
     enabled: false
 
