@@ -6,7 +6,7 @@ To maintain workstation integrity, only install code from reputable & verified a
 
 ## How to Use
 
-1. **Minimal for Ansible:** Install the latest uv, python, & ansible  
+1. **Minimal config for Ansible:** Install the latest uv, python, & [ansible](https://pypi.org/project/ansible/)  
    Run `./box.sh minimal.yaml --install`  
    Restart your shell: `exit` and reopen the terminal tab.
 
@@ -33,6 +33,13 @@ that you want on your machine. We use several including
 - [uv](./docs/uv.md) is a fast Python package manager
 - [npm](./docs/node.md) is the default Node package manager
 - [Rustup](https://rustup.rs/) for Rust
+
+### Core Tools
+
+These tools are significant to the project
+
+- [Eget](https://github.com/zyedidia/eget?tab=readme-ov-file#readme) to download/verify/install releases from GitHub
+- [Gomplate](https://docs.gomplate.ca/) is a template rendering engine supporting JSON & YAML
 
 ## YAML tasks
 
@@ -73,13 +80,6 @@ It also runs _apt install_ on packages listed in the _Aptfile_ like
 - [Github](https://cli.github.com/) tools
 - [Google Antigravity](https://antigravity.google/) AI IDE
 
-### `install_yamljson`
-
-installs dependencies needed by the system to work with JSON or YAML text files
-
-- `yq` is installed by this task
-- `jq` was defined in the _Aptfile_.
-
 ### `install_storage_tools`
 
 installs utilities such as
@@ -90,6 +90,11 @@ installs utilities such as
 installs [UV](.//uv.md),
 the unified tool for the Python ecosystem.
 And [Python](https://www.python.org/).
+
+### `install_using_uv_with_executables_from`
+
+uses [UV](.//uv.md) to install tool packages
+(like [Ansible](https://docs.ansible.com/)).
 
 ### `install_flatpak`
 
@@ -113,6 +118,10 @@ reads the `mise.toml` file in the root of the repository to install the specifie
 
 using [RubyGems](https://guides.rubygems.org/command-reference/), installs [Rails](https://guides.rubyonrails.org/getting_started.html).
 
+### `install_jekyll`
+
+installs [Jekyll](https://jekyllrb.com/), the first [static site generator](https://jamstack.org/generators/) used by GitHub Pages.
+
 ### `install_goose`
 
 installs Block's [Goose](https://block.github.io/goose/docs/category/guides) AI CLI.
@@ -123,6 +132,12 @@ installs a Microsoft [.NET](https://dotnet.microsoft.com/) SDK release e.g.
 [10](https://learn.microsoft.com/en-us/dotnet/core/whats-new/dotnet-10/overview).
 And installs the [Powershell](https://learn.microsoft.com/en-us/powershell/) shell.
 
+### `install_font`
+
+installs a [Nerd Font](https://www.nerdfonts.com/font-downloads)
+on the system, e.g. JetBrainsMono v3.3.0;
+it neither updates nor remove fonts.
+
 ### `configure_shell`
 
 changes the system's default shell to zsh (which was installed in the Aptfile),
@@ -132,15 +147,13 @@ runs a _pwsh_ script to install [Azure PowerShell](https://learn.microsoft.com/e
 And installs the [Oh My Posh](https://ohmyposh.dev/) prompt
 for the zsh and pwsh shells.
 
-### `install_font`
+### `install_terminal_tools`
 
-installs a [Nerd Font](https://www.nerdfonts.com/font-downloads)
-on the system, e.g. JetBrainsMono v3.3.0;
-it neither updates nor remove fonts.
+installs [fzf](https://junegunn.github.io/fzf/) & [zoxide](https://zoxide.org/)
 
 ### `configure_podman`
 
-configures [Podman](.//podman.md).
+configures [Podman](.//podman.md)
 
 ### `install_rust`
 

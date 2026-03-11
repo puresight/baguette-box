@@ -47,14 +47,11 @@ CLI
 
 ## Plan
 
-Take a minute to think about and write a markdown file about
-what you want to use this machine for,
-and what you require installed on it.
+Take a minute to think about your intention.
+Write a quick markdown file about your needs and purposes for the workstation, and the tools that will help you accomplish that.
+This page will be useful to you and your AI agents.
 
-Once you compose a page about your purpose, that document can help you
-or your AI agents to make it so.
-
-With tools to help you, it's best to not install more tools now than you need just for today.
+Note: You have powerful tools to help you. It is best to not frontload more software than you need. You can always add more later, when your plan matures, or changes.
 
 ## Prepare
 
@@ -76,7 +73,7 @@ Next, prepare your new system
 
 Finally, browse the [`docs/README.md`](./docs/README.md) and&hellip;
 
-1. **Minimal for Ansible:** Install the latest uv, python, & ansible  
+1. **Minimal configuration for Ansible:** Install the latest uv, python, & ansible  
    Run `./box.sh minimal.yaml --install`  
    Restart your shell: `exit` and reopen the terminal tab.
 
