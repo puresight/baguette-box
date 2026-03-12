@@ -96,7 +96,7 @@ And [Python](https://www.python.org/).
 uses [UV](.//uv.md) to install tool packages
 (like [Ansible](https://docs.ansible.com/)).
 
-### `install_flatpak`
+### `configure_flatpak`
 
 installs flatpak and adds the remote source for the Flathub app marketplace.
 

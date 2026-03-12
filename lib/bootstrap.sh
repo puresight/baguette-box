@@ -338,12 +338,23 @@ install_storage_tools() {
 }
 
 # Function
-install_flatpak() {
+configure_flatpak() {
     local remote_name="${1:-flathub}"
-    local remote_url="${2:-'https://dl.flathub.org/repo/flathub.flatpakrepo'}"
+    local remote_url="${2:-'https://flathub.org/repo/flathub.flatpakrepo'}"
     flatpak --version
-    echo "remote $remote_name = $remote_url"
+    # Add remotes
     sudo flatpak remote-add --if-not-exists $remote_name $remote_url
+    flatpak remote-add --user --if-not-exists $remote_name $remote_url
+    flatpak remotes
+    # For the content to update, Flatpak needs to pull the latest metadata (AppStream data). In Crostini, this can sometimes hang if done through the GUI, so it's best to trigger it manually first
+    sudo flatpak update --appstream
+    flatpak update --user --appstream
+    # Functional Test
+    flatpak install -y --user io.github.kolunmi.Bazaar
+    flatpak override --user io.github.kolunmi.Bazaar --talk-name=org.freedesktop.Flatpak
+    flatpak override --user io.github.kolunmi.Bazaar --filesystem=/var/lib/flatpak:ro
+    # Run Bazaar
+    # GSK_RENDERER=cairo LIBGL_ALWAYS_SOFTWARE=1 GTK_IM_MODULE=ibus flatpak run io.github.kolunmi.Bazaar
 }
 
 # Function

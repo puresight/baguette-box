@@ -6,7 +6,7 @@ tasks:
   - task: install_uv
     enabled: false
 
-  - task: install_flatpak
+  - task: configure_flatpak
     arguments:
       - flathub
       - https://dl.flathub.org/repo/flathub.flatpakrepo
