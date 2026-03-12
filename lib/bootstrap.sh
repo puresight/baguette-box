@@ -71,7 +71,7 @@ install_uv() {
     if ! command -v uv &>/dev/null; then
         echo "Installing uv..."
         curl -LsSf https://astral.sh/uv/install.sh | sh
-        source "$HOME/.cargo/env"
+        export PATH="$HOME/.cargo/bin:$PATH"
         grep -qF 'export UV_NO_BUILD=1' ~/.${shell}rc || echo 'export UV_NO_BUILD=1' >> ~/.${shell}rc
     else
         uv self update
