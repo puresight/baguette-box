@@ -161,6 +161,7 @@ install_terminal_tools() {
     else
         echo "fzf appears to be installed (found ~/.fzf)."
     fi
+    export PATH="$PATH:$HOME/.fzf/bin"
     fzf --version
 
     # --- Install zoxide ---
