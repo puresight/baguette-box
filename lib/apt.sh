@@ -29,7 +29,7 @@ install_gpg_key() {
         echo "Downloading GPG key from $gpg_url"
         curl -sSL "$gpg_url" | sudo gpg --dearmor -o "$keyring_file"
         if [ $? -ne 0 ]; then
-            echo "Error: Failed to install GPG key"
+            echo "❌ Error: Failed to install GPG key"
             return 1
         fi
         echo "Successfully installed GPG key to $keyring_file"
@@ -51,7 +51,7 @@ add_apt_repository() {
 
     # Check for required arguments
     if [ -z "$sources_file" ] || [ -z "$repo_url" ]; then
-        echo "Error: Missing required arguments. Usage: add_apt_repository <sources_file> <repo_url> [gpg_url] [suites] [components] [architectures]" >&2
+        echo "❌ Error: Missing required arguments. Usage: add_apt_repository <sources_file> <repo_url> [gpg_url] [suites] [components] [architectures]" >&2
         echo 'Help: example invocation...'
         echo '--'
         echo '  add_apt_repository \'
@@ -97,7 +97,7 @@ EOF
         sudo tee "$sources_file" > /dev/null <<< "$sources_content"
 
         if [ $? -ne 0 ]; then
-            echo "Error: Failed to add repository" >&2
+            echo "❌ Error: Failed to add repository" >&2
             return 1
         fi
         echo "» $sources_file"
@@ -110,7 +110,7 @@ update_package_lists() {
     echo "${FUNCNAME[0]}"
     sudo apt update -qq
     if ! [ $? -eq 0 ]; then
-        echo "Error: Failed to update package lists" >&2
+        echo "❌ Error: Failed to update package lists" >&2
         return 1
     fi
 }

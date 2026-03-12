@@ -21,13 +21,13 @@ BIN_DIR="$HOME/.local/bin"
 if ! command -v eget &> /dev/null; then
     install_eget
 fi
-# eget --version || { echo "Error: eget install failed" >&2; exit 1; }
+# eget --version || { echo "❌ Error: eget install failed" >&2; exit 1; }
 
 # Install gomplate
 if ! command -v gomplate &> /dev/null || ! gomplate --version &> /dev/null; then
     eget hairyhenderson/gomplate --to "$BIN_DIR/gomplate"
 fi
-(which gomplate && gomplate --version) || { echo "Error: gomplate install failed" >&2; exit 1; }
+(which gomplate && gomplate --version) || { echo "❌ Error: gomplate install failed" >&2; exit 1; }
 
 # Function
 do_yaml() {
@@ -47,7 +47,7 @@ do_yaml() {
                 echo "--- $task_cmd ---"
                 eval "$task_cmd"
             else
-                echo "Error: invalid task name: correct '$func_name' in $config_file" >&2
+                echo "❌ Error: invalid task name: correct '$func_name' in $config_file" >&2
                 exit 1
             fi
         fi
@@ -83,7 +83,7 @@ fi
 
 if [ "$MODE" = "install" ]; then
     if [ -z "$CONFIG_FILE" ]; then
-        echo "Error: --config <file> is required."
+        echo "❌ Error: --config <file> is required."
         print_help
         exit 1
     fi

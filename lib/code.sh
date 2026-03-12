@@ -33,7 +33,7 @@ install_code() {
             local argv_json="$HOME/.vscode/argv.json"
             UPDATE_JSON $vscode_argv $argv_json
             if [ $? -ne 0 ]; then
-                echo "Error: Update failed!" >&2
+                echo "❌ Error: Update failed!" >&2
                 return 1
             fi
         fi
@@ -61,7 +61,7 @@ install_code_extensions() {
             code --install-extension "$extension"
         done < "$ext_file"
     else
-        echo "Error: $ext_file file not found! skipping extension installation." >&2
+        echo "❌ Error: $ext_file file not found! skipping extension installation." >&2
     fi
 }
 

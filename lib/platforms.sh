@@ -20,6 +20,6 @@ esac
 
 echo "Platform: $PLATFORM"
 if [ "$PLATFORM" != "debian" ]; then
-    echo "Error: Only Debian Linux is supported." >&2
+    echo "❌ Error: Only Debian Linux is supported." >&2
     exit 1
 fi

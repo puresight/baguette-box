@@ -6,7 +6,7 @@
 # ------ # ------ # ------ # ------ # ------ # ------ # ------ # ------
 
 # --- load library code ---
-source "$SCRIPTROOT/lib/platforms.sh" || { echo "Error: lib/platforms.sh not found."; exit 1; }
+source "$SCRIPTROOT/lib/platforms.sh" || { echo "❌ Error: lib/platforms.sh not found."; exit 1; }
 source "$SCRIPTROOT/lib/apt-sources.sh"
 source "$SCRIPTROOT/lib/fonts.sh"
 source "$SCRIPTROOT/lib/java.sh"
@@ -45,7 +45,7 @@ install_apt_packages() {
     if [ -f "$apt_file" ]; then
         sudo apt install -y $(cat "$apt_file" | sed 's/#.*$//' | sed '/^[[:space:]]*$/d' | tr '\n' ' ')
     else
-        echo "Error: file '$apt_file' not found" >&2
+        echo "❌ Error: file '$apt_file' not found" >&2
         exit 1
     fi
 }
@@ -88,7 +88,7 @@ install_using_uv_with_executables_from() {
 
 # uv tool install --with-executables-from ansible-core,ansible-lint ansible
     if ! uv tool install --with-executables-from "$with_executables_from" "$pkg_name"; then
-        echo "Error: failed: 'uv tool install --with-executables-from $with_executables_from $pkg_name'"
+        echo "❌ Error: failed: 'uv tool install --with-executables-from $with_executables_from $pkg_name'"
         return 1
     fi
 
@@ -96,7 +96,7 @@ install_using_uv_with_executables_from() {
     # While uv verifies on download, we can manually check the binary path
     local pkg_path=$(which "$pkg_name" 2>/dev/null)
     if [[ -z "$pkg_path" ]]; then
-        echo "Error: $pkg_name binary not found in PATH."
+        echo "❌ Error: $pkg_name binary not found in PATH."
         return 1
     fi
     "$pkg_name" --version | head -n 1
@@ -105,7 +105,7 @@ install_using_uv_with_executables_from() {
     # Functional Test
     echo "Ran test: '$pkg_name $test_arg'"
     if ! $pkg_name $test_arg > /dev/null 2>&1; then
-        echo "Error: functional test failed." >&2
+        echo "❌ Error: functional test failed." >&2
         return 1
     fi
 }
@@ -168,7 +168,7 @@ install_terminal_tools() {
         echo "Installing zoxide..."
         local zoxide="ajeetdsouza/zoxide"
         if ! eget $zoxide --to "$BIN_DIR/zoxide"; then
-            echo "Error: Failed to install zoxide using eget." >&2
+            echo "❌ Error: Failed to install zoxide using eget." >&2
             return 1
         fi
         echo "zoxide installed successfully to $BIN_DIR/zoxide."

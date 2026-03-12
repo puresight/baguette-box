@@ -12,7 +12,7 @@ INSTALL_MS_OPENJDK() {
     echo "${FUNCNAME[0]}"
     # TODO support multi-PLATFORM, like macos
     if [[ $# -eq 0 ]]; then
-        echo "Error: No version numbers provided. Usage: install_ms_openjdk <active_version> [additional_versions...]" >&2
+        echo "❌ Error: No version numbers provided. Usage: install_ms_openjdk <active_version> [additional_versions...]" >&2
         return 1
     fi
 
@@ -34,7 +34,7 @@ INSTALL_MS_OPENJDK() {
         sudo update-alternatives --set java "$java_path" > /dev/null 2>&1
         sudo update-alternatives --set javac "$javac_path" > /dev/null 2>&1
     else
-        echo "Error: Could not set $active_version as default. Binary not found at $java_path." >&2
+        echo "❌ Error: Could not set $active_version as default. Binary not found at $java_path." >&2
         return 1
     fi
 }

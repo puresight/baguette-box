@@ -3,9 +3,6 @@ tasks:
     arguments:
       - Aptfile
 
-  - task: install_storage_tools
-    enabled: true
-
   - task: install_uv
     enabled: false
 
@@ -58,6 +55,10 @@ tasks:
 
   # Depends on Mise
   - task: install_mise_tools
+
+  # Depends on Mise (Go)
+  - task: install_storage_tools
+    enabled: true
 
   # Depends on Ruby, installed by Mise
   - task: install_jekyll

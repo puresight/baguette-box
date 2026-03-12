@@ -36,21 +36,21 @@ install_nerd_font() {
 
     # Preparation
     mkdir -p "$fonts_dir" || {
-        echo "Error: Failed to create font directory at $fonts_dir" >&2
+        echo "❌ Error: Failed to create font directory at $fonts_dir" >&2
         return 1
     }
 
     # Download
     echo "Downloading $font_name from GitHub..."
     if ! curl -sfLo "$temp_file" "$download_url"; then
-        echo "Error: Failed to download font from $download_url" >&2
+        echo "❌ Error: Failed to download font from $download_url" >&2
         return 1
     fi
 
     # Extraction
     echo "Extracting files to $fonts_dir..."
     if ! unzip -qjo "$temp_file" -d "$fonts_dir"; then
-        echo "Error: Failed to extract $temp_file" >&2
+        echo "❌ Error: Failed to extract $temp_file" >&2
         rm -f "$temp_file"
         return 1
     fi

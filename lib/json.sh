@@ -19,7 +19,7 @@ UPDATE_JSON() {
 
     # Files exist?
     if [[ ! -f "$source_file" && ! -f "$target_file" ]]; then
-        echo "Error: files not found." >&2
+        echo "❌ Error: files not found." >&2
         return 1
     fi
     if [[ ! -f "$source_file" ]]; then
@@ -46,11 +46,11 @@ UPDATE_JSON() {
     # Convert both to clean JSON using jsonc-cli
     # This strips comments and handles the JSONC format
     if ! cat "$source_file" | jsonc read "" > "$clean_news"; then
-        echo "Error: Failed to parse source JSONC." >&2
+        echo "❌ Error: Failed to parse source JSONC." >&2
         return 1
     fi
     if ! cat "$target_file" | jsonc read "" > "$clean_record"; then
-        echo "Error: Failed to parse target JSONC." >&2
+        echo "❌ Error: Failed to parse target JSONC." >&2
         return 1
     fi
 
@@ -62,7 +62,7 @@ UPDATE_JSON() {
         cat "$merged_output" | jsonc format > "$target_file"
         echo "Update successful."
     else
-        echo "Error: jq merge failed." >&2
+        echo "❌ Error: jq merge failed." >&2
         return 1
     fi
 }

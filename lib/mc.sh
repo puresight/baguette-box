@@ -16,7 +16,7 @@
 # This is used as a fallback if building from source fails.
 _install_minio_client_from_binary() {
     if ! command -v eget &> /dev/null; then
-        echo "Error: eget is not installed. Please run install_eget first."
+        echo "❌ Error: eget is not installed. Please run install_eget first."
         return 1
     fi
 
