@@ -14,11 +14,6 @@ tasks:
       - "localhost -m ping"
     enabled: false
 
-  - task: configure_flatpak
-    arguments:
-      - flathub
-      - https://dl.flathub.org/repo/flathub.flatpakrepo
-
   - task: install_goose
     enabled: false
 
@@ -79,3 +74,5 @@ tasks:
   - task: display_environment
 
   - task: display_versions
+
+  - task: configure_flatpak
