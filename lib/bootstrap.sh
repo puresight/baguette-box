@@ -239,6 +239,7 @@ install_dotnet() {
 # Function to handle shell configuration
 configure_shell() {
     local shell="${1:-zsh}"
+    local rc_file="$HOME/.${shell}rc"
 
     if [ "$PLATFORM" == "debian" ]; then
         local target_shell
@@ -246,6 +247,12 @@ configure_shell() {
         if [ "$SHELL" != "$target_shell" ]; then
             echo "Changing user shell to $target_shell"
             sudo chsh -s "$target_shell" "$USER"
+        fi
+
+        # Add ~/.local/bin to path in rc_file
+        if ! grep -q "PATH=" "$rc_file"; then
+            echo "# Include bin dir in path; Move this to top!" >> "$rc_file"
+            echo 'eval "export PATH=~/.local/bin:$PATH"' >> "$rc_file"
         fi
 
         # Posh exists? upgrade it! No posh, install it.
@@ -256,9 +263,11 @@ configure_shell() {
         fi
 
         # Posh's config persists in shell's .rc file
-        if ! grep -q "oh-my-posh init $shell" "$HOME/.${shell}rc"; then
-            echo "eval '\$(oh-my-posh init $shell --config https://raw.githubusercontent.com/JanDeDobbeleer/oh-my-posh/main/themes/pure.omp.json)'" >> "$HOME/.${shell}rc"
-            echo "Persisting in ~/.${shell}rc"
+        if ! grep -q "oh-my-posh init $shell" "$rc_file"; then
+            echo "# Integrate Posh" >> "$rc_file"
+            echo 'eval "$(oh-my-posh init '"$shell"' --config https://raw.githubusercontent.com/JanDeDobbeleer/oh-my-posh/main/themes/pure.omp.json)"' \
+                >> "$rc_file"
+            echo "Persisting in $rc_file"
         fi
 
         # Configure Posh for Powershell
@@ -392,6 +401,7 @@ install_java() {
 # Function
 install_homebrew() {
     local shell="${1:-zsh}"
+    local rc_file="$HOME/.${shell}rc"
 
     # Install
     if ! command -v brew &> /dev/null; then
@@ -418,10 +428,10 @@ install_homebrew() {
 
     # Persist in shell's .rc file
     if [ -n "$BREW_PATH" ]; then
-        echo "Persisting in ~/.${shell}rc"
+        echo "Persisting in $rc_file"
         eval "$($BREW_PATH shellenv)"
-        if ! grep -q "shellenv" "$HOME/.${shell}rc"; then
-            (echo; echo "eval \"\$($BREW_PATH shellenv)\"") >> "$HOME/.${shell}rc"
+        if ! grep -q "shellenv" "$rc_file"; then
+            (echo; echo "eval \"\$($BREW_PATH shellenv)\"") >> "$rc_file"
         fi
         brew --version
     fi
