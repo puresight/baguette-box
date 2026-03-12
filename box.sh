@@ -12,7 +12,7 @@ SCRIPTROOT=$(dirname "${BASH_SOURCE[0]}")
 BIN_DIR="$HOME/.local/bin"
 
 # Ensure BIN_DIR is first in PATH for newly installed tools
-# export PATH="$BIN_DIR:$PATH"
+export PATH="$BIN_DIR:$PATH"
 
 . "$SCRIPTROOT/lib/bootstrap.sh"
 . "$SCRIPTROOT/lib/code.sh"

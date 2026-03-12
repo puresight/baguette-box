@@ -239,11 +239,14 @@ install_dotnet() {
 # Function to handle shell configuration
 configure_shell() {
     local shell="${1:-zsh}"
-    export PATH=$PATH:~/.local/bin
 
     if [ "$PLATFORM" == "debian" ]; then
-        # change shell
-        sudo chsh -s $(which $shell) $USER
+        local target_shell
+        target_shell=$(which "$shell")
+        if [ "$SHELL" != "$target_shell" ]; then
+            echo "Changing user shell to $target_shell"
+            sudo chsh -s "$target_shell" "$USER"
+        fi
 
         # Posh exists? upgrade it! No posh, install it.
         if command -v oh-my-posh &> /dev/null; then
@@ -254,7 +257,7 @@ configure_shell() {
 
         # Posh's config persists in shell's .rc file
         if ! grep -q "oh-my-posh init $shell" "$HOME/.${shell}rc"; then
-            echo 'eval "$(oh-my-posh init $shell --config https://raw.githubusercontent.com/JanDeDobbeleer/oh-my-posh/main/themes/pure.omp.json)"' >> "$HOME/.${shell}rc"
+            echo "eval '\$(oh-my-posh init $shell --config https://raw.githubusercontent.com/JanDeDobbeleer/oh-my-posh/main/themes/pure.omp.json)'" >> "$HOME/.${shell}rc"
             echo "Persisting in ~/.${shell}rc"
         fi
 
