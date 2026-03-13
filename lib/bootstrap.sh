@@ -354,7 +354,7 @@ install_storage_tools() {
 #   TODO 2026/3 Bazaar app failed tests
 configure_flatpak() {
     local remote_name="${1:-flathub}"
-    local remote_url="${2:-'https://flathub.org/repo/flathub.flatpakrepo'}"
+    local remote_url="${2:-'https://dl.flathub.org/repo/flathub.flatpakrepo'}"
     local app_id="${3:-com.github.tchx84.Flatseal}"
     local delay_seconds=5
     local level="user" # not "system"
@@ -362,9 +362,13 @@ configure_flatpak() {
 
     flatpak --version
 
-    # -- Add remotes --
-    # sudo flatpak remote-add --$level --if-not-exists $remote_name $remote_url
-    flatpak remote-add --$level --if-not-exists $remote_name $remote_url
+    # To ensure a clean state and fix potential corruption, remove the remote if it exists.
+    if flatpak remote-info --$level "$remote_name" &>/dev/null; then
+        echo "Found existing Flatpak remote '$remote_name'. Removing it to re-add cleanly."
+        flatpak remote-delete --$level "$remote_name"
+    fi
+    echo "Adding Flatpak remote '$remote_name'..."
+    flatpak remote-add --$level --if-not-exists "$remote_name" "$remote_url"
     flatpak remotes
 
     # -- Update metadata --
