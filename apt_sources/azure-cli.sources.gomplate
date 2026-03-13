@@ -1,0 +1,10 @@
+Types: deb
+URIs: https://packages.microsoft.com/repos/azure-cli/
+Suites: {{ .Env.VERSION_CODENAME }}
+Components: main
+Architectures: {{ .Env.ARCHITECTURES }}
+Signed-By: /etc/apt/keyrings/azure-cli.gpg
+Description: Azure CLI
+Origin: Microsoft
+Data:
+  Key-URL: https://packages.microsoft.com/keys/microsoft.asc

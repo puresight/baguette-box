@@ -1,0 +1,10 @@
+Types: deb
+URIs: https://us-central1-apt.pkg.dev/projects/antigravity-auto-updater-dev/
+Suites: antigravity-debian
+Components: main
+Architectures: {{ .Env.ARCHITECTURES | default "amd64 arm64 armhf" }}
+Signed-By: /etc/apt/keyrings/antigravity.gpg
+Description: Antigravity
+Origin: Google
+Data:
+  Key-URL: https://us-central1-apt.pkg.dev/doc/repo-signing-key.gpg

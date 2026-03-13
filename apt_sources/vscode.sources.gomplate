@@ -1,0 +1,10 @@
+Types: deb
+URIs: https://packages.microsoft.com/repos/code
+Suites: stable
+Components: main
+Architectures: {{ .Env.ARCHITECTURES | default "amd64 arm64 armhf" }}
+Signed-By: /etc/apt/keyrings/vscode.gpg
+Description: Visual Studio Code
+Origin: Microsoft
+Data:
+  Key-URL: https://packages.microsoft.com/keys/microsoft.asc

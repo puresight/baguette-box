@@ -7,7 +7,7 @@
 
 # --- load library code ---
 source "$SCRIPTROOT/lib/platforms.sh" || { echo "❌ Error: lib/platforms.sh not found."; exit 1; }
-source "$SCRIPTROOT/lib/apt-sources.sh"
+source "$SCRIPTROOT/lib/apt.sh"
 source "$SCRIPTROOT/lib/fonts.sh"
 source "$SCRIPTROOT/lib/java.sh"
 source "$SCRIPTROOT/lib/mc.sh"

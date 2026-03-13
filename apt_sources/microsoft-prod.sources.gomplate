@@ -1,0 +1,10 @@
+Types: deb
+URIs: https://packages.microsoft.com/{{ .Env.ID }}/{{ .Env.VERSION_ID }}/prod
+Suites: {{ .Env.VERSION_CODENAME }}
+Components: main
+Architectures: {{ .Env.ARCHITECTURES | default "amd64 arm64 armhf" }}
+Signed-By: /etc/apt/keyrings/microsoft-prod.gpg
+Description: Microsoft
+Origin: Microsoft
+Data:
+  Key-URL: https://packages.microsoft.com/keys/microsoft.asc

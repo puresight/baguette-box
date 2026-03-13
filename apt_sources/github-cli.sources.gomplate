@@ -1,0 +1,10 @@
+Types: deb
+URIs: https://cli.github.com/packages
+Suites: stable
+Components: main
+Architectures: {{ .Env.ARCHITECTURES }}
+Signed-By: /etc/apt/keyrings/github-cli.gpg
+Description: GitHub CLI
+Origin: GitHub
+Data:
+  Key-URL: https://cli.github.com/packages/githubcli-archive-keyring.gpg

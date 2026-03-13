@@ -15,102 +15,75 @@
 #
 # ------ # ------ # ------ # ------ # ------ # ------ # ------ # ------
 
-# Function to download and dearmor a GPG key
-# Parameters: $1 - GPG key URL, $2 - Keyring filename
-install_gpg_key() {
-    local gpg_url="$1"
-    local keyring_file="$2"
-    echo "${FUNCNAME[0]}"
-
-    sudo mkdir -p -m 755 $keyring_dir
-    if [ -f "$keyring_file" ]; then
-        echo "$keyring_file exists already."
-    else
-        echo "Downloading GPG key from $gpg_url"
-        curl -sSL "$gpg_url" | sudo gpg --dearmor -o "$keyring_file"
-        if [ $? -ne 0 ]; then
-            echo "❌ Error: Failed to install GPG key"
-            return 1
-        fi
-        echo "Successfully installed GPG key to $keyring_file"
-    fi
-}
-
-# Function to add an APT repository using DEB822 format
-# Parameters: $1 - Sources file path, $2 - Repository URL, $3 - GPG key URL (optional), $4 - Suites (optional), $5 - Components (optional), $6 - Architectures (optional)
-add_apt_repository() {
-    local sources_file="$1"
-    local repo_url="$2"
-    local gpg_url="$3"
-    local suites="${4:-main}"
-    local components="${5:-main}"
-    local architectures="${6:-amd64 arm64 armhf}"
-
-    local sources_path="/etc/apt/sources.list.d" # Platform Constant
-    echo "${FUNCNAME[0]}"
-
-    # Check for required arguments
-    if [ -z "$sources_file" ] || [ -z "$repo_url" ]; then
-        echo "❌ Error: Missing required arguments. Usage: add_apt_repository <sources_file> <repo_url> [gpg_url] [suites] [components] [architectures]" >&2
-        echo 'Help: example invocation...'
-        echo '--'
-        echo '  add_apt_repository \'
-        echo '    example.sources \'
-        echo '    https://example.com/repo \'
-        echo '    https://example.com/key.gpg \'
-        echo '    main \'
-        echo '    main \'
-        echo '    amd64'
-        echo '--'
-        return 1
-    fi
-
-    # Install GPG key if provided
-    if [ -n "$gpg_url" ]; then
-        local keyring_dir="/etc/apt/keyrings" # Platform Constant
-        local keyring_path="$keyring_dir/$(basename "$sources_file" .sources).gpg"
-        install_gpg_key "$gpg_url" "$keyring_path"
-        if [ $? -ne 0 ]; then
-            return 1
-        fi
-    fi
-
-    # Create the source file in DEB822 format
-    sources_file="$sources_path/$sources_file"
-    if [ -f "$sources_file" ]; then
-        echo "$sources_file exists already."
-    else
-
-        local sources_content=$(cat << EOF
-Types: deb
-URIs: $repo_url
-Suites: $suites
-Components: $components
-Architectures: $architectures
-Signed-By: $keyring_path
-Description: $repo_url
-Origin: $(basename "$sources_file" .sources)
-EOF
-)
-        echo
-        echo "$sources_content"
-        sudo tee "$sources_file" > /dev/null <<< "$sources_content"
-
-        if [ $? -ne 0 ]; then
-            echo "❌ Error: Failed to add repository" >&2
-            return 1
-        fi
-        echo "» $sources_file"
-        echo
-    fi
-}
-
-# Function to update package lists
-update_package_lists() {
-    echo "${FUNCNAME[0]}"
+# Function
+_update_package_lists() {
     sudo apt update -qq
     if ! [ $? -eq 0 ]; then
         echo "❌ Error: Failed to update package lists" >&2
         return 1
     fi
 }
+
+# Function to download & dearmor a GPG key
+# Parameters: $1 - GPG key URL, $2 - Keyring filename
+_install_gpg_key() {
+    local gpg_url="$1"
+    local keyring_file="$2"
+    # echo "${FUNCNAME[0]}"
+
+    local keyring_dir=$(dirname "$keyring_file")
+    sudo mkdir -p -m 755 "$keyring_dir"
+    if [ ! -f "$keyring_file" ]; then
+        echo "downloading: $gpg_url"
+        curl -sSL "$gpg_url" | sudo gpg --dearmor -o "$keyring_file"
+        if [ $? -ne 0 ]; then
+            echo "❌ Error: Failed to install GPG key" >&2
+            return 1
+        fi
+        echo "installed: $keyring_file"
+    fi
+}
+
+# Function to add APT sources from gomplate templates
+add_apt_sources() {
+    local templates_dir="$SCRIPTROOT/apt_sources"
+    local keyring_dir="/etc/apt/keyrings"
+    local apt_sources_dest="/etc/apt/sources.list.d"
+
+    # Fetch the ID, VERSION_ID, VERSION_CODENAME from /etc/os-release
+    source /etc/os-release
+    export ID VERSION_ID VERSION_CODENAME
+    export ARCHITECTURES=$(dpkg --print-architecture)
+
+    for template_file in "$templates_dir"/*.gomplate; do
+        if [ -f "$template_file" ]; then
+            local sources_name=$(basename "$template_file" .sources.gomplate)
+            local keyring_file="$keyring_dir/$sources_name.gpg"
+            
+            # Extract Key-URL from the gomplate file
+            local key_url=$(grep 'Key-URL:' "$template_file" | sed 's/  Key-URL: //')
+            # Install Key
+            if [ -n "$key_url" ]; then
+                _install_gpg_key "$key_url" "$keyring_file"
+            else
+                echo "❌ Error: expected Key-URL in $template_file" >&2
+            fi
+
+            local sources_file="$apt_sources_dest/$sources_name.sources"
+            if [ ! -f "$sources_file" ]; then
+                echo "reading: $template_file"
+                gomplate -f "$template_file" | grep -v -e '^Data:$' -e '^  Key-URL:' | sudo tee "$sources_file" > /dev/null
+                echo "saved: $sources_file"
+            else
+                echo "exists: $sources_file"
+            fi
+        fi
+    done
+
+    _update_package_lists
+}
+
+# This script can be run independently.
+if [[ "${BASH_SOURCE[0]}" == "${0}" ]]; then
+    add_apt_sources "$@"
+fi

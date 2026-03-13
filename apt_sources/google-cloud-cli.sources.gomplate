@@ -1,0 +1,10 @@
+Types: deb
+URIs: https://packages.cloud.google.com/apt
+Suites: cloud-sdk
+Components: main
+Architectures: {{ .Env.ARCHITECTURES | default "amd64 arm64 armhf" }}
+Signed-By: /etc/apt/keyrings/google-cloud-cli.gpg
+Description: Google Cloud CLI
+Origin: Google
+Data:
+  Key-URL: https://packages.cloud.google.com/apt/doc/apt-key.gpg
