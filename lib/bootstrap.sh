@@ -362,11 +362,15 @@ configure_flatpak() {
 
     flatpak --version
 
-    # To ensure a clean state and fix potential corruption, remove the remote if it exists.
-    if flatpak remote-info --$level "$remote_name" &>/dev/null; then
-        echo "Found existing Flatpak remote '$remote_name'. Removing it to re-add cleanly."
-        flatpak remote-delete --$level "$remote_name"
-    fi
+    # On some systems, particularly Crostini on Chromebooks, the flatpak cache or
+    # installation can become corrupted. This can lead to GPG and ref errors.
+    # As a last resort, we perform a "scorched earth" removal of the entire user
+    # flatpak directory to ensure a completely fresh start. This will remove all
+    # user-installed Flatpak apps and remotes.
+    echo "Performing 'scorched earth' reset of Flatpak user data..."
+    rm -rf ~/.cache/flatpak
+    rm -rf ~/.local/share/flatpak
+
     echo "Adding Flatpak remote '$remote_name'..."
     flatpak remote-add --$level --if-not-exists "$remote_name" "$remote_url"
     flatpak remotes
