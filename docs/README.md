@@ -1,10 +1,8 @@
-# Docs
-
 _This is beta quality code so backup before using, read the docs, and scan the source before running._
 
 To maintain workstation integrity, only install code from reputable & verified authors that regularly address issues with code updates.
 
-## How to Use
+## Ways to Run
 
 1. **Minimal config for Ansible:** Install the latest uv, python, & [ansible](https://pypi.org/project/ansible/)  
    Run `./box.sh minimal.yaml --install`  
@@ -34,9 +32,7 @@ that you want on your machine. We use several including
 - [npm](./docs/node.md) is the default Node package manager
 - [Rustup](https://rustup.rs/) for Rust
 
-### Core Tools
-
-These tools are significant to the project
+These tools are significant to the project:
 
 - [Eget](https://github.com/zyedidia/eget?tab=readme-ov-file#readme) to download/verify/install releases from GitHub
 - [Gomplate](https://docs.gomplate.ca/) is a template rendering engine supporting JSON & YAML
@@ -50,23 +46,14 @@ While the full understanding of each is found in inspecting the bash source of t
 
 ### `install_apt_packages`
 
-connects [APT](https://wiki.debian.org/AptCLI)
-using [DEB822](https://repolib.readthedocs.io/en/latest/deb822-format.html)
-to these repository [sources](https://wiki.debian.org/SourcesList) &mdash;
+1. Connects [APT](https://wiki.debian.org/AptCLI)
+   using [DEB822](https://repolib.readthedocs.io/en/latest/deb822-format.html)
+   to the repository [sources](https://wiki.debian.org/SourcesList) in directory
+   [`apt_sources`](../apt_sources/README.md)
+1. Then runs `apt install`
+   on packages listed in the [`Aptfile`](../Aptfile)
 
-- [Google Cloud CLI](https://docs.cloud.google.com/sdk/docs/install-sdk#deb) `google-cloud` <packages.cloud.google.com/apt>
-- [Google Antigravity](https://antigravity.google/) `antigravity` <us-central1-apt.pkg.dev/projects/antigravity-auto-updater-dev/>
-- [Azure Cloud CLI](https://learn.microsoft.com/en-us/cli/azure/) `azure-cli` <packages.microsoft.com/repos/azure-cli/>
-- [Github CLI](https://cli.github.com/) `github-cli` <cli.github.com/packages>
-- [Microsoft prod](https://learn.microsoft.com/en-us/linux/packages) `microsoft-prod` <packages.microsoft.com/debian/12/prod>
-- [VS Code](https://code.visualstudio.com/docs/setup/linux#_debian-and-ubuntu-based-distributions) `vscode` <packages.microsoft.com/repos/code>
-
-> Advanced Package Tool (APT) is the primary software management system
-> used in Debian-based Linux systems to manage software packages.
-> It automates installing, upgrading, and removing software, including handling dependencies.
-> It relies on the `/etc/apt/sources.list.d` directory to locate release package repositories.
-
-It also runs _apt install_ on packages listed in the _Aptfile_ like
+<!-- --
 
 - [Zsh](https://zsh.sourceforge.io/) shell
 - [Rclone](.//rclone.md) is a tool for mounting nearly any cloud service as a local file system
@@ -79,6 +66,8 @@ It also runs _apt install_ on packages listed in the _Aptfile_ like
 - [kubectl](https://kubernetes.io/docs/reference/kubectl/) tool
 - [Github](https://cli.github.com/) tools
 - [Google Antigravity](https://antigravity.google/) AI IDE
+
+<!-- -->
 
 ### `install_storage_tools`
 
@@ -157,12 +146,7 @@ configures [Podman](.//podman.md)
 
 ### `install_rust`
 
-uses [Rustup](https://rustup.rs/) to install the [Rust](https://rust-lang.org/) language.
-
-And adds [cargo-binstall](https://github.com/cargo-bins/cargo-binstall) tool for quick package installation. Because the standard _cargo install_ command downloads source code and compiles it on your machine, which can be slow. So to bypass this and install pre-compiled binaries, use the community-standard tools like cargo-binstall. This is the most popular method. it automatically searches for pre-compiled releases on GitHub or other registries. Usage: Replace `cargo install <package>` with `cargo binstall <package>`
-
-- 📖 [2024/11 Ben Brandt: A Better Cargo Install Workflow: How I manage to keep the tools I've installed with cargo up-to-date](https://benjaminbrandt.com/a-better-cargo-install-workflow/)
-- 📖 [2025/12 Sam Schlinkert: A curated list of command-line utilities written in Rust](https://github.com/sts10/rust-command-line-utilities)
+installs [Rust](./rust.md)
 
 ### `install_java`
 
