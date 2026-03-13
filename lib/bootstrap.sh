@@ -369,8 +369,10 @@ configure_flatpak() {
     # Functional Test: Flatseal, docs https://github.com/tchx84/Flatseal/blob/master/DOCUMENTATION.md
     # Install Flatseal
     flatpak install -y flathub com.github.tchx84.Flatseal
-    # Run Flatseal
-    # GSK_RENDERER=cairo LIBGL_ALWAYS_SOFTWARE=1 GTK_IM_MODULE=ibus flatpak run com.github.tchx84.Flatseal
+    # Run Flatseal with tmux, delayed 10 seconds
+    tmux new-session -d -s background_task \
+        'sleep 10 && GSK_RENDERER=cairo LIBGL_ALWAYS_SOFTWARE=1 GTK_IM_MODULE=ibus flatpak run com.github.tchx84.Flatseal > /dev/null 2>&1'
+
     # ---
     # Functional Test: Bazaar
     # Install Bazaar
