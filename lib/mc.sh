@@ -20,7 +20,7 @@ _install_minio_client_from_binary() {
         return 1
     fi
 
-    echo "Attempting to install last available MinIO Client binary using eget..."
+    echo "Attempting to install last available MinIO Client binary using eget"
     mkdir -p "$BIN_DIR"
     # eget automatically handles architecture detection, download, and checksum verification.
     if eget minio/mc --to "$BIN_DIR/mc"; then
@@ -36,47 +36,43 @@ _install_minio_client_from_binary() {
 # Private Function to build and install the latest MinIO Client (mc) from source.
 _install_minio_client_from_source() {
     if ! command -v go &> /dev/null; then
-        echo "Go compiler not found. Cannot build 'mc' from source."
+        echo "Go compiler not found; cannot build 'mc' from source"
         return 1
     fi
 
-    echo "Building latest MinIO Client (mc) from source..."
+    echo
+    echo "MinIO Client (mc): building latest from source"
+
     local TMP_DIR=$(mktemp -d)
-    if [ -z "$TMP_DIR" ]; then
-        echo "❌ Error: Failed to create temporary directory."
-        return 1
-    fi
-
     # Ensure cleanup happens on exit or error
     trap 'rm -rf "$TMP_DIR"' RETURN
 
-    echo "Cloning minio/mc repository..."
+    echo "cloning repository"
     if ! git clone --depth 1 https://github.com/minio/mc.git "$TMP_DIR"; then
-        echo "❌ Error: Failed to clone the repository."
+        echo "❌ Error: Failed to clone the repository"
         return 1
     fi
 
-    local repo_size=$(du -sh "$TMP_DIR" | cut -f1)
+    local repo_size=$(du -sk "$TMP_DIR" | cut -f1)
     local file_count=$(find "$TMP_DIR" -type f | wc -l)
-    echo "📦 Source code size: $repo_size ($file_count files)."
-    echo "⏳ Compiling... (This typically takes 1-3 minutes on most systems)"
-
+    echo "📦 minio/mc source size: ${repo_size}KB ($file_count files)"
+    echo "⏳ Compiling for a few minutes..."
+    # Code block
     (
         cd "$TMP_DIR" || return 1
-        if go build -o "$BIN_DIR/mc"; then
-            echo "🎉 Success! MinIO Client built from source and installed."
-            "$BIN_DIR/mc" --version
-        else
-            echo "❌ Error: Go build failed."
+        if ! go build -o "$BIN_DIR/mc"; then
+            echo "❌ Error: the Go build failed"
             return 1
         fi
     )
+    echo "🎉 installed"
+    "$BIN_DIR/mc" --version
 }
 
 # Public Function to install MinIO Client (mc).
 # It first tries to build from source, and falls back to downloading the last binary.
 install_minio_client() {
-    echo "Installing/Updating MinIO Client (mc)..."
+    echo "Installing/Updating MinIO Client (mc)"
     mkdir -p "$BIN_DIR"
 
     _install_minio_client_from_source || {
