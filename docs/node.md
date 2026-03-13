@@ -1,12 +1,12 @@
 # Node
 
-[Node is installed via Mise.](https://mise.jdx.dev/lang/node.html)
+[Node.js](https://nodejs.org/docs/latest/api/documentation.html) is an open-source, cross-platform JavaScript runtime environment that allows developers to execute JavaScript code outside of a web browser. Built on Google's [V8](https://v8.dev/) engine, it enables the use of JavaScript for server-side scripting to build fast and scalable network applications. Its core strength lies in its asynchronous, event-driven architecture, which uses a single-threaded event loop to handle thousands of concurrent connections without blocking execution.
 
-For the [Typescript](https://www.typescriptlang.org/docs/) & [JS](https://developer.mozilla.org/en-US/docs/Web/JavaScript) languages
+[Typescript](https://www.typescriptlang.org/docs/)
+is a strongly typed superset of [JavaScript](https://developer.mozilla.org/en-US/docs/Web/JavaScript) developed and maintained by Microsoft. It builds upon JavaScript by adding **static types**, which act as a safety net to catch errors early during development rather than at runtime. Because it is a superset, any valid JavaScript code is also valid TypeScript code. However, browsers cannot run TypeScript directly; it must be transpiled (converted) into plain JavaScript before execution.
 
-## NPM
-
-[npm](https://www.npmjs.com/) (Node Package Manager) is the default package manager for the Node runtime environment.
+- [Node is installed via Mise.](https://mise.jdx.dev/lang/node.html)
+- [npm](https://www.npmjs.com/) (Node Package Manager) is the default package manager for the Node runtime environment
 
 ## Applications
 
