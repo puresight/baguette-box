@@ -1,6 +1,6 @@
 # Java
 
-Java is a high-level, object-oriented programming language and computing platform first released by Sun Microsystems in 1995. It is designed with the core philosophy of "Write Once, Run Anywhere," meaning that code compiled on one platform can run on any other device that has a Java Virtual Machine (JVM) installed. Java code is not compiled into machine-specific code but into an intermediate format called bytecode. The JVM then translates this bytecode for the specific operating system (Windows, Linux, macOS).
+[Java](https://dev.java/) is a high-level, object-oriented programming language and computing platform first released by Sun Microsystems in 1995. It is designed with the core philosophy of "Write Once, Run Anywhere," meaning that code compiled on one platform can run on any other device that has a Java Virtual Machine (JVM) installed. Java code is not compiled into machine-specific code but into an intermediate format called bytecode. The JVM then translates this bytecode for the specific operating system (Windows, Linux, macOS).
 
 It is an object-oriented programming (OOP) language, organizing software design around "objects" rather than just functions, making it "easier" to create modular and reusable code. Java includes features like **garbage collection** (automatic memory management) and a secure execution environment that protects against unauthorized code or viruses.
 
