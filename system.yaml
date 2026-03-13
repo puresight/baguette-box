@@ -36,8 +36,6 @@ tasks:
     arguments:
       - zsh
 
-  - task: configure_flatpak
-
   - task: configure_podman
     enabled: false
 
@@ -76,3 +74,5 @@ tasks:
   - task: display_environment
 
   - task: display_versions
+
+  - task: configure_flatpak
