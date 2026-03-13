@@ -351,30 +351,39 @@ install_storage_tools() {
 }
 
 # Function
+#   TODO 2026/3 Bazaar app failed tests
 configure_flatpak() {
     local remote_name="${1:-flathub}"
     local remote_url="${2:-'https://flathub.org/repo/flathub.flatpakrepo'}"
+    local app_id="${3:-com.github.tchx84.Flatseal}"
+    local delay_seconds=5
+    local level="user" # not "system"
+    local chromeos_vars=GSK_RENDERER=cairo LIBGL_ALWAYS_SOFTWARE=1 GTK_IM_MODULE=ibus
+
     flatpak --version
 
     # -- Add remotes --
-    # sudo flatpak remote-add --if-not-exists $remote_name $remote_url
-    flatpak remote-add --user --if-not-exists $remote_name $remote_url
+    # sudo flatpak remote-add --$level --if-not-exists $remote_name $remote_url
+    flatpak remote-add --$level --if-not-exists $remote_name $remote_url
     flatpak remotes
 
     # -- Update metadata --
     # Note: Flatpak needs to pull the latest metadata (AppStream data). In Crostini, this can sometimes hang if done through the GUI, so it's best to trigger it manually first.
     # sudo flatpak update --appstream
-    flatpak update --user --appstream
+    flatpak update --$level --appstream
 
     # Functional Test: Flatseal, docs https://github.com/tchx84/Flatseal/blob/master/DOCUMENTATION.md
     # Install Flatseal
-    flatpak install -y flathub com.github.tchx84.Flatseal
-    # Run Flatseal with tmux, delayed 10 seconds
+    flatpak install --$level -y --noninteractive $remote_name $app_id
+
+    # Run Flatseal with tmux
+    echo "Expect $app_id to open in $delay_seconds seconds"
     tmux new-session -d -s background_task \
-        'sleep 10 && GSK_RENDERER=cairo LIBGL_ALWAYS_SOFTWARE=1 GTK_IM_MODULE=ibus flatpak run com.github.tchx84.Flatseal > /dev/null 2>&1'
+        "sleep $delay_seconds && $chromeos_vars flatpak run $app_id > /dev/null 2>&1"
+    tmux ls
 
     # ---
-    # Functional Test: Bazaar
+    # Functional Test: Bazaar failed.
     # Install Bazaar
     # flatpak install -y --user io.github.kolunmi.Bazaar
     # flatpak override --user io.github.kolunmi.Bazaar --talk-name=org.freedesktop.Flatpak
