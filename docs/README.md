@@ -2,9 +2,9 @@ _This is beta quality code so backup before using, read the docs, and scan the s
 
 To maintain workstation integrity, only install code from reputable & verified authors that regularly address issues with code updates.
 
-## Ways to Run
+## How to Run
 
-1. **Minimal config for Ansible:** Install the latest uv, python, & [ansible](https://pypi.org/project/ansible/)  
+1. **Minimal config for Ansible:** (Optional) Install the latest uv, python, & [ansible](https://pypi.org/project/ansible/)  
    Run `./box.sh minimal.yaml --install`  
    Restart your shell: `exit` and reopen the terminal tab.
 
@@ -72,13 +72,13 @@ While the full understanding of each is found in inspecting the bash source of t
 ### `install_storage_tools`
 
 installs utilities such as
-[MinIO Client](https://github.com/minio/mc) `mc` a tool for managing files on Amazon S3-compatible cloud storage.
+[MinIO Client](./docs/mc.md) (`mc`), a tool for managing files on S3-compatible cloud storage.
 
 ### `install_uv`
 
-installs [UV](.//uv.md),
-the unified tool for the Python ecosystem.
-And [Python](https://www.python.org/).
+installs [UV](.//uv.md)
+(the unified tool for the Python ecosystem)
+and Python.
 
 ### `install_using_uv_with_executables_from`
 
@@ -105,11 +105,11 @@ reads the `mise.toml` file in the root of the repository to install the specifie
 
 ### `install_rails`
 
-using [RubyGems](https://guides.rubygems.org/command-reference/), installs [Rails](https://guides.rubyonrails.org/getting_started.html).
+installs the Rails framework using [Ruby](./ruby.md)
 
 ### `install_jekyll`
 
-installs [Jekyll](https://jekyllrb.com/), the first [static site generator](https://jamstack.org/generators/) used by GitHub Pages.
+installs Jekyll using [Ruby](./ruby.md)
 
 ### `install_goose`
 
@@ -117,15 +117,11 @@ installs Block's [Goose](https://block.github.io/goose/docs/category/guides) AI 
 
 ### `install_dotnet`
 
-installs a Microsoft [.NET](https://dotnet.microsoft.com/) SDK release e.g.
-[10](https://learn.microsoft.com/en-us/dotnet/core/whats-new/dotnet-10/overview).
-And installs the [Powershell](https://learn.microsoft.com/en-us/powershell/) shell.
+installs [.NET](./dotnet.md)
 
 ### `install_font`
 
-installs a [Nerd Font](https://www.nerdfonts.com/font-downloads)
-on the system, e.g. JetBrainsMono v3.3.0;
-it neither updates nor remove fonts.
+installs a [font](./fonts.md) needed by Posh
 
 ### `configure_shell`
 

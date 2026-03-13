@@ -42,7 +42,7 @@ CLI
 - [Zsh](https://zsh.sourceforge.io/) & [pwsh](https://learn.microsoft.com/en-us/powershell/) shells
 - [Oh My Posh](https://ohmyposh.dev/) prompt _with_ [nerd fonts](https://www.nerdfonts.com/font-downloads)
 - [AWS](https://docs.aws.amazon.com/cli/), [Azure](https://learn.microsoft.com/en-us/powershell/azure/), [Google](https://cloud.google.com/cli), [kubectl](https://kubernetes.io/docs/reference/kubectl/) cloud tools
-- [MinIO Client](https://github.com/minio/mc), [Rclone](.//rclone.md) storage utilities
+- [MinIO Client](./docs/mc.md), [Rclone](./docs/rclone.md) storage utilities
 - [Postgres](https://www.postgresql.org/docs/current/reference-client.html), [MySQL](https://mariadb.com/docs/server/clients-and-utilities/mariadb-client), [Redis](https://redis.io/docs/latest/develop/tools/), [SQLite](https://www.sqlite.org/) database clients
 
 ## Plan
@@ -57,11 +57,11 @@ Note: You have powerful tools to help you. It is best to not frontload more soft
 
 Next, prepare your new system
 
-- On [ChromeOS](./docs/chromeos.md), set a password
-  - `sudo passwd $USER`
 - On Linux: Update, upgrade, and get git
   - `sudo apt update && sudo apt upgrade -y`
   - `sudo apt install git`
+- On [ChromeOS](./docs/chromeos.md), set a password
+  - `sudo passwd $USER`
 - For git, do your [First Time Setup](https://git-scm.com/book/ms/v2/Getting-Started-First-Time-Git-Setup) e.g.
   - `git config --global user.name "Jane Doe"`
   - `git config --global user.email "janedoe@example.com"`
@@ -73,7 +73,7 @@ Next, prepare your new system
 
 Finally, browse the [`docs/README.md`](./docs/README.md) and&hellip;
 
-1. **Minimal configuration for Ansible:** Install the latest uv, python, & ansible  
+1. **Minimal configuration for Ansible:** (Optional) Install the latest uv, python, & ansible  
    Run `./box.sh minimal.yaml --install`  
    Restart your shell: `exit` and reopen the terminal tab.
 
@@ -84,7 +84,7 @@ Finally, browse the [`docs/README.md`](./docs/README.md) and&hellip;
 1. **Code:** Install VS Code with settings and extensions  
    Run `./box.sh code.yaml --install`
 
-The workstation will be ready in a couple of minutes.
+The workstation will be ready in a minute.
 
 <!-- --
 Stay in touch to let us know about bugs & improvements.
