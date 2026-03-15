@@ -7,10 +7,12 @@
 
 # --- load library code ---
 source "$SCRIPTROOT/lib/platforms.sh" || { echo "❌ Error: lib/platforms.sh not found."; exit 1; }
-source "$SCRIPTROOT/lib/apt.sh"
-source "$SCRIPTROOT/lib/fonts.sh"
-source "$SCRIPTROOT/lib/java.sh"
-source "$SCRIPTROOT/lib/mc.sh"
+source "$SCRIPTROOT/lib/apt.sh"     # Debian APT fiunction(s)
+source "$SCRIPTROOT/lib/fonts.sh"   # Nerd Font installation fiunction(s)
+source "$SCRIPTROOT/lib/java.sh"    # OpenJDK install fiunction(s)
+source "$SCRIPTROOT/lib/mc.sh"      # Minio Client install fiunction(s)
+source "$SCRIPTROOT/lib/flatpak.sh" # Flatpak install fiunction(s)
+source "$SCRIPTROOT/lib/json.sh"    # for VS Code configuring fiunction(s)
 
 # Function to display help information
 print_help() {
@@ -351,53 +353,9 @@ install_storage_tools() {
 }
 
 # Function
-#   TODO 2026/3 Bazaar app failed tests
 configure_flatpak() {
-    local remote_name="${1:-flathub}"
-    local remote_url="${2:-'https://dl.flathub.org/repo/flathub.flatpakrepo'}"
-    local app_id="${3:-com.github.tchx84.Flatseal}"
-    local delay_seconds=5
-    local level="user" # not "system"
-    local chromeos_vars=GSK_RENDERER=cairo LIBGL_ALWAYS_SOFTWARE=1 GTK_IM_MODULE=ibus
-
-    flatpak --version
-
-    # On some systems, particularly Crostini on Chromebooks, the flatpak cache or
-    # installation can become corrupted. This can lead to GPG and ref errors.
-    # As a last resort, we perform a "scorched earth" removal of the entire user
-    # flatpak directory to ensure a completely fresh start. This will remove all
-    # user-installed Flatpak apps and remotes.
-    echo "Performing 'scorched earth' reset of Flatpak user data..."
-    rm -rf ~/.cache/flatpak
-    rm -rf ~/.local/share/flatpak
-
-    echo "Adding Flatpak remote '$remote_name'..."
-    flatpak remote-add --$level --if-not-exists "$remote_name" "$remote_url"
-    flatpak remotes
-
-    # -- Update metadata --
-    # Note: Flatpak needs to pull the latest metadata (AppStream data). In Crostini, this can sometimes hang if done through the GUI, so it's best to trigger it manually first.
-    # sudo flatpak update --appstream
-    flatpak update --$level --appstream
-
-    # Functional Test: Flatseal, docs https://github.com/tchx84/Flatseal/blob/master/DOCUMENTATION.md
-    # Install Flatseal
-    flatpak install --$level -y --noninteractive $remote_name $app_id
-
-    # Run Flatseal with tmux
-    echo "Expect $app_id to open in $delay_seconds seconds"
-    tmux new-session -d -s background_task \
-        "sleep $delay_seconds && $chromeos_vars flatpak run $app_id > /dev/null 2>&1"
-    tmux ls
-
-    # ---
-    # Functional Test: Bazaar failed.
-    # Install Bazaar
-    # flatpak install -y --user io.github.kolunmi.Bazaar
-    # flatpak override --user io.github.kolunmi.Bazaar --talk-name=org.freedesktop.Flatpak
-    # flatpak override --user io.github.kolunmi.Bazaar --filesystem=/var/lib/flatpak:ro
-    # Run Bazaar
-    # GSK_RENDERER=cairo LIBGL_ALWAYS_SOFTWARE=1 GTK_IM_MODULE=ibus flatpak run io.github.kolunmi.Bazaar
+    echo "sorry: flatpak is disabled for troubleshooting."
+    # _configure_flatpak
 }
 
 # Function
@@ -460,6 +418,91 @@ install_homebrew() {
 brew_bundle() {
     local apt_file="$1"
     brew bundle --file="./$1"
+}
+
+# Private function to handle VS Code installation/update on Debian.
+# It prevents interactive prompts and cleans up redundant repository files.
+_install_vscode_debian() {
+    # Use DEBIAN_FRONTEND=noninteractive to prevent interactive prompts from the package installer,
+    # which may try to add its own repository file.
+    sudo DEBIAN_FRONTEND=noninteractive apt install -y code
+    # This project manages sources via DEB822 files, so remove the legacy .list file if VS Code created it.
+    sudo rm -f /etc/apt/sources.list.d/vscode.list
+}
+
+# Function to install VS Code
+install_code() {
+    local repo_path="$(cd -- "$(dirname -- "${BASH_SOURCE:-$0}")" && cd .. && pwd)"
+    local vscode_argv="$repo_path/$1"
+
+    if ! command -v code &> /dev/null; then
+        echo "Installing VS Code..."
+        if [ "$PLATFORM" == "debian" ]; then
+            _install_vscode_debian
+        elif [ "$PLATFORM" == "macos" ]; then
+            brew install --cask visual-studio-code
+        else
+            echo "Unsupported platform $PLATFORM"
+        fi
+
+        echo "Configuring VS Code runtime arguments (argv.json)..."
+        if [ -n "$argv_json" ]; then
+            mkdir -p ~/.vscode
+            local argv_json="$HOME/.vscode/argv.json"
+            UPDATE_JSON $vscode_argv $argv_json
+            if [ $? -ne 0 ]; then
+                echo "❌ Error: Update failed!" >&2
+                return 1
+            fi
+        fi
+    else
+        echo "VS Code is already installed. Checking for updates..."
+        if [ "$PLATFORM" == "debian" ]; then
+            _install_vscode_debian
+        elif [ "$PLATFORM" == "macos" ]; then
+            brew upgrade --cask visual-studio-code
+        fi
+        echo "VS Code: $(code --version)"
+    fi
+}
+
+# Function to install VS Code extensions
+install_code_extensions() {
+    local ext_file="$1"
+
+    if [ -f $ext_file ]; then
+        while IFS= read -r extension || [ -n "$extension" ]; do
+            # Ignore comments and empty lines
+            [[ "$extension" =~ ^#.*$ ]] && continue
+            [[ -z "$extension" ]] && continue
+            echo "Installing extension: $extension"
+            code --install-extension "$extension"
+        done < "$ext_file"
+    else
+        echo "❌ Error: $ext_file file not found! skipping extension installation." >&2
+    fi
+}
+
+# Function to configure VS Code settings
+configure_code() {
+    local repo_path="$(cd -- "$(dirname -- "${BASH_SOURCE:-$0}")" && cd .. && pwd)"
+    local vscode_user_settings="$repo_path/$1"
+
+    if [ "$PLATFORM" == "debian" ]; then
+        TARGET_JSON="$HOME/.config/Code/User/settings.json"
+    elif [ "$PLATFORM" == "macos" ]; then
+        TARGET_JSON="$HOME/Library/Application Support/Code/User/settings.json"
+    fi
+    if [ -n "$TARGET_JSON" ]; then
+        mkdir -p "$(dirname "$TARGET_JSON")"
+        UPDATE_JSON $vscode_user_settings $TARGET_JSON
+        if [ $? -ne 0 ]; then
+            echo "Settings update failed."
+            exit 1
+        fi
+    else
+        echo "Warning: the VSCode user settings file not found! skipping configuration." >&2
+    fi
 }
 
 # Function to display environment information

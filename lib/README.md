@@ -2,8 +2,7 @@
 
 This is a directory of library shell scripts that are sourced by main shell scripts.
 
-- `lib/bootstrap.sh` are the functions of the main script for bootstrapping the system;
-- `lib/ide.sh` has the functions of the main script for Code setup.
+- `lib/index.sh` are the functions of the tasks
 
 &mdash;
 
@@ -12,3 +11,5 @@ This is a directory of library shell scripts that are sourced by main shell scri
 - `lib/java.sh` has function INSTALL\*MS_OPENJDK for installing OpenJDK's, the first of which shall be active.
 - `lib/json.sh` has function to perform a shallow merge that updates a VS Code settings file with keys/values from a file in this repository. Unfortunately, the cost of this functionality is loss of JSON comments in the files.
 - `lib/platforms.sh` sets vars identifying the platform. If unsupported, exits with a message to stderr saying so.
+
+&hellip;

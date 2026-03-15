@@ -33,11 +33,10 @@ This plan folder contains the specs & plans for this repository. Baguette Box ("
 - Configurable
   - YAML is the primary syntax for configuration
     - Example: `./system.yaml`
-    - Tasks are functions sourced into box.sh from the ./lib directory, chiefly from bootstrap.sh or code.sh
+    - Tasks are functions sourced into box.sh from the ./lib directory, chiefly from index.sh
 
 ### Flow of control
 
 - `box.sh` is the only entry point; it is configured with yaml files; the only mode it currently supports is install.
 - `lib` directory has the library of supporting code
-  - lib/bootstrap.sh has most functions for the system install tasks
-  - lib/code.sh has functions for the VS code install tasks
+  - lib/index.sh has the functions for all tasks
