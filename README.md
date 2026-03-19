@@ -31,7 +31,7 @@ Languages
 Agentic AI & pairing
 
 - [Google Antigravity](https://antigravity.google/) AI IDE
-- [Gemini Code Assist](https://marketplace.visualstudio.com/items?itemName=Google.geminicodeassist) AI and [Roo Code](https://roocode.com/) AI in [VS Code](https://code.visualstudio.com/) IDE
+- [Gemini Code Assist](https://marketplace.visualstudio.com/items?itemName=Google.geminicodeassist) AI and [Roo Code](https://roocode.com/) AI in [VS Code](./code/README.md) IDE
 - [Goose](https://block.github.io/goose/docs/category/guides) AI CLI
 
 CLI
@@ -70,15 +70,13 @@ Next, prepare your new system
 
 Finally, browse the [`docs/README.md`](./docs/README.md) and&hellip;
 
-1. **Minimal configuration for Ansible:** (Optional) Install the latest uv, python, & ansible  
+1. **For IT professionals using Ansible:** (Optional) Install the latest uv, python, & ansible  
    Run `./box.sh ansible.yaml --install`  
-   Restart your shell: `exit` and reopen the terminal tab.
 
 1. **Bootstrap your system:** Install your shell, core language runtimes, system-level fixes, etc  
    Run `./box.sh system.yaml --install`  
-   Restart your shell: `exit` and reopen the terminal tab.
 
-1. **Code:** Install VS Code with settings and extensions  
+1. **Code:** Install [VS Code](./code/README.md) with settings and extensions  
    Run `./box.sh code.yaml --install`
 
 The workstation will be ready in a minute.

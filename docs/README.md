@@ -4,9 +4,8 @@ To maintain workstation integrity, only install code from reputable & verified a
 
 ## How to Run
 
-1. **Minimal config for Ansible:** (Optional) Install the latest uv, python, & [ansible](https://pypi.org/project/ansible/)  
+1. **For IT professionals using Ansible:** (Optional) Install the latest uv, python, & [ansible](https://pypi.org/project/ansible/)  
    Run `./box.sh ansible.yaml --install`  
-   Restart your shell: `exit` and reopen the terminal tab.
 
 1. **Bootstrap your system:** Install your shell, core language runtimes, system-level fixes, etc  
    Run `./box.sh system.yaml --install`  
@@ -24,7 +23,7 @@ bugs or security vulnerabilities. It is always best to pick a
 package management system to help with the lifecycle of each program
 that you want on your machine. We use several including
 
-- [APT](https://wiki.debian.org/AptCLI) is Debian's Advanced Package Tool
+- [APT](./apt/README.md) is Debian's Advanced Package Tool
 - [Flatpak](./flatpak.md) is the preferred method for installing GUI apps
 - [Homebrew](http://docs.brew.sh/Homebrew-on-Linux)
 - [Mise](https://mise.jdx.dev/) for Node, Go
@@ -168,13 +167,14 @@ especially languages or their package managers.
 
 ### `install_code`
 
-installs and configures Microsoft VS [Code](https://code.visualstudio.com/)
-and configures Code with updates for its _argv.json_ settings file.
+installs and configures [Code](../code/README.md)
+with updates for its _argv.json_ settings file.
 
 ### `install_code_extensions`
 
-installs the [extensions](https://marketplace.visualstudio.com/vscode)
-of Code listed in the [`code/code.dep`](../code/code.dep)
+installs the extensions
+of [Code](../code/README.md) listed in the
+[`code/code.dep`](../code/code.dep) file.
 
 _To maintain workstation integrity, only install extensions from reputable & verified authors that regularly address issues with code updates._
 

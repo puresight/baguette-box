@@ -1,8 +1,14 @@
 # APT
 
+[APT](https://wiki.debian.org/AptCLI) is Debian's Advanced Package Tool.
+
+This folder contains the `apt.dep` file.
+It lists (with comments) APT dependencies to install on the system.
+
+## APT Sources
+
 Task `install_apt_packages`
-connects [APT](https://wiki.debian.org/AptCLI)
-using [DEB822](https://repolib.readthedocs.io/en/latest/deb822-format.html)
+connects APT using [DEB822](https://repolib.readthedocs.io/en/latest/deb822-format.html)
 to the repository [sources](https://wiki.debian.org/SourcesList)
 contained in this directory.
 
@@ -13,8 +19,6 @@ And when the system is installing APT repository sources, these templates are pr
 [gomplate](https://docs.gomplate.ca/) to generate new
 [Debian](https://manpages.debian.org/stable/dpkg-dev/deb822.5.en.html) style
 `.sources` files for your machine's `/etc/apt/sources.list.d/` directory.
-
-After the APT repo sources are ready, then it installs packages in the `apt.dep` file: which is merely a list of the APT dependencies to install (with comments).
 
 ## How that happens
 
