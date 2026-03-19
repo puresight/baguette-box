@@ -1,6 +1,6 @@
 # Specs
 
-This `doc/specs` folder contains the specs & plans for this repository. Baguette Box ("box") is full automation for setting up (and maintaining) a new dev workstation. See also `./README.md` and `./docs/README.md`.
+This `doc/specs` folder contains the specs & plans for this repository. Baguette Box ("box") is full automation for setting up (and maintaining) a new dev workstation. See also its `./README.md` and `../README.md`.
 
 ## Values & Approach
 
@@ -8,6 +8,7 @@ This `doc/specs` folder contains the specs & plans for this repository. Baguette
 - Aiming towards stateless workstations
 - provide most of what a Cloud native, AI augmented, polyglot developer will need or want on the job
 - facilitate last mile customization with ./docs/ markdown guidance
+- Reproducible (no snowflakes)
 - Idempotent
 - Extensibile
 - Configurable

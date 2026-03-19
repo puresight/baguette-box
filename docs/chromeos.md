@@ -1,6 +1,6 @@
 # ChromeOS
 
-## Getting Started
+## Get Started
 
 Crostini is the official, first-party environment that enables Linux application support on [ChromeOS](https://chromeos.dev/en/linux) without requiring users to compromise their device's security by enabling Developer Mode. It functions through a highly secure "defense in depth" architecture that runs a Debian-based Linux container inside a specialized, sandboxed virtual machine (VM) called Termina. This setup allows you to run a wide range of Linux-only command-line tools, code editors, and graphical IDEs that integrate seamlessly with the standard ChromeOS desktop, appearing in the app launcher and sharing files through the native Files app. Crostini provides the flexibility of a Linux workstation while maintaining the speed and security of a standard Chromebook.
 
@@ -56,7 +56,7 @@ If you want to run Podman in rootless mode on [Crostini](https://www.chromium.or
 - **Nesting:** Crostini is already a container (LXC). By default, ChromeOS does not allow a container to start another container inside itself for security reasons. You’ll see errors like `mount: /proc: permission denied` or `failed to mount sysfs`. The fix is to enable _Nested Containers_ from the Crosh terminal.
 - **Storage Driver:** Podman usually uses `overlay` to stack file layers. However, the way Crostini mounts its file system often prevents `overlay` from working inside the unprivileged container. You may see errors stating driver "overlay" is not supported. So you typically need to force Podman to use `fuse-overlayfs` or `vfs`.
 
-## ChromeOS Launcher Integration
+## Desktop Launcher Integration
 
 How to add Linux app executables to your ChromeOS Launcher: to make applications appear in your Chromebook App Launcher alongside your other apps, you can create a `.desktop` shortcut file.
 In a text editor, create the file: `~/.local/share/applications/MyAppName.desktop`

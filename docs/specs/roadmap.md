@@ -1,12 +1,14 @@
 # Roadmap
 
-The roadmap describes plans for the future of this repository, usually from a high level, concisely mentioning ideas for improvement. Often, things here need further human-centered design (HCD) "double-diamond" spec work like ideation, planning, research, design, defining requirements, and task breakdown.
+This roadmap describes plans for the future of this repository, usually from a high level, concisely mentioning ideas for improvement.
+
+Often, things here need further HCD Design Thinking work, first discursive and then convergent; activities like ideation, planning, research, design, requirements analysis, and breakdown into right-sized stories and tasks.
 
 ## Major initiatives
 
-- Start Just migration per `docs/specs/just-migration.md`
-- Revise the docs page for [databases](./databases.md)
-- Write a quick docs page for VS Code extensions: Google Code Assist and Roo Code
+- Start _Just_ migration per `./docs/specs/just-migration.md`
+- Revise the `docs` page for [databases](./databases.md)
+- Write a quick docs page for VS Code extensions: _Google Code Assist_ and _Roo Code_
 - Add install of [ngrok] or alternative for exposing local ports on Internet
 - Enhance cross-platform support
   - architecture improvement for cross-platform support

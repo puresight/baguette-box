@@ -39,8 +39,7 @@ ms-python.python
 charliermarsh.ruff
 # Ruff - Python linter and formatter <https://marketplace.visualstudio.com/items?itemName=charliermarsh.ruff>
 shopify.ruby-lsp
-# Ruby LSP (Shopify) provides high-performance IntelliSense, "Go to Definition," and semantic highlighting without requiring heavy type annotations https://github.com/Shopify/vscode-shopify-ruby
-# ^includes the Rails LSP that enhances the Ruby LSP functionality with Rails-specific features like improved code navigation, document symbols for Rails-specific elements, and runtime introspection capabilities https://shopify.github.io/ruby-lsp/rails-add-on.html
+# Ruby LSP (Shopify) provides high-performance IntelliSense, "Go to Definition," and semantic highlighting without requiring heavy type annotations. Includes the Rails LSP that enhances the Ruby LSP functionality with Rails-specific features like improved code navigation, document symbols for Rails-specific elements, and runtime introspection capabilities https://github.com/Shopify/vscode-shopify-ruby
 
 #%#%#%#%#%#%#%#%#%#%#%#%#%#%#%#%#%#%#%#%#%#%#%#%#%#%#%#%#%#%#%#%#%#%#%#%#%#%#%
 # --- Data Representation & Transformation ---
@@ -50,14 +49,14 @@ redhat.vscode-xml
 # XML - XML language support <https://marketplace.visualstudio.com/items?itemName=redhat.vscode-xml>
 redhat.vscode-yaml
 # YAML - YAML language support <https://marketplace.visualstudio.com/items?itemName=redhat.vscode-yaml>
-hilleer.yaml-plus-json
+# hilleer.yaml-plus-json
 # YAML Plus JSON - Enhanced YAML and JSON support <https://marketplace.visualstudio.com/items?itemName=hilleer.yaml-plus-json>
 
 #%#%#%#%#%#%#%#%#%#%#%#%#%#%#%#%#%#%#%#%#%#%#%#%#%#%#%#%#%#%#%#%#%#%#%#%#%#%#%
 # --- AI ---
 #%#%#%#%#%#%#%#%#%#%#%#%#%#%#%#%#%#%#%#%#%#%#%#%#%#%#%#%#%#%#%#%#%#%#%#%#%#%#%
 
-rooveterinaryinc.roo-cline
+# rooveterinaryinc.roo-cline
 # AI assistant <https://marketplace.visualstudio.com/items?itemName=rooveterinaryinc.roo-cline>
 Google.geminicodeassist
 # AI coding assistant <https://marketplace.visualstudio.com/items?itemName=Google.geminicodeassist>
@@ -66,7 +65,7 @@ Google.geminicodeassist
 # --- Clouds & Clusters ---
 #%#%#%#%#%#%#%#%#%#%#%#%#%#%#%#%#%#%#%#%#%#%#%#%#%#%#%#%#%#%#%#%#%#%#%#%#%#%#%
 
-ms-kubernetes-tools.vscode-kubernetes-tools
+# ms-kubernetes-tools.vscode-kubernetes-tools
 # Kubernetes - Kubernetes tools <https://marketplace.visualstudio.com/items?itemName=ms-kubernetes-tools.vscode-kubernetes-tools>
 ms-azuretools.vscode-containers
 # Docker - Docker tools <https://marketplace.visualstudio.com/items?itemName=ms-azuretools.vscode-containers>

@@ -31,8 +31,8 @@ Languages
 Agentic AI & pairing
 
 - [Google Antigravity](https://antigravity.google/) AI IDE
-- [Gemini Code Assist](https://marketplace.visualstudio.com/items?itemName=Google.geminicodeassist) AI and [Roo Code](https://roocode.com/) AI in [VS Code](./code/README.md) IDE
 - [Goose](https://block.github.io/goose/docs/category/guides) AI CLI
+- _Google Code Assist_ AI and _Roo Code_ AI in VS [Code](./code/README.md) IDE
 
 CLI
 
