@@ -26,10 +26,10 @@ that you want on your machine. We use several including
 - [APT](./apt/README.md) is Debian's Advanced Package Tool
 - [Flatpak](./flatpak.md) is the preferred method for installing GUI apps
 - [Homebrew](http://docs.brew.sh/Homebrew-on-Linux)
-- [Mise](https://mise.jdx.dev/) for Node, Go
+- [Mise](./mise.md) for Node, Go
 - [uv](./docs/uv.md) is a fast Python package manager
 - [npm](./docs/node.md) is the default Node package manager
-- [Rustup](https://rustup.rs/) for Rust
+- [Rustup](./rust.md) for Rust
 
 These tools are significant to the project:
 
