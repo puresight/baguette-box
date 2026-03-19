@@ -57,10 +57,6 @@ While the full understanding of each is found in inspecting the bash source of t
 
 - [Zsh](https://zsh.sourceforge.io/) shell
 - [Rclone](.//rclone.md) is a tool for mounting nearly any cloud service as a local file system
-- [SQLite 3 CLI](https://www.sqlite.org/) that allows you to manually run SQL queries, create tables, and manage database files
-- [PostgreSQL CLI](https://www.postgresql.org/docs/current/reference-client.html) has `psql`, `pgdump`, `createdb` clients for Postgres
-- [MariaDB CLI](https://mariadb.com/docs/server/clients-and-utilities/mariadb-client) shell for MySQL-compatible servers
-- [Redis CLI](https://redis.io/docs/latest/develop/tools/) tools for sending commands to the server
 - [aws CLI](https://docs.aws.amazon.com/cli/) ☁ tools
 - [gcloud CLI](https://cloud.google.com/cli) ☁ tools
 - [kubectl](https://kubernetes.io/docs/reference/kubectl/) tool
@@ -134,7 +130,8 @@ for the zsh and pwsh shells.
 
 ### `install_terminal_tools`
 
-installs [fzf](https://junegunn.github.io/fzf/) & [zoxide](https://zoxide.org/)
+installs [CLI tools](./cli-tools.md) like
+[fzf](https://junegunn.github.io/fzf/) & [zoxide](https://zoxide.org/)
 
 ### `configure_podman`
 

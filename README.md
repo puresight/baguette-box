@@ -1,9 +1,9 @@
 # Baguette Box &nbsp; 🥖🥖🥖
 
 sets up an AI-enabled developer environment on
-[Debian](https://www.debian.org/)-based,
+Debian-based,
 [ChromeOS](./docs/chromeos.md)
-[Linux](https://www.linuxfoundation.org/)
+Linux
 systems
 with tooling for coding, cloud, compute, cache, storage, and data management.
 
@@ -12,11 +12,8 @@ with tooling for coding, cloud, compute, cache, storage, and data management.
 [Mint](https://linuxmint.com/),
 [Pop!\_OS](https://system76.com/pop/),
 [Raspberry Pi](https://www.raspberrypi.com/software/#raspberry-pi-os)
-
 [Apple/Mac](https://www.apple.com/mac/) _future_
 [Microsoft/WSL2](https://learn.microsoft.com/en-us/windows/wsl/about) _future_
-⏱🏎🏍
-_From laptop purchase to vibe coding in an hour&hellip;_
 <!-- -->
 
 ## Tech Stack
@@ -34,7 +31,7 @@ Languages
 Agentic AI & pairing
 
 - [Google Antigravity](https://antigravity.google/) AI IDE
-- [Roo Code](https://roocode.com/) AI and [Gemini Code Assist](https://marketplace.visualstudio.com/items?itemName=Google.geminicodeassist) AI in [VS Code](https://code.visualstudio.com/) IDE
+- [Gemini Code Assist](https://marketplace.visualstudio.com/items?itemName=Google.geminicodeassist) AI and [Roo Code](https://roocode.com/) AI in [VS Code](https://code.visualstudio.com/) IDE
 - [Goose](https://block.github.io/goose/docs/category/guides) AI CLI
 
 CLI
@@ -42,8 +39,8 @@ CLI
 - [Zsh](https://zsh.sourceforge.io/) & [pwsh](https://learn.microsoft.com/en-us/powershell/) shells
 - [Oh My Posh](https://ohmyposh.dev/) prompt _with_ [nerd fonts](https://www.nerdfonts.com/font-downloads)
 - [AWS](https://docs.aws.amazon.com/cli/), [Azure](https://learn.microsoft.com/en-us/powershell/azure/), [Google](https://cloud.google.com/cli), [kubectl](https://kubernetes.io/docs/reference/kubectl/) cloud tools
-- [MinIO Client](./docs/mc.md), [Rclone](./docs/rclone.md) storage utilities
-- [Postgres](https://www.postgresql.org/docs/current/reference-client.html), [MySQL](https://mariadb.com/docs/server/clients-and-utilities/mariadb-client), [Redis](https://redis.io/docs/latest/develop/tools/), [SQLite](https://www.sqlite.org/) database clients
+- [MinIO Client](./docs/mc.md), [Rclone](./docs/rclone.md) storage utils
+- [Postgres](https://www.postgresql.org/docs/current/reference-client.html), [MariaDB](https://mariadb.com/docs/server/clients-and-utilities/mariadb-client/mariadb-command-line-client), [Redis](https://redis.io/docs/latest/develop/tools/), [SQLite](https://www.sqlite.org/) database clients
 
 ## Plan
 

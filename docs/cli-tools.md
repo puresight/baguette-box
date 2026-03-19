@@ -1,0 +1,13 @@
+# CLI tools
+
+Elevating the Command Line Experience
+
+Modern terminal workflows have evolved significantly from the standard Bourne-again shell defaults. For developers transitioning to a CLI-centric workflow, the goal is to reduce cognitive load and keystroke counts by implementing tools that handle "fuzzy" logic and memory. Tools like `fzf` and `zoxide` serve as the backbone of this philosophy, transforming the terminal from a static environment into a dynamic, searchable interface that anticipates user intent rather than requiring absolute precision.
+
+`fzf` (Fuzzy Finder) is a general-purpose command-line filter that allows you to search through lists interactively. Unlike standard search tools that require exact matches, [fzf](https://github.com/junegunn/fzf) uses a fuzzy matching algorithm, meaning you can type a few scattered characters to find a deep file path or a long command from your history. It acts as a wrapper for other commands, providing a real-time visual interface to sift through files, processes, or hostnames, making it an indispensable "glue" tool for any terminal enthusiast.
+
+`zoxide` is a smarter version of the traditional `cd` command, inspired by tools like `z` and `autojump`. It tracks the directories you visit most frequently and allows you to jump to them using only a fragment of the name. By maintaining a database of "frecency" (frequency + recency), [zoxide](https://github.com/ajeetdsouza/zoxide) eliminates the need to manually navigate complex directory trees. Instead of typing `cd ~/projects/client-alpha/src/components`, you can simply type `z comp` and let the tool handle the resolution.
+
+When used together, `fzf` and `zoxide` create a seamless navigation powerhouse. Most users configure `zoxide` to use `fzf` as its interactive selection back-end. For example, if you type a query that matches multiple directories, `zoxide` can trigger an `fzf` window to let you visually pick the correct destination. This synergy ensures that even if your "jump" query is ambiguous, you are never more than a couple of keystrokes away from your intended workspace, effectively merging rapid jumping with interactive filtering.
+
+To apply these tools effectively, start by aliasing `z` to `cd` in your shell configuration to build the habit of smart navigation. For `fzf`, the most immediate value comes from enabling its shell integrations, which allow you to use `CTRL-R` to fuzzy-search your command history or `CTRL-T` to quickly find and paste file paths into your current command. As you grow more comfortable, you can integrate them into your editor (like Neovim) or use them to create custom scripts for switching between git branches or managing Docker containers with minimal friction.
