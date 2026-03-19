@@ -1,6 +1,6 @@
-# Plan
+# Specs
 
-This plan folder contains the specs & plans for this repository. Baguette Box ("box") is full automation for setting up (and maintaining) a new dev workstation. See also `./README.md` and `./docs/README.md`.
+This `doc/specs` folder contains the specs & plans for this repository. Baguette Box ("box") is full automation for setting up (and maintaining) a new dev workstation. See also `./README.md` and `./docs/README.md`.
 
 ## Values & Approach
 
@@ -13,7 +13,7 @@ This plan folder contains the specs & plans for this repository. Baguette Box ("
 - Configurable
 - Reasonably Secure
 
-## Specs
+## Guidance
 
 - Shells
   - bash is the primary shell language

@@ -1,8 +1,8 @@
-# lib
+# Scripts
 
-This is a directory of library shell scripts that are sourced by main shell scripts.
+This is a directory of the scripts that implement the recipes of this repository.
 
-- `scripts/index.sh` are the functions of the tasks
+- `scripts/index.sh` holds the main functions
 
 &mdash;
 
