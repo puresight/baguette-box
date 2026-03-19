@@ -1,4 +1,4 @@
-# `apt_sources`
+# APT
 
 Task `install_apt_packages`
 connects [APT](https://wiki.debian.org/AptCLI)
@@ -13,6 +13,8 @@ And when the system is installing APT repository sources, these templates are pr
 [gomplate](https://docs.gomplate.ca/) to generate new
 [Debian](https://manpages.debian.org/stable/dpkg-dev/deb822.5.en.html) style
 `.sources` files for your machine's `/etc/apt/sources.list.d/` directory.
+
+After the APT repo sources are ready, then it installs packages in the `apt.dep` file: which is merely a list of the APT dependencies to install (with comments).
 
 ## How that happens
 

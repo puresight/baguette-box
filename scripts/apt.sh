@@ -46,7 +46,7 @@ _install_gpg_key() {
 
 # Function to add APT sources from gomplate templates
 add_apt_sources() {
-    local templates_dir="$SCRIPTROOT/apt_sources"
+    local templates_dir="$SCRIPTROOT/apt"
     local keyring_dir="/etc/apt/keyrings"
     local apt_sources_dest="/etc/apt/sources.list.d"
 

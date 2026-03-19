@@ -1,13 +1,13 @@
 tasks:
   - task: install_code
     arguments:
-      - code-update/argv.json
+      - code/argv.json
 
   - task: install_code_extensions
     arguments:
-      - Codefile
+      - code/code.dep
 
   - task: configure_code
     arguments:
-      - code-update/user-settings.json
+      - code/user-settings.json
     enabled: true

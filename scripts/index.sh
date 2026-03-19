@@ -37,7 +37,7 @@ EOF
 
 # Function to handle APT package installation
 install_apt_packages() {
-    local apt_file="${1:-Aptfile}"
+    local apt_file="${1:-apt/apt.dep}"
 
     sudo apt update -qq
     sudo apt autoremove -y
@@ -433,7 +433,7 @@ _install_vscode_debian() {
 # Function to install VS Code and/or update its argv.json
 install_code() {
     local repo_path="$(cd -- "$(dirname -- "${BASH_SOURCE:-$0}")" && cd .. && pwd)"
-    local argv_file="${1:-code-update/argv.json}"
+    local argv_file="${1:-code/argv.json}"
 
     local vscode_argv="$repo_path/$argv_file"
 
@@ -471,7 +471,7 @@ install_code() {
 
 # Function to install VS Code extensions
 install_code_extensions() {
-    local ext_file="${1:-Codefile}"
+    local ext_file="${1:-code/code.dep}"
 
     if [ -f $ext_file ]; then
         while IFS= read -r extension || [ -n "$extension" ]; do
@@ -489,7 +489,7 @@ install_code_extensions() {
 # Function to configure VS Code settings
 configure_code() {
     local repo_path="$(cd -- "$(dirname -- "${BASH_SOURCE:-$0}")" && cd .. && pwd)"
-    local settings_file="${1:-code-update/user-settings.json}"
+    local settings_file="${1:-code/user-settings.json}"
 
     local vscode_user_settings="$repo_path/$settings_file"
 

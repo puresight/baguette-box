@@ -1,7 +1,7 @@
 tasks:
   - task: install_apt_packages
     arguments:
-      - Aptfile
+      - apt/apt.dep
 
   - task: install_uv
     enabled: false
@@ -68,7 +68,7 @@ tasks:
 
   - task: brew_bundle
     arguments:
-      - Brewfile
+      - homebrew.dep
 
   - task: configure_flatpak
 

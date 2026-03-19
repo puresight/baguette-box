@@ -49,9 +49,9 @@ While the full understanding of each is found in inspecting the bash source of t
 1. Connects [APT](https://wiki.debian.org/AptCLI)
    using [DEB822](https://repolib.readthedocs.io/en/latest/deb822-format.html)
    to the repository [sources](https://wiki.debian.org/SourcesList) in directory
-   [`apt_sources`](../apt_sources/README.md)
+   [`apt`](../apt/README.md)
 1. Then runs `apt install`
-   on packages listed in the [`Aptfile`](../Aptfile)
+   on packages listed in the [`apt/apt.dep`](../apt/apt.dep)
 
 <!-- --
 
@@ -89,7 +89,10 @@ installs flatpak and adds the remote source for the Flathub app marketplace.
 
 ### `install_mise`
 
-installs **[Mise](./mise.md)** en place, a tool to manage installations of languages and tools for development. It is used to manage multiple versions of e.g. language runtimes.
+installs **[Mise](./mise.md)** en place, a tool to manage installations of languages and tools for development. It is used to manage multiple versions of e.g. language runtimes. It manages
+
+- [Go](https://go.dev/) language
+- [Node](https://nodejs.org/) engine
 
 ### `install_mise_tools`
 
@@ -121,7 +124,7 @@ installs a [font](./fonts.md) needed by Posh
 
 ### `configure_shell`
 
-changes the system's default shell to zsh (which was installed in the Aptfile),
+changes the system's default shell to zsh (which was installed in the apt/apt.dep),
 runs a _pwsh_ script to install [Azure PowerShell](https://learn.microsoft.com/en-us/powershell/azure/)
 (aka [`Az`](https://www.powershellgallery.com/packages/az)) CLI.
 
@@ -152,10 +155,7 @@ installs (or updates)
 
 ### `brew_bundle`
 
-uses Homebrew to install packages in the [`Brewfile`](./Brewfile) like
-
-- [Go](https://go.dev/) language
-- [Node](https://nodejs.org/) engine
+uses Homebrew to install packages in the [`homebrew.dep`](./homebrew.dep) file
 
 ### `display_environment`
 
@@ -174,7 +174,7 @@ and configures Code with updates for its _argv.json_ settings file.
 ### `install_code_extensions`
 
 installs the [extensions](https://marketplace.visualstudio.com/vscode)
-of Code listed in the [`Codefile`](../Codefile)
+of Code listed in the [`code/code.dep`](../code/code.dep)
 
 _To maintain workstation integrity, only install extensions from reputable & verified authors that regularly address issues with code updates._
 
