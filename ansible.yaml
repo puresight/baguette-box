@@ -1,0 +1,19 @@
+tasks:
+
+- task: show_message
+  arguments:
+    - This minimal YAML flow sets up Ansible for you.
+
+- task: install_uv
+
+- task: install_using_uv_with_executables_from
+  arguments:
+    - "ansible"
+    - "ansible-core,ansible-lint"
+    - "localhost -m ping"
+
+- task: display_environment
+
+- task: show_message
+  arguments:
+    - The ansible CLI should be ready to use.

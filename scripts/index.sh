@@ -6,13 +6,13 @@
 # ------ # ------ # ------ # ------ # ------ # ------ # ------ # ------
 
 # --- load library code ---
-source "$SCRIPTROOT/lib/platforms.sh" || { echo "❌ Error: lib/platforms.sh not found."; exit 1; }
-source "$SCRIPTROOT/lib/apt.sh"     # Debian APT fiunction(s)
-source "$SCRIPTROOT/lib/fonts.sh"   # Nerd Font installation fiunction(s)
-source "$SCRIPTROOT/lib/java.sh"    # OpenJDK install fiunction(s)
-source "$SCRIPTROOT/lib/mc.sh"      # Minio Client install fiunction(s)
-source "$SCRIPTROOT/lib/flatpak.sh" # Flatpak install fiunction(s)
-source "$SCRIPTROOT/lib/json.sh"    # for VS Code configuring fiunction(s)
+source "$SCRIPTROOT/scripts/platforms.sh" || { echo "❌ Error: scripts/platforms.sh not found."; exit 1; }
+source "$SCRIPTROOT/scripts/apt.sh"     # Debian APT fiunction(s)
+source "$SCRIPTROOT/scripts/fonts.sh"   # Nerd Font installation fiunction(s)
+source "$SCRIPTROOT/scripts/java.sh"    # OpenJDK install fiunction(s)
+source "$SCRIPTROOT/scripts/mc.sh"      # Minio Client install fiunction(s)
+source "$SCRIPTROOT/scripts/flatpak.sh" # Flatpak install fiunction(s)
+source "$SCRIPTROOT/scripts/json.sh"    # for VS Code configuring fiunction(s)
 
 # Function to display help information
 print_help() {
@@ -496,7 +496,7 @@ configure_code() {
     if [ "$PLATFORM" == "debian" ]; then
         target_json="$HOME/.config/Code/User/settings.json"
     elif [ "$PLATFORM" == "macos" ]; then
-        target_json="$HOME/Library/Application Support/Code/User/settings.json"
+        target_json="$HOME/scriptsrary/Application Support/Code/User/settings.json"
     fi
     if [ -n "$target_json" ]; then
         mkdir -p "$(dirname "$target_json")"

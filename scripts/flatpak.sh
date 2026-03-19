@@ -64,7 +64,7 @@ _configure_flatpak() {
     # Install Bazaar
     # flatpak install -y --user io.github.kolunmi.Bazaar
     # flatpak override --user io.github.kolunmi.Bazaar --talk-name=org.freedesktop.Flatpak
-    # flatpak override --user io.github.kolunmi.Bazaar --filesystem=/var/lib/flatpak:ro
+    # flatpak override --user io.github.kolunmi.Bazaar --filesystem=/var/scripts/flatpak:ro
     # Run Bazaar
     # GSK_RENDERER=cairo LIBGL_ALWAYS_SOFTWARE=1 GTK_IM_MODULE=ibus flatpak run io.github.kolunmi.Bazaar
 }

@@ -78,4 +78,4 @@ tasks:
 
   - task: show_message
     arguments:
-      - Thanks! Remember to restart your shell environment before proceeding.
+      - Remember to restart your shell environment before proceeding.

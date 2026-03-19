@@ -26,8 +26,8 @@ INSTALL_MS_OPENJDK() {
     sudo apt autoremove -y
 
     # Configure the system default
-    local java_path="/usr/lib/jvm/msopenjdk-$active_version-$arch/bin/java"
-    local javac_path="/usr/lib/jvm/msopenjdk-$active_version-$arch/bin/javac"
+    local java_path="/usr/scripts/jvm/msopenjdk-$active_version-$arch/bin/java"
+    local javac_path="/usr/scripts/jvm/msopenjdk-$active_version-$arch/bin/javac"
 
     if [[ -x "$java_path" ]]; then
         # Use sudo to update the system-wide alternatives

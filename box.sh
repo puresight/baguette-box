@@ -14,7 +14,7 @@ BIN_DIR="$HOME/.local/bin"
 # Ensure BIN_DIR is first in PATH for newly installed tools
 export PATH="$BIN_DIR:$PATH"
 
-. "$SCRIPTROOT/lib/index.sh"
+. "$SCRIPTROOT/scripts/index.sh"
 
 # Prerequisites
 if ! command -v eget &> /dev/null; then

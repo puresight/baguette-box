@@ -5,7 +5,7 @@ To maintain workstation integrity, only install code from reputable & verified a
 ## How to Run
 
 1. **Minimal config for Ansible:** (Optional) Install the latest uv, python, & [ansible](https://pypi.org/project/ansible/)  
-   Run `./box.sh minimal.yaml --install`  
+   Run `./box.sh ansible.yaml --install`  
    Restart your shell: `exit` and reopen the terminal tab.
 
 1. **Bootstrap your system:** Install your shell, core language runtimes, system-level fixes, etc  

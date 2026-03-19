@@ -71,7 +71,7 @@ Next, prepare your new system
 Finally, browse the [`docs/README.md`](./docs/README.md) and&hellip;
 
 1. **Minimal configuration for Ansible:** (Optional) Install the latest uv, python, & ansible  
-   Run `./box.sh minimal.yaml --install`  
+   Run `./box.sh ansible.yaml --install`  
    Restart your shell: `exit` and reopen the terminal tab.
 
 1. **Bootstrap your system:** Install your shell, core language runtimes, system-level fixes, etc  

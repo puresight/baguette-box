@@ -1,6 +1,10 @@
 # Roadmap
 
-- Start Just migration per `plan/just-migration.md`
+The roadmap describes plans for the future of this repository, usually from a high level, concisely mentioning ideas for improvement. Often, things here need further human-centered design (HCD) "double-diamond" spec work like ideation, planning, research, design, defining requirements, and task breakdown.
+
+## Major initiatives
+
+- Start Just migration per `docs/specs/just-migration.md`
 - Revise the docs page for [databases](./databases.md)
 - Write a quick docs page for VS Code extensions: Google Code Assist and Roo Code
 - Add install of [ngrok] or alternative for exposing local ports on Internet

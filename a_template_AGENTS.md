@@ -8,7 +8,7 @@ Agents: Skip and ignore this file. It is a generic template, only.
 
 **Goal:** Your primary goal is to [Clearly define the main objective of the skill, e.g., "refactor the given shell script for clarity and POSIX compliance" or "generate a README file based on the project structure"].
 
-**Background:** [Provide any necessary background information, context about the project, or key definitions the agent needs to understand. E.g., "This project uses a custom shell script library located in `lib/`. The main entrypoint is `main.sh`."].
+**Background:** [Provide any necessary background information, context about the project, or key definitions the agent needs to understand. E.g., "This project uses a custom shell script library located in `scripts/`. The main entrypoint is `main.sh`."].
 
 ---
 
