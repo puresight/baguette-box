@@ -177,7 +177,7 @@ and configures Code with updates for its _argv.json_ settings file.
 ### `install_code_extensions`
 
 installs the [extensions](https://marketplace.visualstudio.com/vscode)
-of Code listed in the _codeExtensions_ file.
+of Code listed in the [`Codefile`](../Codefile)
 
 _To maintain workstation integrity, only install extensions from reputable & verified authors that regularly address issues with code updates._
 

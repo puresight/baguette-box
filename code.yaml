@@ -5,7 +5,7 @@ tasks:
 
   - task: install_code_extensions
     arguments:
-      - codeExtensions
+      - Codefile
 
   - task: configure_code
     arguments:

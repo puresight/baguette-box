@@ -60,7 +60,6 @@ UPDATE_JSON() {
     if jq -s '.[0] * .[1]' "$clean_record" "$clean_news" > "$merged_output"; then
         # Format the final result back to the target file
         cat "$merged_output" | jsonc format > "$target_file"
-        echo "Update successful."
     else
         echo "❌ Error: jq merge failed." >&2
         return 1

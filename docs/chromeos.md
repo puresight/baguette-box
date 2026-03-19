@@ -55,3 +55,20 @@ If you want to run Podman in rootless mode on [Crostini](https://www.chromium.or
 
 - **Nesting:** Crostini is already a container (LXC). By default, ChromeOS does not allow a container to start another container inside itself for security reasons. You’ll see errors like `mount: /proc: permission denied` or `failed to mount sysfs`. The fix is to enable _Nested Containers_ from the Crosh terminal.
 - **Storage Driver:** Podman usually uses `overlay` to stack file layers. However, the way Crostini mounts its file system often prevents `overlay` from working inside the unprivileged container. You may see errors stating driver "overlay" is not supported. So you typically need to force Podman to use `fuse-overlayfs` or `vfs`.
+
+## ChromeOS Launcher Integration
+
+How to add Linux app executables to your ChromeOS Launcher: to make applications appear in your Chromebook App Launcher alongside your other apps, you can create a `.desktop` shortcut file.
+In a text editor, create the file: `~/.local/share/applications/MyAppName.desktop`
+with the following content (updating the Name and Exec path to your actual executable)
+
+```ini
+[Desktop Entry]
+Type=Application
+Name=My App Name
+Exec=/home/yourusername/filename.AppImage
+Icon=utilities-terminal
+Terminal=false
+```
+
+After you save the `.desktop` file, the app should appear in your "Linux apps" folder within a few moments.

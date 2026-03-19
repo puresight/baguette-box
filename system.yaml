@@ -64,15 +64,18 @@ tasks:
     enabled: true
 
   - task: install_homebrew
-    enabled: false
+    enabled: true
 
   - task: brew_bundle
     arguments:
       - Brewfile
-    enabled: false
+
+  - task: configure_flatpak
 
   - task: display_environment
 
   - task: display_versions
 
-  - task: configure_flatpak
+  - task: show_message
+    arguments:
+      - Thanks! Remember to restart your shell environment before proceeding.

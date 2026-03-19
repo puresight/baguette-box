@@ -133,6 +133,8 @@ antigravity
 # AI agentic IDE for autonomous software engineering https://Antigravity.Google/
 seahorse
 # a GNOME front-end for GnuPG aka "Passwords & Keys" - https://wiki.gnome.org/Apps/Seahorse
+libopengl0
+# GL dispatch library for legacy OpenGL support - https://packages.debian.org/stable/libopengl0
 
 #%#%#%#%#%#%#%#%#%#%#%#%#%#%#%#%#%#%#%#%#%#%#%#%#%#%#%#%#%#%#%#%#%#%#%#%#%#%#%
 # --- Jekyll Dependencies ---

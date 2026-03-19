@@ -18,6 +18,8 @@ eamodio.gitlens
 # --- Language support ---
 #%#%#%#%#%#%#%#%#%#%#%#%#%#%#%#%#%#%#%#%#%#%#%#%#%#%#%#%#%#%#%#%#%#%#%#%#%#%#%
 
+nefrob.vscode-just-syntax
+# Justfile syntax support <https://marketplace.visualstudio.com/items?itemName=nefrob.vscode-just-syntax>
 ms-dotnettools.csharp
 # C# - C# development <https://marketplace.visualstudio.com/items?itemName=ms-dotnettools.csharp>
 ms-vscode.PowerShell

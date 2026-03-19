@@ -45,7 +45,7 @@ install_apt_packages() {
 
     echo "Installing packages from $apt_file..."
     if [ -f "$apt_file" ]; then
-        sudo apt install -y $(cat "$apt_file" | sed 's/#.*$//' | sed '/^[[:space:]]*$/d' | tr '\n' ' ')
+        sudo DEBIAN_FRONTEND=noninteractive apt install -y $(cat "$apt_file" | sed 's/#.*$//' | sed '/^[[:space:]]*$/d' | tr '\n' ' ')
     else
         echo "❌ Error: file '$apt_file' not found" >&2
         exit 1
@@ -229,10 +229,10 @@ install_dotnet() {
     for arg in "$@"; do
         if [ "$arg" != "$PLATFORM" ]; then
             echo "Installing .NET SDK $arg..."
-            sudo apt install -y "dotnet-sdk-$arg.0"
+            sudo DEBIAN_FRONTEND=noninteractive apt install -y "dotnet-sdk-$arg.0"
         fi
     done
-    sudo apt install -y powershell
+    sudo DEBIAN_FRONTEND=noninteractive apt install -y powershell
     dotnet --version
     pwsh --version
 }
@@ -430,10 +430,12 @@ _install_vscode_debian() {
     sudo rm -f /etc/apt/sources.list.d/vscode.list
 }
 
-# Function to install VS Code
+# Function to install VS Code and/or update its argv.json
 install_code() {
     local repo_path="$(cd -- "$(dirname -- "${BASH_SOURCE:-$0}")" && cd .. && pwd)"
-    local vscode_argv="$repo_path/$1"
+    local argv_file="${1:-code-update/argv.json}"
+
+    local vscode_argv="$repo_path/$argv_file"
 
     if ! command -v code &> /dev/null; then
         echo "Installing VS Code..."
@@ -445,7 +447,7 @@ install_code() {
             echo "Unsupported platform $PLATFORM"
         fi
 
-        echo "Configuring VS Code runtime arguments (argv.json)..."
+        echo "Configuring VS Code runtime arguments"
         if [ -n "$argv_json" ]; then
             mkdir -p ~/.vscode
             local argv_json="$HOME/.vscode/argv.json"
@@ -454,6 +456,7 @@ install_code() {
                 echo "❌ Error: Update failed!" >&2
                 return 1
             fi
+            echo "✓ Updated"
         fi
     else
         echo "VS Code is already installed. Checking for updates..."
@@ -468,7 +471,7 @@ install_code() {
 
 # Function to install VS Code extensions
 install_code_extensions() {
-    local ext_file="$1"
+    local ext_file="${1:-Codefile}"
 
     if [ -f $ext_file ]; then
         while IFS= read -r extension || [ -n "$extension" ]; do
@@ -486,22 +489,26 @@ install_code_extensions() {
 # Function to configure VS Code settings
 configure_code() {
     local repo_path="$(cd -- "$(dirname -- "${BASH_SOURCE:-$0}")" && cd .. && pwd)"
-    local vscode_user_settings="$repo_path/$1"
+    local settings_file="${1:-code-update/user-settings.json}"
+
+    local vscode_user_settings="$repo_path/$settings_file"
 
     if [ "$PLATFORM" == "debian" ]; then
-        TARGET_JSON="$HOME/.config/Code/User/settings.json"
+        target_json="$HOME/.config/Code/User/settings.json"
     elif [ "$PLATFORM" == "macos" ]; then
-        TARGET_JSON="$HOME/Library/Application Support/Code/User/settings.json"
+        target_json="$HOME/Library/Application Support/Code/User/settings.json"
     fi
-    if [ -n "$TARGET_JSON" ]; then
-        mkdir -p "$(dirname "$TARGET_JSON")"
-        UPDATE_JSON $vscode_user_settings $TARGET_JSON
+    if [ -n "$target_json" ]; then
+        mkdir -p "$(dirname "$target_json")"
+        UPDATE_JSON $vscode_user_settings $target_json
         if [ $? -ne 0 ]; then
-            echo "Settings update failed."
+            echo "❌ Error: settings update failed." >&2
             exit 1
         fi
+        echo "done"
     else
-        echo "Warning: the VSCode user settings file not found! skipping configuration." >&2
+        echo "❌ Error: platform unsupported" >&2
+        # exit 1
     fi
 }
 
@@ -534,4 +541,9 @@ display_versions() {
     if command -v pwsh &>/dev/null; then echo "pwsh $(pwsh --version)"; fi
     if command -v node &>/dev/null; then echo "Node $(node -v)"; fi
     if command -v npm &>/dev/null; then echo "npm $(npm -v)"; fi
+}
+
+# Function
+show_message() {
+    echo "${1}" > /dev/null
 }
