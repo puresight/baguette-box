@@ -1,81 +1,86 @@
 tasks:
-  - task: install_apt_packages
-    arguments:
-      - apt/apt.dep
 
-  - task: install_uv
-    enabled: false
+- task: show_message
+  arguments:
+    - This YAML flow bootstraps your new computer system.
 
-  # Depends on install_uv
-  - task: install_using_uv_with_executables_from
-    arguments:
-      - "ansible"
-      - "ansible-core,ansible-lint"
-      - "localhost -m ping"
-    enabled: false
+- task: install_apt_packages
+  arguments:
+    - apt/apt.dep
 
-  - task: install_goose
-    enabled: false
+- task: install_uv
+  enabled: false
 
-  - task: install_dotnet
-    arguments:
-      - 10
-    enabled: true
+# Depends on install_uv
+- task: install_using_uv_with_executables_from
+  arguments:
+    - "ansible"
+    - "ansible-core,ansible-lint"
+    - "localhost -m ping"
+  enabled: false
 
-  - task: configure_shell
-    arguments:
-      - zsh
-      - pwsh
+- task: install_goose
+  enabled: false
 
-  - task: install_font
-    arguments:
-      - JetBrainsMono
-      - v3.3.0
+- task: install_dotnet
+  arguments:
+    - 10
+  enabled: true
 
-  - task: install_terminal_tools
-    arguments:
-      - zsh
+- task: configure_shell
+  arguments:
+    - zsh
+    - pwsh
 
-  - task: configure_podman
-    enabled: false
+- task: install_font
+  arguments:
+    - JetBrainsMono
+    - v3.3.0
 
-  - task: install_rust
-    enabled: false
+- task: install_terminal_tools
+  arguments:
+    - zsh
 
-  - task: install_java
-    arguments:
-      - 21
-    enabled: false
+- task: configure_podman
+  enabled: false
 
-  - task: install_mise
+- task: install_rust
+  enabled: false
 
-  # Depends on Mise
-  - task: install_mise_tools
+- task: install_java
+  arguments:
+    - 21
+  enabled: false
 
-  # Depends on Mise (Go)
-  - task: install_storage_tools
-    enabled: true
+- task: install_mise
 
-  # Depends on Ruby, installed by Mise
-  - task: install_jekyll
+# Depends on Mise
+- task: install_mise_tools
 
-  # Depends on Ruby, installed by Mise
-  - task: install_rails
-    enabled: true
+# Depends on Mise (Go)
+- task: install_storage_tools
+  enabled: true
 
-  - task: install_homebrew
-    enabled: true
+# Depends on Ruby, installed by Mise
+- task: install_jekyll
 
-  - task: brew_bundle
-    arguments:
-      - homebrew.dep
+# Depends on Ruby, installed by Mise
+- task: install_rails
+  enabled: true
 
-  - task: configure_flatpak
+- task: install_homebrew
+  enabled: true
 
-  - task: display_environment
+- task: brew_bundle
+  arguments:
+    - homebrew.dep
 
-  - task: display_versions
+- task: configure_flatpak
 
-  - task: show_message
-    arguments:
-      - Remember to restart your shell environment before proceeding.
+- task: display_environment
+
+- task: display_versions
+
+- task: show_message
+  arguments:
+    - Remember to restart your shell environment before proceeding.
