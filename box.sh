@@ -9,6 +9,7 @@ set -o pipefail
 
 # GLobal variables
 SCRIPTROOT=$(dirname "${BASH_SOURCE[0]}")
+MODE="install"
 BIN_DIR="$HOME/.local/bin"
 
 # Ensure BIN_DIR is first in PATH for newly installed tools
@@ -75,10 +76,6 @@ while [[ $# -gt 0 ]]; do
             CONFIG_FILE="$1"; shift;;
     esac
 done
-
-if [ -z "$MODE" ] && [ -n "$CONFIG_FILE" ]; then
-    MODE="install"
-fi
 
 if [ "$MODE" = "install" ]; then
     if [ -z "$CONFIG_FILE" ]; then

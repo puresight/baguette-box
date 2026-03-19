@@ -71,13 +71,13 @@ Next, prepare your new system
 Finally, browse the [`docs/README.md`](./docs/README.md) and&hellip;
 
 1. **For IT professionals using Ansible:** (Optional) Install the latest uv, python, & ansible  
-   Run `./box.sh ansible.yaml --install`  
+   Run `./box.sh ansible.yaml`
 
 1. **Bootstrap your system:** Install your shell, core language runtimes, system-level fixes, etc  
-   Run `./box.sh system.yaml --install`  
+   Run `./box.sh system.yaml`
 
 1. **Code:** Install [VS Code](./code/README.md) with settings and extensions  
-   Run `./box.sh code.yaml --install`
+   Run `./box.sh code.yaml`
 
 The workstation will be ready in a minute.
 
