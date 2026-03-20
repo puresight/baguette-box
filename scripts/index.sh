@@ -6,13 +6,13 @@
 # ------ # ------ # ------ # ------ # ------ # ------ # ------ # ------
 
 # --- load library code ---
-source "$SCRIPTROOT/scripts/platforms.sh" || { echo "❌ Error: scripts/platforms.sh not found."; exit 1; }
-source "$SCRIPTROOT/scripts/apt.sh"     # Debian APT fiunction(s)
-source "$SCRIPTROOT/scripts/fonts.sh"   # Nerd Font installation fiunction(s)
-source "$SCRIPTROOT/scripts/java.sh"    # OpenJDK install fiunction(s)
-source "$SCRIPTROOT/scripts/mc.sh"      # Minio Client install fiunction(s)
-source "$SCRIPTROOT/scripts/flatpak.sh" # Flatpak install fiunction(s)
-source "$SCRIPTROOT/scripts/json.sh"    # for VS Code configuring fiunction(s)
+source "$SCRIPTROOT/scripts/lib/platforms.sh" || { echo "❌ Error: scripts/platforms.sh not found."; exit 1; }
+source "$SCRIPTROOT/scripts/lib/apt.sh"     # Debian APT fiunction(s)
+source "$SCRIPTROOT/scripts/lib/flatpak.sh" # Flatpak install fiunction(s)
+source "$SCRIPTROOT/scripts/lib/fonts.sh"   # Nerd Font installation fiunction(s)
+source "$SCRIPTROOT/scripts/lib/java.sh"    # OpenJDK install fiunction(s)
+source "$SCRIPTROOT/scripts/lib/mc.sh"      # Minio Client install fiunction(s)
+source "$SCRIPTROOT/scripts/lib/json.sh"    # for VS Code configuring fiunction(s)
 
 # Function to display help information
 print_help() {
@@ -35,13 +35,17 @@ EOF
 #   ${0} --upgrade          # Upgrade to major versions
 }
 
-# Function to handle APT package installation
-install_apt_packages() {
-    local apt_file="${1:-apt/apt.dep}"
-
+# Function to configure APT
+configure_apt() {
     sudo apt update -qq
     sudo apt autoremove -y
-    add_apt_sources
+    _add_apt_sources
+}
+
+# Function to handle APT package installation
+#   dependencies: configure_apt
+install_apt_packages() {
+    local apt_file="${1:-apt/apt.dep}"
 
     echo "Installing packages from $apt_file..."
     if [ -f "$apt_file" ]; then
@@ -54,6 +58,7 @@ install_apt_packages() {
 
 # Function
 #   docs: https://github.com/zyedidia/eget?tab=readme-ov-file#readme
+#   dependencies: (none)
 install_eget() {
     if ! command -v eget &> /dev/null; then
         mkdir -p "$BIN_DIR"
@@ -67,6 +72,7 @@ install_eget() {
 }
 
 # Function to handle UV installation
+#   dependencies: (none)
 install_uv() {
     local shell="${1:-zsh}"
 
@@ -83,6 +89,7 @@ install_uv() {
 }
 
 # Function to install using UV (e.g. Ansible)
+#   dependencies: install_uv
 install_using_uv_with_executables_from() {
     local pkg_name="${1:-ansible}"
     local with_executables_from="${2:-ansible-core,ansible-lint}"
@@ -113,6 +120,7 @@ install_using_uv_with_executables_from() {
 }
 
 # Function to handle MISE installation per https://mise.jdx.dev/installing-mise.html
+#   dependencies: (none)
 install_mise() {
     local shell="${1:-zsh}"
 
@@ -129,6 +137,7 @@ install_mise() {
 }
 
 # Function to install mise tools
+#   dependencies: install_mise
 install_mise_tools() {
     local marker_file="$HOME/.cache/baguette-box/.mise-installed"
     if [ ! -f "$marker_file" ]; then
@@ -145,6 +154,7 @@ install_mise_tools() {
 }
 
 # Function to install and configure fzf and zoxide terminal tools
+#   dependencies: configure_shell
 install_terminal_tools() {
     local shell="${1:-zsh}"
     local rc_file="$HOME/.${shell}rc"
@@ -193,7 +203,7 @@ install_terminal_tools() {
 }
 
 # Function to install Ruby on Rails
-#   dependencies: Mise, Ruby
+#   dependencies: install_mise (for Ruby)
 install_rails() {
     if ! gem list -i "^rails$" > /dev/null; then
         echo "Installing Rails..."
@@ -203,7 +213,7 @@ install_rails() {
 }
 
 # Function to install Jekyll
-#   dependencies: Mise, Ruby
+#   dependencies: install_mise (for Ruby)
 install_jekyll() {
     if ! gem list -i "^jekyll$" > /dev/null; then
         echo "Installing Jekyll..."
@@ -217,6 +227,7 @@ install_jekyll() {
 }
 
 # Function to handle GOOSE installation
+#   dependencies: (none)
 install_goose() {
     if ! command -v goose --version &> /dev/null; then
         curl -fsSL https://github.com/block/goose/releases/download/stable/download_cli.sh | CONFIGURE=false bash
@@ -225,6 +236,7 @@ install_goose() {
 }
 
 # Function to handle .NET installation
+#   dependencies: configure_apt
 install_dotnet() {
     for arg in "$@"; do
         if [ "$arg" != "$PLATFORM" ]; then
@@ -239,6 +251,7 @@ install_dotnet() {
 
 # FIXME refactor so no longer requires on install_dotnet to run
 # Function to handle shell configuration
+#   dependencies: install_dotnet
 configure_shell() {
     local shell="${1:-zsh}"
     local rc_file="$HOME/.${shell}rc"
@@ -290,6 +303,7 @@ configure_shell() {
 }
 
 # Function to handle Podman configuration
+#   dependencies: (none)
 configure_podman() {
     # The Problem: By default, a Linux user only has one UID (yours). To run a container, Podman needs to pretend to be "root" inside the container while remaining a "normal user" outside. It does this by mapping a range of UIDs from the host to the container.
     # The Fix: By adding $USER:100000:65536 to /etc/subuid and subgid, you are granting your user permission to "own" 65,536 subordinate IDs.
@@ -307,6 +321,7 @@ configure_podman() {
 }
 
 # Function to handle Rust installation with cargo-binstall
+#   dependencies: (none)
 install_rust() {
     if command -v rustup &> /dev/null; then
         echo "Run 'rustup update' soon."
@@ -331,9 +346,8 @@ install_rust() {
 }
 
 # Function to install storage-related command-line tools
+#   dependencies: configure_shell
 install_storage_tools() {
-    rclone --version
-
     local current_mc=$(command -v mc)
     local update_every_days=90          # Policy Constant for Update
 
@@ -353,17 +367,21 @@ install_storage_tools() {
 }
 
 # Function
+#   dependencies: configure_apt, configure_shell
 configure_flatpak() {
     echo "sorry: flatpak is disabled for troubleshooting."
-    # _configure_flatpak
+    return
+    _configure_flatpak
 }
 
 # Function
+#   dependencies: (none)
 install_font() {
     install_nerd_font "$@"
 }
 
 # Function
+#   dependencies: configure_apt
 install_java() {
     local java_version="$1"
     echo "Installing Microsoft OpenJDK version $java_version..."
@@ -376,6 +394,7 @@ install_java() {
 }
 
 # Function
+#   dependencies: configure_shell
 install_homebrew() {
     local shell="${1:-zsh}"
     local rc_file="$HOME/.${shell}rc"
@@ -415,22 +434,14 @@ install_homebrew() {
 }
 
 # Function to install a Homebrew bundle
+#   dependencies: install_homebrew
 brew_bundle() {
     local apt_file="$1"
     brew bundle --file="./$1"
 }
 
-# Private function to handle VS Code installation/update on Debian.
-# It prevents interactive prompts and cleans up redundant repository files.
-_install_vscode_debian() {
-    # Use DEBIAN_FRONTEND=noninteractive to prevent interactive prompts from the package installer,
-    # which may try to add its own repository file.
-    sudo DEBIAN_FRONTEND=noninteractive apt install -y code
-    # This project manages sources via DEB822 files, so remove the legacy .list file if VS Code created it.
-    sudo rm -f /etc/apt/sources.list.d/vscode.list
-}
-
 # Function to install VS Code and/or update its argv.json
+#   dependencies: configure_apt, install_apt_packages, install_mise (for Node)
 install_code() {
     local repo_path="$(cd -- "$(dirname -- "${BASH_SOURCE:-$0}")" && cd .. && pwd)"
     local argv_file="${1:-code/argv.json}"
@@ -451,7 +462,7 @@ install_code() {
         if [ -n "$argv_json" ]; then
             mkdir -p ~/.vscode
             local argv_json="$HOME/.vscode/argv.json"
-            UPDATE_JSON $vscode_argv $argv_json
+            update_json $vscode_argv $argv_json
             if [ $? -ne 0 ]; then
                 echo "❌ Error: Update failed!" >&2
                 return 1
@@ -461,7 +472,8 @@ install_code() {
     else
         echo "VS Code is already installed. Checking for updates..."
         if [ "$PLATFORM" == "debian" ]; then
-            _install_vscode_debian
+            sudo DEBIAN_FRONTEND=noninteractive apt install -y code
+            sudo rm -f /etc/apt/sources.list.d/vscode.list
         elif [ "$PLATFORM" == "macos" ]; then
             brew upgrade --cask visual-studio-code
         fi
@@ -470,6 +482,7 @@ install_code() {
 }
 
 # Function to install VS Code extensions
+#   dependencies: install_code
 install_code_extensions() {
     local ext_file="${1:-code/code.dep}"
 
@@ -478,15 +491,16 @@ install_code_extensions() {
             # Ignore comments and empty lines
             [[ "$extension" =~ ^#.*$ ]] && continue
             [[ -z "$extension" ]] && continue
-            echo "Installing extension: $extension"
+            echo "+extension: $extension"
             code --install-extension "$extension"
         done < "$ext_file"
     else
-        echo "❌ Error: $ext_file file not found! skipping extension installation." >&2
+        echo "❌ Error: $ext_file file not found! skipping it." >&2
     fi
 }
 
 # Function to configure VS Code settings
+#   dependencies: install_code, install_apt_packages, install_mise (for Node)
 configure_code() {
     local repo_path="$(cd -- "$(dirname -- "${BASH_SOURCE:-$0}")" && cd .. && pwd)"
     local settings_file="${1:-code/user-settings.json}"
@@ -500,7 +514,7 @@ configure_code() {
     fi
     if [ -n "$target_json" ]; then
         mkdir -p "$(dirname "$target_json")"
-        UPDATE_JSON $vscode_user_settings $target_json
+        update_json $vscode_user_settings $target_json
         if [ $? -ne 0 ]; then
             echo "❌ Error: settings update failed." >&2
             exit 1
@@ -513,6 +527,7 @@ configure_code() {
 }
 
 # Function to display environment information
+#   dependencies: (none)
 display_environment() {
     if [ "$PLATFORM" == "debian" ]; then
         if command -v hostnamectl &> /dev/null; then
@@ -526,6 +541,7 @@ display_environment() {
 }
 
 # Function to display current versions
+#   dependencies: (none)
 display_versions() {
     # if command -v gcloud &> /dev/null; then echo "$(gcloud --version)"; fi # FIXME too verbose: we just want the main gcloud version
     if command -v aws &>/dev/null; then echo "Amazon Web Services: $(aws --version)"; fi
@@ -544,6 +560,7 @@ display_versions() {
 }
 
 # Function
+#   dependencies: (none)
 show_message() {
     echo "${1}" > /dev/null
 }

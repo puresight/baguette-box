@@ -4,6 +4,10 @@ tasks:
   arguments:
     - This YAML flow bootstraps your new computer system.
 
+- task: configure_apt
+  arguments:
+    - apt
+
 - task: install_apt_packages
   arguments:
     - apt/apt.dep

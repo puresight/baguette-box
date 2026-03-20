@@ -1,8 +1,8 @@
 # Just migration
 
-This is the author's to start migrating this repo into a Just recipes user interface.
+This is the author's plan to start migrating this repo into a _Just_ recipes user interface.
 
-## Tasks to do
+## To do
 
 This migration work involves planning, implementing, and documenting the Just way.
 
@@ -13,7 +13,7 @@ This migration work involves planning, implementing, and documenting the Just wa
 
 ### Tactics & Resources
 
-- Use `system.yaml` & `code.yaml` lists of tasks (with argumentes) as resources for creating equivelant Just commands.
+- Use `bootstrap.yaml` & `code.yaml` & `ansible.yaml` lists of tasks (with argumentes) as resources for creating equivelant Just commands.
 
 ### Documentation
 

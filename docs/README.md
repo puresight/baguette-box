@@ -8,7 +8,7 @@ To maintain workstation integrity, only install code from reputable & verified a
    Run `./box.sh ansible.yaml`
 
 1. **Bootstrap your system:** Install your shell, core language runtimes, system-level fixes, etc  
-   Run `./box.sh system.yaml`
+   Run `./box.sh bootstrap.yaml`
 
 1. **Code:** Install VS Code with settings and extensions  
    Run `./box.sh code.yaml`

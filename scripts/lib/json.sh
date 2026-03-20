@@ -3,10 +3,11 @@
 # ------ # ------ # ------ # ------ # ------ # ------ # ------ # ------
 # Dependencies:
 #   - jq
+#   - jsonc-cli
 # ------ # ------ # ------ # ------ # ------ # ------ # ------ # ------
 
 # Function ------------------------------------------------------------
-UPDATE_JSON() {
+update_json() {
     local source_file="$1"
     local target_file="$2"
 
@@ -66,7 +67,7 @@ UPDATE_JSON() {
     fi
 }
 
-# Execute UPDATE_JSON function if script is run directly
+# Execute update_json function if script is run directly
 if [[ "${BASH_SOURCE[0]}" == "${0}" ]]; then
-    UPDATE_JSON "$@"
+    update_json "$@"
 fi
