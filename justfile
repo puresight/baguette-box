@@ -1,7 +1,15 @@
-# Upgrade your Debian system
-apt-upgrade:
-    sudo apt update && sudo apt upgrade -y
+# Load .env file if it exists
+set dotenv-load := true
 
-# Clean up OS packages
-apt-clean:
-    sudo apt autoremove && sudo apt autoclean
+# Global variables
+export BIN_DIR := HOME + "/.local/bin"
+
+# Ensure BIN_DIR is in PATH for this session
+export PATH := BIN_DIR + ":" + env_var('PATH')
+
+# Default recipe lists available commands
+default:
+    @just --list
+
+# Include modular justfiles
+# !include "justfiles/tools.just"
