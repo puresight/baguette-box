@@ -19,14 +19,14 @@ package management system to help with the lifecycle of each program
 that you want on your machine. We use several including
 
 - [APT](./apt/README.md) is Debian's Advanced Package Tool
-- [Flatpak](./flatpak.md) is the preferred method for installing GUI apps
-- [Homebrew](../homebrew/README.md)
-- [Mise](./mise.md) for Node, Go
-- [uv](./docs/uv.md) is a fast Python package manager
-- [npm](./docs/node.md) is the default Node package manager
+- [Flatpak](./flatpak.md) for installing GUI apps
+- [Homebrew](../homebrew/README.md) for [Aider](./aider.md)
 - [Rustup](./rust.md) for Rust
+- [uv](./docs/uv.md) is the Python package manager
+- [Mise](./mise.md) en place for [Node](./node.md), [Go](./go.md), [Ruby](./ruby.md)
+- [npm](./docs/node.md) is the default Node package manager
 
-These tools are significant to the project:
+These tools are significant to the project internals:
 
 - [Eget](https://github.com/zyedidia/eget?tab=readme-ov-file#readme) to download/verify/install releases from GitHub
 - [Gomplate](https://docs.gomplate.ca/) is a template rendering engine supporting JSON & YAML

@@ -55,9 +55,9 @@ _add_apt_sources() {
     export ID VERSION_ID VERSION_CODENAME
     export ARCHITECTURES=$(dpkg --print-architecture)
 
-    for template_file in "$templates_dir"/*.gomplate; do
+    for template_file in "$templates_dir"/*.sources; do
         if [ -f "$template_file" ]; then
-            local sources_name=$(basename "$template_file" .sources.gomplate)
+            local sources_name=$(basename "$template_file" .sources)
             local keyring_file="$keyring_dir/$sources_name.gpg"
             
             # Extract Key-URL from the gomplate file

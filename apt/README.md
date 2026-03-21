@@ -3,11 +3,11 @@
 > The Advanced Package Tool ([APT](https://wiki.debian.org/AptCLI)) is a powerful command-line utility used primarily in Debian-based Linux distributions to automate the installation, configuration, and removal of software. For computer users, APT represents a streamlined way to manage their system; instead of manually hunting for installers online, users can download verified software from secure repositories with a single command. Its most significant benefit is automatic dependency management, which ensures that all supporting files required for a program to run are identified and installed simultaneously, maintaining system stability and security with minimal effort.
 
 
-This folder contains the `apt.dep` file that lists (with comments) the APT dependencies to install on the system.
+This folder contains the `apt.dep` file that lists (with comments) the APT dependencies for recipe `install-apt-packages` to install on the system.
 
 ## APT Sources
 
-Task `install_apt_packages`
+Recipe `configure-apt`
 connects APT using [DEB822](https://repolib.readthedocs.io/en/latest/deb822-format.html)
 to the repository [sources](https://wiki.debian.org/SourcesList)
 contained in this directory.
@@ -22,18 +22,18 @@ And when the system is installing APT repository sources, these templates are pr
 
 ## How that happens
 
-For each `*.sources.gomplate` file in this directory, the system performs four steps:
+For each `.sources` file in this directory, the system performs four steps:
 
 1. **Extracts GPG Key URL**: It searches for a line containing `Key-URL:` within the template to find the URL for the repository's [GPG public key](https://wiki.debian.org/SecureApt).
 1. **Downloads GPG Key**: It downloads the GPG key, de-armors it, and stores it in `/etc/apt/keyrings/`. The key file is named after the source (e.g., `github-cli.gpg`).
-1. **Processes Template**: It uses gomplate to process the template file. This step substitutes variables and executes any template logic.
-1. **Creates Sources File**: The output of gomplate is saved as a `.sources` file in `/etc/apt/sources.list.d/`. For example, `github-cli.sources.gomplate` becomes `github-cli.sources`.
+1. **Processes Template**: It uses gomplate to process the `.sources` template file. This step substitutes variables and executes any template logic.
+1. **Creates Sources File**: The output of gomplate is saved as a `.sources` file in `/etc/apt/sources.list.d/`
 
 ## You can add a source
 
 You can add another APT source. To add a new APT repository, follow these steps:
 
-1. **Create a Template File**: Create a new file in this directory with the name `your-repo-name.sources.gomplate`.
+1. **Create a Template File**: Create a new file in this directory, e.g. with the name `your-apt-repo-name.sources`
 
 1. **Add Repository Details**: The content of the file should be a `gomplate` template that generates a valid DEB822-style `.sources` file.
 
@@ -51,4 +51,4 @@ You can add another APT source. To add a new APT repository, follow these steps:
 
    You can access these in the template like this: `{{ .Env.ARCHITECTURES }}`.
 
-   View the content of [`github-cli.sources.gomplate`](./github-cli.sources.gomplate) as an example.
+   View the content of [`github-cli.sources`](./github-cli.sources) as an example.
