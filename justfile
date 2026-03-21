@@ -103,7 +103,7 @@ install-code-extensions extensions="code/code.dep": install-code
         install_code_extensions {{extensions}}
 
 # Install homebrew packages
-install-homebrew-packages bundle="homebrew.dep": install-homebrew
+install-homebrew-packages bundle="homebrew/homebrew.dep": install-homebrew
     @echo
     @echo "$a install-homebrew-packages $a"
     @. scripts/index.sh &&\

@@ -1,19 +1,15 @@
-_This is beta quality code so backup before using, read the docs, and scan the source before running._
+# Docs
 
 To maintain workstation integrity, only install code from reputable & verified authors that regularly address issues with code updates.
 
-## How to Run
+## How to Run Recipes
 
-1. **For IT professionals using Ansible:** (Optional) Install the latest uv, python, & [ansible](https://pypi.org/project/ansible/)  
-   Run `just ansible`
+To view the full menu type `just`
 
-1. **Bootstrap your system:** Install your shell, core language runtimes, system-level fixes, etc  
-   Run `just bootstrap`
+1. Bootstrap your new system: `just bootstrap`
+1. Install VS Code: `just code`
 
-1. **Code:** Install VS Code with settings and extensions  
-   Run `just code`
-
-This program is idempotent. You can run it again anytime.
+Our recipes are idempotent, so you can run them again, anytime.
 
 ## System Architecture
 
@@ -24,7 +20,7 @@ that you want on your machine. We use several including
 
 - [APT](./apt/README.md) is Debian's Advanced Package Tool
 - [Flatpak](./flatpak.md) is the preferred method for installing GUI apps
-- [Homebrew](http://docs.brew.sh/Homebrew-on-Linux)
+- [Homebrew](../homebrew/README.md)
 - [Mise](./mise.md) for Node, Go
 - [uv](./docs/uv.md) is a fast Python package manager
 - [npm](./docs/node.md) is the default Node package manager
@@ -35,14 +31,32 @@ These tools are significant to the project:
 - [Eget](https://github.com/zyedidia/eget?tab=readme-ov-file#readme) to download/verify/install releases from GitHub
 - [Gomplate](https://docs.gomplate.ca/) is a template rendering engine supporting JSON & YAML
 
-## YAML tasks
+## Recipes
 
-The config file you supply feeds box tasks to do.
-Each task in sequence (with some arguments) will be executed (unless property `enabled` is `false`).
+Find the [just](./just.md) recipe definitions in the [justfile](../justfile).
+While precise understanding is in inspecting the bash source of the [scripts](../scripts) that implement them, here is a summary.
 
-While the full understanding of each is found in inspecting the bash source of the lib functions that implement them, the following is a summary.
+### High Level Recipes
 
-### `install_apt_packages`
+High level recipes combine many regular recipes to accomplish an objective for overall system configuration.
+
+#### `bootstrap`
+
+Bootstrap your new system.
+
+#### `code`
+
+Install VS Code.
+
+#### `ansible`
+
+uses [UV](.//uv.md) to install [Ansible](https://docs.ansible.com/)
+
+### Regular Recipes
+
+Regular recipes perform specific & granular tasks for system configuration.
+
+#### `install-apt-packages`
 
 1. Connects [APT](https://wiki.debian.org/AptCLI)
    using [DEB822](https://repolib.readthedocs.io/en/latest/deb822-format.html)
@@ -63,36 +77,31 @@ While the full understanding of each is found in inspecting the bash source of t
 
 <!-- -->
 
-### `install_storage_tools`
+#### `install-storage-tools`
 
 installs utilities such as
 [MinIO Client](./docs/mc.md) (`mc`), a tool for managing files on S3-compatible cloud storage.
 
-### `install_uv`
+#### `install-uv`
 
 installs [UV](.//uv.md)
 (the unified tool for the Python ecosystem)
 and Python.
 
-### `install_using_uv_with_executables_from`
-
-uses [UV](.//uv.md) to install tool packages
-(like [Ansible](https://docs.ansible.com/)).
-
-### `configure_flatpak`
+#### `configure-flatpak`
 
 installs flatpak and adds the remote source for the Flathub app marketplace.
 
 [Flatpak](./flatpak.md) is the preferred method for installing GUI applications on this system. This approach ensures applications run in isolated environments with their own dependencies, preventing conflicts with system libraries and keeping the host OS clean. It also provides access to the latest versions of applications regardless of the distribution's release cycle. Read the [flatpak.md](./flatpak.md) docs for more info.
 
-### `install_mise`
+#### `install-mise`
 
 installs **[Mise](./mise.md)** en place, a tool to manage installations of languages and tools for development. It is used to manage multiple versions of e.g. language runtimes. It manages
 
 - [Go](https://go.dev/) language
 - [Node](https://nodejs.org/) engine
 
-### `install_mise_tools`
+#### `install-mise-tools`
 
 reads the `mise.toml` file in the root of the repository to install the specified tool versions. [Mise](./mise.md) manages:
 
@@ -100,27 +109,27 @@ reads the `mise.toml` file in the root of the repository to install the specifie
 - [Node](./node.md) engine (including npm)
 - [Ruby](./ruby.md) language (including RubyGems)
 
-### `install_rails`
+#### `install-rails`
 
 installs the Rails framework using [Ruby](./ruby.md)
 
-### `install_jekyll`
+#### `install-jekyll`
 
 installs Jekyll using [Ruby](./ruby.md)
 
-### `install_goose`
+#### `install-goose`
 
 installs Block's [Goose](https://block.github.io/goose/docs/category/guides) AI CLI.
 
-### `install_dotnet`
+#### `install-dotnet`
 
 installs [.NET](./dotnet.md)
 
-### `install_font`
+#### `install-font`
 
 installs a [font](./fonts.md) needed by Posh
 
-### `configure_shell`
+#### `configure-shell`
 
 changes the system's default shell to zsh (which was installed in the apt/apt.dep),
 runs a _pwsh_ script to install [Azure PowerShell](https://learn.microsoft.com/en-us/powershell/azure/)
@@ -129,57 +138,57 @@ runs a _pwsh_ script to install [Azure PowerShell](https://learn.microsoft.com/e
 And installs the [Oh My Posh](https://ohmyposh.dev/) prompt
 for the zsh and pwsh shells.
 
-### `install_terminal_tools`
+#### `install-terminal-tools`
 
 installs [CLI tools](./cli-tools.md) like
 [fzf](https://junegunn.github.io/fzf/) & [zoxide](https://zoxide.org/)
 
-### `configure_podman`
+#### `configure-podman`
 
 configures [Podman](.//podman.md)
 
-### `install_rust`
+#### `install-rust`
 
 installs [Rust](./rust.md)
 
-### `install_java`
+#### `install-java`
 
 installs one of the Microsoft releases of OpenJDK [Java](.//java.md).
 
-### `install_homebrew`
+#### `install-homebrew`
 
 installs (or updates)
 [Homebrew](http://docs.brew.sh/Homebrew-on-Linux) 🍺 software management system.
 
-### `install_homebrew_packages`
+#### `install-homebrew-packages`
 
-uses Homebrew to install packages in the [`homebrew.dep`](./homebrew.dep) file
+uses Homebrew to install packages in the [`homebrew/homebrew.dep`](./homebrew.dep) file
 
-### `display_environment`
+#### `display-environment`
 
 displays attributes of the system environment.
 
-### `display_versions`
+#### `display-versions`
 
 displays versions of some of the main installed tools,
 especially languages or their package managers.
 
-### `install_code`
+#### `install-code`
 
 installs and configures [Code](../code/README.md)
 with updates for its _argv.json_ settings file.
 
-### `install_code_extensions`
+#### `install-code-extensions`
 
 installs the extensions
 of [Code](../code/README.md) listed in the
 [`code/code.dep`](../code/code.dep) file.
 
-_To maintain workstation integrity, only install extensions from reputable & verified authors that regularly address issues with code updates._
+To maintain workstation integrity, only install extensions from reputable & verified authors that regularly address issues with code updates.
 
-### `configure_code`
+#### `configure-code`
 
-updates (doing a shallow merge) Code's user settings.json file.
+updates (doing a shallow merge) Code's user settings json file.
 It uses `jq` and Node/npm module `jsonc-cli`.
 
-_Unfortunately (as a consequence of implementation), it erases the comments that were in them._
+Unfortunately as a consequence of implementation, it erases the comments that were in them.

@@ -30,9 +30,11 @@ Languages
 
 Agentic AI & pairing
 
-- [Google Antigravity](https://antigravity.google/) AI IDE
-- [Goose](https://block.github.io/goose/docs/category/guides) AI CLI
-- _Google Code Assist_ AI and _Roo Code_ AI in VS [Code](./code/README.md) IDE
+- [Google Antigravity](https://antigravity.google/) IDE
+- _Gemini Code Assist_ and _Roo Code_ in VS [Code](./code/README.md) IDE
+- _Gemini CLI_ via [npm](./docs/node.md)
+- [Goose](https://block.github.io/goose/docs/category/guides) CLI
+- [Aider](./docs/aider.md) CLI via [Homebrew](./homebrew/README.md)
 
 CLI
 
@@ -54,11 +56,15 @@ Note: You have powerful tools to help you. It is best to not frontload more soft
 
 Next, prepare your new system:
 
-- On Linux: Update, upgrade, and get git
-  - `sudo apt update && sudo apt upgrade -y`
-  - `sudo apt install git`
+- On Linux, upgrade and install git
+  ```sh
+  sudo apt update && sudo apt upgrade -y
+  sudo apt install git
+  ```
 - On [ChromeOS](./docs/chromeos.md), set a user password
-  - `sudo passwd $USER`
+  ```sh
+  sudo passwd $USER
+  ```
 - Do your [Git First Time Setup](https://git-scm.com/book/ms/v2/Getting-Started-First-Time-Git-Setup) e.g.
   ```sh
   git config --global user.name "Jane Doe"
@@ -70,20 +76,22 @@ Next, prepare your new system:
   curl --proto '=https' --tlsv1.2 -sSf https://just.systems/install.sh | bash -s -- --to ~/.local/bin
   just --version
   ```
-- Clone this repo:
-  - `cd src`
-  - `git clone <repo-link>`
-  - `cd baguette-box`
+- Clone this repo
+  ```sh
+  cd ~/src
+  git clone https://github.com/puresight/baguette-box.git
+  cd baguette-box
+  ```
   
 ## Proceed
 
-Finally, proceed to set up your environment&hellip;
+Finally, proceed to set up your environment.
+To view our menu type `just` or
 
-1. To see a list of available recipes and tasks, run: `just`
-1. Bootstrap your new system: `just bootstrap`
-1. Install VS Code: `just code`
+1. Run recipe to bootstrap your new system: `just bootstrap`
+1. Run recipe to install VS Code: `just code`
 
-&hellip;and your new PC will be ready in a couple of minutes.
+Your system configuration will be ready in a few minutes.
 
 <!-- --
 Stay in touch to let us know about bugs & improvements.

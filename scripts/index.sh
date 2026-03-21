@@ -418,6 +418,7 @@ install_homebrew() {
 
     # Persist in shell's .rc file
     if [ -n "$BREW_PATH" ]; then
+        echo "installed: $BREW_PATH"
         echo "Persisting in $rc_file"
         eval "$($BREW_PATH shellenv)"
         if ! grep -q "shellenv" "$rc_file"; then
@@ -430,7 +431,7 @@ install_homebrew() {
 # Function to install a Homebrew bundle
 #   dependencies: install_homebrew
 install_homebrew_packages() {
-    local apt_file="$1"
+    local apt_file="${1:-homebrew/homebrew.dep}"
     brew bundle --file="./$1"
 }
 

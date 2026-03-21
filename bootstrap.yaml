@@ -72,7 +72,7 @@ tasks:
 
 - task: install_homebrew_packages
   arguments:
-    - homebrew.dep
+    - homebrew/homebrew.dep
 
 - task: configure_flatpak
 
