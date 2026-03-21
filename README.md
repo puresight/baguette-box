@@ -22,10 +22,10 @@ Languages
 
 - [Java](./docs/java.md)
 - [C# .NET](./docs/dotnet.md)
-- [Ruby on Rails](./docs/ruby.md)
-- [Typescript/JS via Node](./docs/node.md)
+- [Ruby on Rails](./docs/ruby.md) via [Mise](./docs/mise.md)
+- [Typescript/JS via Node](./docs/node.md) via [Mise](./docs/mise.md)
 - [Python via UV](./docs/uv.md)
-- [Go](./docs/go.md)
+- [Go](./docs/go.md) via [Mise](./docs/mise.md)
 - [Rust](./docs/rust.md)
 
 Agentic AI & pairing
@@ -39,7 +39,7 @@ Agentic AI & pairing
 CLI
 
 - [Zsh](https://zsh.sourceforge.io/) & [pwsh](https://learn.microsoft.com/en-us/powershell/) shells
-- [Oh My Posh](https://ohmyposh.dev/) prompt _with_ [nerd fonts](https://www.nerdfonts.com/font-downloads)
+- [Oh My Posh](https://ohmyposh.dev/) prompt _with_ [nerd fonts](./docs/fonts.md)
 - [AWS](https://docs.aws.amazon.com/cli/), [Azure](https://learn.microsoft.com/en-us/powershell/azure/), [Google](https://cloud.google.com/cli), [kubectl](https://kubernetes.io/docs/reference/kubectl/) cloud tools
 - [MinIO Client](./docs/mc.md), [Rclone](./docs/rclone.md) storage utils
 - [Postgres](https://www.postgresql.org/docs/current/reference-client.html), [MariaDB](https://mariadb.com/docs/server/clients-and-utilities/mariadb-client/mariadb-command-line-client), [Redis](https://redis.io/docs/latest/develop/tools/), [SQLite](https://www.sqlite.org/) database clients

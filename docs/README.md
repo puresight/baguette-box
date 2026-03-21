@@ -16,24 +16,32 @@ Our recipes are idempotent, so you can run them again, anytime.
 Every piece of software you install must be able to receive updates for
 bugs or security vulnerabilities. It is always best to pick a
 package management system to help with the lifecycle of each program
-that you want on your machine. We use several including
+that you want on your machine. We integrate several including:
 
-- [APT](./apt/README.md) is Debian's Advanced Package Tool
-- [Flatpak](./flatpak.md) for installing GUI apps
+- [APT](../apt/README.md) is Debian's Advanced Package Tool
 - [Homebrew](../homebrew/README.md) for [Aider](./aider.md)
-- [Rustup](./rust.md) for Rust
-- [uv](./docs/uv.md) is the Python package manager
 - [Mise](./mise.md) en place for [Node](./node.md), [Go](./go.md), [Ruby](./ruby.md)
-- [npm](./docs/node.md) is the default Node package manager
+- [npm](./node.md) is the default Node package manager
+- [uv](./uv.md) is the Python package manager
 
-These tools are significant to the project internals:
+These are availble but not integral:
 
-- [Eget](https://github.com/zyedidia/eget?tab=readme-ov-file#readme) to download/verify/install releases from GitHub
-- [Gomplate](https://docs.gomplate.ca/) is a template rendering engine supporting JSON & YAML
+- [Rustup](./rust.md) for Rust
+- [Flatpak](./flatpak.md) for installing GUI apps
+- [.NET](./dotnet.md)
+- [OpenJDK](./java.md)
+
+CLI:
+
+- [Zsh](https://zsh.sourceforge.io/) & [pwsh](https://learn.microsoft.com/en-us/powershell/) shells
+- [Oh My Posh](https://ohmyposh.dev/) prompt _with_ [nerd fonts](./fonts.md)
+- [AWS](https://docs.aws.amazon.com/cli/), [Azure](https://learn.microsoft.com/en-us/powershell/azure/), [Google](https://cloud.google.com/cli), [kubectl](https://kubernetes.io/docs/reference/kubectl/) cloud tools
+- [MinIO Client](./docs/mc.md), [Rclone](./docs/rclone.md) storage utils
+- [Postgres](https://www.postgresql.org/docs/current/reference-client.html), [MariaDB](https://mariadb.com/docs/server/clients-and-utilities/mariadb-client/mariadb-command-line-client), [Redis](https://redis.io/docs/latest/develop/tools/), [SQLite](https://www.sqlite.org/) [database clients](./databases.md)
 
 ## Recipes
 
-Find the [just](./just.md) recipe definitions in the [justfile](../justfile).
+Find the [just](./just.md) recipe definitions in the justfile.
 While precise understanding is in inspecting the bash source of the [scripts](../scripts) that implement them, here is a summary.
 
 ### High Level Recipes
@@ -42,28 +50,35 @@ High level recipes combine many regular recipes to accomplish an objective for o
 
 #### `bootstrap`
 
-Bootstrap your new system.
+Bootstrap your new system. Installs tons of stuff (essentials and nice to have). But not everything; reference the [justfile](../justfile) for details.
 
 #### `code`
 
-Install VS Code.
-
-#### `ansible`
-
-uses [UV](.//uv.md) to install [Ansible](https://docs.ansible.com/)
+Install VS [Code](../code/README.md).
 
 ### Regular Recipes
 
 Regular recipes perform specific & granular tasks for system configuration.
 
+#### `ansible`
+
+uses [UV](./uv.md) to install [Ansible](https://docs.ansible.com/)
+
+#### `install-eget`
+
+[Eget](https://github.com/zyedidia/eget?tab=readme-ov-file#readme) to download/verify/install releases from GitHub
+
+#### `install-gomplate`
+
+[Gomplate](https://docs.gomplate.ca/) is a template rendering engine supporting JSON & YAML
+
+#### `configure-apt`
+
+Connects [APT](../apt/README.md) to APT repository sources.
+
 #### `install-apt-packages`
 
-1. Connects [APT](https://wiki.debian.org/AptCLI)
-   using [DEB822](https://repolib.readthedocs.io/en/latest/deb822-format.html)
-   to the repository [sources](https://wiki.debian.org/SourcesList) in directory
-   [`apt`](../apt/README.md)
-1. Then runs `apt install`
-   on packages listed in the [`apt/apt.dep`](../apt/apt.dep)
+Runs `apt install` on packages listed in the [`apt/apt.dep`](../apt/apt.dep)
 
 <!-- --
 

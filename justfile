@@ -14,7 +14,7 @@ _:
 #%#%#%#%#%#%#%#%#%#%#%#%#%#%#%#%#%#%#%#%#%#%#%#%#%#%#%#%#%#%#%#%#%#%#
 
 # Install tons of stuff to bootstrap
-bootstrap: install-eget install-gomplate configure-apt install-apt-packages configure-shell install-dotnet configure-flatpak install-rails install-jekyll install-uv install-rust install-goose install-homebrew install-homebrew-packages install-java install-font install-terminal-tools install-storage-tools configure-podman display-environment display-versions
+bootstrap: install-eget install-gomplate configure-apt install-apt-packages configure-shell install-dotnet install-mise-tools install-uv install-font install-terminal-tools install-storage-tools display-environment display-versions
     @echo
     @echo 'Bootstrap complete. Remember to restart your shell environment before proceeding.'
 

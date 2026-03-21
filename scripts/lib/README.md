@@ -9,3 +9,5 @@ This is a directory of the library scripts that help.
 - `scripts/platforms.sh` sets vars identifying the platform. If unsupported, exits with a message to stderr saying so.
 
 &hellip;
+etc
+&hellip;

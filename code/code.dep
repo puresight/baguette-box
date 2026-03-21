@@ -27,7 +27,7 @@ ms-vscode.PowerShell
 golang.go
 # Go - Go language support <https://marketplace.visualstudio.com/items?itemName=golang.go>
 rust-lang.rust-analyzer
-# Rust Analyzer - Rust language support <https://marketplace.visualstudio.com/items?itemName=rust-lang.rust-analyzer>
+# Rust Analyzer - Rust language support <https://code.visualstudio.com/docs/languages/rust>
 redhat.java
 # Java - Java language support <https://marketplace.visualstudio.com/items?itemName=redhat.java>
 vscjava.vscode-maven
