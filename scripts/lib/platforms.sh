@@ -18,7 +18,7 @@ case "$(uname -s)" in
         ;;
 esac
 
-echo "Platform: $PLATFORM"
+# echo "Platform: $PLATFORM"
 if [ "$PLATFORM" != "debian" ]; then
     echo "❌ Error: Only Debian Linux is supported." >&2
     exit 1

@@ -70,7 +70,7 @@ tasks:
 - task: install_homebrew
   enabled: true
 
-- task: brew_bundle
+- task: install_homebrew_packages
   arguments:
     - homebrew.dep
 

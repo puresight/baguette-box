@@ -2,7 +2,7 @@
 # --- System & Package Management ---
 #%#%#%#%#%#%#%#%#%#%#%#%#%#%#%#%#%#%#%#%#%#%#%#%#%#%#%#%#%#%#%#%#%#%#%#%#%#%#%
 
-software-properties-common
+# software-properties-common
 # Manage the repositories that you install software from - https://packages.ubuntu.com/jammy/software-properties-common
 apt-transport-https
 # HTTPS transport for APT - https://packages.debian.org/sid/apt-transport-https

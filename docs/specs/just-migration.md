@@ -17,7 +17,7 @@ This migration work involves planning, implementing, checking, testing, and docu
 
 ### Justfile
 
-For simplicity and ease of discovery, a single `justfile` will be used at the root of the repository. This keeps all recipes in one place, making them easy to find and manage during the initial migration phases.
+For simplicity and ease of discovery, a single, monolithic `justfile` will be used at the root of the repository. This keeps all recipes in one place, making them easy to find and manage during the initial migration phases.
 
 ### Configuration Management
 

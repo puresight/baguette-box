@@ -40,6 +40,7 @@ EOF
 configure_apt() {
     sudo apt update -qq
     sudo apt autoremove -y
+    sudo apt autoclean -y
     _add_apt_sources
 }
 
@@ -147,7 +148,7 @@ install_mise_tools() {
         mkdir -p "$(dirname "$marker_file")"
         touch "$marker_file"
     else
-        echo "Mise tools were already installed."
+        echo "The mise.toml tools were installed on $(date -r "$marker_file" '+%A %B %-d %Y' | awk '{d=$3;s="th";if(d%10==1&&d!=11)s="st";if(d%10==2&&d!=12)s="nd";if(d%10==3&&d!=13)s="rd";printf "%s, %s %d%s, %s",$1,$2,d,s,$4}')."
     fi
 
     # Activate mise environment for the current shell
@@ -175,7 +176,7 @@ install_terminal_tools() {
         echo "fzf appears to be installed (found ~/.fzf)."
     fi
     export PATH="$PATH:$HOME/.fzf/bin"
-    fzf --version
+    echo "fzf $(fzf --version)"
 
     # --- Install zoxide ---
     if ! command -v zoxide &> /dev/null; then
@@ -204,17 +205,17 @@ install_terminal_tools() {
 }
 
 # Function to install Ruby on Rails
-#   dependencies: install_mise (for Ruby)
+#   dependencies: install_mise_tools (for Ruby)
 install_rails() {
     if ! gem list -i "^rails$" > /dev/null; then
         echo "Installing Rails..."
         gem install rails
     fi
-    rails --version
+    echo "$(rails --version) is installed"
 }
 
 # Function to install Jekyll
-#   dependencies: install_mise (for Ruby)
+#   dependencies: install_mise_tools (for Ruby)
 install_jekyll() {
     if ! gem list -i "^jekyll$" > /dev/null; then
         echo "Installing Jekyll..."
@@ -223,8 +224,8 @@ install_jekyll() {
         # Regenerate shims so 'jekyll' and 'bundle' commands work
         mise reshim
     fi
-    jekyll --version
-    bundle --version
+    echo "bundle $(bundle --version) is installed"
+    echo "$(jekyll --version)"
 }
 
 # Function to handle GOOSE installation
@@ -233,7 +234,7 @@ install_goose() {
     if ! command -v goose --version &> /dev/null; then
         curl -fsSL https://github.com/block/goose/releases/download/stable/download_cli.sh | CONFIGURE=false bash
     fi
-    goose --version
+    echo "goose version$(goose --version)"
 }
 
 # Function to handle .NET installation
@@ -304,20 +305,31 @@ configure_shell() {
 }
 
 # Function to handle Podman configuration
-#   dependencies: (none)
+#   dependencies: install_apt_packages
 configure_podman() {
+    podman --version
     # The Problem: By default, a Linux user only has one UID (yours). To run a container, Podman needs to pretend to be "root" inside the container while remaining a "normal user" outside. It does this by mapping a range of UIDs from the host to the container.
     # The Fix: By adding $USER:100000:65536 to /etc/subuid and subgid, you are granting your user permission to "own" 65,536 subordinate IDs.
-    if [ ! -f "/etc/subuid" ] || ! grep -q "$USER" /etc/subuid; then
-        echo "Defining a range of subordinate user IDs that the standard user account is permitted to use for User Namespaces"
-        echo "$USER:100000:65536" | sudo tee -a /etc/subuid
-        echo "Defining a range of subordinate group IDs that the standard user account is permitted to use for User Namespaces"
-        echo "$USER:100000:65536" | sudo tee -a /etc/subgid
+    local sub_entry="${USER}:100000:65536"
+    local changes_made=false
+
+    if ! grep -q "^${sub_entry}$" /etc/subuid &>/dev/null; then
+        echo "Defining subordinate user IDs for ${USER} in /etc/subuid..."
+        echo "${sub_entry}" | sudo tee -a /etc/subuid >/dev/null
+        changes_made=true
+    fi
+
+    if ! grep -q "^${sub_entry}$" /etc/subgid &>/dev/null; then
+        echo "Defining subordinate group IDs for ${USER} in /etc/subgid..."
+        echo "${sub_entry}" | sudo tee -a /etc/subgid >/dev/null
+        changes_made=true
+    fi
+
+    if [ "$changes_made" = true ]; then
         echo "See https://github.com/containers/podman/blob/main/troubleshooting.md"
         echo "Applying any changes to the current session"
     fi
-    podman --version
-    # Refresh the runtime to recognize these new mappings. This prevents the common ERRO[0000] user namespaces are not enabled error.
+    # Migrate existing containers to a new version of Podman and refresh the runtime to recognize these new mappings. This prevents the common ERRO[0000] user namespaces are not enabled error.
     podman system migrate
 }
 
@@ -353,7 +365,7 @@ install_storage_tools() {
 configure_flatpak() {
     echo "sorry: flatpak is disabled for troubleshooting."
     return
-    _configure_flatpak
+    _configure_flatpak "$@"
 }
 
 # Function
@@ -417,7 +429,7 @@ install_homebrew() {
 
 # Function to install a Homebrew bundle
 #   dependencies: install_homebrew
-brew_bundle() {
+install_homebrew_packages() {
     local apt_file="$1"
     brew bundle --file="./$1"
 }

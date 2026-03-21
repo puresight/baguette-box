@@ -118,7 +118,7 @@ installs one of the Microsoft releases of OpenJDK Java.
 installs (or updates)
 Homebrew 🍺 software management system.
 
-### `brew_bundle`
+### `install_homebrew_packages`
 
 uses Homebrew to install packages in the `homebrew.dep` file
 

@@ -23,8 +23,8 @@ _install_rust() {
         curl -L https://raw.githubusercontent.com/cargo-bins/cargo-binstall/main/install-from-binstall-release.sh | bash
         cargo binstall cargo-update --no-confirm
     fi
-    echo "$(rustc --version"
-    echo "$(cargo --version"
+    echo "$(rustc --version)"
+    echo "$(cargo --version)"
     echo "cargo-binstall $(cargo binstall -V $non_interactive)"
     echo "Installing Just LSP language server for editor support..."
     local non_interactive="--no-confirm --disable-telemetry"

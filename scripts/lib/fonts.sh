@@ -16,8 +16,7 @@ install_nerd_font() {
     local font_name="${1:-JetBrainsMono}"
     local version="${2:-v3.3.0}"
     local fonts_dir="${3:-"$HOME/.local/share/fonts"}"
-
-    echo "${FUNCNAME[0]}"
+    # echo "${FUNCNAME[0]}"
 
     # Internal variables
     local base_tmp="${TMPDIR:-/tmp}"
