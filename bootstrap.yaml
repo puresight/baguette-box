@@ -13,7 +13,6 @@ tasks:
     - apt/apt.dep
 
 - task: install_uv
-  enabled: false
 
 # Depends on install_uv
 - task: install_using_uv_with_executables_from
@@ -21,10 +20,8 @@ tasks:
     - "ansible"
     - "ansible-core,ansible-lint"
     - "localhost -m ping"
-  enabled: false
 
 - task: install_goose
-  enabled: false
 
 - task: install_dotnet
   arguments:
@@ -49,12 +46,10 @@ tasks:
   enabled: false
 
 - task: install_rust
-  enabled: false
 
 - task: install_java
   arguments:
     - 21
-  enabled: false
 
 - task: install_mise
 

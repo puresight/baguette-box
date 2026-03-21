@@ -8,7 +8,7 @@
 
 # Function ------------------------------------------------------------
 # Arguments are JDK versions to install; the first shall be active.
-INSTALL_MS_OPENJDK() {
+install_ms_openjdk() {
     echo "${FUNCNAME[0]}"
     # TODO support multi-PLATFORM, like macos
     if [[ $# -eq 0 ]]; then
@@ -18,7 +18,7 @@ INSTALL_MS_OPENJDK() {
 
     local active_version=$1
     local arch
-    arch=$(dpkg --print-architecture)
+    arch=$(dpkg --print-architecture) # e.g. 'amd64'
 
     for ver in "$@"; do
         sudo apt install -y "msopenjdk-$ver"
@@ -26,8 +26,9 @@ INSTALL_MS_OPENJDK() {
     sudo apt autoremove -y
 
     # Configure the system default
-    local java_path="/usr/scripts/jvm/msopenjdk-$active_version-$arch/bin/java"
-    local javac_path="/usr/scripts/jvm/msopenjdk-$active_version-$arch/bin/javac"
+    local  base_path="/usr/lib/jvm"
+    local  java_path="$base_path/msopenjdk-$active_version-$arch/bin/java"
+    local javac_path="$base_path/msopenjdk-$active_version-$arch/bin/javac"
 
     if [[ -x "$java_path" ]]; then
         # Use sudo to update the system-wide alternatives
@@ -39,7 +40,7 @@ INSTALL_MS_OPENJDK() {
     fi
 }
 
-# Execute INSTALL_MS_OPENJDK function if script is run directly
+# Execute install_ms_openjdk function if script is run directly
 if [[ "${BASH_SOURCE[0]}" == "${0}" ]]; then
-    INSTALL_MS_OPENJDK "$@"
+    install_ms_openjdk "$@"
 fi

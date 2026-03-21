@@ -5,13 +5,13 @@ To maintain workstation integrity, only install code from reputable & verified a
 ## How to Run
 
 1. **For IT professionals using Ansible:** (Optional) Install the latest uv, python, & [ansible](https://pypi.org/project/ansible/)  
-   Run `./box.sh ansible.yaml`
+   Run `just ansible`
 
 1. **Bootstrap your system:** Install your shell, core language runtimes, system-level fixes, etc  
-   Run `./box.sh bootstrap.yaml`
+   Run `just bootstrap`
 
 1. **Code:** Install VS Code with settings and extensions  
-   Run `./box.sh code.yaml`
+   Run `just code`
 
 This program is idempotent. You can run it again anytime.
 

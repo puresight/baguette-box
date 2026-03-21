@@ -1,10 +1,12 @@
 # Rust
 
-Rust is a general-purpose, multi-paradigm, systems programming language designed for high performance, memory safety, and thread safety. It has rapidly ascended to the forefront of modern software development by successfully bridging the gap between high-level abstraction and low-level performance. That unique ownership model guarantees memory safety without a garbage collector, effectively eliminating common bugs like null pointer dereferences and data races. As industries shift toward more secure and concurrent systems, Rust’s robust ecosystem and enthusiastic community have solidified its position as the preferred successor to C and C++ for critical infrastructure, web assembly, and performance-sensitive applications.
+[Rust](https://rust-lang.org/) is a general-purpose, multi-paradigm, systems programming language designed for high performance, memory safety, and thread safety. It has rapidly ascended to the forefront of modern software development by successfully bridging the gap between high-level abstraction and low-level performance. That unique ownership model guarantees memory safety without a garbage collector, effectively eliminating common bugs like null pointer dereferences and data races. As industries shift toward more secure and concurrent systems, Rust’s robust ecosystem and enthusiastic community have solidified its position as the preferred successor to [C](https://www.c-language.org/) and [C++](https://isocpp.org/) for critical infrastructure, [web assembly](https://rust-lang.org/what/wasm/), and performance-sensitive applications.
 
-## Installing Rust
+## Installing
 
-We use [Rustup](https://rustup.rs/) to install the [Rust](https://rust-lang.org/) language.
+- We use [Rustup](https://rustup.rs/) to install the [Rust](https://rust-lang.org/) language compiler.
+- Rustup will install the default toolchain specified in your `~/.rustup/settings.toml` _if it exists._
+- Cargo's bin directory is at `~/.cargo/bin`
 
 ## Installing Packages
 

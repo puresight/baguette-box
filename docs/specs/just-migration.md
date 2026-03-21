@@ -11,18 +11,14 @@ This migration work involves planning, implementing, checking, testing, and docu
 
 ## Architecture & Design
 
-### Modular Justfiles
+### Monolithic Justfile
 
-To maintain clarity and organization, the root `justfile` should be minimal. It will be responsible for loading environment configuration and including other, more specific `justfile`s.
-
-- Create a `justfiles/` directory.
-- Specific domains will have their own files, e.g., `justfiles/languages.just`, `justfiles/tools.just`, `justfiles/bootstrap.just`.
-- The root `justfile` will use `!include` directives to pull them in.
+For simplicity and ease of discovery, a single, monolithic `justfile` will be used at the root of the repository. This keeps all recipes in one place, making them easy to find and manage during the initial migration phases.
 
 ### Configuration Management
 
 - **Environment File:** A `.env` file will be used for user-specific configuration. The root `justfile` should load this using `set dotenv-load := true`. This separates user config from the task logic. (Remember to explain this in the dev documentation later.)
-- **Parameter Passing:** Just recipes will accept arguments and pass them to the underlying shell scripts. The convention should be clear. For example, `install_ms_openjdk '17' '21'` becomes `just install-java 17 21`.
+- **Parameter Passing:** Just recipes will accept arguments and pass them to the underlying shell scripts. The convention should be clear. For example, `install_ms_openjdk '21' '25'` becomes `just install-java 21 25`.
 
 ### Naming Convention
 

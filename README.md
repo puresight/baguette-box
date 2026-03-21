@@ -66,18 +66,21 @@ Next, prepare your new system
   - `git clone <repo-link>`
   - `cd <repo-name>`
 
+Next, install `just`, the command runner we use to manage workstation setup:
+- `sudo apt install just` (for Debian 12, see ChromeOS setup if needed)
+
 ## Proceed
 
 Finally, browse the [`docs/README.md`](./docs/README.md) and&hellip;
 
 1. **For IT professionals using Ansible:** (Optional) Install the latest uv, python, & ansible  
-   Run `./box.sh ansible.yaml`
+   Run `just ansible`
 
 1. **Bootstrap your system:** Install your shell, core language runtimes, system-level fixes, etc  
-   Run `./box.sh bootstrap.yaml`
+   Run `just bootstrap`
 
 1. **Code:** Install [VS Code](./code/README.md) with settings and extensions  
-   Run `./box.sh code.yaml`
+   Run `just code`
 
 The workstation will be ready in a minute.
 

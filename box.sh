@@ -9,8 +9,8 @@ set -o pipefail
 
 # GLobal variables
 SCRIPTROOT=$(dirname "${BASH_SOURCE[0]}")
-MODE="install"
 BIN_DIR="$HOME/.local/bin"
+MODE="install"
 
 # Ensure BIN_DIR is first in PATH for newly installed tools
 export PATH="$BIN_DIR:$PATH"

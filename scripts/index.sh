@@ -6,13 +6,13 @@
 # ------ # ------ # ------ # ------ # ------ # ------ # ------ # ------
 
 # --- load library code ---
-source "$SCRIPTROOT/scripts/lib/platforms.sh" || { echo "❌ Error: scripts/platforms.sh not found."; exit 1; }
-source "$SCRIPTROOT/scripts/lib/apt.sh"     # Debian APT fiunction(s)
-source "$SCRIPTROOT/scripts/lib/flatpak.sh" # Flatpak install fiunction(s)
-source "$SCRIPTROOT/scripts/lib/fonts.sh"   # Nerd Font installation fiunction(s)
-source "$SCRIPTROOT/scripts/lib/java.sh"    # OpenJDK install fiunction(s)
-source "$SCRIPTROOT/scripts/lib/mc.sh"      # Minio Client install fiunction(s)
-source "$SCRIPTROOT/scripts/lib/json.sh"    # for VS Code configuring fiunction(s)
+. "$SCRIPTROOT/scripts/lib/platforms.sh" || { echo "❌ Error: scripts/platforms.sh not found."; exit 1; }
+. "$SCRIPTROOT/scripts/lib/apt.sh"     # Debian APT fiunction(s)
+. "$SCRIPTROOT/scripts/lib/flatpak.sh" # Flatpak install fiunction(s)
+. "$SCRIPTROOT/scripts/lib/fonts.sh"   # Nerd Font installation fiunction(s)
+. "$SCRIPTROOT/scripts/lib/java.sh"    # OpenJDK install fiunction(s)
+. "$SCRIPTROOT/scripts/lib/mc.sh"      # Minio Client install fiunction(s)
+. "$SCRIPTROOT/scripts/lib/json.sh"    # for VS Code configuring fiunction(s)
 
 # Function to display help information
 print_help() {
@@ -321,7 +321,7 @@ configure_podman() {
 }
 
 # Function to handle Rust installation with cargo-binstall
-#   dependencies: (none)
+#   dependencies: configure_apt, install_apt_packages
 install_rust() {
     if command -v rustup &> /dev/null; then
         echo "Run 'rustup update' soon."
@@ -335,14 +335,14 @@ install_rust() {
         #   -y: Auto-confirm default installation options
         echo "Installing Rust"
         curl --proto '=https' --tlsv1.2 -sSf https://sh.rustup.rs | sh -s -- -y
-        source "$HOME/.cargo/env"
+        . "$HOME/.cargo/env"
         echo "Adding cargo-binstall"
         curl -L https://raw.githubusercontent.com/cargo-bins/cargo-binstall/main/install-from-binstall-release.sh | bash
         cargo binstall cargo-update --no-confirm
     fi
-    rustc --version
-    cargo --version
-    cargo-binstall --version
+    echo "$(rustc --version)"
+    echo "$(cargo --version)"
+    echo "cargo-binstall $(cargo binstall -V)"
 }
 
 # Function to install storage-related command-line tools
@@ -385,10 +385,10 @@ install_font() {
 install_java() {
     local java_version="$1"
     echo "Installing Microsoft OpenJDK version $java_version..."
-    INSTALL_MS_OPENJDK $java_version
+    install_ms_openjdk $java_version
 
     # The first JDK version will be made the active one;
-    # multiple are possible for example INSTALL_MS_OPENJDK 21 17 25
+    # multiple are possible for example install_ms_openjdk 21 17 25
     echo
     java -version
 }
