@@ -10,6 +10,7 @@
 . "$SCRIPTROOT/scripts/lib/apt.sh"     # Debian APT fiunction(s)
 . "$SCRIPTROOT/scripts/lib/flatpak.sh" # Flatpak install fiunction(s)
 . "$SCRIPTROOT/scripts/lib/fonts.sh"   # Nerd Font installation fiunction(s)
+. "$SCRIPTROOT/scripts/lib/rust.sh"    # Rust install fiunction(s)
 . "$SCRIPTROOT/scripts/lib/java.sh"    # OpenJDK install fiunction(s)
 . "$SCRIPTROOT/scripts/lib/mc.sh"      # Minio Client install fiunction(s)
 . "$SCRIPTROOT/scripts/lib/json.sh"    # for VS Code configuring fiunction(s)
@@ -323,26 +324,7 @@ configure_podman() {
 # Function to handle Rust installation with cargo-binstall
 #   dependencies: configure_apt, install_apt_packages
 install_rust() {
-    if command -v rustup &> /dev/null; then
-        echo "Run 'rustup update' soon."
-        # rustup update # TODO disabled because it takes too long / several minutes.
-        # TODO investigate re-enabling this; it compiled from source 157 packages (too much) last time
-        # cargo install-update -a
-    else
-        # Rust APT dependencies: build-essential curl
-        # We download and run the rustup-init script non-interactively
-        #   -sSf: Silent, show errors, fail on server errors
-        #   -y: Auto-confirm default installation options
-        echo "Installing Rust"
-        curl --proto '=https' --tlsv1.2 -sSf https://sh.rustup.rs | sh -s -- -y
-        . "$HOME/.cargo/env"
-        echo "Adding cargo-binstall"
-        curl -L https://raw.githubusercontent.com/cargo-bins/cargo-binstall/main/install-from-binstall-release.sh | bash
-        cargo binstall cargo-update --no-confirm
-    fi
-    echo "$(rustc --version)"
-    echo "$(cargo --version)"
-    echo "cargo-binstall $(cargo binstall -V)"
+    _install_rust
 }
 
 # Function to install storage-related command-line tools

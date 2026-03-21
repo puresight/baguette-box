@@ -9,11 +9,15 @@ This migration work involves planning, implementing, checking, testing, and docu
 - **Single Source of Truth:** Modular, single-purpose shell scripts in the `./scripts` directory will serve as the source of truth for task logic, potentially using shared helper functions from `./scripts/lib/`. The `justfile` recipes will act exclusively as an orchestration and parameter-passing layer on top of them.
 - **Improved User Experience:** `just` will become the primary documented way to interact with the repository, offering a simpler, more memorable command structure than `./box.sh <config>.yaml`.
 
+## Tactics & Resources
+
+- Use `bootstrap.yaml` & `code.yaml` & `ansible.yaml` lists of tasks with arguments (aka recipes with parameters) as the primary source for defining the high-level and regular recipes, and their constituent steps.
+
 ## Architecture & Design
 
-### Monolithic Justfile
+### Justfile
 
-For simplicity and ease of discovery, a single, monolithic `justfile` will be used at the root of the repository. This keeps all recipes in one place, making them easy to find and manage during the initial migration phases.
+For simplicity and ease of discovery, a single `justfile` will be used at the root of the repository. This keeps all recipes in one place, making them easy to find and manage during the initial migration phases.
 
 ### Configuration Management
 
@@ -45,6 +49,7 @@ The `justfile` will be the primary mechanism for handling cross-platform differe
     - Replicate the logic of `bootstrap.yaml`, `code.yaml`, etc., as high-level recipes (e.g., `just bootstrap`, `just code`).
     - Move the legacy YAML/dispatcher documentation from the main `README.md` into a new `docs/legacy-box-usage.md` file.
     - Update documentation (`README.md`, `docs/just.md`) to feature the `just` commands as the primary, recommended workflow. `box.sh` remains fully functional for backward compatibility.
+    - Replicate the logic of every task in `bootstrap.yaml`, `code.yaml`, etc., as regular level recipes (e.g., `just install-rust`, `just install-code-extensions`).
 
 2.  **Phase 2: Script Refactoring**
     - **Goal:** Decouple task logic from orchestration by modularizing the shell functions.
@@ -66,10 +71,6 @@ The `justfile` will be the primary mechanism for handling cross-platform differe
     - After a suitable transition period, the `box.sh` script and associated YAML configuration files can be fully deprecated and removed.
     - All documentation will be updated to reflect a `just`-only workflow.
     - This sets the stage for future work, such as a declarative, stateless interface layered on top of the `just` foundation.
-
-## Tactics & Resources
-
-- Use `bootstrap.yaml` & `code.yaml` & `ansible.yaml` lists of tasks (with arguments) as the primary source for defining the high-level recipes and their constituent steps.
 
 ## Documentation
 

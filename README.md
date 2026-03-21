@@ -44,7 +44,7 @@ CLI
 
 ## Plan
 
-Take a minute to think about your intention.
+First, take a minute to think about your intention.
 Write a quick markdown file about your needs and purposes for the workstation, and the tools that will help you accomplish that.
 This page will be useful to you and your AI agents.
 
@@ -52,37 +52,38 @@ Note: You have powerful tools to help you. It is best to not frontload more soft
 
 ## Prepare
 
-Next, prepare your new system
+Next, prepare your new system:
 
 - On Linux: Update, upgrade, and get git
   - `sudo apt update && sudo apt upgrade -y`
   - `sudo apt install git`
-- On [ChromeOS](./docs/chromeos.md), set a password
+- On [ChromeOS](./docs/chromeos.md), set a user password
   - `sudo passwd $USER`
-- For git, do your [First Time Setup](https://git-scm.com/book/ms/v2/Getting-Started-First-Time-Git-Setup) e.g.
-  - `git config --global user.name "Jane Doe"`
-  - `git config --global user.email "janedoe@example.com"`
+- Do your [Git First Time Setup](https://git-scm.com/book/ms/v2/Getting-Started-First-Time-Git-Setup) e.g.
+  ```sh
+  git config --global user.name "Jane Doe"
+  git config --global user.email "janedoe@example.com"
+  ```
+- [Install Just](https://just.systems/man/en/installation.html) e.g.
+  ```sh
+  export PATH="$PATH:$HOME/.local/bin"
+  curl --proto '=https' --tlsv1.2 -sSf https://just.systems/install.sh | bash -s -- --to ~/.local/bin
+  just --version
+  ```
 - Clone this repo:
+  - `cd src`
   - `git clone <repo-link>`
-  - `cd <repo-name>`
-
-Next, install `just`, the command runner we use to manage workstation setup:
-- `sudo apt install just` (for Debian 12, see ChromeOS setup if needed)
-
+  - `cd baguette-box`
+  
 ## Proceed
 
-Finally, browse the [`docs/README.md`](./docs/README.md) and&hellip;
+Finally, proceed to set up your environment&hellip;
 
-1. **For IT professionals using Ansible:** (Optional) Install the latest uv, python, & ansible  
-   Run `just ansible`
+1. To see a list of available recipes and tasks, run: `just`
+1. Bootstrap your new system: `just bootstrap`
+1. Install VS Code: `just code`
 
-1. **Bootstrap your system:** Install your shell, core language runtimes, system-level fixes, etc  
-   Run `just bootstrap`
-
-1. **Code:** Install [VS Code](./code/README.md) with settings and extensions  
-   Run `just code`
-
-The workstation will be ready in a minute.
+&hellip;and your new PC will be ready in a couple of minutes.
 
 <!-- --
 Stay in touch to let us know about bugs & improvements.
@@ -96,4 +97,4 @@ If you're interested in using, forking, adapting, or redistributing any part of 
 
 I intend to choose a restrictive open-source license (likely GPL-3.0) in the coming months after gathering feedback and use cases. Direct conversation helps me understand needs and decide the best path.
 
-Thank you for your interest!
+Thank you for your interest.
