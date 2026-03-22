@@ -30,7 +30,7 @@ Languages
 
 Agentic AI & pairing
 
-- [Google Antigravity](https://antigravity.google/) IDE
+- [Google Antigravity](https://antigravity.google/docs/home) IDE
 - _Gemini Code Assist_ and _Roo Code_ in VS [Code](./code/README.md) IDE
 - _Gemini CLI_ via [npm](./docs/node.md)
 - [Goose](https://block.github.io/goose/docs/category/guides) CLI
@@ -42,7 +42,7 @@ CLI
 - [Oh My Posh](https://ohmyposh.dev/) prompt _with_ [nerd fonts](./docs/fonts.md)
 - [AWS](https://docs.aws.amazon.com/cli/), [Azure](https://learn.microsoft.com/en-us/powershell/azure/), [Google](https://cloud.google.com/cli), [kubectl](https://kubernetes.io/docs/reference/kubectl/) cloud tools
 - [MinIO Client](./docs/mc.md), [Rclone](./docs/rclone.md) storage utils
-- [Postgres](https://www.postgresql.org/docs/current/reference-client.html), [MariaDB](https://mariadb.com/docs/server/clients-and-utilities/mariadb-client/mariadb-command-line-client), [Redis](https://redis.io/docs/latest/develop/tools/), [SQLite](https://www.sqlite.org/) database clients
+- [Postgres](https://www.postgresql.org/docs/), [MariaDB](https://mariadb.com/docs/server/clients-and-utilities/mariadb-client/mariadb-command-line-client), [Redis](https://redis.io/docs/latest/develop/tools/), [SQLite](https://www.sqlite.org/) [database](./docs/databases.md) clients
 
 ## Plan
 
@@ -51,6 +51,9 @@ Write a quick markdown file about your needs and purposes for the workstation, a
 This page will be useful to you and your AI agents.
 
 Note: You have powerful tools to help you. It is best to not frontload more software than you need. You can always add more later, when your plan matures, or changes.
+
+Know that you may customize the _bootstrap_ recipe in the [justfile](./justfile) before running it,
+adding some things or removing some.
 
 ## Prepare
 

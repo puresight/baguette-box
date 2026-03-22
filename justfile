@@ -1,3 +1,15 @@
+#%#%#%#%#%#%#%#%#%#%#%#%#%#%#%#%#%#%#%#%#%#%#%#%#%#%#%#%#%#%#%#%#%#%#
+#%#
+#%# justfile - A command runner for this project
+#%#
+#%# Just is a handy way to save and run project-specific commands!
+#%#
+#%# This file contains "recipes" for common development and setup tasks.
+#%# To see available recipes, run: `just`
+#%# To run a specific recipe, use: `just <recipe-name>`
+#%#
+#%#%#%#%#%#%#%#%#%#%#%#%#%#%#%#%#%#%#%#%#%#%#%#%#%#%#%#%#%#%#%#%#%#%#
+
 set dotenv-load := true
 set shell := ["bash", "-c"]
 
@@ -10,7 +22,7 @@ _:
     @just --list
 
 #%#%#%#%#%#%#%#%#%#%#%#%#%#%#%#%#%#%#%#%#%#%#%#%#%#%#%#%#%#%#%#%#%#%#
-# -- High-level Recipes --
+#%# -- High-level Recipes --
 #%#%#%#%#%#%#%#%#%#%#%#%#%#%#%#%#%#%#%#%#%#%#%#%#%#%#%#%#%#%#%#%#%#%#
 
 # Install tons of stuff to bootstrap
@@ -29,7 +41,7 @@ code: configure-code
     @echo VS Code should be ready to use.
 
 #%#%#%#%#%#%#%#%#%#%#%#%#%#%#%#%#%#%#%#%#%#%#%#%#%#%#%#%#%#%#%#%#%#%#
-# -- Regular Recipes --
+#%# -- Regular Recipes --
 #%#%#%#%#%#%#%#%#%#%#%#%#%#%#%#%#%#%#%#%#%#%#%#%#%#%#%#%#%#%#%#%#%#%#
 
 # Display environment
