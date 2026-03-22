@@ -36,4 +36,4 @@ NoSQL database development, particularly within agentic workflows, relies heavil
 
 Whether writing commands at the shell prompt or in scripts, these tools are often used with
 
-- [jq](https://jqlang.github.io/jq/), a lightweight command-line JSON processor, to allow developers and AI agents to slice and filter database outputs programmatically.
+- [jq](https://jqlang.github.io/jq/) is a lightweight command-line JSON processor to enable you to slice & filter database outputs programmatically.

@@ -12,12 +12,10 @@ connects APT using [DEB822](https://repolib.readthedocs.io/en/latest/deb822-form
 to the repository [sources](https://wiki.debian.org/SourcesList)
 contained in this directory.
 
-So this folder contains the templates for
-[APT repository sources](https://wiki.debian.org/SourcesList).
-
+This folder contains the templates for APT repository sources.
 And when the system is installing APT repository sources, these templates are processed by
-[gomplate](https://docs.gomplate.ca/) to generate new
-[Debian](https://manpages.debian.org/stable/dpkg-dev/deb822.5.en.html) style
+[gomplate](https://docs.gomplate.ca/) to generate the
+[new Debian style](https://manpages.debian.org/stable/dpkg-dev/deb822.5.en.html)
 `.sources` files for your machine's `/etc/apt/sources.list.d/` directory.
 
 ## How that happens
