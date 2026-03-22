@@ -21,7 +21,7 @@ with tooling for coding, cloud, compute, cache, storage, and data management.
 Languages
 
 - [Java](./docs/java.md)
-- [C# .NET](./docs/dotnet.md)
+- [C# .NET](./dotnet/README.md)
 - [Ruby on Rails](./docs/ruby.md) via [Mise](./docs/mise.md)
 - [Typescript/JS via Node](./docs/node.md) via [Mise](./docs/mise.md)
 - [Python via UV](./docs/uv.md)

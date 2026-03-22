@@ -257,6 +257,7 @@ install_dotnet() {
 configure_shell() {
     local shell="${1:-zsh}"
     local rc_file="$HOME/.${shell}rc"
+    local pwsh_init="./dotnet/powershell.ps1"
 
     if [ "$PLATFORM" == "debian" ]; then
         local target_shell
@@ -289,7 +290,7 @@ configure_shell() {
 
         # Configure Posh for Powershell
         echo "pwsh $(pwsh --version)" 
-        pwsh -NoProfile -File ./powershell.ps1
+        pwsh -NoProfile -File $pwsh_init
 
     elif [ "$PLATFORM" == "macos" ]; then
         if command -v oh-my-posh &> /dev/null; then

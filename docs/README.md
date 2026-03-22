@@ -28,7 +28,7 @@ These are availble but not integral:
 
 - [Rustup](./rust.md) for Rust
 - [Flatpak](./flatpak.md) for installing GUI apps
-- [.NET](./dotnet.md)
+- [.NET](../dotnet/README.md)
 - [OpenJDK](./java.md)
 
 CLI:
@@ -138,7 +138,7 @@ installs Block's [Goose](https://block.github.io/goose/docs/category/guides) AI 
 
 #### `install-dotnet`
 
-installs [.NET](./dotnet.md)
+installs [.NET](../dotnet/README.md)
 
 #### `install-font`
 
