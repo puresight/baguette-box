@@ -4,9 +4,9 @@
 #%#
 #%# Just is a handy way to save and run project-specific commands!
 #%#
-#%# This file contains "recipes" for common development and setup tasks.
-#%# To see available recipes, run: `just`
-#%# To run a specific recipe, use: `just <recipe-name>`
+#%# This file contains "recipes" for common development and setup tasks
+#%#   To see available recipes, run: `just`
+#%#   To run a specific recipe, use: `just <recipe-name>`
 #%#
 #%#%#%#%#%#%#%#%#%#%#%#%#%#%#%#%#%#%#%#%#%#%#%#%#%#%#%#%#%#%#%#%#%#%#
 
@@ -25,20 +25,20 @@ _:
 #%# -- High-level Recipes --
 #%#%#%#%#%#%#%#%#%#%#%#%#%#%#%#%#%#%#%#%#%#%#%#%#%#%#%#%#%#%#%#%#%#%#
 
-# Install tons of stuff to bootstrap
-bootstrap: install-eget install-gomplate configure-apt install-apt-packages configure-shell install-dotnet install-mise-tools install-uv install-font install-terminal-tools install-storage-tools display-environment display-versions
+# Bootstrap the system to the max
+bootstrap-max: install-apt-packages configure-shell install-dotnet install-tools-terminal install-tools-storage configure-flatpak install-homebrew install-rust install-uv install-java install-kubectl install-node install-go install-ruby install-jekyll install-rails install-goose install-ansible configure-podman display-environment display-versions
     @echo
-    @echo 'Bootstrap complete. Remember to restart your shell environment before proceeding.'
+    @echo 'Remember to restart your shell environment before proceeding.'
 
-# Install Ansible
-ansible: _install-ansible-from-uv display-environment
+# Bootstrap the system
+bootstrap: install-apt-packages configure-shell install-uv install-node display-environment display-versions
     @echo
-    @echo Ansible CLI should be ready to use.
+    @echo 'Remember to restart your shell environment before proceeding.'
 
 # Install VS Code w/ custom settings & extensions
 code: configure-code
     @echo
-    @echo VS Code should be ready to use.
+    @echo 'VS Code is ready to use.'
 
 #%#%#%#%#%#%#%#%#%#%#%#%#%#%#%#%#%#%#%#%#%#%#%#%#%#%#%#%#%#%#%#%#%#%#
 #%# -- Regular Recipes --
@@ -65,8 +65,9 @@ configure-apt: install-gomplate
     @. scripts/index.sh &&\
         configure_apt apt
 
+# TODO Refactor function configure_shell to remove dependency on install-dotnet
 # Configure shells
-configure-shell: install-apt-packages install-dotnet
+configure-shell: install-apt-packages install-font install-dotnet
     @echo
     @echo "$a configure-shell $a"
     @. scripts/index.sh &&\
@@ -86,33 +87,12 @@ configure-podman: install-apt-packages
     @. scripts/index.sh &&\
         configure_podman
 
-# Configure Code
-configure-code updates="code/user-settings.json": install-code-extensions
-    @echo
-    @echo "$a configure-code $a"
-    @. scripts/index.sh &&\
-        configure_code {{updates}}
-
 # Install APT packages
 install-apt-packages: configure-apt
     @echo
     @echo "$a install-apt-packages $a"
     @. scripts/index.sh &&\
         install_apt_packages 'apt/apt.dep'
-
-# Install Code
-install-code updates="code/argv.json": install-apt-packages
-    @echo
-    @echo "$a install-code $a"
-    @. scripts/index.sh &&\
-        install_code {{updates}}
-
-# Install Code extensions
-install-code-extensions extensions="code/code.dep": install-code
-    @echo
-    @echo "$a install-code-extensions $a"
-    @. scripts/index.sh &&\
-        install_code_extensions {{extensions}}
 
 # Install homebrew packages
 install-homebrew-packages bundle="homebrew/homebrew.dep": install-homebrew
@@ -135,22 +115,43 @@ install-mise:
     @. scripts/index.sh &&\
         install_mise
 
-# Install tools in mise.toml config
-install-mise-tools: install-mise
+# Install kubectl using mise
+install-kubectl: install-mise
     @echo
-    @echo "$a install-mise-tools $a"
+    @echo "$a install-kubectl $a"
     @. scripts/index.sh &&\
-        install_mise_tools "node@sub-2:latest" "go@sub-0.0.1:latest" "ruby@sub-0.1:latest"
+        install_kubectl "kubectl@latest"
+
+# Install Node engine using mise
+install-node: install-mise
+    @echo
+    @echo "$a install-node $a"
+    @. scripts/index.sh &&\
+        install_node "node@sub-2:lts"
+
+# Install Go language using mise
+install-go: install-mise
+    @echo
+    @echo "$a install-go $a"
+    @. scripts/index.sh &&\
+        install_go "go@sub-0.0.1:latest"
+
+# Install Ruby language using mise
+install-ruby: install-mise
+    @echo
+    @echo "$a install-ruby $a"
+    @. scripts/index.sh &&\
+        install_ruby "ruby@sub-0.1:latest"
 
 # Install Jekyll static site generator
-install-jekyll: install-mise-tools
+install-jekyll: install-ruby
     @echo
     @echo "$a install-jekyll $a"
     @. scripts/index.sh &&\
         install_jekyll
 
 # Install Rails framework
-install-rails: install-mise-tools
+install-rails: install-ruby
     @echo
     @echo "$a install-rails $a"
     @. scripts/index.sh &&\
@@ -162,11 +163,6 @@ install-goose:
     @echo "$a install-goose $a"
     @. scripts/index.sh &&\
         install_goose
-
-# Install Ansible using uv
-_install-ansible-from-uv: install-uv
-    @. scripts/index.sh &&\
-        install_using_uv_with_executables_from 'ansible' 'ansible-core,ansible-lint' 'localhost -m ping'
 
 # Install gomplate for using JSON, YAML, & text templates
 install-gomplate: install-eget
@@ -181,7 +177,7 @@ install-eget:
     @. scripts/index.sh &&\
         install_eget
 
-# Install Rust language
+# Install Rust language using Rustup
 install-rust:
     @echo
     @echo "$a install-rust $a"
@@ -189,9 +185,9 @@ install-rust:
         install_rust
 
 # Install terminal tools
-install-terminal-tools shell="zsh":
+install-tools-terminal shell="zsh":
     @echo
-    @echo "$a install-terminal-tools $a"
+    @echo "$a install-tools-terminal $a"
     @. scripts/index.sh &&\
         install_terminal_tools {{shell}}
 
@@ -217,9 +213,9 @@ install-java version="21": configure-apt
         install_java {{version}}
 
 # Install storage tools
-install-storage-tools:
+install-tools-storage:
     @echo
-    @echo "$a install-storage-tools $a"
+    @echo "$a install-tools-storage $a"
     @. scripts/index.sh &&\
         install_storage_tools
 
@@ -229,5 +225,36 @@ install-uv:
     @echo "$a install-uv $a"
     @. scripts/index.sh &&\
         install_uv
+
+# Install Ansible
+install-ansible: _install-ansible-from-uv display-environment
+    @echo
+    @echo 'Ansible CLI should be ready to use.'
+
+# Private: install Ansible using uv
+_install-ansible-from-uv: install-uv
+    @. scripts/index.sh &&\
+        install_using_uv_with_executables_from 'ansible' 'ansible-core,ansible-lint' 'localhost -m ping'
+
+# Install Code
+install-code updates="code/argv.json": install-apt-packages
+    @echo
+    @echo "$a install-code $a"
+    @. scripts/index.sh &&\
+        install_code {{updates}}
+
+# Install Code extensions
+install-code-extensions extensions="code/code.dep": install-code
+    @echo
+    @echo "$a install-code-extensions $a"
+    @. scripts/index.sh &&\
+        install_code_extensions {{extensions}}
+
+# Configure Code
+configure-code updates="code/user-settings.json": install-code-extensions
+    @echo
+    @echo "$a configure-code $a"
+    @. scripts/index.sh &&\
+        configure_code {{updates}}
 
 #%#%#%#%#%#%#%#%#%#%#%#%#%#%#%#%#%#%#%#%#%#%#%#%#%#%#%#%#%#%#%#%#%#%#

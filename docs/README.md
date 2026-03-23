@@ -92,7 +92,7 @@ Runs `apt install` on packages listed in the [`apt/apt.dep`](../apt/apt.dep)
 
 <!-- -->
 
-#### `install-storage-tools`
+#### `install-tools-storage`
 
 installs utilities such as
 [MinIO Client](./docs/mc.md) (`mc`), a tool for managing files on S3-compatible cloud storage.
@@ -111,18 +111,22 @@ installs flatpak and adds the remote source for the Flathub app marketplace.
 
 #### `install-mise`
 
-installs **[Mise](./mise.md)** en place, a tool to manage installations of languages and tools for development. It is used to manage multiple versions of e.g. language runtimes. It manages
+installs **[Mise](./mise.md)** en place, a tool to manage installations of languages and tools for development.
 
-- [Go](https://go.dev/) language
-- [Node](https://nodejs.org/) engine
+#### `install-node`
 
-#### `install-mise-tools`
+installs [Node](./node.md)
+managed by [Mise](./mise.md).
 
-reads the `mise.toml` file in the root of the repository to install the specified tool versions. [Mise](./mise.md) manages:
+#### `install-go`
 
-- [Go](./go.md) language
-- [Node](./node.md) engine (including npm)
-- [Ruby](./ruby.md) language (including RubyGems)
+installs [Go](./go.md) language
+managed by [Mise](./mise.md).
+
+#### `install-ruby`
+
+installs [Ruby](./ruby.md) language (including RubyGems)
+managed by [Mise](./mise.md).
 
 #### `install-rails`
 
@@ -130,19 +134,23 @@ installs the Rails framework using [Ruby](./ruby.md)
 
 #### `install-jekyll`
 
-installs Jekyll using [Ruby](./ruby.md)
+installs Jekyll static site generator (SSG) using [Ruby](./ruby.md)
+
+#### `install-java`
+
+installs one of the Microsoft releases of OpenJDK [Java](.//java.md).
+
+#### `install-dotnet`
+
+installs [.NET](../dotnet/README.md) SDK.
 
 #### `install-goose`
 
 installs Block's [Goose](https://block.github.io/goose/docs/category/guides) AI CLI.
 
-#### `install-dotnet`
-
-installs [.NET](../dotnet/README.md)
-
 #### `install-font`
 
-installs a [font](./fonts.md) needed by Posh
+installs a monospace [font](./fonts.md) needed by the prompt et. al.
 
 #### `configure-shell`
 
@@ -153,7 +161,7 @@ runs a _pwsh_ script to install [Azure PowerShell](https://learn.microsoft.com/e
 And installs the [Oh My Posh](https://ohmyposh.dev/) prompt
 for the zsh and pwsh shells.
 
-#### `install-terminal-tools`
+#### `install-tools-terminal`
 
 installs [CLI tools](./cli-tools.md) like
 [fzf](https://junegunn.github.io/fzf/) & [zoxide](https://zoxide.org/)
@@ -165,10 +173,6 @@ configures [Podman](.//podman.md)
 #### `install-rust`
 
 installs [Rust](./rust.md)
-
-#### `install-java`
-
-installs one of the Microsoft releases of OpenJDK [Java](.//java.md).
 
 #### `install-homebrew`
 

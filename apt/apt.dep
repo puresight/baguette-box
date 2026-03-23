@@ -111,8 +111,6 @@ fuse-overlayfs
 # FUSE implementation for overlayfs - https://github.com/containers/fuse-overlayfs
 podman
 # Engine for managing OCI containers and pods - https://podman.io/
-kubectl
-# Command line tool for controlling Kubernetes clusters - https://kubernetes.io/docs/reference/kubectl/
 awscli
 # Universal Command Line Interface for Amazon Web Services - https://aws.amazon.com/cli/
 google-cloud-cli

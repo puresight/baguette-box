@@ -143,15 +143,36 @@ install_mise() {
 #   dependencies: install_mise
 install_mise_tools() {
     local mise_config_global="$HOME/.config/mise/config.toml"
+    # Globally use tool(s)
+    for tool in "$@"; do
+        mise use -g "$tool"
+    done
     if [ ! -f "$mise_config_global" ]; then
         mise trust -y
-        for tool in "$@"; do
-            mise use -g "$tool"
-        done
     else
-        echo "global: $mise_config_global"
         mise upgrade
     fi
+    echo "global: $mise_config_global"
+}
+
+# Function
+install_kubectl() {
+    install_mise_tools $@
+}
+
+# Function
+install_go() {
+    install_mise_tools $@
+}
+
+# Function
+install_node() {
+    install_mise_tools $@
+}
+
+# Function
+install_ruby() {
+    install_mise_tools $@
 }
 
 # Function to install and configure fzf and zoxide terminal tools
