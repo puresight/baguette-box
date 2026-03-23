@@ -559,13 +559,15 @@ display_environment() {
 # Function to display current versions
 #   dependencies: (none)
 display_versions() {
-    # if command -v gcloud &> /dev/null; then echo "$(gcloud --version)"; fi # FIXME too verbose: we just want the main gcloud version
+    if command -v kubectl &>/dev/null; then echo "kubectl $(kubectl version | head -n 1)"; fi
+    if command -v gcloud &> /dev/null; then echo "$(gcloud --version | head -n 1)"; fi # FIXME too verbose: we just want the main gcloud version
     if command -v aws &>/dev/null; then echo "Amazon Web Services: $(aws --version)"; fi
-    # if command -v gh &> /dev/null; then echo "Github: $(gh --version)"; fi # FIXME too verbose: just the GH version please
+    if command -v gh &> /dev/null; then echo "Github: $(gh --version | head -n 1)"; fi # FIXME too verbose: just the GH version please
     if command -v uv &>/dev/null; then echo "$(uv --version)"; fi
     if command -v python3 &>/dev/null; then echo "$(python3 --version)"; fi
     if command -v rustc &>/dev/null; then echo "$(rustc --version)"; fi
     if command -v cargo &>/dev/null; then echo "$(cargo --version)"; fi
+    if command -v cargo &>/dev/null; then echo "cargo-binstall $(cargo binstall -V $non_interactive)"; fi
     if command -v go &>/dev/null; then echo "$(go version)"; fi
     if command -v ruby &>/dev/null; then echo "$(ruby --version)"; fi
     if command -v javac &>/dev/null; then echo "$(javac -version 2>&1)"; fi
