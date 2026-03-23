@@ -20,13 +20,13 @@ with tooling for coding, cloud, compute, cache, storage, and data management.
 
 Languages
 
+- [Python via UV](./docs/uv.md)
+- [Typescript/JS via Node](./docs/node.md)
+- [Go](./docs/go.md)
+- [Ruby on Rails](./docs/ruby.md)
+- [C# .NET](./dotnet/README.md)
 - [Java](./docs/java.md)
 - [Kotlin](./docs/kotlin.md)
-- [C# .NET](./dotnet/README.md)
-- [Ruby on Rails](./docs/ruby.md) via [Mise](./docs/mise.md)
-- [Typescript/JS via Node](./docs/node.md) via [Mise](./docs/mise.md)
-- [Python via UV](./docs/uv.md)
-- [Go](./docs/go.md) via [Mise](./docs/mise.md)
 - [Rust](./docs/rust.md)
 
 Agentic AI & pairing
