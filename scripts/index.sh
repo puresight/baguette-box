@@ -135,24 +135,23 @@ install_mise() {
         # mise v
         mise self-update -y
     fi
+    eval "$(mise hook-env)" # Activate mise environment for the current shell
     mise --version
 }
 
 # Function to install mise tools
 #   dependencies: install_mise
 install_mise_tools() {
-    local marker_file="$HOME/.cache/baguette-box/.mise-installed"
-    if [ ! -f "$marker_file" ]; then
+    local mise_config_global="$HOME/.config/mise/config.toml"
+    if [ ! -f "$mise_config_global" ]; then
         mise trust -y
-        mise install
-        mkdir -p "$(dirname "$marker_file")"
-        touch "$marker_file"
+        for tool in "$@"; do
+            mise use -g "$tool"
+        done
     else
-        echo "The mise.toml tools were installed on $(date -r "$marker_file" '+%A %B %-d %Y' | awk '{d=$3;s="th";if(d%10==1&&d!=11)s="st";if(d%10==2&&d!=12)s="nd";if(d%10==3&&d!=13)s="rd";printf "%s, %s %d%s, %s",$1,$2,d,s,$4}')."
+        echo "global: $mise_config_global"
+        mise upgrade
     fi
-
-    # Activate mise environment for the current shell
-    eval "$(mise hook-env)"
 }
 
 # Function to install and configure fzf and zoxide terminal tools

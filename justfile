@@ -140,7 +140,7 @@ install-mise-tools: install-mise
     @echo
     @echo "$a install-mise-tools $a"
     @. scripts/index.sh &&\
-        install_mise_tools
+        install_mise_tools "node@sub-2:latest" "go@sub-0.0.1:latest" "ruby@sub-0.1:latest"
 
 # Install Jekyll static site generator
 install-jekyll: install-mise-tools
