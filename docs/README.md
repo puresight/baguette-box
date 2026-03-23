@@ -30,6 +30,7 @@ These are availble but not integral:
 - [Flatpak](./flatpak.md) for installing GUI apps
 - [.NET](../dotnet/README.md)
 - [OpenJDK](./java.md)
+- [Kotlin](./docs/kotlin.md)
 
 CLI:
 
@@ -113,6 +114,18 @@ installs flatpak and adds the remote source for the Flathub app marketplace.
 
 installs **[Mise](./mise.md)** en place, a tool to manage installations of languages and tools for development.
 
+#### `install-java`
+
+installs an OpenJDK [Java](./java.md) of the Java langauge.
+
+#### `install-kotlin`
+
+installs [Kotlin](./kotlin.md) language.
+
+#### `install-dotnet`
+
+installs [.NET](../dotnet/README.md) SDK.
+
 #### `install-node`
 
 installs [Node](./node.md)
@@ -135,14 +148,6 @@ installs the Rails framework using [Ruby](./ruby.md)
 #### `install-jekyll`
 
 installs Jekyll static site generator (SSG) using [Ruby](./ruby.md)
-
-#### `install-java`
-
-installs one of the Microsoft releases of OpenJDK [Java](.//java.md).
-
-#### `install-dotnet`
-
-installs [.NET](../dotnet/README.md) SDK.
 
 #### `install-goose`
 

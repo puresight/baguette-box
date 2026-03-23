@@ -11,30 +11,9 @@
 . "$SCRIPTROOT/scripts/lib/flatpak.sh" # Flatpak install fiunction(s)
 . "$SCRIPTROOT/scripts/lib/fonts.sh"   # Nerd Font installation fiunction(s)
 . "$SCRIPTROOT/scripts/lib/rust.sh"    # Rust install fiunction(s)
-. "$SCRIPTROOT/scripts/lib/java.sh"    # OpenJDK install fiunction(s)
 . "$SCRIPTROOT/scripts/lib/mc.sh"      # Minio Client install fiunction(s)
 . "$SCRIPTROOT/scripts/lib/json.sh"    # for VS Code configuring fiunction(s)
-
-# Function to display help information
-print_help() {
-    cat << EOF
-Usage: ${0} [OPTIONS]
-
-Options:
-  -h, --help      Show this help message and exit
-  -i, --install   Install all VS Code components (default)
-  -c, --config    Specify configuration file (required)
-EOF
-#   -d, --dry-run   Zero mutations, but display what would be done
-#   -u, --update    Install only minor updates
-#   -g, --upgrade   Install major version upgrades
-
-# Examples:
-#   ${0}                    # Install all components
-#   ${0} --dry-run          # Show what would be installed
-#   ${0} --update           # Update minor versions
-#   ${0} --upgrade          # Upgrade to major versions
-}
+# . "$SCRIPTROOT/scripts/lib/java.sh"    # Deprecated: OpenJDK install fiunction(s)
 
 # Function to configure APT
 configure_apt() {
@@ -175,6 +154,21 @@ install_ruby() {
     install_mise_tools $@
 }
 
+# Function
+install_dotnet() {
+    install_mise_tools $@
+}
+
+# Function
+install_java() {
+    install_mise_tools $@
+}
+
+# Function
+install_kotlin() {
+    install_mise_tools $@
+}
+
 # Function to install and configure fzf and zoxide terminal tools
 #   dependencies: configure_shell
 install_terminal_tools() {
@@ -259,7 +253,7 @@ install_goose() {
 
 # Function to handle .NET installation
 #   dependencies: configure_apt
-install_dotnet() {
+install_microsoft_dotnet() {
     for arg in "$@"; do
         if [ "$arg" != "$PLATFORM" ]; then
             echo "Installing .NET SDK $arg..."
@@ -397,7 +391,7 @@ install_font() {
 
 # Function
 #   dependencies: configure_apt
-install_java() {
+install_microsoft_java() {
     local java_version="$1"
     echo "Installing Microsoft OpenJDK version $java_version..."
     install_ms_openjdk $java_version
@@ -575,10 +569,4 @@ display_versions() {
     if command -v pwsh &>/dev/null; then echo "pwsh $(pwsh --version)"; fi
     if command -v node &>/dev/null; then echo "Node $(node -v)"; fi
     if command -v npm &>/dev/null; then echo "npm $(npm -v)"; fi
-}
-
-# Function
-#   dependencies: (none)
-show_message() {
-    echo "${1}" > /dev/null
 }

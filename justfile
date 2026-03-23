@@ -157,6 +157,28 @@ install-rails: install-ruby
     @. scripts/index.sh &&\
         install_rails
 
+# Install .NET SDK
+install-dotnet version="10": install-mise
+    @echo
+    @echo "$a install-rails $a"
+    @. scripts/index.sh &&\
+        install_dotnet "dotnet@{{version}}"
+
+# Install OpenJDK
+install-java version="21": install-mise
+    @echo
+    @echo "$a install-java $a"
+    @# microsoft- (MSFT) corretto- (Amazon) temurin- (Eclipse Adoptium) zulu- (Azul Systems) oracle- (Oracle) 
+    @. scripts/index.sh &&\
+        install_java "java@temurin-{{version}}"
+
+# Install Kotlin language
+install-kotlin: install-java
+    @echo
+    @echo "$a install-kotlin $a"
+    @. scripts/index.sh &&\
+        install_kotlin "kotlin@sub-0.1:latest"
+
 # Install Goose IDE
 install-goose:
     @echo
@@ -197,20 +219,6 @@ install-font id="JetBrainsMono" version="v3.3.0":
     @echo "$a install-font $a"
     @. scripts/index.sh &&\
         install_font {{id}} {{version}}
-
-# Install .NET SDK
-install-dotnet version="10": configure-apt
-    @echo
-    @echo "$a install-dotnet $a"
-    @. scripts/index.sh &&\
-        install_dotnet {{version}}
-
-# Install OpenJDK
-install-java version="21": configure-apt
-    @echo
-    @echo "$a install-java $a"
-    @. scripts/index.sh &&\
-        install_java {{version}}
 
 # Install storage tools
 install-tools-storage:

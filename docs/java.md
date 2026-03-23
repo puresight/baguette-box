@@ -4,6 +4,9 @@
 
 It is an object-oriented programming (OOP) language, organizing software design around "objects" rather than just functions, making it "easier" to create modular and reusable code. Java includes features like **garbage collection** (automatic memory management) and a secure execution environment that protects against unauthorized code or viruses.
 
+- Installed using [Mise](./mise.md)
+
+<!-- --
 - Using APT we install [Microsoft's](https://www.microsoft.com/openjdk)
 - [OpenJDK](https://openjdk.org/)
 - [21](https://docs.oracle.com/en/java/javase/21/)
@@ -11,6 +14,7 @@ It is an object-oriented programming (OOP) language, organizing software design 
 How to manage with multiple versions? Learn about `update-alternatives`
 
 - 📖 [2024/7 Baeldung: The `update-alternatives` Command in Linux](https://www.baeldung.com/linux/update-alternatives-command)
+<!-- -->
 
 ## Applications
 
