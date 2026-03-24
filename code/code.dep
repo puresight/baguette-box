@@ -46,6 +46,8 @@ charliermarsh.ruff
 # Ruff - Python linter and formatter <https://marketplace.visualstudio.com/items?itemName=charliermarsh.ruff>
 shopify.ruby-lsp
 # Ruby LSP (Shopify) provides high-performance IntelliSense, "Go to Definition," and semantic highlighting without requiring heavy type annotations. Includes the Rails LSP that enhances the Ruby LSP functionality with Rails-specific features like improved code navigation, document symbols for Rails-specific elements, and runtime introspection capabilities https://github.com/Shopify/vscode-shopify-ruby
+haskell.haskell
+# Haskell language support powered by the language server <https://marketplace.visualstudio.com/items?itemName=haskell.haskell>
 
 #%#%#%#%#%#%#%#%#%#%#%#%#%#%#%#%#%#%#%#%#%#%#%#%#%#%#%#%#%#%#%#%#%#%#%#%#%#%#%
 # --- Data Representation & Transformation ---

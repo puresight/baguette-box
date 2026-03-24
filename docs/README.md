@@ -30,8 +30,9 @@ These are availble but not integral:
 - [Flatpak](./flatpak.md) for installing GUI apps
 - [.NET](../dotnet/README.md)
 - [OpenJDK](./java.md)
-- [Kotlin](./docs/kotlin.md)
+- [Kotlin](./docs/kotlin.md) & [Scala](./docs/scala.md)
 - [Erlang](./docs/erlang.md) & [Elixir](./docs/elixir.md)
+- [Haskell](./docs/haskell.md)
 
 CLI:
 
@@ -90,6 +91,12 @@ Runs `apt install` on packages listed in the [`apt/apt.dep`](../apt/apt.dep)
 
 <!-- -->
 
+#### `configure-flatpak`
+
+installs flatpak and adds the remote source for the Flathub app marketplace.
+
+[Flatpak](./flatpak.md) is the preferred method for installing GUI applications on this system. This approach ensures applications run in isolated environments with their own dependencies, preventing conflicts with system libraries and keeping the host OS clean. It also provides access to the latest versions of applications regardless of the distribution's release cycle. Read the [flatpak.md](./flatpak.md) docs for more info.
+
 #### `install-tools-storage`
 
 installs utilities such as
@@ -101,11 +108,9 @@ installs [UV](.//uv.md)
 (the unified tool for the Python ecosystem)
 and Python.
 
-#### `configure-flatpak`
+#### `install-rust`
 
-installs flatpak and adds the remote source for the Flathub app marketplace.
-
-[Flatpak](./flatpak.md) is the preferred method for installing GUI applications on this system. This approach ensures applications run in isolated environments with their own dependencies, preventing conflicts with system libraries and keeping the host OS clean. It also provides access to the latest versions of applications regardless of the distribution's release cycle. Read the [flatpak.md](./flatpak.md) docs for more info.
+installs [Rust](./rust.md) language.
 
 #### `install-mise`
 
@@ -119,6 +124,10 @@ installs an OpenJDK [Java](./java.md) of the Java langauge.
 
 installs [Kotlin](./kotlin.md) language.
 
+#### `install-scala`
+
+installs [Scala](./scala.md) language.
+
 #### `install-dotnet`
 
 installs [.NET](../dotnet/README.md) SDK.
@@ -131,6 +140,21 @@ managed by [Mise](./mise.md).
 #### `install-go`
 
 installs [Go](./go.md) language
+managed by [Mise](./mise.md).
+
+#### `install-haskell`
+
+installs [Haskell](./haskell.md) language
+managed by [Mise](./mise.md).
+
+#### `install-erlang`
+
+installs [Erlang](./erlang.md) language
+managed by [Mise](./mise.md).
+
+#### `install-elixir`
+
+installs [Elixir](./elixir.md) language
 managed by [Mise](./mise.md).
 
 #### `install-ruby`
@@ -171,10 +195,6 @@ installs [CLI tools](./cli-tools.md) like
 #### `configure-podman`
 
 configures [Podman](.//podman.md)
-
-#### `install-rust`
-
-installs [Rust](./rust.md)
 
 #### `install-homebrew`
 

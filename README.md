@@ -20,11 +20,11 @@ with tooling for coding, cloud, compute, cache, storage, and data management.
 
 Languages
 
-- [Python via UV](./docs/uv.md)
+- [Python via uv](./docs/uv.md)
 - [Typescript/JS via Node](./docs/node.md)
 - [Go](./docs/go.md)
 - [Ruby on Rails](./docs/ruby.md)
-- [C# .NET SDK](./dotnet/README.md)
+- [C# via .NET](./dotnet/README.md)
 - [Java](./docs/java.md), [Kotlin](./docs/kotlin.md), & [Scala](./docs/scala.md)
 - [Erlang](./docs/erlang.md) & [Elixir](./docs/elixir.md)
 - [Haskell](./docs/haskell.md)
@@ -33,7 +33,7 @@ Languages
 Agentic AI & pairing
 
 - [Google Antigravity](https://antigravity.google/docs/home) IDE
-- _Gemini Code Assist_ and _Roo Code_ in VS [Code](./code/README.md) IDE
+- _Gemini Code Assist_ and _Roo Code_ in [VS Code](./code/README.md) IDE
 - _Gemini CLI_ via [npm](./docs/node.md)
 - [Goose](https://block.github.io/goose/docs/category/guides) CLI
 - [Aider](./docs/aider.md) CLI via [Homebrew](./homebrew/README.md)
@@ -42,20 +42,18 @@ CLI
 
 - [Zsh](https://zsh.sourceforge.io/) & [pwsh](https://learn.microsoft.com/en-us/powershell/) shells
 - [Oh My Posh](https://ohmyposh.dev/) prompt _with_ [nerd fonts](./docs/fonts.md)
-- [AWS](https://docs.aws.amazon.com/cli/), [Azure](https://learn.microsoft.com/en-us/powershell/azure/), [Google](https://cloud.google.com/cli), [kubectl](https://kubernetes.io/docs/reference/kubectl/) cloud tools
-- [MinIO Client](./docs/mc.md), [Rclone](./docs/rclone.md) storage utils
+- [kubectl](https://kubernetes.io/docs/reference/kubectl/), [AWS](https://docs.aws.amazon.com/cli/), [Azure](https://learn.microsoft.com/en-us/powershell/azure/), [Google Cloud](https://cloud.google.com/cli) tools
+- [MinIO Client](./docs/mc.md), [Rclone](./docs/rclone.md) storage utilities
 - [Postgres](https://www.postgresql.org/docs/), [MariaDB](https://mariadb.com/docs/server/clients-and-utilities/mariadb-client/mariadb-command-line-client), [Redis](https://redis.io/docs/latest/develop/tools/), [SQLite](https://www.sqlite.org/) [database](./docs/databases.md) clients
 
 ## Plan
 
 First, take a minute to think about your intention.
-Write a quick markdown file about your needs and purposes for the workstation, and the tools that will help you accomplish that.
-This page will be useful to you and your AI agents.
+Write a quick `workstation.md` file about the intention(s) you have for the workstation, and the tools that you think will need to help you accomplish them.
 
-Note: You have powerful tools to help you. It is best to not frontload more software than you need. You can always add more later, when your plan matures, or changes.
+_Note: You have powerful tools to help you. It is best to not frontload more software than you need. You can always add more later, when your plan matures, or changes._
 
-Know that you may customize the _bootstrap_ recipe in the [justfile](./justfile) before running it,
-adding some things or removing some.
+Alone or with your AI agent, compare your _workstation.md_ with this project’s [justfile](./justfile) before your run it &mdash; to see if you should add or subtract recipes for your bootstrap.
 
 ## Prepare
 
