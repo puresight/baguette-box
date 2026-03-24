@@ -65,10 +65,6 @@ Regular recipes perform specific & granular tasks for system configuration.
 
 uses [UV](./uv.md) to install [Ansible](https://docs.ansible.com/)
 
-#### `install-eget`
-
-[Eget](https://github.com/zyedidia/eget?tab=readme-ov-file#readme) to download/verify/install releases from GitHub
-
 #### `install-gomplate`
 
 [Gomplate](https://docs.gomplate.ca/) is a template rendering engine supporting JSON & YAML

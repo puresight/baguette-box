@@ -116,32 +116,32 @@ install-mise:
         install_mise
 
 # Install kubectl using mise
-install-kubectl: install-mise
+install-kubectl version="latest": install-mise
     @echo
     @echo "$a install-kubectl $a"
-    @. scripts/index.sh &&\
-        install_kubectl "kubectl@latest"
+    @echo "global: $HOME/.config/mise/config.toml"
+    mise use -g "kubectl@{{version}}"
 
 # Install Node engine using mise
-install-node: install-mise
+install-node version="sub-2:lts": install-mise
     @echo
     @echo "$a install-node $a"
-    @. scripts/index.sh &&\
-        install_node "node@sub-2:lts"
+    @echo "global: $HOME/.config/mise/config.toml"
+    mise use -g "node@{{version}}"
 
 # Install Go language using mise
-install-go: install-mise
+install-go version="sub-0.0.1:latest": install-mise
     @echo
     @echo "$a install-go $a"
-    @. scripts/index.sh &&\
-        install_go "go@sub-0.0.1:latest"
+    @echo "global: $HOME/.config/mise/config.toml"
+    mise use -g "go@{{version}}"
 
 # Install Ruby language using mise
-install-ruby: install-mise
+install-ruby version="sub-0.1:latest": install-mise
     @echo
     @echo "$a install-ruby $a"
-    @. scripts/index.sh &&\
-        install_ruby "ruby@sub-0.1:latest"
+    @echo "global: $HOME/.config/mise/config.toml"
+    mise use -g "ruby@{{version}}"
 
 # Install Jekyll static site generator
 install-jekyll: install-ruby
@@ -161,23 +161,23 @@ install-rails: install-ruby
 install-dotnet version="10": install-mise
     @echo
     @echo "$a install-rails $a"
-    @. scripts/index.sh &&\
-        install_dotnet "dotnet@{{version}}"
+    @echo "global: $HOME/.config/mise/config.toml"
+    mise use -g "dotnet@{{version}}"
 
 # Install OpenJDK
 install-java version="21": install-mise
     @echo
     @echo "$a install-java $a"
     @# microsoft- (MSFT) corretto- (Amazon) temurin- (Eclipse Adoptium) zulu- (Azul Systems) oracle- (Oracle) 
-    @. scripts/index.sh &&\
-        install_java "java@temurin-{{version}}"
+    @echo "global: $HOME/.config/mise/config.toml"
+    mise use -g "java@temurin-{{version}}"
 
 # Install Kotlin language
-install-kotlin: install-java
+install-kotlin version="latest": install-java
     @echo
     @echo "$a install-kotlin $a"
-    @. scripts/index.sh &&\
-        install_kotlin "kotlin@sub-0.1:latest"
+    @echo "global: $HOME/.config/mise/config.toml"
+    mise use -g "kotlin@{{version}}"
 
 # Install Goose IDE
 install-goose:
@@ -187,17 +187,10 @@ install-goose:
         install_goose
 
 # Install gomplate for using JSON, YAML, & text templates
-install-gomplate: install-eget
+install-gomplate: install-mise
     @echo
     @echo "$a install-gomplate $a"
-    ./scripts/install-gomplate.sh
-
-# Install Eget (for downloading GitHub releases)
-install-eget:
-    @echo
-    @echo "$a install-eget $a"
-    @. scripts/index.sh &&\
-        install_eget
+    mise use -g gomplate@latest
 
 # Install Rust language using Rustup
 install-rust:
@@ -207,7 +200,7 @@ install-rust:
         install_rust
 
 # Install terminal tools
-install-tools-terminal shell="zsh":
+install-tools-terminal shell="zsh": install-mise
     @echo
     @echo "$a install-tools-terminal $a"
     @. scripts/index.sh &&\
@@ -221,11 +214,10 @@ install-font id="JetBrainsMono" version="v3.3.0":
         install_font {{id}} {{version}}
 
 # Install storage tools
-install-tools-storage:
+install-tools-storage: install-mise
     @echo
     @echo "$a install-tools-storage $a"
-    @. scripts/index.sh &&\
-        install_storage_tools
+    mise use -g mc@latest
 
 # Install uv, the Python package manager
 install-uv:

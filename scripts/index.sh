@@ -11,7 +11,6 @@
 . "$SCRIPTROOT/scripts/lib/flatpak.sh" # Flatpak install fiunction(s)
 . "$SCRIPTROOT/scripts/lib/fonts.sh"   # Nerd Font installation fiunction(s)
 . "$SCRIPTROOT/scripts/lib/rust.sh"    # Rust install fiunction(s)
-. "$SCRIPTROOT/scripts/lib/mc.sh"      # Minio Client install fiunction(s)
 . "$SCRIPTROOT/scripts/lib/json.sh"    # for VS Code configuring fiunction(s)
 # . "$SCRIPTROOT/scripts/lib/java.sh"    # Deprecated: OpenJDK install fiunction(s)
 
@@ -34,21 +33,6 @@ install_apt_packages() {
     else
         echo "❌ Error: file '$apt_file' not found" >&2
         exit 1
-    fi
-}
-
-# Function
-#   docs: https://github.com/zyedidia/eget?tab=readme-ov-file#readme
-#   dependencies: (none)
-install_eget() {
-    if ! command -v eget &> /dev/null; then
-        mkdir -p "$BIN_DIR"
-        (cd "$BIN_DIR" && curl -sSL https://zyedidia.github.io/eget.sh | sh)
-    fi
-    eget --version
-    local zshenv="$HOME/.zshenv"
-    if [ ! -f "$zshenv" ] || ! grep -q "EGET_BIN=" "$zshenv"; then
-        echo 'export EGET_BIN="$HOME/.local/bin"' >> "$zshenv"
     fi
 }
 
@@ -118,57 +102,6 @@ install_mise() {
     mise --version
 }
 
-# Function to install mise tools
-#   dependencies: install_mise
-install_mise_tools() {
-    local mise_config_global="$HOME/.config/mise/config.toml"
-    # Globally use tool(s)
-    for tool in "$@"; do
-        mise use -g "$tool"
-    done
-    if [ ! -f "$mise_config_global" ]; then
-        mise trust -y
-    else
-        mise upgrade
-    fi
-    echo "global: $mise_config_global"
-}
-
-# Function
-install_kubectl() {
-    install_mise_tools $@
-}
-
-# Function
-install_go() {
-    install_mise_tools $@
-}
-
-# Function
-install_node() {
-    install_mise_tools $@
-}
-
-# Function
-install_ruby() {
-    install_mise_tools $@
-}
-
-# Function
-install_dotnet() {
-    install_mise_tools $@
-}
-
-# Function
-install_java() {
-    install_mise_tools $@
-}
-
-# Function
-install_kotlin() {
-    install_mise_tools $@
-}
-
 # Function to install and configure fzf and zoxide terminal tools
 #   dependencies: configure_shell
 install_terminal_tools() {
@@ -194,13 +127,7 @@ install_terminal_tools() {
 
     # --- Install zoxide ---
     if ! command -v zoxide &> /dev/null; then
-        echo "Installing zoxide..."
-        local zoxide="ajeetdsouza/zoxide"
-        if ! eget $zoxide --to "$BIN_DIR/zoxide"; then
-            echo "❌ Error: Failed to install zoxide using eget." >&2
-            return 1
-        fi
-        echo "zoxide installed successfully to $BIN_DIR/zoxide."
+        mise use -g zoxide@latest
     else
         echo "zoxide is already installed."
     fi
@@ -352,27 +279,6 @@ configure_podman() {
 #   dependencies: configure_apt, install_apt_packages
 install_rust() {
     _install_rust
-}
-
-# Function to install storage-related command-line tools
-#   dependencies: configure_shell
-install_storage_tools() {
-    local current_mc=$(command -v mc)
-    local update_every_days=90          # Policy Constant for Update
-
-    # if 'mc' is completely missing...
-    if [ -z "$current_mc" ]; then
-        install_minio_client "$@"
-
-    # if 'mc' is older than 90 days (+90)...
-    #   'find' returns the filename only if it matches the age criteria
-    elif [ -n "$(find "$current_mc" -mtime +$update_every_days)" ]; then
-        echo "MinIO Client is older than $update_every_days days. Updating..."
-        install_minio_client
-
-    else
-        echo "MinIO Client (mc) is installed and up-to-date."
-    fi
 }
 
 # Function

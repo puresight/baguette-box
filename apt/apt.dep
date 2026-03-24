@@ -49,6 +49,12 @@ libssl-dev
 # Secure Sockets Layer toolkit development files - https://www.openssl.org/
 gh
 # GitHub's official command line tool - https://cli.github.com/
+automake
+# Tool for generating Makefile.in files for GNU Autotools - https://www.gnu.org/software/automake/
+autoconf
+# Generates configuration scripts to adapt software to various Unix-like systems - https://www.gnu.org/software/autoconf/
+libncurses5-dev
+# Development files for the ncurses terminal UI library - https://www.gnu.org/software/ncurses/
 
 #%#%#%#%#%#%#%#%#%#%#%#%#%#%#%#%#%#%#%#%#%#%#%#%#%#%#%#%#%#%#%#%#%#%#%#%#%#%#%
 # --- Text & Data Processing ---
@@ -117,7 +123,7 @@ google-cloud-cli
 # CLI for Google Cloud Platform - https://cloud.google.com/sdk/docs/install
 
 #%#%#%#%#%#%#%#%#%#%#%#%#%#%#%#%#%#%#%#%#%#%#%#%#%#%#%#%#%#%#%#%#%#%#%#%#%#%#%
-# --- System Utilities ---
+# --- System CLI Utilities ---
 #%#%#%#%#%#%#%#%#%#%#%#%#%#%#%#%#%#%#%#%#%#%#%#%#%#%#%#%#%#%#%#%#%#%#%#%#%#%#%
 
 htop
