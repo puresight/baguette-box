@@ -24,6 +24,8 @@ ms-dotnettools.csharp
 # C# - C# development <https://marketplace.visualstudio.com/items?itemName=ms-dotnettools.csharp>
 ms-vscode.PowerShell
 # PowerShell - PowerShell support <https://marketplace.visualstudio.com/items?itemName=ms-vscode.PowerShell>
+Ionide.Ionide-fsharp
+# F# autocomplete, go-to-definition, refactoring tools, language support <https://marketplace.visualstudio.com/items?itemName=Ionide.Ionide-fsharp>
 golang.go
 # Go - Go language support <https://marketplace.visualstudio.com/items?itemName=golang.go>
 rust-lang.rust-analyzer
@@ -35,6 +37,10 @@ vscjava.vscode-maven
 vscjava.vscode-gradle
 # Gradle for Java - Gradle support <https://marketplace.visualstudio.com/items?itemName=vscjava.vscode-gradle>
 ms-python.python
+fwcd.kotlin
+# Kotlin autocomplete linting debugging formatting <https://marketplace.visualstudio.com/items?itemName=fwcd.kotlin>
+scalameta.metals
+# Scala language server with rich IDE features <https://marketplace.visualstudio.com/items?itemName=scalameta.metals>
 # Python - Python language support <https://marketplace.visualstudio.com/items?itemName=ms-python.python>
 charliermarsh.ruff
 # Ruff - Python linter and formatter <https://marketplace.visualstudio.com/items?itemName=charliermarsh.ruff>

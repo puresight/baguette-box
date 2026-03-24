@@ -24,9 +24,10 @@ Languages
 - [Typescript/JS via Node](./docs/node.md)
 - [Go](./docs/go.md)
 - [Ruby on Rails](./docs/ruby.md)
-- [C# .NET](./dotnet/README.md)
-- [Java](./docs/java.md) & [Kotlin](./docs/kotlin.md)
+- [C# .NET SDK](./dotnet/README.md)
+- [Java](./docs/java.md), [Kotlin](./docs/kotlin.md), & [Scala](./docs/scala.md)
 - [Erlang](./docs/erlang.md) & [Elixir](./docs/elixir.md)
+- [Haskell](./docs/haskell.md)
 - [Rust](./docs/rust.md)
 
 Agentic AI & pairing

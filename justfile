@@ -179,8 +179,23 @@ install-kotlin version="latest": install-java
     @echo "global: $HOME/.config/mise/config.toml"
     mise use -g "kotlin@{{version}}"
 
+# Install Scala
+install-scala version="latest": install-java
+    @echo
+    @echo "$a install-scala $a"
+    @echo "global: $HOME/.config/mise/config.toml"
+    mise use -g "scala@{{version}}"
+    mise use -g sbt@latest # Scala Build Tool
+
+# Install Haskell language
+install-haskell version="latest": install-mise install-apt-packages
+    @echo
+    @echo "$a install-haskell $a"
+    @echo "global: $HOME/.config/mise/config.toml"
+    mise use -g "ghc@{{version}}"
+
 # Install Erlang language
-install-erlang: install-mise
+install-erlang: install-mise install-apt-packages
     @echo
     @echo "$a install-erlang $a"
     @echo "global: $HOME/.config/mise/config.toml"
