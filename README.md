@@ -25,8 +25,8 @@ Languages
 - [Go](./docs/go.md)
 - [Ruby on Rails](./docs/ruby.md)
 - [C# .NET](./dotnet/README.md)
-- [Java](./docs/java.md)
-- [Kotlin](./docs/kotlin.md)
+- [Java](./docs/java.md) & [Kotlin](./docs/kotlin.md)
+- [Erlang](./docs/erlang.md) & [Elixir](./docs/elixir.md)
 - [Rust](./docs/rust.md)
 
 Agentic AI & pairing

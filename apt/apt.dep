@@ -49,12 +49,40 @@ libssl-dev
 # Secure Sockets Layer toolkit development files - https://www.openssl.org/
 gh
 # GitHub's official command line tool - https://cli.github.com/
+
+#%#%#%#%#%#%#%#%#%#%#%#%#%#%#%#%#%#%#%#%#%#%#%#%#%#%#%#%#%#%#%#%#%#%#%#%#%#%#%
+# --- Databases & related tools ---
+#%#%#%#%#%#%#%#%#%#%#%#%#%#%#%#%#%#%#%#%#%#%#%#%#%#%#%#%#%#%#%#%#%#%#%#%#%#%#%
+
+unixodbc-dev
+# Development files for unixODBC, an open-source ODBC implementation - http://www.unixodbc.org/
+# msodbcsql18
+# (or 17) driver package from Microsoft that contains the logic for SQL Server communication - https://learn.microsoft.com/en-us/sql/connect/odbc/linux-mac/installing-the-microsoft-odbc-driver-for-sql-server
+
+#%#%#%#%#%#%#%#%#%#%#%#%#%#%#%#%#%#%#%#%#%#%#%#%#%#%#%#%#%#%#%#%#%#%#%#%#%#%#%
+# --- Erlang Dependencies ---
+#%#%#%#%#%#%#%#%#%#%#%#%#%#%#%#%#%#%#%#%#%#%#%#%#%#%#%#%#%#%#%#%#%#%#%#%#%#%#%
+
 automake
 # Tool for generating Makefile.in files for GNU Autotools - https://www.gnu.org/software/automake/
 autoconf
 # Generates configuration scripts to adapt software to various Unix-like systems - https://www.gnu.org/software/autoconf/
 libncurses5-dev
 # Development files for the ncurses terminal UI library - https://www.gnu.org/software/ncurses/
+libwxgtk3.2-dev
+# wxWidgets GTK3 development files, a C++ library for cross-platform GUI apps - https://www.wxwidgets.org/
+libwxgtk-webview3.2-dev
+# Development files for wxWebView, for embedding a web browser in wxWidgets apps - https://docs.wxwidgets.org/3.2/classwx_web_view.html
+libgl1-mesa-dev
+# Development files for Mesa, an open-source implementation of OpenGL - https://www.mesa3d.org/
+libglu1-mesa-dev
+# Development files for the OpenGL Utility Library (GLU) - https://www.khronos.org/opengl/wiki/OpenGL_Utility_Library_(GLU)
+libpng-dev
+# Development files for libpng, the official PNG reference library - http://www.libpng.org/pub/png/libpng.html
+libjpeg-dev
+# Development files for the libjpeg-turbo library for reading/writing JPEG files - https://libjpeg-turbo.org/
+libtiff-dev
+# Development files for libtiff, a library for reading and writing TIFF images - http://www.simplesystems.org/libtiff/
 
 #%#%#%#%#%#%#%#%#%#%#%#%#%#%#%#%#%#%#%#%#%#%#%#%#%#%#%#%#%#%#%#%#%#%#%#%#%#%#%
 # --- Text & Data Processing ---

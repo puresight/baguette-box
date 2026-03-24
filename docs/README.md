@@ -31,6 +31,7 @@ These are availble but not integral:
 - [.NET](../dotnet/README.md)
 - [OpenJDK](./java.md)
 - [Kotlin](./docs/kotlin.md)
+- [Erlang](./docs/erlang.md) & [Elixir](./docs/elixir.md)
 
 CLI:
 

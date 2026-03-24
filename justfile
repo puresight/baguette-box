@@ -179,6 +179,19 @@ install-kotlin version="latest": install-java
     @echo "global: $HOME/.config/mise/config.toml"
     mise use -g "kotlin@{{version}}"
 
+# Install Erlang language
+install-erlang: install-mise
+    @echo
+    @echo "$a install-erlang $a"
+    @echo "global: $HOME/.config/mise/config.toml"
+    mise use -g "erlang@latest"
+
+# Install Elixir language
+install-elixir: install-erlang
+    @echo
+    @echo "$a install-elixir $a"
+    mise use -g elixir@latest
+
 # Install Goose IDE
 install-goose:
     @echo
