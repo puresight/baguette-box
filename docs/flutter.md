@@ -30,8 +30,5 @@ Flutter's power lies in its single codebase for multiple platforms. You can enab
 
 After enabling, new projects will automatically include support. You can add support to existing projects by running `flutter create .` in the project directory.
 
-See more details in the development guides:
-
-- [Mobile Development](./dev-mobile.md)
-- [Web Development](./dev-web.md)
-- [Desktop Development](./dev-desktop.md)
+----
+See more details in the development guides: [Web](./dev-web.md) | [Mobile](./dev-mobile.md) | [Desktop](./dev-desktop.md)

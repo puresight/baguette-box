@@ -1,18 +1,10 @@
 # Desktop development
 
-Desktop app development focuses on creating software applications that run natively on operating systems like [Windows](https://www.microsoft.com/windows), [macOS](https://www.apple.com/macos/), and [Linux](https://www.linuxfoundation.org/). While this traditionally required separate codebases for each platform, modern development has shifted towards cross-platform frameworks. These toolkits allow developers to write code once and deploy it across desktop, mobile, and web, dramatically improving efficiency and ensuring a consistent user experience. This guide explores three prominent frameworks that excel at this "write-once, run-anywhere" philosophy: React Native, Flutter, and Kotlin Multiplatform.
+Desktop app development focuses on creating software applications that run natively on operating systems like [Windows](https://www.microsoft.com/windows), [macOS](https://www.apple.com/macos/), and [Linux](https://www.linuxfoundation.org/). While this traditionally required separate codebases for each platform, modern development has shifted towards cross-platform frameworks. These toolkits allow developers to write code once and deploy it across desktop, mobile, and web, dramatically improving efficiency and ensuring a consistent user experience.
 
-## React Native
+## Tauri
 
-While [React Native](https://reactnative.dev/) is famous for mobile development, its ecosystem has expanded to support desktop platforms through community and corporate-backed efforts. Projects like **[React Native for Windows](https://microsoft.github.io/react-native-windows/)** and **[React Native for macOS](https://github.com/microsoft/react-native-macos)** allow developers to leverage their existing [React](./dev-web.md#react) and JavaScript skills to build native desktop applications.
-
-The core principle remains the same: you define your UI with React components, and the framework translates them into native UI elements for the target desktop OS. This approach enables significant code sharing between mobile and desktop apps, making it an excellent choice for teams already invested in the React ecosystem.
-
-### Get Started
-
-- 📖 **Explore the documentation:** Visit the official sites for React Native for Windows and macOS to understand setup, platform-specific APIs, and best practices.
-- ⚙ **Use the CLI:** Follow the official guides to add desktop support to an existing React Native project or to create a new one from scratch.
-- 📦 **Understand Native Modules:** For desktop-specific functionality (like interacting with the file system or system tray), you'll need to learn how to use or create native modules.
+[Tauri](https://tauri.app/) has surged in popularity as a primary "lightweight" alternative to **[Electron](https://www.electronjs.org/)**. Instead of bundling a full Chromium instance, it leverages the system's native webview, resulting in tiny binary sizes (often under 5MB) and significantly lower memory usage. With its backend powered by [Rust](./rust.md), Tauri offers a high security posture and a "secure-by-default" model, making it an excellent choice for performance-sensitive desktop apps where a small footprint is critical.
 
 ## Flutter
 
@@ -37,3 +29,15 @@ For desktop development, Compose Multiplatform compiles your [Kotlin](./kotlin.m
 - ⚙ **Use the KMP Wizard:** The easiest way to start is with the Kotlin Multiplatform wizard in IntelliJ IDEA. Select the "Desktop" target to generate a project with the necessary configuration.
 - 🚀 **Learn the Compose Mindset:** If you're new to Compose, learn the fundamentals of declarative UI, including Composable functions, state management, and modifiers. The principles are the same as on Android.
 - 📦 **Run your desktop app:** Once your project is set up, you can run your desktop application using the Gradle task `run`.
+
+## React Native
+
+While [React Native](https://reactnative.dev/) is famous for mobile development, its ecosystem has expanded to support desktop platforms through community and corporate-backed efforts. Projects like [React Native for Windows](https://microsoft.github.io/react-native-windows/) and [React Native for macOS](https://github.com/microsoft/react-native-macos) allow developers to leverage their existing [React](./dev-web.md#react) and JavaScript skills to build native desktop applications.
+
+The core principle remains the same: you define your UI with React components, and the framework translates them into native UI elements for the target desktop OS. This approach enables significant code sharing between mobile and desktop apps, making it an excellent choice for teams already invested in the React ecosystem.
+
+### Get Started
+
+- 📖 **Explore the documentation:** Visit the official sites for React Native for Windows and macOS to understand setup, platform-specific APIs, and best practices.
+- ⚙ **Use the CLI:** Follow the official guides to add desktop support to an existing React Native project or to create a new one from scratch.
+- 📦 **Understand Native Modules:** For desktop-specific functionality (like interacting with the file system or system tray), you'll need to learn how to use or create native modules.
