@@ -4,14 +4,33 @@ Desktop app development focuses on creating software applications that run nativ
 
 ## Tauri
 
-[Tauri](https://tauri.app/) has surged in popularity as a primary "lightweight" alternative to **[Electron](https://www.electronjs.org/)**. Instead of bundling a full Chromium instance, it leverages the system's native webview, resulting in tiny binary sizes (often under 5MB) and significantly lower memory usage. With its backend powered by [Rust](./rust.md), Tauri offers a high security posture and a "secure-by-default" model, making it an excellent choice for performance-sensitive desktop apps where a small footprint is critical.
+[Tauri](https://tauri.app/) has surged in popularity as a lightweight alternative to **[Electron](https://www.electronjs.org/)**. Instead of bundling a full Chromium instance, it leverages the system's native webview, resulting in tiny binary sizes (often under 5MB) and significantly lower memory usage. With its backend powered by [Rust](./rust.md), Tauri offers a high security posture and a "secure-by-default" model, making it an excellent choice for performance-sensitive desktop apps where a small footprint is critical. To get started,
+
+- Understand [Mise](./mise.md)
+- Run recipe `install-rust`
+- Run recipe `install-node`
+- [APT](../apt/README.md) dependencies: To interface with the OS webview using Tauri on Debian 12 Linux, you need the [WebKitGTK](https://webkitgtk.org/) and [GTK](https://gtk.org/) development libraries (Tauri specifically leverages _webkit2gtk_ to render web content on Linux); your package dependencies could include e.g. `libwebkit2gtk-4.1-dev libgtk-3-dev libayatana-appindicator3-dev librsvg2-dev`
+
+```sh
+npm create tauri-app@latest
+cd tauri-app
+npm install
+npm run tauri dev # to test it out
+npm run tauri build # to build a release
+```
+
+<!-- --
+- If you also own a Windows PC, install Microsoft Visual Studio C++ Build Tools (select _"C++ build tools"_ and _"Windows 10/11 SDK"_) and the [WebView2 Runtime](https://learn.microsoft.com/en-us/microsoft-edge/webview2/).
+- If you also own a macOS desktop, install [Xcode Command Line Tools](https://developer.apple.com/documentation/xcode/installing-the-command-line-tools/) by running `xcode-select --install` in your terminal.
+<!-- -->
 
 ## Flutter
 
-[Flutter](./flutter.md) is Google's UI toolkit for building beautiful, natively compiled applications for desktop, mobile, and web from a single codebase. Unlike frameworks that wrap native components, Flutter uses its own high-performance rendering engine (Skia) to draw every pixel on the screen. This gives developers complete control over the UI and ensures a consistent look and feel across all platforms.
+[Flutter](./flutter.md) is Google's UI toolkit for building beautiful, natively compiled applications for desktop, [mobile](./dev-mobile.md#Flutter), and [web](./dev-web.md#Flutter) from a single codebase. Unlike frameworks that wrap native components, Flutter uses its own high-performance rendering engine (Skia) to draw every pixel on the screen. This gives developers complete control over the UI and ensures a consistent look and feel across all platforms.
 
 ### Get Started
 
+- Run recipe `install-flutter`
 - ⚙ **Enable desktop support:** If you have Flutter installed, run `flutter config --enable-<platform>-desktop` (e.g., `flutter config --enable-windows-desktop`) to enable support for your target OS.
 - 🚀 **Create a new project:** Run `flutter create my_desktop_app` to generate a new project with desktop support included.
 - 📦 **Run your app:** You can run your application on your desktop with `flutter run -d <platform>` (e.g., `flutter run -d windows`).
