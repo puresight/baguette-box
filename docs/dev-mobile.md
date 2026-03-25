@@ -1,6 +1,6 @@
 # Mobile development
 
-Mobile development involves creating applications for smartphones and tablets. This guide covers several popular cross-platform frameworks that allow developers to build apps for both iOS and Android from a single codebase, maximizing efficiency and reach. Below, you'll find introductions to React Native, Flutter, and Kotlin Multiplatform, each offering a different approach to building high-quality mobile experiences.
+Mobile development involves creating software applications for smartphones and tablets. This guide covers several popular cross-platform frameworks that allow developers to build apps for both iOS and Android from a single codebase, maximizing efficiency and reach. Below, you'll find introductions to React Native, Flutter, and Kotlin Multiplatform, each offering a different approach to building high-quality mobile experiences.
 
 ## React Native
 
