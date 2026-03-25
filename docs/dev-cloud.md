@@ -2,7 +2,7 @@
 
 Cloud development involves building, deploying, and managing software applications that run on remote servers hosted on the internet ("the cloud") rather than on a user's local machine. This approach enables massive scalability, high availability, and global reach. Modern cloud development relies on a set of core practices and tools that abstract away physical hardware, allowing developers to focus on writing code and delivering value.
 
-## The "Cloud Native" Approach
+## The Cloud Native Approach
 
 Cloud native is an approach to building and running applications that fully leverages the advantages of the cloud computing model. As defined by the Cloud Native Computing Foundation ([CNCF](https://www.cncf.io/)), it's about designing applications as loosely coupled microservices, running them in containers, and managing them with dynamic orchestration. This differs significantly from traditional development.
 
@@ -21,13 +21,15 @@ This shift enables organizations to build highly scalable, resilient, and agile 
 - **Orchestration:** Automating the deployment, scaling, and management of containerized applications. [Kubernetes](https://kubernetes.io/) (managed via `kubectl`) is the industry standard for container orchestration.
 - **Infrastructure as Code (IaC):** Managing and provisioning infrastructure (like servers, databases, and networks) through machine-readable definition files, rather than manual configuration. Tools like Terraform, Pulumi, and AWS CloudFormation enable repeatable and version-controlled infrastructure setups.
 
-## Major Cloud Providers
+## Cloud Providers
 
-The cloud market is dominated by three major providers, each offering a vast suite of services for computing, storage, networking, and more.
+The major three providers offer a vast suite of services for computing, storage, networking, and more.
 
-- **Amazon Web Services (AWS):** The oldest and most dominant player, known for its extensive service catalog and mature ecosystem. Managed via the AWS CLI.
-- **Microsoft Azure:** A strong competitor with deep integration into the Microsoft enterprise ecosystem. Managed via the Azure CLI or Azure PowerShell.
-- **Google Cloud Platform (GCP):** Known for its expertise in data analytics, machine learning, and container orchestration (as the original creator of Kubernetes). Managed via the Google Cloud CLI.
+1. Amazon Web Services (AWS): The oldest and most dominant player, known for its extensive service catalog and mature ecosystem. Managed via the AWS CLI.
+1. Microsoft Azure: A strong competitor with deep integration into the Microsoft enterprise ecosystem. Managed via the Azure CLI or Azure PowerShell.
+1. Google Cloud Platform (GCP): Known for its expertise in data analytics, machine learning, and container orchestration (as the original creator of Kubernetes). Managed via the Google Cloud CLI.
+
+Many more cloud providers offer affordable alternatives that could be helpful, including [Cloudflare](https://www.cloudflare.com/), [DigitalOcean](https://www.digitalocean.com/), [Linode (Akamai)](https://www.linode.com/), [Vultr](https://www.vultr.com/), [OVHcloud](https://ovhcloud.com/) (EU), [Vercel](https://vercel.com/), ...
 
 ## Cloud Storage
 
