@@ -157,14 +157,14 @@ install-rails: install-ruby
     @. scripts/index.sh &&\
         install_rails
 
-# Install .NET SDK
+# Install Microsoft .NET SDK using mise
 install-dotnet version="10": install-mise
     @echo
     @echo "$a install-rails $a"
     @echo "global: $HOME/.config/mise/config.toml"
     mise use -g "dotnet@{{version}}"
 
-# Install OpenJDK
+# Install OpenJDK using mise
 install-java version="21": install-mise
     @echo
     @echo "$a install-java $a"
@@ -172,14 +172,14 @@ install-java version="21": install-mise
     @echo "global: $HOME/.config/mise/config.toml"
     mise use -g "java@temurin-{{version}}"
 
-# Install Kotlin language
+# Install Kotlin language using mise
 install-kotlin version="latest": install-java
     @echo
     @echo "$a install-kotlin $a"
     @echo "global: $HOME/.config/mise/config.toml"
     mise use -g "kotlin@{{version}}"
 
-# Install Scala
+# Install Scala language using mise
 install-scala version="latest": install-java
     @echo
     @echo "$a install-scala $a"
@@ -195,17 +195,23 @@ install-haskell version="latest": install-mise install-apt-packages
     mise use -g "ghc@{{version}}"
 
 # Install Erlang language
-install-erlang: install-mise install-apt-packages
+install-erlang version="latest": install-mise install-apt-packages
     @echo
     @echo "$a install-erlang $a"
     @echo "global: $HOME/.config/mise/config.toml"
-    mise use -g "erlang@latest"
+    mise use -g "erlang@{{version}}"
 
-# Install Elixir language
-install-elixir: install-erlang
+# Install Elixir language using mise
+install-elixir version="latest": install-erlang
     @echo
     @echo "$a install-elixir $a"
-    mise use -g elixir@latest
+    mise use -g elixir@{{version}}
+
+# Install Flutter development tools using mise
+install-flutter version="latest": install-mise
+    @echo
+    @echo "$a install-flutter $a"
+    mise use -g flutter@{{version}}
 
 # Install Goose IDE
 install-goose:
