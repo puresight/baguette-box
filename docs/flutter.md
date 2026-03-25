@@ -4,7 +4,7 @@
 
 Unlike frameworks that wrap native components, Flutter uses its own high-performance rendering engine (Skia) to draw every pixel on the screen. This gives developers complete control over the UI and ensures a consistent look and feel across all platforms, enabling fast development and expressive, flexible UIs.
 
-- Run recipe `install-flutter`
+- Use recipe `install-flutter`
 - Run `flutter doctor` to verify your setup and install any missing dependencies
 
 ## Get Started
@@ -23,11 +23,9 @@ Unlike frameworks that wrap native components, Flutter uses its own high-perform
 
 ## Multi-Platform Development
 
-Flutter's power lies in its single codebase for multiple platforms. You can enable support for platforms beyond mobile.
+Flutter's power lies in its single codebase for multiple platforms. You can enable support for platforms beyond [mobile](./dev-mobile.md) &mdash;
 
-- **Web:** `flutter config --enable-web`
-- **Desktop:** `flutter config --enable-<platform>-desktop` (replace `<platform>` with `windows`, `macos`, or `linux`)
+- [Web](./dev-web.md): `flutter config --enable-web`
+- [Desktop](./dev-desktop.md): `flutter config --enable-<platform>-desktop` (replace `<platform>` with `windows`, `macos`, or `linux`)
 
 After enabling, new projects will automatically include support. You can add support to existing projects by running `flutter create .` in the project directory.
-
-See more details in the development guides: [Web](./dev-web.md) | [Mobile](./dev-mobile.md) | [Desktop](./dev-desktop.md)
