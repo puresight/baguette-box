@@ -33,6 +33,7 @@ These are availble but not integral:
 - [Kotlin](./docs/kotlin.md) & [Scala](./docs/scala.md)
 - [Erlang](./docs/erlang.md) & [Elixir](./docs/elixir.md)
 - [Haskell](./docs/haskell.md)
+- [Dart (Flutter)](./docs/flutter.md) 
 
 CLI:
 
@@ -155,6 +156,11 @@ managed by [Mise](./mise.md).
 #### `install-elixir`
 
 installs [Elixir](./elixir.md) language
+managed by [Mise](./mise.md).
+
+#### `install-flutter`
+
+installs [Flutter](./flutter.md) toolkit
 managed by [Mise](./mise.md).
 
 #### `install-ruby`

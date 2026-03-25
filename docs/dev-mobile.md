@@ -18,7 +18,7 @@ Mobile development involves creating software applications for smartphones and t
 
 ## Flutter
 
-[Flutter](https://flutter.dev/) is a UI toolkit from Google for building beautiful, natively compiled applications for mobile, web, and desktop from a single codebase. It uses the [Dart](https://dart.dev/) programming language and a reactive, widget-based architecture to enable fast development and expressive, flexible UIs.
+[Flutter](./flutter.md) is a UI toolkit from Google for building beautiful, natively compiled applications for mobile, web, and desktop from a single codebase. It uses the [Dart](https://dart.dev/) programming language and a reactive, widget-based architecture to enable fast development and expressive, flexible UIs.
 
 ### Get Started
 

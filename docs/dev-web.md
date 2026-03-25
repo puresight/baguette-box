@@ -17,7 +17,7 @@ Web development encompasses building websites and software applications for the 
 
 ## Flutter
 
-[Flutter](https://flutter.dev/) is a UI toolkit from Google for building natively compiled applications for web, mobile, and desktop from a single codebase. While it's widely known for mobile development, its web support has matured significantly, allowing developers to create rich, hardware-accelerated web applications with complex animations and a consistent look and feel across all platforms. It uses the [Dart](https://dart.dev/) programming language and a reactive, widget-based architecture.
+[Flutter](./flutter.md) is a UI toolkit from Google for building natively compiled applications for web, mobile, and desktop from a single codebase. While it's widely known for mobile development, its web support has matured significantly, allowing developers to create rich, hardware-accelerated web applications with complex animations and a consistent look and feel across all platforms. It uses the [Dart](https://dart.dev/) programming language and a reactive, widget-based architecture.
 
 ### Get Started
 

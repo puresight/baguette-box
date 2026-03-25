@@ -207,7 +207,7 @@ install-elixir version="latest": install-erlang
     @echo "$a install-elixir $a"
     mise use -g elixir@{{version}}
 
-# Install Flutter development tools using mise
+# Install Flutter toolkit using mise
 install-flutter version="latest": install-mise
     @echo
     @echo "$a install-flutter $a"

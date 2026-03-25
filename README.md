@@ -23,13 +23,14 @@ Languages
 
 - [Python via uv](./docs/uv.md)
 - [Typescript/JS via Node](./docs/node.md)
-- [Go](./docs/go.md)
-- [Ruby on Rails](./docs/ruby.md)
-- [C# via .NET](./dotnet/README.md)
 - [Java](./docs/java.md), [Kotlin](./docs/kotlin.md), & [Scala](./docs/scala.md)
+- [C# via .NET](./dotnet/README.md)
+- [Ruby on Rails](./docs/ruby.md)
 - [Erlang](./docs/erlang.md) & [Elixir](./docs/elixir.md)
 - [Haskell](./docs/haskell.md)
+- [Dart (Flutter)](./docs/flutter.md) 
 - [Rust](./docs/rust.md)
+- [Go](./docs/go.md)
 
 Agentic AI & pairing
 

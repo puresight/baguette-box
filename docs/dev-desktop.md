@@ -16,7 +16,7 @@ The core principle remains the same: you define your UI with React components, a
 
 ## Flutter
 
-[Flutter](https://flutter.dev/) is Google's UI toolkit for building beautiful, natively compiled applications for desktop, mobile, and web from a single codebase. Unlike frameworks that wrap native components, Flutter uses its own high-performance rendering engine (Skia) to draw every pixel on the screen. This gives developers complete control over the UI and ensures a consistent look and feel across all platforms.
+[Flutter](./flutter.md) is Google's UI toolkit for building beautiful, natively compiled applications for desktop, mobile, and web from a single codebase. Unlike frameworks that wrap native components, Flutter uses its own high-performance rendering engine (Skia) to draw every pixel on the screen. This gives developers complete control over the UI and ensures a consistent look and feel across all platforms.
 
 ### Get Started
 
