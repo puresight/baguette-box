@@ -23,13 +23,13 @@ This shift enables organizations to build highly scalable, resilient, and agile 
 
 ## Cloud Providers
 
-The major three providers offer a vast suite of services for computing, storage, networking, and more.
+The hyperscalers offer a vast suite of services for computing, storage, networking, and more:
 
-1. Amazon Web Services (AWS): The oldest and most dominant player, known for its extensive service catalog and mature ecosystem. Managed via the AWS CLI.
-1. Microsoft Azure: A strong competitor with deep integration into the Microsoft enterprise ecosystem. Managed via the Azure CLI or Azure PowerShell.
-1. Google Cloud Platform (GCP): Known for its expertise in data analytics, machine learning, and container orchestration (as the original creator of Kubernetes). Managed via the Google Cloud CLI.
+1. Amazon Web Services ([AWS](https://aws.amazon.com/)): The oldest and most dominant player, known for its extensive service catalog and mature ecosystem. Managed via the _AWS CLI_.
+1. Microsoft [Azure](https://azure.microsoft.com/): A strong competitor with deep integration into the Microsoft enterprise ecosystem. Managed via the _PowerShell_ `Az` modules.
+1. Google Cloud Platform ([GCP](https://cloud.google.com/)): Known for its expertise in data analytics, machine learning, and container orchestration (as the original creator of Kubernetes). Managed via the _Google Cloud CLI_.
 
-Many more cloud providers offer affordable alternatives that could be helpful, including [Cloudflare](https://www.cloudflare.com/), [DigitalOcean](https://www.digitalocean.com/), [Linode (Akamai)](https://www.linode.com/), [Vultr](https://www.vultr.com/), [OVHcloud](https://ovhcloud.com/) (EU), [Vercel](https://vercel.com/), ...
+Many more cloud providers offer affordable alternatives that could be helpful, including: [Cloudflare](https://www.cloudflare.com/), [Linode (Akamai)](https://www.linode.com/), [DigitalOcean](https://www.digitalocean.com/), [Vultr](https://www.vultr.com/), [OVHcloud](https://ovhcloud.com/) (EU), [Vercel](https://vercel.com/), ...
 
 ## Cloud Storage
 
