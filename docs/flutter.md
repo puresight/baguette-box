@@ -4,7 +4,7 @@
 
 Unlike frameworks that wrap native components, Flutter uses its own high-performance rendering engine (Skia) to draw every pixel on the screen. This gives developers complete control over the UI and ensures a consistent look and feel across all platforms, enabling fast development and expressive, flexible UIs.
 
-- [Installed via Mise](https://mise.jdx.dev/lang/flutter.html)
+- Run recipe `install-flutter`
 - Run `flutter doctor` to verify your setup and install any missing dependencies
 
 ## Get Started
@@ -30,5 +30,4 @@ Flutter's power lies in its single codebase for multiple platforms. You can enab
 
 After enabling, new projects will automatically include support. You can add support to existing projects by running `flutter create .` in the project directory.
 
-----
 See more details in the development guides: [Web](./dev-web.md) | [Mobile](./dev-mobile.md) | [Desktop](./dev-desktop.md)
