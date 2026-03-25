@@ -4,35 +4,34 @@
 
 Crostini is the official, first-party environment that enables Linux application support on [ChromeOS](https://chromeos.dev/en/linux) without requiring users to compromise their device's security by enabling Developer Mode. It functions through a highly secure "defense in depth" architecture that runs a Debian-based Linux container inside a specialized, sandboxed virtual machine (VM) called Termina. This setup allows you to run a wide range of Linux-only command-line tools, code editors, and graphical IDEs that integrate seamlessly with the standard ChromeOS desktop, appearing in the app launcher and sharing files through the native Files app. Crostini provides the flexibility of a Linux workstation while maintaining the speed and security of a standard Chromebook.
 
-- Open Settings: Click the time in the bottom-right corner and select the Settings (gear) icon.
-- Turn on Linux: On the left sidebar, select About ChromeOS > Developers. Next to Linux development environment, select Set up.
-- Configure: Follow the on-screen prompts to choose a username and disk size (10 GB is the standard recommendation).
-- Open Terminal: Once finished, a Terminal window will automatically open. You now have a Debian-based environment where you can run commands.
-- Update System: It is best practice to immediately update your packages by typing the following in the terminal and pressing Enter:  
+- ⚙ Open Settings: Click the time in the bottom-right corner and select the Settings (gear) icon.
+- 🐧 Turn on Linux: On the left sidebar, select About ChromeOS > Developers. Next to Linux development environment, select Set up.
+- 🖱 Configure: Follow the on-screen prompts to choose a username and disk size (10 GB is the standard recommendation).
+- 🖥 Open Terminal: Once finished, a Terminal window will automatically open. You now have a Debian-based environment where you can run commands.
+- ⬆ Update System: It is best practice to immediately update your packages by typing the following in the terminal and pressing Enter:  
    `sudo apt update && sudo apt upgrade -y`
 
 To continue, you will need to set a password via `sudo passwd $USER`
 
 ## File Storage
 
-- **Google Drive:** Since it's built into the Chromebook Files app, you can right-click any folder and select "Share with Linux". It will appear in Crostini at `/mnt/chromeos/GoogleDrive/MyDrive/`
-- **Microsoft OneDrive:** If you use the OneDrive PWA or Android app, you can similarly share folders with Linux from the ChromeOS Files app.
-- **External Storage:** SD cards, USB drives, DVD drives, etc can also be shared this way too, appearing at `/mnt/chromeos/removable/`
+Common consumer options:
 
-### Cloud Storage
+- 💾 Google Drive: Since it's built into the Chromebook Files app, you can right-click any folder and select "Share with Linux". It will appear in Crostini at `/mnt/chromeos/GoogleDrive/MyDrive/`
+- 💾 Microsoft OneDrive: If you use the OneDrive PWA or Android app, you can similarly share folders with Linux from the ChromeOS Files app.
+- 💿 External Storage: SD cards, USB drives, DVD drives, etc can also be shared this way too, appearing at `/mnt/chromeos/removable/`
 
-Cloud drives make object storage easy & affordable.
+Cloud drives make online storage easy & affordable:
 
 - See [Rclone](./rclone.md)
-- Nextcloud: The gold standard for self-hosting. It offers a native Linux client that integrates perfectly with Crostini's file manager.
-- pCloud: Widely considered the most Linux-friendly option; it provides an AppImage that creates a virtual drive.
-- MEGA: Offers a robust native client with end-to-end encryption and a generous 20GB+ free tier.
+- Nextcloud: Offers a native Linux client that integrates with a file manager on ChromeOS.
 - Dropbox: Has a long-standing native client, though it lacks built-in client-side encryption.
-- Insync: $ A popular paid third-party tool specifically designed to sync Google Drive and OneDrive to Linux with a full GUI.
+- pCloud: Provides an AppImage that creates a virtual drive.
+- MEGA: Has a native client with end-to-end encryption and a generous free tier.
 
-## Podman
+## Containers
 
-### About Running Podman on ChromeOS
+### About Running [Podman](https://podman.io/) on ChromeOS
 
 ⚠ Do not `sudo` for podman commands.
 
