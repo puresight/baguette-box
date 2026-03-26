@@ -19,7 +19,7 @@ Here you will find tools to do software development, whether you build for [Web]
 
 ## Tech Stack
 
-Languages
+#### Languages
 
 - [Python via uv](./docs/uv.md)
 - [Typescript/JS via Node](./docs/node.md)
@@ -33,9 +33,7 @@ Languages
 - [Rust](./docs/rust.md)
 - [Go](./docs/go.md)
 
-Tools
-
-Agentic AI & pairing
+#### Agentic AI & pairing
 
 - [Google Antigravity](https://antigravity.google/docs/home) IDE
 - _Gemini Code Assist_ and _Roo Code_ in [VS Code](./code/README.md) IDE
@@ -44,7 +42,7 @@ Agentic AI & pairing
 - [Aider](./docs/aider.md) CLI via [Homebrew](./homebrew/README.md)
 - [Ollama](./docs/ollama.md)
 
-CLI
+#### CLI
 
 - [Zsh](https://zsh.sourceforge.io/) & [pwsh](https://learn.microsoft.com/en-us/powershell/) shells
 - [Oh My Posh](https://ohmyposh.dev/) prompt _with_ [nerd fonts](./docs/fonts.md)
