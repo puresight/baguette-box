@@ -2,6 +2,7 @@
 
 [Rclone](https://rclone.org/docs/) is a Swiss Army Knife for mounting nearly any cloud service as a local file system in Linux. It is broadly compatibile, supporting Dropbox, pCloud, MEGA, S3-compatible storage, yada yada.
 
+- ↪️ Recipe to install: `just install-apt-packages`
 - Run `rclone config` to link your accounts
 - Mount drive: `rclone mount remote:path /home/username/mountpoint --vfs-cache-mode writes`
 

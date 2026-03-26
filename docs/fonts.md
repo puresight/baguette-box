@@ -7,11 +7,13 @@ are a collection of popular developer-focused fonts, _patched with a massive set
 - Enhanced terminals: Tools like lsd and colorls use these icons to provide instant visual cues for file types (e.g., a Python logo next to .py files), making navigation significantly faster.
 - Consistent aesthetics: They provide a unified look across your entire workflow, ensuring symbols look the same in your terminal, editor, and system UI.
 
-Some good nerd fonts (from v3.4.0) for terminal displays include
+Some good nerd font id's for terminal displays include
 
-- `FiraCode` ([Fira Type](https://carrois.com/fira/))
-- `JetBrainsMono` ([JetBrains Mono](https://www.jetbrains.com/lp/mono/))
-- `IBMPlexMono` ([IBM Plex](https://www.ibm.com/plex/))
+- `FiraCode` ([about Fira](https://carrois.com/fira/))
+- `JetBrainsMono` ([about JetBrains' Mono](https://www.jetbrains.com/lp/mono/))
+- `IBMPlexMono` ([about IBM Plex](https://www.ibm.com/plex/))
+
+- ↪️ Recipe to install: `just install-font JetBrainsMono v3.3.0`
 
 ## Font Config
 
