@@ -29,8 +29,11 @@ Languages
 - [Erlang](./docs/erlang.md) & [Elixir](./docs/elixir.md)
 - [Haskell](./docs/haskell.md)
 - [Dart (Flutter)](./docs/flutter.md) 
+- [WebAssembly](./docs/wasm.md)
 - [Rust](./docs/rust.md)
 - [Go](./docs/go.md)
+
+Tools
 
 Agentic AI & pairing
 

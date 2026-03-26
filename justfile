@@ -213,6 +213,13 @@ install-flutter version="latest": install-mise
     @echo "$a install-flutter $a"
     mise use -g flutter@{{version}}
 
+# Install Wasmer
+install-wasmer: install-mise
+    @echo
+    @echo "$a install-wasmer $a"
+    mise use --global github:wasmerio/wasmer
+    @wasmer run syrusakbary/cowsay "WebAssembly rocks!"
+
 # Install Ollama
 install-ollama version="latest": install-mise
     @echo
