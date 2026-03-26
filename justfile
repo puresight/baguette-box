@@ -213,6 +213,12 @@ install-flutter version="latest": install-mise
     @echo "$a install-flutter $a"
     mise use -g flutter@{{version}}
 
+# Install Ollama
+install-ollama version="latest": install-mise
+    @echo
+    @echo "$a install-ollama $a"
+    mise use -g ollama@{{version}}
+
 # Install Goose IDE
 install-goose:
     @echo

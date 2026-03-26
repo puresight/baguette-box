@@ -39,6 +39,7 @@ Agentic AI & pairing
 - _Gemini CLI_ via [npm](./docs/node.md)
 - [Goose](https://block.github.io/goose/docs/category/guides) CLI
 - [Aider](./docs/aider.md) CLI via [Homebrew](./homebrew/README.md)
+- [Ollama](./docs/ollama.md)
 
 CLI
 
