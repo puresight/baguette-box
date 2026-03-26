@@ -1,10 +1,14 @@
 # Ollama
 
-Ollama is a powerful tool that simplifies running and managing large language models (LLMs). While it is well-known for running open-source models like Llama 3 and Mistral locally, it can also act as a unified interface to access powerful cloud-based models. It packages model configurations into a self-contained format called a `Modelfile` and provides a simple command-line interface and a local REST API. This turns your personal computer into a versatile AI development server, regardless of whether the models are running on your hardware or in the cloud.
+[Ollama](https://ollama.com/) is a powerful tool that simplifies running and managing large language models (LLMs). While it is well-known for running **open source models** like _Llama 3_ and _Mistral_ locally, it can also act as a unified interface to access powerful cloud-based models.
 
-- ↪️ Recipe to [install with Mise](https://mise.jdx.dev/registry.html?filter=ollama#tools): `just install-ollama`
+> _“Start building with open models. Code with open models. Run any app or agent with open models. Over 40,000 integrations.”_
+
+↪️ Recipe to [install with Mise](https://mise.jdx.dev/registry.html?filter=ollama#tools): `just install-ollama`
 
 ## Using Cloud Models for AI Tooling
+
+Ollama packages model configurations into a self-contained format called a `Modelfile` and provides a simple command-line interface and a local REST API. This turns your personal computer into a versatile AI development server, regardless of whether the models are running on your hardware or in the cloud.
 
 For developers on lightweight workstations without powerful GPUs, running large, capable models locally is often not feasible. Ollama provides a solution by allowing you to "proxy" requests to cloud-based models through its local API. This gives you a consistent, unified endpoint for all your AI tools (like Aider, Goose, or Roo Code), simplifying configuration and allowing you to easily switch between different model providers without reconfiguring each tool.
 
@@ -28,4 +32,4 @@ The process involves creating a local "proxy" model in Ollama that forwards requ
     ```sh
     aider --model ollama/gpt-4o-proxy
     ```
-This same principle applies to other development assistants and cloud providers (e.g., `FROM google/gemini-1.5-pro`). By configuring your tools to use your local Ollama endpoint, you can leverage powerful cloud models for coding and development, even on a machine without a dedicated GPU.
+This same principle applies to other development assistants and cloud providers (e.g., `FROM google/gemini-2.5-pro`). By configuring your tools to use your local Ollama endpoint, you can leverage powerful cloud models for coding and development, even on a machine without a dedicated GPU.
