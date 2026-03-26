@@ -1,6 +1,8 @@
 # WebAssembly
 
-[WebAssembly](https://www.cncf.io/blog/2024/03/12/webassembly-on-kubernetes-from-containers-to-wasm-part-01/) ("wasm") is an open standard that defines a portable binary-code format for executable programs. It is designed as a high-performance compilation target for programming languages like [Rust](./rust.md) and [Go](./go.md), enabling deployment on the web for client and server applications. Wasm modules are sandboxed, providing a secure execution environment, and can be run at near-native speed. This makes it a powerful technology for building performant, secure, and portable software for a wide range of platforms beyond the browser.
+[WebAssembly](https://www.cncf.io/blog/2024/03/12/webassembly-on-kubernetes-from-containers-to-wasm-part-01/) ("wasm") is an open standard that defines a portable binary-code format for executable programs. It is designed as a high-performance _compilation target_ for programming languages like [Rust](./rust.md), [Go](./go.md), or [AssemblyScript](./assemblyscript.md) &mdash; enabling deployment on the web for client and server applications.
+
+Wasm modules are _sandboxed_, providing a secure execution environment, and can be run at near-native _speed_. This makes it a powerful technology for building performant, secure, and _portable_ software for a range of platforms beyond the browser (including IoT/embedded systems and servers/kubernetes).
 
 ## Wasmer
 
