@@ -3,196 +3,215 @@
 #%#%#%#%#%#%#%#%#%#%#%#%#%#%#%#%#%#%#%#%#%#%#%#%#%#%#%#%#%#%#%#%#%#%#%#%#%#%#%
 
 # software-properties-common
-# Manage the repositories that you install software from - https://packages.ubuntu.com/jammy/software-properties-common
+# Manage the repositories that you install software from <https://packages.ubuntu.com/jammy/software-properties-common>
 apt-transport-https
-# HTTPS transport for APT - https://packages.debian.org/sid/apt-transport-https
+# HTTPS transport for APT <https://packages.debian.org/sid/apt-transport-https>
 lsb-release
-# Linux Standard Base version reporting utility - https://packages.debian.org/sid/lsb-release
+# Linux Standard Base version reporting utility <https://packages.debian.org/sid/lsb-release>
 ca-certificates
-# Common CA certificates - https://packages.debian.org/sid/ca-certificates
+# Common CA certificates <https://packages.debian.org/sid/ca-certificates>
 flatpak
-# Application sandboxing and distribution framework - https://flatpak.org/
+# Application sandboxing and distribution framework <https://flatpak.org/>
 
 #%#%#%#%#%#%#%#%#%#%#%#%#%#%#%#%#%#%#%#%#%#%#%#%#%#%#%#%#%#%#%#%#%#%#%#%#%#%#%
 # --- Network & Transfer ---
 #%#%#%#%#%#%#%#%#%#%#%#%#%#%#%#%#%#%#%#%#%#%#%#%#%#%#%#%#%#%#%#%#%#%#%#%#%#%#%
 
 curl
-# Command line tool for transferring data with URL syntax - https://curl.se/
+# Command line tool for transferring data with URL syntax <https://curl.se/>
 wget
-# Retrieves files from the web - https://www.gnu.org/software/wget/
+# Retrieves files from the web <https://www.gnu.org/software/wget/>
 rsync
-# Fast, versatile, remote (and local) file-copying tool - https://rsync.samba.org/
+# Fast, versatile, remote (and local) file-copying tool <https://rsync.samba.org/>
 rclone
-# RSYNC for cloud storage - https://rclone.org/
+# RSYNC for cloud storage <https://rclone.org/>
 dnsutils
-# Clients provided with BIND (dig, nslookup, etc.) - https://packages.debian.org/sid/dnsutils
+# Clients provided with BIND (dig, nslookup, etc.) <https://packages.debian.org/sid/dnsutils>
 
 #%#%#%#%#%#%#%#%#%#%#%#%#%#%#%#%#%#%#%#%#%#%#%#%#%#%#%#%#%#%#%#%#%#%#%#%#%#%#%
 # --- Shell & Terminal Environment ---
 #%#%#%#%#%#%#%#%#%#%#%#%#%#%#%#%#%#%#%#%#%#%#%#%#%#%#%#%#%#%#%#%#%#%#%#%#%#%#%
 
 zsh
-# Shell with lots of features - https://www.zsh.org/
+# Shell with lots of features <https://www.zsh.org/>
 tmux
-# Terminal multiplexer - https://github.com/tmux/tmux/wiki
+# Terminal multiplexer <https://github.com/tmux/tmux/wiki>
 
 #%#%#%#%#%#%#%#%#%#%#%#%#%#%#%#%#%#%#%#%#%#%#%#%#%#%#%#%#%#%#%#%#%#%#%#%#%#%#%
 # --- Development & Version Control ---
 #%#%#%#%#%#%#%#%#%#%#%#%#%#%#%#%#%#%#%#%#%#%#%#%#%#%#%#%#%#%#%#%#%#%#%#%#%#%#%
 
 build-essential
-# Informational list of build-essential packages - https://packages.debian.org/sid/build-essential
+# Informational list of build-essential packages <https://packages.debian.org/sid/build-essential>
 pkg-config
-# Manage compile and link flags for libraries - https://www.freedesktop.org/wiki/Software/pkg-config/
+# Manage compile and link flags for libraries <https://www.freedesktop.org/wiki/Software/pkg-config/>
 libssl-dev
-# Secure Sockets Layer toolkit development files - https://www.openssl.org/
+# Secure Sockets Layer toolkit development files <https://www.openssl.org/>
 gh
-# GitHub's official command line tool - https://cli.github.com/
+# GitHub's official command line tool <https://cli.github.com/>
+cmake
+# Cross-platform, open-source build system generator <https://cmake.org/>
+ninja-build
+# A small, fast build system, often used with CMake <https://ninja-build.org/>
 
 #%#%#%#%#%#%#%#%#%#%#%#%#%#%#%#%#%#%#%#%#%#%#%#%#%#%#%#%#%#%#%#%#%#%#%#%#%#%#%
 # --- Databases & related tools ---
 #%#%#%#%#%#%#%#%#%#%#%#%#%#%#%#%#%#%#%#%#%#%#%#%#%#%#%#%#%#%#%#%#%#%#%#%#%#%#%
 
 unixodbc-dev
-# Development files for unixODBC, an open-source ODBC implementation - http://www.unixodbc.org/
+# Development files for unixODBC, an open-source ODBC implementation <http://www.unixodbc.org/>
 # msodbcsql18
-# (or 17) driver package from Microsoft that contains the logic for SQL Server communication - https://learn.microsoft.com/en-us/sql/connect/odbc/linux-mac/installing-the-microsoft-odbc-driver-for-sql-server
+# (or 17) driver package from Microsoft that contains the logic for SQL Server communication <https://learn.microsoft.com/en-us/sql/connect/odbc/linux-mac/installing-the-microsoft-odbc-driver-for-sql-server>
 
 #%#%#%#%#%#%#%#%#%#%#%#%#%#%#%#%#%#%#%#%#%#%#%#%#%#%#%#%#%#%#%#%#%#%#%#%#%#%#%
 # --- Erlang & Haskell Dependencies ---
 #%#%#%#%#%#%#%#%#%#%#%#%#%#%#%#%#%#%#%#%#%#%#%#%#%#%#%#%#%#%#%#%#%#%#%#%#%#%#%
 
 automake
-# Tool for generating Makefile.in files for GNU Autotools - https://www.gnu.org/software/automake/
+# Tool for generating Makefile.in files for GNU Autotools <https://www.gnu.org/software/automake/>
 autoconf
-# Generates configuration scripts to adapt software to various Unix-like systems - https://www.gnu.org/software/autoconf/
+# Generates configuration scripts to adapt software to various Unix-like systems <https://www.gnu.org/software/autoconf/>
 libwxgtk3.2-dev
-# wxWidgets GTK3 development files, a C++ library for cross-platform GUI apps - https://www.wxwidgets.org/
+# wxWidgets GTK3 development files, a C++ library for cross-platform GUI apps <https://www.wxwidgets.org/>
 libwxgtk-webview3.2-dev
-# Development files for wxWebView, for embedding a web browser in wxWidgets apps - https://docs.wxwidgets.org/3.2/classwx_web_view.html
+# Development files for wxWebView, for embedding a web browser in wxWidgets apps <https://docs.wxwidgets.org/3.2/classwx_web_view.html>
 libgl1-mesa-dev
-# Development files for Mesa, an open-source implementation of OpenGL - https://www.mesa3d.org/
+# Development files for Mesa, an open-source implementation of OpenGL <https://www.mesa3d.org/>
 libglu1-mesa-dev
-# Development files for the OpenGL Utility Library (GLU) - https://www.khronos.org/opengl/wiki/OpenGL_Utility_Library_(GLU)
+# Development files for the OpenGL Utility Library (GLU) <https://www.khronos.org/opengl/wiki/OpenGL_Utility_Library_(GLU)>
 libpng-dev
-# Development files for libpng, the official PNG reference library - http://www.libpng.org/pub/png/libpng.html
+# Development files for libpng, the official PNG reference library <http://www.libpng.org/pub/png/libpng.html>
 libjpeg-dev
-# Development files for the libjpeg-turbo library for reading/writing JPEG files - https://libjpeg-turbo.org/
+# Development files for the libjpeg-turbo library for reading/writing JPEG files <https://libjpeg-turbo.org/>
 libtiff-dev
-# Development files for libtiff, a library for reading and writing TIFF images - http://www.simplesystems.org/libtiff/
+# Development files for libtiff, a library for reading and writing TIFF images <http://www.simplesystems.org/libtiff/>
 libncurses5-dev
-# Development files for the ncurses terminal UI library - https://www.gnu.org/software/ncurses/
+# Development files for the ncurses terminal UI library <https://www.gnu.org/software/ncurses/>
 libncurses-dev
-# Development files for the ncurses terminal UI library - https://www.gnu.org/software/ncurses/
+# Development files for the ncurses terminal UI library <https://www.gnu.org/software/ncurses/>
 libncurses5
-# Shared libraries for terminal handling (legacy) - https://packages.debian.org/stretch/libncurses5
+# Shared libraries for terminal handling (legacy) <https://packages.debian.org/stretch/>libncurses5
 libtinfo-dev
-# Development files for the terminfo database library (part of ncurses) - https://www.gnu.org/software/ncurses/
+# Development files for the terminfo database library (part of ncurses) <https://www.gnu.org/software/ncurses/>
 libtinfo5
-# Shared low-level terminfo library for terminal handling (legacy) - https://packages.debian.org/stretch/libtinfo5
+# Shared low-level terminfo library for terminal handling (legacy) <https://packages.debian.org/stretch/libtinfo5>
 libffi8
-# Foreign Function Interface library runtime - https://packages.debian.org/bookworm/libffi8
+# Foreign Function Interface library runtime <https://packages.debian.org/bookworm/libffi8>
 libgmp10
-# Multiprecision arithmetic library runtime - https://packages.debian.org/bookworm/libgmp10
+# Multiprecision arithmetic library runtime <https://packages.debian.org/bookworm/libgmp10>
 libnuma-dev
-# Development files for the NUMA (Non-Uniform Memory Access) library - https://packages.debian.org/sid/libnuma-dev
+# Development files for the NUMA (Non-Uniform Memory Access) library <https://packages.debian.org/sid/libnuma-dev>
 libgmp-dev
-# Development files for the GNU Multiple Precision Arithmetic Library - https://gmplib.org/
+# Development files for the GNU Multiple Precision Arithmetic Library <https://gmplib.org/>
 
 #%#%#%#%#%#%#%#%#%#%#%#%#%#%#%#%#%#%#%#%#%#%#%#%#%#%#%#%#%#%#%#%#%#%#%#%#%#%#%
 # --- Text & Data Processing ---
 #%#%#%#%#%#%#%#%#%#%#%#%#%#%#%#%#%#%#%#%#%#%#%#%#%#%#%#%#%#%#%#%#%#%#%#%#%#%#%
 
 ripgrep
-# Recursively searches directories for a regex pattern - https://github.com/BurntSushi/ripgrep
+# Recursively searches directories for a regex pattern <https://github.com/BurntSushi/ripgrep>
 jq
-# Lightweight and flexible command-line JSON processor - https://stedolan.github.io/jq/
+# Lightweight and flexible command-line JSON processor <https://stedolan.github.io/jq/>
 sqlite3
-# Command line interface for SQLite 3 - https://www.sqlite.org/
+# Command line interface for SQLite 3 <https://www.sqlite.org/>
 postgresql-client
-# psql pgdump createdb etc CLI clients for Postgres https://www.postgresql.org/docs/current/reference-client.html
+# psql pgdump createdb etc CLI clients for Postgres https://www.postgresql.org/docs/current/reference-client.html>
 mariadb-client
-# mariadb CLI shell for MySQL-compatible servers https://mariadb.com/docs/server/clients-and-utilities/mariadb-client
+# mariadb CLI shell for MySQL-compatible servers https://mariadb.com/docs/server/clients-and-utilities/mariadb-client>
 redis-tools
-# redis-cli for sending commands to the server https://redis.io/docs/latest/develop/tools/
+# redis-cli for sending commands to the server https://redis.io/docs/latest/develop/tools/>
 
 #%#%#%#%#%#%#%#%#%#%#%#%#%#%#%#%#%#%#%#%#%#%#%#%#%#%#%#%#%#%#%#%#%#%#%#%#%#%#%
 # --- Archiving & Compression ---
 #%#%#%#%#%#%#%#%#%#%#%#%#%#%#%#%#%#%#%#%#%#%#%#%#%#%#%#%#%#%#%#%#%#%#%#%#%#%#%
 
 zip
-# Archiver for .zip files - http://www.info-zip.org/Zip.html
+# Archiver for .zip files <http://www.info-zip.org/Zip.html>
 unzip
-# De-archiver for .zip files - http://www.info-zip.org/UnZip.html
+# De-archiver for .zip files <http://www.info-zip.org/UnZip.html>
 xz-utils
-# XZ-format compression utilities - https://tukaani.org/xz/
+# XZ-format compression utilities <https://tukaani.org/xz/>
 p7zip-full
-# 7z and 7za file archivers with high compression ratio - http://p7zip.sourceforge.net/
+# 7z and 7za file archivers with high compression ratio <http://p7zip.sourceforge.net/>
 
 #%#%#%#%#%#%#%#%#%#%#%#%#%#%#%#%#%#%#%#%#%#%#%#%#%#%#%#%#%#%#%#%#%#%#%#%#%#%#%
 # --- Security & Secret Management ---
 #%#%#%#%#%#%#%#%#%#%#%#%#%#%#%#%#%#%#%#%#%#%#%#%#%#%#%#%#%#%#%#%#%#%#%#%#%#%#%
 
 gnupg
-# GNU privacy guard - a free PGP replacement - https://gnupg.org/
+# GNU privacy guard - a free PGP replacement <https://gnupg.org/>
 gnome-keyring
-# GNOME keyring services (daemon and tools) - https://wiki.gnome.org/Projects/GnomeKeyring
+# GNOME keyring services (daemon and tools) <https://wiki.gnome.org/Projects/GnomeKeyring>
 libsecret-1-dev
-# GObject based library for accessing the Secret Service API (development files) - https://wiki.gnome.org/Projects/Libsecret
+# GObject based library for accessing the Secret Service API (development files) <https://wiki.gnome.org/Projects/Libsecret>
 libsecret-tools
-# Secret Service tools - https://wiki.gnome.org/Projects/Libsecret
+# Secret Service tools <https://wiki.gnome.org/Projects/Libsecret>
 bubblewrap
-# Low-level unprivileged sandboxing tool for Linux https://github.com/containers/bubblewrap
+# Low-level unprivileged sandboxing tool for Linux https://github.com/containers/bubblewrap>
 apparmor-profiles
-# Extra security profiles for AppArmor (non-default) https://gitlab.com/apparmor/apparmor/-/wikis/Documentation
+# Extra security profiles for AppArmor (non-default) https://gitlab.com/apparmor/apparmor/-/wikis/Documentation>
 apparmor-utils
-# utilities for AppArmor profile management https://packages.debian.org/sid/apparmor-utils
+# utilities for AppArmor profile management https://packages.debian.org/sid/apparmor-utils>
 
 #%#%#%#%#%#%#%#%#%#%#%#%#%#%#%#%#%#%#%#%#%#%#%#%#%#%#%#%#%#%#%#%#%#%#%#%#%#%#%
 # --- Containers & Cloud Infrastructure ---
 #%#%#%#%#%#%#%#%#%#%#%#%#%#%#%#%#%#%#%#%#%#%#%#%#%#%#%#%#%#%#%#%#%#%#%#%#%#%#%
 
 fuse3
-# Filesystem in Userspace https://docs.kernel.org/filesystems/fuse/fuse.html
+# Filesystem in Userspace https://docs.kernel.org/filesystems/fuse/fuse.html>
 libfuse2
-#  Required for AppImages on Debian 12 bookworm https://github.com/appimage/appimagekit/wiki/fuse
+#  Required for AppImages on Debian 12 bookworm https://github.com/appimage/appimagekit/wiki/fuse>
 fuse-overlayfs
-# FUSE implementation for overlayfs - https://github.com/containers/fuse-overlayfs
+# FUSE implementation for overlayfs <https://github.com/containers/fuse-overlayfs>
 podman
-# Engine for managing OCI containers and pods - https://podman.io/
+# Engine for managing OCI containers and pods <https://podman.io/>
 awscli
-# Universal Command Line Interface for Amazon Web Services - https://aws.amazon.com/cli/
+# Universal Command Line Interface for Amazon Web Services <https://aws.amazon.com/cli/>
 google-cloud-cli
-# CLI for Google Cloud Platform - https://cloud.google.com/sdk/docs/install
+# CLI for Google Cloud Platform <https://cloud.google.com/sdk/docs/install>
 
 #%#%#%#%#%#%#%#%#%#%#%#%#%#%#%#%#%#%#%#%#%#%#%#%#%#%#%#%#%#%#%#%#%#%#%#%#%#%#%
 # --- System CLI Utilities ---
 #%#%#%#%#%#%#%#%#%#%#%#%#%#%#%#%#%#%#%#%#%#%#%#%#%#%#%#%#%#%#%#%#%#%#%#%#%#%#%
 
 htop
-# Interactive processes viewer - https://htop.dev/
+# Interactive processes viewer <https://htop.dev/>
 
 #%#%#%#%#%#%#%#%#%#%#%#%#%#%#%#%#%#%#%#%#%#%#%#%#%#%#%#%#%#%#%#%#%#%#%#%#%#%#%
 # --- Desktop Applications ---
 #%#%#%#%#%#%#%#%#%#%#%#%#%#%#%#%#%#%#%#%#%#%#%#%#%#%#%#%#%#%#%#%#%#%#%#%#%#%#%
 
 antigravity
-# AI agentic IDE for autonomous software engineering - https://antigravity.google/docs/home
+# AI agentic IDE for autonomous software engineering <https://antigravity.google/docs/home>
 seahorse
-# a GNOME front-end for GnuPG aka "Passwords & Keys" - https://wiki.gnome.org/Apps/Seahorse
+# a GNOME front-end for GnuPG aka "Passwords & Keys" <https://wiki.gnome.org/Apps/Seahorse>
 libopengl0
-# GL dispatch library for legacy OpenGL support - https://packages.debian.org/stable/libopengl0
+# GL dispatch library for legacy OpenGL support <https://packages.debian.org/stable/libopengl0>
 
 #%#%#%#%#%#%#%#%#%#%#%#%#%#%#%#%#%#%#%#%#%#%#%#%#%#%#%#%#%#%#%#%#%#%#%#%#%#%#%
 # --- Jekyll Dependencies ---
 #%#%#%#%#%#%#%#%#%#%#%#%#%#%#%#%#%#%#%#%#%#%#%#%#%#%#%#%#%#%#%#%#%#%#%#%#%#%#%
 
 zlib1g-dev
-# header files and libraries needed to develop applications that use the zlib compression library, which implements the deflate algorithm used in gzip and PKZIP. It is essential for compiling software from source that requires zlib support 
+# Development files for zlib, a widely used data compression library <https://zlib.net/>
 libffi-dev
-# header files and libraries necessary for building programs that use the libffi (Foreign Function Interface) library
+# Development files for the Foreign Function Interface library <https://sourceware.org/libffi/>
 libyaml-dev
-# C library for parsing and emitting YAML 
+# Development files for LibYAML, a C library for parsing and emitting YAML <https://github.com/yaml/libyaml>
+
+#%#%#%#%#%#%#%#%#%#%#%#%#%#%#%#%#%#%#%#%#%#%#%#%#%#%#%#%#%#%#%#%#%#%#%#%#%#%#%
+# --- TinyGo Dependencies ---
+#%#%#%#%#%#%#%#%#%#%#%#%#%#%#%#%#%#%#%#%#%#%#%#%#%#%#%#%#%#%#%#%#%#%#%#%#%#%#%
+
+clang
+# C, C++, Objective-C compiler, part of the LLVM project <https://clang.llvm.org/>
+lld
+# The LLVM linker, a fast linker for various targets <https://lld.llvm.org/>
+binaryen
+# Compiler infrastructure and toolchain for WebAssembly <https://github.com/WebAssembly/binaryen>
+gdb-multiarch
+# GNU Debugger (GDB) with multi-architecture support <https://www.gnu.org/software/gdb/>
+openocd
+# Open On-Chip Debugger for embedded systems <http://openocd.org/>
 
 #%#%#%#%#%#%#%#%#%#%#%#%#%#%#%#%#%#%#%#%#%#%#%#%#%#%#%#%#%#%#%#%#%#%#%#%#%#%#%

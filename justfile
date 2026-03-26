@@ -134,7 +134,9 @@ install-go version="sub-0.0.1:latest": install-mise
     @echo
     @echo "$a install-go $a"
     @echo "global: $HOME/.config/mise/config.toml"
-    mise use -g "go@{{version}}"
+    mise use -g go@{{version}}
+    @mise plugins add tinygo https://github.com/mritd/asdf-tinygo.git
+    mise use -g tinygo@{{version}}
 
 # Install Ruby language using mise
 install-ruby version="sub-0.1:latest": install-mise
