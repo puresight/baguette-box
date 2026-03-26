@@ -4,10 +4,9 @@ To maintain workstation integrity, only install code from reputable & verified a
 
 ## How to Run Recipes
 
-To view the full menu type `just`
-
-1. Bootstrap your new system: `just bootstrap`
-1. Install VS Code: `just code`
+- ↪️ View our menu: `just`
+- ↪️ Bootstrap your new system: `just bootstrap`
+- ↪️ Setup VS Code: `just code`
 
 Our recipes are idempotent, so you can run them again, anytime.
 

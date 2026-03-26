@@ -8,4 +8,4 @@ As a **compiled language**, it translates directly to machine code, offering per
 
 ## Installation
 
-- [Go is installed via Mise](https://mise.jdx.dev/lang/go.html)
+- ↪️ Recipe to [install with Mise](https://mise.jdx.dev/lang/go.html): `just install-go`

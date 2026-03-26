@@ -3,11 +3,14 @@
 > The Advanced Package Tool ([APT](https://wiki.debian.org/AptCLI)) is a powerful command-line utility used primarily in Debian-based Linux distributions to automate the installation, configuration, and removal of software. For computer users, APT represents a streamlined way to manage their system; instead of manually hunting for installers online, users can download verified software from secure repositories with a single command. Its most significant benefit is automatic dependency management, which ensures that all supporting files required for a program to run are identified and installed simultaneously, maintaining system stability and security with minimal effort.
 
 
-This folder contains the `apt.dep` file that lists (with comments) the APT dependencies for recipe `install-apt-packages` to install on the system.
+This folder contains the _apt.dep_ file that lists (with comments) the APT dependencies for recipe _install-apt-packages_ to install on the system.
+
+- ↪️ Recipe: `just install-apt-packages`
+- ✏️ Keep dependencies in: [`./apt/apt.dep`](./apt.dep)
 
 ## APT Sources
 
-Recipe `configure-apt`
+Recipe _configure-apt_
 connects APT using [DEB822](https://repolib.readthedocs.io/en/latest/deb822-format.html)
 to the repository [sources](https://wiki.debian.org/SourcesList)
 contained in this directory.
@@ -17,6 +20,9 @@ And when the system is installing APT repository sources, these templates are pr
 [gomplate](https://docs.gomplate.ca/) to generate the
 [new Debian style](https://manpages.debian.org/stable/dpkg-dev/deb822.5.en.html)
 `.sources` files for your machine's `/etc/apt/sources.list.d/` directory.
+
+- ↪️ Recipe: `just configure-apt`
+- 📂 Keep sources in: [`./apt/*.sources`](./)
 
 ## How that happens
 

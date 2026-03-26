@@ -5,7 +5,7 @@
 [Typescript](https://www.typescriptlang.org/docs/)
 is a strongly typed superset of [JavaScript](https://developer.mozilla.org/en-US/docs/Web/JavaScript) developed and maintained by Microsoft. It builds upon JavaScript by adding **static types**, which act as a safety net to catch errors early during development rather than at runtime. Because it is a superset, any valid JavaScript code is also valid TypeScript code. However, browsers cannot run TypeScript directly; it must be transpiled (converted) into plain JavaScript before execution.
 
-- [Node is installed via Mise.](https://mise.jdx.dev/lang/node.html)
+- ↪️ Recipe to [install with Mise](https://mise.jdx.dev/lang/node.html): `just install-node`
 - [npm](https://www.npmjs.com/) (Node Package Manager) is the default package manager for the Node runtime environment
 
 ## Development Frameworks

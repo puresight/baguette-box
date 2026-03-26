@@ -14,6 +14,9 @@ TODO:
 In the era of agentic AI and pair programming, the terminal aka Command Line Interface is a bridge between an AI agent and a database. CLI tools allow AI agents to execute precise, piped commands and parse text-based results without the overhead of a heavy graphical wrapper.
 A text-heavy approach ensures that a developer can maintain a "low-latency" feedback loop between their code editor and the database engine.
 
+- ↪️ Recipe: `just install-apt-packages`
+- ✏️ Specify CLI tool packages in: [`apt/apt.dep`](../apt/apt.dep)
+
 ### PostgreSQL
 
 - [psql](https://www.postgresql.org/docs/current/app-psql.html) is the plain [PostgreSQL client](https://www.postgresql.org/docs/current/reference-client.html) that remains a standard due to its scriptability and easy integration with shell scripts; used with `pg_dump` is the standard utility for backing up a database into an archive and `pg_restore` is the companion tool for restoring them; and `createdb` etc commands.

@@ -1,6 +1,8 @@
 # CLI tools
 
-Elevating the Command Line Experience
+Tools to Elevate your Command Line Experience
+
+- ↪️ Get fzf & zoxide: `just install-tools-terminal`
 
 Modern terminal workflows have evolved significantly from the standard Bourne-again shell defaults. For developers transitioning to a CLI-centric workflow, the goal is to reduce cognitive load and keystroke counts by implementing tools that handle "fuzzy" logic and memory. Tools like `fzf` and `zoxide` serve as the backbone of this philosophy, transforming the terminal from a static environment into a dynamic, searchable interface that anticipates user intent rather than requiring absolute precision.
 

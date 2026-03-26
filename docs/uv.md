@@ -2,6 +2,8 @@
 
 [UV](https://docs.astral.sh/uv/getting-started/features/), the unified tool that replaces utilities in the Python ecosystem (pip, pip-tools, pyenv, virtualenv, pipx, poetry, twine), installs [Python](https://www.python.org/).
 
+- ↪️ Recipe to install: `just install-uv`
+
 ## Applications
 
 Find apps in the [PyPI](https://pypi.org/) Python Package Index repository of software for the Python programming language.

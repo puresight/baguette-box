@@ -4,7 +4,7 @@
 
 Unlike frameworks that wrap native components, Flutter uses its own high-performance rendering engine (Skia) to draw every pixel on the screen. This gives developers complete control over the UI and ensures a consistent look and feel across all platforms, enabling fast development and expressive, flexible UIs.
 
-- Use recipe `install-flutter`
+- ↪️ Recipe to [install with Mise](https://mise.jdx.dev/registry.html?filter=flutter#tools): `just install-flutter`
 - Run `flutter doctor` to verify your setup and install any missing dependencies
 
 ## Get Started

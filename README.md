@@ -91,10 +91,10 @@ Next, prepare your new system:
 ## Proceed
 
 Finally, proceed to set up your environment.
-To view our menu type `just` or
 
-1. Run recipe to bootstrap your new system: `just bootstrap`
-1. Run recipe to install VS Code: `just code`
+- ↪️ View the menu by typing: `just`
+- ↪️ Run recipe to bootstrap your new system: `just bootstrap`
+- ↪️ Run recipe to install VS Code: `just code`
 
 Your system configuration will be ready in a few minutes.
 
