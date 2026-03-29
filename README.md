@@ -22,7 +22,7 @@ Here you will find tools to do software development, whether you build for [Web]
 #### Languages
 
 - [Python via uv](./docs/uv.md)
-- [Typescript/JS via Node](./docs/node.md)
+- [Typescript](./docs/typescript.md), [AssemblyScript](./docs/assemblyscript.md), & [JavaScript via Node](./docs/node.md)
 - [Java](./docs/java.md), [Kotlin](./docs/kotlin.md), & [Scala](./docs/scala.md)
 - [C# via .NET](./dotnet/README.md)
 - [Ruby on Rails](./docs/ruby.md)

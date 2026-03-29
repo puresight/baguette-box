@@ -1,13 +1,22 @@
 # Node
 
-> [Node](https://nodejs.org/docs/latest/api/documentation.html) is an open-source, cross-platform JavaScript runtime environment that allows developers to execute JavaScript code outside of a web browser. Built on Google's V8 engine, it enables the use of JavaScript for server-side scripting to build fast and scalable network applications. Its core strength lies in its asynchronous, event-driven architecture, which uses a single-threaded event loop to handle thousands of concurrent connections without blocking execution.
+[Node](https://nodejs.org/docs/latest/api/documentation.html) is an open-source, cross-platform JavaScript runtime environment that allows developers to execute JavaScript code outside of a web browser. Built on Google's V8 engine, it enables the use of JavaScript for server-side scripting to build fast and scalable network applications. Its core strength lies in its asynchronous, event-driven architecture, which uses a single-threaded event loop to handle thousands of concurrent connections without blocking execution.
 
 - ↪️ Recipe: `just install-node`
-- [npm](https://www.npmjs.com/) (Node Package Manager) was the default package manager for the Node runtime environment
+
+## Package managers
+
+There are a few package managers
+
+- **[npm](https://www.npmjs.com/)** is the original & default
+- [yarn](https://yarnpkg.com/)
+- [pnpm](https://pnpm.io/)
 
 ## Languages
 
-- [JavaScript](https://developer.mozilla.org/en-US/docs/Web/JavaScript), in its progression of standards from ES6 on
+- [JavaScript](https://developer.mozilla.org/en-US/docs/Web/JavaScript)
+    - [Kangax features matrix](https://compat-table.github.io/compat-table/es2016plus/) compat table
+    - [canIuse](https://caniuse.com/) feature support check
 - [Typescript](./typescript.md)
 - [AssemblyScript](./assemblyscript.md)
 
