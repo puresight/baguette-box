@@ -1,20 +1,28 @@
 # Node
 
-[Node](https://nodejs.org/docs/latest/api/documentation.html) is an open-source, cross-platform JavaScript runtime environment that allows developers to execute JavaScript code outside of a web browser. Built on Google's [V8](https://v8.dev/) engine, it enables the use of JavaScript for server-side scripting to build fast and scalable network applications. Its core strength lies in its asynchronous, event-driven architecture, which uses a single-threaded event loop to handle thousands of concurrent connections without blocking execution.
+> [Node](https://nodejs.org/docs/latest/api/documentation.html) is an open-source, cross-platform JavaScript runtime environment that allows developers to execute JavaScript code outside of a web browser. Built on Google's V8 engine, it enables the use of JavaScript for server-side scripting to build fast and scalable network applications. Its core strength lies in its asynchronous, event-driven architecture, which uses a single-threaded event loop to handle thousands of concurrent connections without blocking execution.
 
-[Typescript](https://www.typescriptlang.org/docs/)
-is a strongly typed superset of [JavaScript](https://developer.mozilla.org/en-US/docs/Web/JavaScript) developed and maintained by Microsoft. It builds upon JavaScript by adding **static types**, which act as a safety net to catch errors early during development rather than at runtime. Because it is a superset, any valid JavaScript code is also valid TypeScript code. However, browsers cannot run TypeScript directly; it must be transpiled (converted) into plain JavaScript before execution.
+- ↪️ Recipe: `just install-node`
+- [npm](https://www.npmjs.com/) (Node Package Manager) was the default package manager for the Node runtime environment
 
-- ↪️ Recipe to [install with Mise](https://mise.jdx.dev/lang/node.html): `just install-node`
-- [npm](https://www.npmjs.com/) (Node Package Manager) is the default package manager for the Node runtime environment
+## Languages
 
-## Development Frameworks
+- [JavaScript](https://developer.mozilla.org/en-US/docs/Web/JavaScript), in its progression of standards from ES6 on
+- [Typescript](./typescript.md)
+- [AssemblyScript](./assemblyscript.md)
 
-The Node.js ecosystem is rich with frameworks that streamline development for both server-side and client-side applications.
+## Frameworks
 
-### Server-Side
+The Node.js ecosystem is rich with frameworks that streamline development for both local/server-side and web/client-side applications.
 
-While Node.js provides the core runtime, frameworks like [Express.js](https://expressjs.com/) have become the de-facto standard for building web servers and APIs. They provide routing, middleware, and templating tools that simplify backend development. (Other popular choices include [Fastify](https://www.fastify.io/) for high performance and [NestJS](https://nestjs.com/) for building scalable, enterprise-grade applications with TypeScript.)
+### Server-Side (Backend)
+
+While Node.js provides the core runtime, frameworks like Express have become the de-facto standard for building web servers and APIs. They provide routing, middleware, and templating tools that simplify backend development.
+
+- [Express.js](https://expressjs.com/)
+- [Fastify](https://www.fastify.io/) for high performance
+- [NestJS](https://nestjs.com/) for building scalable, enterprise-grade applications with TypeScript
+- Vercel's [Next.js](https://nextjs.org/ "The React Framework for the Web") with [Zod/TypeBox](https://javascript-conference.com/architecture-performance/safer-typescript-data-validation-zod-typebox/) for data-handling DSLs
 
 ### Client-Side (Frontend)
 

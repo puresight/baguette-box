@@ -22,3 +22,5 @@ Because the standard _cargo install_ command downloads source code and compiles 
 Rust is the [gold standard](https://thebackenddevelopers.substack.com/p/webassembly-on-the-server-secure) for [WebAssembly](./wasm.md) development. Developers use the standard `rustc` compiler with the `wasm32-wasi` target to create lean, secure binaries. It offers the most mature ecosystem for [Kubernetes integration](https://developer.okta.com/blog/2022/01/28/webassembly-on-kubernetes-with-rust).
 
 - 📖 Book: _[Rust and WebAssembly](https://rustwasm.github.io/docs/book/)_
+- [Leptos](https://medium.com/@priya.raimagiya/the-5-best-rust-frontend-frameworks-reviewed-for-2026-4694dad8f181) is the mainstream choice for high-performance Wasm apps, using "Signals" (similar to SolidJS) but with Rust’s type guarantees.
+- [Yew](https://medium.com/@priya.raimagiya/the-5-best-rust-frontend-frameworks-reviewed-for-2026-4694dad8f181) alternative

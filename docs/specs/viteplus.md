@@ -1,14 +1,5 @@
 # VitePlus
 
-[VitePlus](https://viteplus.dev/)
-
-- [VS Code integration](https://viteplus.dev/guide/ide-integration): VitePlus has settings that `vp create` and `vp migrate` can automatically write into the project.
-    - extension pack: `VoidZero.vite-plus-extension-pack`
-    - url: https://marketplace.visualstudio.com/items?itemName=VoidZero.vite-plus-extension-pack
-    - Replaces Prettier for format
-- `vp check` (Lint + Format + Type-check) is the default command for fast static checks in Vite+. It brings together formatting through [Oxfmt](https://oxc.rs/docs/guide/usage/formatter.html), linting through [Oxlint](https://oxc.rs/docs/guide/usage/linter.html), and TypeScript type checks through [tsgolint](https://oxc.rs/docs/guide/usage/linter/type-aware.html).
-- `vp test` is built on [Vitest](https://vitest.dev/) so you get a Vite-native test runner that reuses your Vite config and plugins, supports Jest-style expectations, snapshots, and coverage, and handles modern ESM, TypeScript, and JSX projects cleanly.
-
 ## Notes
 
 - Do not use mise to install VitePlus
