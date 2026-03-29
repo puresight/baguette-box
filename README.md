@@ -50,15 +50,6 @@ Here you will find tools to do software development, whether you build for [Web]
 - [MinIO Client](./docs/mc.md), [Rclone](./docs/rclone.md) storage utilities
 - [Postgres](https://www.postgresql.org/docs/), [MariaDB](https://mariadb.com/docs/server/clients-and-utilities/mariadb-client/mariadb-command-line-client), [Redis](https://redis.io/docs/latest/develop/tools/), [SQLite](https://www.sqlite.org/) [database](./docs/databases.md) clients
 
-## Plan
-
-First, take a minute to think about your intention.
-Write a quick `workstation.md` file about the intention(s) you have for the workstation, and the tools that you think will need to help you accomplish them.
-
-_Note: You have powerful tools to help you. It is best to not frontload more software than you need. You can always add more later, when your plan matures, or changes._
-
-Alone or with your AI agent, compare your _workstation.md_ with this project’s [justfile](./justfile) before your run it &mdash; to see if you should add or subtract recipes for your bootstrap.
-
 ## Prepare
 
 Next, prepare your new system:
@@ -83,7 +74,7 @@ Next, prepare your new system:
   curl --proto '=https' --tlsv1.2 -sSf https://just.systems/install.sh | bash -s -- --to ~/.local/bin
   just --version
   ```
-- Clone this repo
+- [Clone this repo](https://docs.github.com/en/repositories/creating-and-managing-repositories/cloning-a-repository)
   ```sh
   cd ~/src
   git clone https://github.com/puresight/baguette-box.git
@@ -103,6 +94,12 @@ Your system configuration will be ready in a few minutes.
 <!-- --
 Stay in touch to let us know about bugs & improvements.
 <!-- -->
+
+## Plan
+
+Finally, after you bootstrap and have Code ready, consider your plans for the workstation. What tools do you need to accomplish your aims? You could write them down in a markdown file, and compare your goals with the project’s [justfile](./justfile), to see what recipes are recommended.
+_A just-in-time approach to tool installation is recommended.
+You can always add more later._
 
 ## Licensing Notice (Temporary - March 2026)
 
