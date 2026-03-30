@@ -8,7 +8,7 @@ Desktop app development focuses on creating software applications that run nativ
 
 - Understand [Mise](./mise.md)
 - Run recipe `install-rust`
-- Run recipe `install-node`
+- Run recipe `install-viteplus`
 - [APT](../apt/README.md) dependencies: To interface with the OS webview using Tauri on Debian 12 Linux, you need the [WebKitGTK](https://webkitgtk.org/) and [GTK](https://gtk.org/) development libraries (Tauri specifically leverages _webkit2gtk_ to render web content on Linux); your package dependencies could include e.g. `libwebkit2gtk-4.1-dev libgtk-3-dev libayatana-appindicator3-dev librsvg2-dev`
 
 ```sh

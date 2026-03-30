@@ -20,7 +20,7 @@ that you want on your machine. We integrate several including:
 - [APT](../apt/README.md) is Debian's Advanced Package Tool
 - [Homebrew](../homebrew/README.md) for [Aider](./aider.md)
 - [Mise](./mise.md) en place for [Node](./node.md), [Go](./go.md), [Ruby](./ruby.md)
-- [npm](./node.md) is the default Node package manager
+- [Node](./docs/node.md) via [viteplus](./docs/viteplus.md)
 - [uv](./uv.md) is the Python package manager
 
 These are availble but not integral:
@@ -132,7 +132,7 @@ installs [Scala](./scala.md) language.
 
 installs [.NET](../dotnet/README.md) SDK.
 
-#### `install-node`
+#### `install-viteplus`
 
 installs [Node](./node.md)
 managed by [Mise](./mise.md).

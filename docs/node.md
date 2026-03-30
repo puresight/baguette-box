@@ -2,7 +2,7 @@
 
 [Node](https://nodejs.org/docs/latest/api/documentation.html) is an open-source, cross-platform JavaScript runtime environment that allows developers to execute JavaScript code outside of a web browser. Built on Google's V8 engine, it enables the use of JavaScript for server-side scripting to build fast and scalable network applications. Its core strength lies in its asynchronous, event-driven architecture, which uses a single-threaded event loop to handle thousands of concurrent connections without blocking execution.
 
-- ↪️ Recipe: `just install-node`
+- ↪️ Run recipe: `just install-viteplus`
 
 ## Package managers
 

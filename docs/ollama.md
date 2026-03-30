@@ -4,7 +4,7 @@
 
 > _“Start building with open models. Code with open models. Run any app or agent with open models. Over 40,000 integrations.”_
 
-↪️ Recipe to [install with Mise](https://mise.jdx.dev/registry.html?filter=ollama#tools): `just install-ollama`
+↪️ Run recipe to [install with Mise](https://mise.jdx.dev/registry.html?filter=ollama#tools): `just install-ollama`
 
 ## Using Cloud Models for AI Tooling
 

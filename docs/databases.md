@@ -16,7 +16,7 @@ TODO:
 In the era of agentic AI and pair programming, the terminal aka Command Line Interface is a bridge between an AI agent and a database. CLI tools allow AI agents to execute precise, piped commands and parse text-based results without the overhead of a heavy graphical wrapper.
 A text-heavy approach ensures that a developer can maintain a "low-latency" feedback loop between their code editor and the database engine.
 
-- ↪️ Recipe: `just install-apt-packages`
+- ↪️ Run recipe: `just install-apt-packages`
 - ✏️ Specify CLI tool packages in: [`apt/apt.dep`](../apt/apt.dep)
 
 ### Tools

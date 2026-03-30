@@ -18,6 +18,8 @@ eamodio.gitlens
 # --- Language support ---
 #%#%#%#%#%#%#%#%#%#%#%#%#%#%#%#%#%#%#%#%#%#%#%#%#%#%#%#%#%#%#%#%#%#%#%#%#%#%#%
 
+VoidZero.vite-plus-extension-pack
+# Vite+ <https://marketplace.visualstudio.com/items?itemName=VoidZero.vite-plus-extension-pack>
 nefrob.vscode-just-syntax
 # Justfile syntax support <https://marketplace.visualstudio.com/items?itemName=nefrob.vscode-just-syntax>
 ms-dotnettools.csharp

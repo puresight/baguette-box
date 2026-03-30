@@ -13,7 +13,7 @@ Some good nerd font id's for terminal displays include
 - `JetBrainsMono` ([about JetBrains' Mono](https://www.jetbrains.com/lp/mono/))
 - `IBMPlexMono` ([about IBM Plex](https://www.ibm.com/plex/))
 
-- ↪️ Recipe to install: `just install-font JetBrainsMono v3.3.0`
+- ↪️ Run recipe to install: `just install-font JetBrainsMono v3.3.0`
 
 ## Font Config
 

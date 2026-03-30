@@ -6,7 +6,7 @@
 
 ## Installation
 
-- ↪️ Recipe to install Ruby [with Mise](https://mise.jdx.dev/lang/ruby.html): `just install-ruby`
+- ↪️ Run recipe to install Ruby [with Mise](https://mise.jdx.dev/lang/ruby.html): `just install-ruby`
 - Ruby package manager: [RubyGems](https://guides.rubygems.org/command-reference/) packages
-- ↪️ Recipe to install the Rails framework: `install-rails`
-- ↪️ Recipe to install the [Jekyll](https://jekyllrb.com/) [SSG](https://jamstack.org/generators/  "Static Site Generator"): `install-jekyll`
+- ↪️ Run recipe to install the Rails framework: `install-rails`
+- ↪️ Run recipe to install the [Jekyll](https://jekyllrb.com/) [SSG](https://jamstack.org/generators/  "Static Site Generator"): `install-jekyll`

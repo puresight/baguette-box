@@ -2,7 +2,7 @@
 
 > [MinIO Client](https://github.com/minio/mchttps://github.com/minio/mc) (mc) is a command-line tool that provides a modern, Unix-like interface for managing files on both local filesystems and Amazon S3-compatible cloud **storage services**. It is designed to be a replacement for standard commands like ls, cp, and mkdir, optimized for object storage.
 
-- ↪️ Recipe to install: `just install-tools-storage`
+- ↪️ Run recipe to install: `just install-tools-storage`
 
 You can use one tool to manage local files, AWS S3, Google Cloud Storage, Azure Blob Storage, etc. It has a subset of commands under `mc admin` for managing MinIO server operations like _user management, health checks, and decommissioning nodes._ Built in [Go](./go.md), it is _efficient at handling large-scale data transfers._
 

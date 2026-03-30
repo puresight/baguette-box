@@ -4,7 +4,7 @@
 
 This is a directory of the bash scripts that implement the recipes.
 
-- ↪️ Recipe: `just`
+- ↪️ Run recipe: `just`
 - ✏️ Cookbook: [`justfile`](../justfile)
 
 ## Legacy

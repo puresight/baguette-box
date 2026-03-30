@@ -6,7 +6,7 @@
 > 
 > As a compiled language, it translates directly to machine code, offering performance (comparable to C++) without the overhead of a virtual machine. It includes **automatic garbage collection** which helps prevent memory leaks and manages memory allocation on the developer's behalf. One of its primary design goals was to significantly reduce build times for large projects.
 
-- ↪️ Recipe to [install with Mise](https://mise.jdx.dev/lang/go.html): `just install-go`
+- ↪️ Run recipe to [install with Mise](https://mise.jdx.dev/lang/go.html): `just install-go`
 
 ## WebAssembly
 

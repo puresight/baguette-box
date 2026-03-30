@@ -2,7 +2,7 @@
 
 Microsoft [.NET](https://dotnet.microsoft.com/) is a open-source developer platform created by Microsoft for building many different types of applications. It provides a collection of tools, programming languages, and libraries that allow devs to create apps for Windows desktop or console, ASP.NET web, etc.
 
-- ↪️ Recipe: `just install-dotnet`
+- ↪️ Run recipe: `just install-dotnet`
 - ✏️ Powershell init script: [`./dotnet/powershell.ps1`](./powershell.ps1)
 
 

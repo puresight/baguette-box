@@ -5,7 +5,7 @@
 
 This folder contains the _apt.dep_ file that lists (with comments) the APT dependencies for recipe _install-apt-packages_ to install on the system.
 
-- ↪️ Recipe: `just install-apt-packages`
+- ↪️ Run recipe: `just install-apt-packages`
 - ✏️ Keep dependencies in: [`./apt/apt.dep`](./apt.dep)
 
 ## APT Sources
@@ -21,7 +21,7 @@ And when the system is installing APT repository sources, these templates are pr
 [new Debian style](https://manpages.debian.org/stable/dpkg-dev/deb822.5.en.html)
 `.sources` files for your machine's `/etc/apt/sources.list.d/` directory.
 
-- ↪️ Recipe: `just configure-apt`
+- ↪️ Run recipe: `just configure-apt`
 - 📂 Keep sources in: [`./apt/*.sources`](./)
 
 ## How that happens

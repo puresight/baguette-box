@@ -4,7 +4,7 @@
 
 It is an object-oriented programming (OOP) language, organizing software design around "objects" rather than just functions, making it "easier" to create modular and reusable code. Java includes features like **garbage collection** (automatic memory management) and a secure execution environment that protects against unauthorized code or viruses.
 
-- ↪️ Recipe to [install with Mise](https://mise.jdx.dev/lang/java.html): `just install-java`
+- ↪️ Run recipe to [install with Mise](https://mise.jdx.dev/lang/java.html): `just install-java`
 
 <!-- --
 - Using APT we install [Microsoft's](https://www.microsoft.com/openjdk)

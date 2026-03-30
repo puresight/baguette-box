@@ -2,7 +2,7 @@
 
 > Mise-en-place is a polyglot runtime and tool manager! `mise` is a high-performance, _asdf_-compatible tool manager written in Rust. It serves as a unified interface for managing project-specific runtimes, environment variables, and tasks, effectively replacing the need for fragmented tools like `nvm`, `pyenv`, `direnv`, and `make`.
 
-- ↪️ Recipe to install: `just install-mise`
+- ↪️ Run recipe to install: `just install-mise`
 
 ## Core Architecture & Primitives
 

@@ -12,7 +12,7 @@ update_json() {
     local target_file="$2"
 
     echo "Uses jsonc-cli"
-    npm install -g jsonc-cli
+    npm install -g -y jsonc-cli
 
     echo "${FUNCNAME[0]}"
     echo "Source: $source_file"
