@@ -2,7 +2,9 @@
 
 [Vite+](https://viteplus.dev/) is an integrated, high-performance toolchain for modern web development that streamlines project setup and maintenance. It manages Node.js runtimes and package managers, ensuring consistent environments across projects. By bundling fast, Rust-based tools, it provides a unified interface for static analysis, testing, and task running, aiming to be a comprehensive solution for the software development lifecycle.
 
-Developers should adopt Vite+ to boost productivity and ensure code quality through its unified, performance-oriented architecture. It replaces a fragmented collection of tools like [nvm](https://github.com/nvm-sh/nvm?tab=readme-ov-file#about), [Prettier](https://prettier.io/), and [ESLint](https://eslint.org/), with a single, cohesive command-line interface, reducing configuration overhead. Its integrated version management eliminates environment-related inconsistencies, allowing developers to focus more on building features and less on wrangling tools. This performance is also critical for modern agentic AI workflows, where fast feedback loops from linting and testing enable ✨AI coding assistants to validate their changes and iterate rapidly, significantly accelerating pair programming.
+Developers should adopt Vite+ to boost productivity and ensure code quality through its unified, performance-oriented architecture. It replaces a fragmented collection of tools like [nvm](https://github.com/nvm-sh/nvm?tab=readme-ov-file#about), [Prettier](https://prettier.io/), and [ESLint](https://eslint.org/), with a single, cohesive command-line interface, reducing configuration overhead. Its integrated version management eliminates environment-related inconsistencies, allowing developers to focus more on building features and less on wrangling tools. It focuses on modernizing existing projects by replacing slow JavaScript tools with fast equivalents; it powers Vue, SvelteKit, Nuxt, Astro, and is gaining ground in Angular. Vite+ is winning the battle for the existing web, as most major frameworks have standardized on its architecture.
+
+✨ This performance is also critical for modern agentic AI workflows, where **fast feedback loops** from linting and testing enable AI coding assistants to validate their changes and iterate rapidly, significantly accelerating pair programming.
 
 ## Installing
 
@@ -38,6 +40,10 @@ Vite+ deeply integrates with VS Code to provide a zero-config development enviro
 
 - [Guide to VS Code IDE integration](https://viteplus.dev/guide/ide-integration)
 - Code extension pack: [`VoidZero.vite-plus-extension-pack`](https://marketplace.visualstudio.com/items?itemName=VoidZero.vite-plus-extension-pack)
+
+## Committing 
+
+Vite+ includes built-in support for [Git hooks](https://git-scm.com/docs/githooks) (specifically designed to replace external dependencies like [Husky](https://typicode.github.io/husky/) and [lint-staged](https://www.npmjs.com/package/lint-staged)); it integrates hook management directly into the core toolchain using its own CLI commands. When you scaffold a project with `vp create` or use `vp config`, Vite+ automatically installs Git hooks into a `.vite-hooks` directory. Instead of using a separate lint-staged configuration in `package.json`, you define your pre-commit logic directly in your `vite.config.ts` under a staged block.
 
 ## Building
 
