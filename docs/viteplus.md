@@ -1,20 +1,20 @@
 # Vite+
 
-[Vite+](https://viteplus.dev/) is an integrated, high-performance toolchain for modern web development that streamlines project setup and maintenance. It manages Node.js runtimes and package managers, ensuring consistent environments across projects. By bundling fast, Rust-based tools, it provides a unified interface for static analysis (`vp check` using Oxfmt and Oxlint), testing (`vp test` via Vitest), and task running, aiming to be a comprehensive solution for the entire development lifecycle.
+[Vite+](https://viteplus.dev/) is an integrated, high-performance toolchain for modern web development that streamlines project setup and maintenance. It manages Node.js runtimes and package managers, ensuring consistent environments across projects. By bundling fast, Rust-based tools, it provides a unified interface for static analysis, testing, and task running, aiming to be a comprehensive solution for the software development lifecycle.
 
-Developers should adopt Vite+ to boost productivity and ensure code quality through its unified, performance-oriented architecture. It replaces a fragmented collection of tools like `nvm`, `Prettier`, and `ESLint` with a single, cohesive command-line interface, reducing configuration overhead. The use of high-speed, Rust-based components near-instant feedback, while integrated version management eliminates environment-related inconsistencies, allowing developers to focus more on building features and less on wrangling tools.
+Developers should adopt Vite+ to boost productivity and ensure code quality through its unified, performance-oriented architecture. It replaces a fragmented collection of tools like [nvm](https://github.com/nvm-sh/nvm?tab=readme-ov-file#about), [Prettier](https://prettier.io/), and [ESLint](https://eslint.org/), with a single, cohesive command-line interface, reducing configuration overhead. Its integrated version management eliminates environment-related inconsistencies, allowing developers to focus more on building features and less on wrangling tools. This performance is also critical for modern agentic AI workflows, where fast feedback loops from linting and testing enable ✨AI coding assistants to validate their changes and iterate rapidly, significantly accelerating pair programming.
 
 ## Installing
 
-Vite+ takes control of the [Node](./node.md) runtime environment by managing its installation and versioning directly. This eliminates "works on my machine" problems by ensuring that every developer on a project, as well as CI/CD pipelines, uses the exact same version of Node. By abstracting away the need for separate version managers like `nvm` or `asdf`, Vite+ provides a single, reliable command to set up and maintain the project's foundational runtime, simplifying onboarding and guaranteeing a consistent execution environment.
+Vite+ takes control of the **[Node](./node.md)** runtime environment by managing its installation and versioning directly. This eliminates "works on my machine" problems by ensuring that every developer on a project, as well as CI pipelines, use the same version of Node. By abstracting away the need for separate version managers like [mise](./mise.md), Vite+ provides a single, reliable command to set up and maintain the project's foundational runtime, simplifying onboarding and guaranteeing a consistent execution environment.
 
 ## Packaging
 
-In addition to managing the Node.js runtime, Vite+ provides its own integrated package manager. This replaces the need for external tools like `npm`, `yarn`, or `pnpm`, creating a more cohesive development experience. The package manager is designed for performance, leveraging modern techniques to speed up dependency installation and updates. By handling both the runtime and its packages, Vite+ ensures that the entire dependency graph is consistent and reproducible, further reducing configuration drift and simplifying project maintenance.
+In addition to managing the Node.js runtime, Vite+ provides its own integrated package manager. This replaces the need for external tools like [npm](https://docs.npmjs.com/), creating a more cohesive development experience. The package manager is designed for performance, leveraging modern techniques to speed up dependency installation and updates. By handling both the runtime and its packages, Vite+ ensures that the entire dependency graph is consistent and reproducible, further reducing configuration drift and simplifying project maintenance.
 
 ## Checking
 
-Vite+ streamlines static analysis with the `vp check` command, a high-performance tool that unifies formatting, linting, and type-checking. By leveraging the Rust-based Oxc toolchain (including Oxfmt, Oxlint, and a TypeScript-aware linter), it provides near-instant feedback.
+Vite+ streamlines static analysis with the `vp check` command, a high-performance tool that unifies formatting, linting, and type-checking. By leveraging the [Oxc](https://oxc.rs/) toolchain (including Oxfmt, Oxlint, and a TypeScript-aware linter), it provides near-instant feedback.
 
 The `vp check` command is your primary tool for validating the entire project from the terminal. It's designed to be fast and efficient, making it easy to run frequently during development.
 For many common linting and formatting problems, Vite+ can fix them automatically: the `vp check --fix` command applies formatting rules and resolves simple lint errors without manual intervention, saving significant time.
@@ -34,16 +34,25 @@ jobs:
 
 ## Editing
 
-Vite+ deeply integrates with VS Code to provide a zero-config development environment. Upon project setup with `vp create` or `vp migrate`, it automatically generates workspace settings (`.vscode/settings.json`) that enable features like format-on-save. These settings work with the official extensions to provide instant, in-editor feedback from its fast tools. This ensures that code quality and formatting are consistently enforced without requiring developers to manually configure their editor. Because the IDE uses the exact same tools and configuration as the CLI and CI pipeline, you get a consistent, reliable DX. For more details, read the official [guide for VS Code IDE integration](https://viteplus.dev/guide/ide-integration).
+Vite+ deeply integrates with VS Code to provide a zero-config development environment. Upon project setup with `vp create` or `vp migrate`, it automatically generates workspace settings (`.vscode/settings.json`) that enable features like format-on-save. These settings work with the official extensions to provide instant, in-editor feedback from its fast tools. This ensures that code quality and formatting are consistently enforced without requiring developers to manually configure their editor. Because the IDE uses the exact same tools and configuration as the CLI and CI pipeline, you get a consistent, reliable DX.
 
-- Code extension pack: [`VoidZero.vite-plus-extension-pack`](https://marketplace.visualstudio.com/items?itemName=VoidZero.vite-plus-extension-pack).
+- [Guide to VS Code IDE integration](https://viteplus.dev/guide/ide-integration)
+- Code extension pack: [`VoidZero.vite-plus-extension-pack`](https://marketplace.visualstudio.com/items?itemName=VoidZero.vite-plus-extension-pack)
 
 ## Building
 
-[Vite](https://vitejs.dev/) is a modern frontend build tool designed for speed and a leaner developer experience. It serves as a fast alternative to older tools like Webpack by leveraging native ES modules for instant server starts and lightning-fast Hot Module Replacement (HMR).
+[Vite](https://vitejs.dev/) is a modern frontend build tool designed for speed and a leaner developer experience. It serves as a fast alternative to older tools like [Webpack](https://webpack.js.org/) by leveraging [native ES modules](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Guide/Modules) for instant server starts and lightning-fast [Hot Module Replacement](https://webpack.js.org/concepts/hot-module-replacement/ "webpack's HMR docs fyi") ([HMR](https://vitejs.dev/guide/api-hmr.html)).
 
 ## Testing
 
 Vite+ integrates testing through the `vp test` command, which is powered by [Vitest](https://vitest.dev/). This provides a modern, high-performance testing experience that is deeply integrated with the Vite ecosystem. Unlike traditional test runners like Jest, which require separate and often complex configurations to handle TypeScript and ESM, Vitest reuses your existing Vite configuration out-of-the-box. This eliminates configuration drift and simplifies setup significantly.
 
 The primary advantage is speed and developer experience. Vitest leverages Vite's instant Hot Module Replacement (HMR) for a fast, interactive watch mode, allowing tests to re-run almost instantly as you save files. Furthermore, it provides a [Jest](https://jestjs.io/)-compatible API, including familiar [expect](https://jestjs.io/docs/expect#expect) matchers and snapshot testing, making migration from older test runners straightforward while gaining the performance benefits of a modern, ESM-native tool.
+
+## Running
+
+Vite+ includes a built-in task runner that serves as a modern alternative to defining scripts in `package.json`. Tasks are defined within the `vite.config.ts` file, allowing you to orchestrate complex workflows, such as running code generators or deployment scripts, directly within your project's configuration. You can execute these tasks using the `vp run <task-name>` command. This integration provides benefits like task caching and dependency awareness, ensuring that tasks only re-run when their inputs have changed, which improves performance and reliability in development and CI/CD pipelines.
+
+## TL;DR
+
+Vite+ is an all-in-one, high-performance toolchain for the modern web. It unifies Node.js version management, packaging, linting, formatting, testing, and task running into a single, cohesive CLI. By leveraging Rust-based tools and a zero-config philosophy, it eliminates tool fatigue and provides a fast, consistent, and productive development experience from local setup to CI/CD pipelines.
