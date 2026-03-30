@@ -4,31 +4,32 @@ Desktop app development focuses on creating software applications that run nativ
 
 ## Tauri
 
-[Tauri](https://tauri.app/) has surged in popularity as a lightweight alternative to **[Electron](https://www.electronjs.org/)**. Instead of bundling a full Chromium instance, it leverages the system's native webview, resulting in tiny binary sizes (often under 5MB) and significantly lower memory usage. With its backend powered by [Rust](./rust.md), Tauri offers a high security posture and a "secure-by-default" model, making it an excellent choice for performance-sensitive desktop apps where a small footprint is critical. To get started,
+[Tauri](https://tauri.app/) has surged in popularity as a lightweight alternative to **[Electron](https://www.electronjs.org/)**. Instead of bundling a full Chromium instance, it leverages the system's native webview, resulting in tiny binary sizes (often under 5MB) and significantly lower memory usage. With its backend powered by [Rust](./rust.md), Tauri offers a high security posture and a "secure-by-default" model, making it an excellent choice for performance-sensitive desktop apps where a small footprint is critical. To get started here,
 
-- Understand [Mise](./mise.md)
-- Run recipe `install-rust`
-- Run recipe `install-viteplus`
-- [APT](../apt/README.md) dependencies: To interface with the OS webview using Tauri on Debian 12 Linux, you need the [WebKitGTK](https://webkitgtk.org/) and [GTK](https://gtk.org/) development libraries (Tauri specifically leverages _webkit2gtk_ to render web content on Linux); your package dependencies could include e.g. `libwebkit2gtk-4.1-dev libgtk-3-dev libayatana-appindicator3-dev librsvg2-dev`
+- ↪️ Run recipe `just install-rust`
+- ↪️ Run recipe `just install-viteplus`
+- Add your [APT](../apt/README.md) dependencies. To interface with the OS webview using Tauri on Debian 12 Linux, you need the [WebKitGTK](https://webkitgtk.org/) and [GTK](https://gtk.org/) development libraries (Tauri specifically leverages _webkit2gtk_ to render web content on Linux); your package dependencies could include e.g. `libwebkit2gtk-4.1-dev libgtk-3-dev libayatana-appindicator3-dev librsvg2-dev`
 
 ```sh
-npm create tauri-app@latest
-cd tauri-app
-npm install
-npm run tauri dev # to test it out
-npm run tauri build # to build a release
+vp create vite@latest my-app # create a new Vite.js app
+cd my-app   # navigate into it
+vp install  # install dependencies
+vp add -D @tauri-apps/cli # add the Tauri CLI as a dev dependency
+npx tauri init # init Tauri and when prompted give your Vite+ dev webserver detail http://localhost:5173
+vp run tauri dev # to test it out
+vp run tauri build # to build a release
 ```
 
-<!-- --
-- If you also own a Windows PC, install Microsoft Visual Studio C++ Build Tools (select _"C++ build tools"_ and _"Windows 10/11 SDK"_) and the [WebView2 Runtime](https://learn.microsoft.com/en-us/microsoft-edge/webview2/).
-- If you also own a macOS desktop, install [Xcode Command Line Tools](https://developer.apple.com/documentation/xcode/installing-the-command-line-tools/) by running `xcode-select --install` in your terminal.
-<!-- -->
+If you also own an Apple **macOS** desktop, install [Xcode CLI](https://developer.apple.com/documentation/xcode/installing-the-command-line-tools/) by running `xcode-select --install` in terminal
+
+If you also own a **Windows** PC, install Microsoft **[Visual Studio](https://visualstudio.microsoft.com/)** [C++ Build Tools](https://learn.microsoft.com/en-us/cpp/) and the [WebView2 Runtime](https://learn.microsoft.com/en-us/microsoft-edge/webview2/). To get started with C++ development, you typically only need the primary desktop workload
+
+- "Desktop development with C++" `Microsoft.VisualStudio.Workload.NativeDesktop`
+- "MS Build Tools" `Microsoft.VisualStudio.Workload.MSBuildTools`
 
 ## Flutter
 
 [Flutter](./flutter.md) is Google's UI toolkit for building beautiful, natively compiled applications for desktop, [mobile](./dev-mobile.md#Flutter), and [web](./dev-web.md#Flutter) from a single codebase. Unlike frameworks that wrap native components, Flutter uses its own high-performance rendering engine (Skia) to draw every pixel on the screen. This gives developers complete control over the UI and ensures a consistent look and feel across all platforms.
-
-### Get Started
 
 - Run recipe `install-flutter`
 - ⚙ **Enable desktop support:** If you have Flutter installed, run `flutter config --enable-<platform>-desktop` (e.g., `flutter config --enable-windows-desktop`) to enable support for your target OS.
@@ -42,8 +43,6 @@ npm run tauri build # to build a release
 
 For desktop development, Compose Multiplatform compiles your [Kotlin](./kotlin.md) code into a native application packaged with a [Java Virtual Machine (JVM)](./java.md). This enables teams to share not only business logic (a core strength of KMP) but also the entire user interface, ensuring consistency and accelerating development across platforms. It's an ideal choice for developers in the Android or [Kotlin](./kotlin.md) ecosystem.
 
-### Get Started
-
 - 📖 **Explore Compose for Desktop:** Read the official Compose Multiplatform for Desktop documentation to understand its capabilities.
 - ⚙ **Use the KMP Wizard:** The easiest way to start is with the Kotlin Multiplatform wizard in IntelliJ IDEA. Select the "Desktop" target to generate a project with the necessary configuration.
 - 🚀 **Learn the Compose Mindset:** If you're new to Compose, learn the fundamentals of declarative UI, including Composable functions, state management, and modifiers. The principles are the same as on Android.
@@ -54,8 +53,6 @@ For desktop development, Compose Multiplatform compiles your [Kotlin](./kotlin.m
 While [React Native](https://reactnative.dev/) is famous for mobile development, its ecosystem has expanded to support desktop platforms through community and corporate-backed efforts. Projects like [React Native for Windows](https://microsoft.github.io/react-native-windows/) and [React Native for macOS](https://github.com/microsoft/react-native-macos) allow developers to leverage their existing [React](./dev-web.md#react) and JavaScript skills to build native desktop applications.
 
 The core principle remains the same: you define your UI with React components, and the framework translates them into native UI elements for the target desktop OS. This approach enables significant code sharing between mobile and desktop apps, making it an excellent choice for teams already invested in the React ecosystem.
-
-### Get Started
 
 - 📖 **Explore the documentation:** Visit the official sites for React Native for Windows and macOS to understand setup, platform-specific APIs, and best practices.
 - ⚙ **Use the CLI:** Follow the official guides to add desktop support to an existing React Native project or to create a new one from scratch.
