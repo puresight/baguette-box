@@ -62,3 +62,16 @@ Vite+ includes a built-in task runner that serves as a modern alternative to def
 ## TL;DR
 
 Vite+ is an all-in-one, high-performance toolchain for the modern web. It unifies Node.js version management, packaging, linting, formatting, testing, and task running into a single, cohesive CLI. By leveraging Rust-based tools and a zero-config philosophy, it eliminates tool fatigue and provides a fast, consistent, and productive development experience from local setup to CI/CD pipelines.
+
+| Traditional | Vite+ Equivalent | Tool Function |
+| :--- | :--- | :--- |
+| [**Webpack**](https://webpack.js.org/) | [**Vite**](https://vitejs.dev/) / [**Rolldown**](https://rolldown.rs/) | Bundles code and assets; handles the build pipeline. |
+| [**Prettier**](https://prettier.io/) | [**Oxfmt**](https://oxc.rs/) | Automatically formats code to ensure consistent style. |
+| [**ESLint**](https://eslint.org/) | [**Oxlint**](https://oxc.rs/) | Analyzes code to find and fix problems (linting). |
+| [**Jest**](https://jestjs.io/) | [**Vitest**](https://vitest.dev/) | Runs unit and integration tests. |
+| [**npm**](https://docs.npmjs.com/) / [**yarn**](https://yarnpkg.com/) | [**Vite+**](https://viteplus.dev/) (Built-in) | Manages project dependencies and packages. |
+| [**nvm**](https://github.com/nvm-sh/nvm) | [**Vite+**](https://viteplus.dev/) (Built-in) | Provides the Node.js runtime, removing the need for external version managers. |
+| [**Husky**](https://typicode.github.io/husky/) | [**Vite+**](https://viteplus.dev/) (Workflow) | Manages git hooks and pre-commit checks natively. |
+| [**esbuild**](https://esbuild.github.io/) | [**Rolldown**](https://rolldown.rs/) | Handles fast transformation and minification (unified with the bundler). |
+| [**Rollup**](https://rollupjs.org/) | [**Rolldown**](https://rolldown.rs/) | Handles production bundling (Vite+ unifies dev and prod under Rolldown). |
+| [**ts-node**](https://typestrong.org/ts-node/) | [**Vite+**](https://viteplus.dev/) (Runtime) | Executes TypeScript files directly without manual compilation. |
