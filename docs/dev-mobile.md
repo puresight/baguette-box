@@ -8,10 +8,10 @@ Mobile development involves creating software applications for smartphones and t
 
 - 🚀 **Start with Expo:** The fastest way to get started is with **[Expo](https://expo.dev/)**. Use the [Expo Go](https://expo.dev/go) app on your phone to run your project instantly without needing to install [Xcode](https://developer.apple.com/xcode/) or [Android Studio](https://developer.android.com/studio)&hellip;
   - [create-expo-app](https://docs.expo.dev/more/create-expo/) CLI to create a new Expo React Native project
-  - [Create Expo Stack](https://rn.new/) allows you to interactively pick your stack, including:
-    - Navigation?: Expo Router or React Navigation
-    - Styling?: NativeWind (Tailwind CSS), Tamagui, Unistyles
-    - Authentication?: Clerk, Supabase, Firebase
+  - [Create Expo Stack](https://rn.new/) allows you to interactively pick your stack, for example:
+    - **Navigation?:** [Expo Router](https://docs.expo.dev/router/introduction/) or [React Navigation](https://reactnavigation.org/)
+    - **Styling?:** [NativeWind](https://www.nativewind.dev/) (Tailwind CSS), [Tamagui](https://tamagui.dev/), [Unistyles](https://www.unistyl.es/)
+    - **Authentication?:** [Clerk](https://clerk.com/), [Supabase](https://supabase.com/), [Firebase](https://firebase.google.com/)
   - T3 stack: [Create T3 Turbo](https://github.com/t3-oss/create-t3-turbo?tab=readme-ov-file#readme) allows shared code between Web (Vite/Next.js) and Mobile (Expo)
 - 📖 **Learn the Core Components:** Familiarize yourself with React Native's Core Components like `<View>`, `<Text>`, `<Image>`, and `<ScrollView>`. These are the essential building blocks for your UI.
 - 🧭 **Handle Navigation:** Mobile apps have different navigation patterns than websites. Learn a library like React Navigation to manage screens and navigation stacks.
