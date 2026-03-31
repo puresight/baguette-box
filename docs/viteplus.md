@@ -1,6 +1,6 @@
 # Vite+
 
-[Vite+](https://viteplus.dev/) is an integrated, high-performance toolchain for modern web development that streamlines project setup and maintenance. It manages Node.js runtimes and package managers, ensuring consistent environments across projects. By bundling fast, Rust-based tools, it provides a unified interface for static analysis, testing, and task running, aiming to be a comprehensive solution for the software development lifecycle.
+[Vite+](https://viteplus.dev/ "VitePlus") is an integrated, high-performance toolchain for modern [web development](./dev-web.md) that streamlines project setup and maintenance. It manages **[Node](./node.md)** runtimes and package managers, ensuring consistent environments across projects. By bundling fast, Rust-based tools, it provides a unified interface for static analysis, testing, and task running, aiming to be a comprehensive solution for the software development lifecycle.
 
 Developers should adopt Vite+ to boost productivity and ensure code quality through its unified, performance-oriented architecture. It replaces a fragmented collection of tools like [nvm](https://github.com/nvm-sh/nvm?tab=readme-ov-file#about), [Prettier](https://prettier.io/), and [ESLint](https://eslint.org/), with a single, cohesive command-line interface, reducing configuration overhead. Its integrated version management eliminates environment-related inconsistencies, allowing developers to focus more on building features and less on wrangling tools. It focuses on modernizing existing projects by replacing slow JavaScript tools with fast equivalents; it powers [Vue](https://vuejs.org/), [SvelteKit](https://kit.svelte.dev/), [Nuxt](https://nuxt.com/), [Astro](https://astro.build/), and is gaining ground in [Angular](https://angular.io/). Vite+ is winning the battle for the existing web as most major frameworks have standardized on its architecture.
 
@@ -46,7 +46,7 @@ Vite+ deeply integrates with VS Code to provide a zero-config development enviro
 
 ## Committing changes 🏁
 
-Vite+ includes built-in support for [Git hooks](https://git-scm.com/docs/githooks) (specifically designed to replace external dependencies like [Husky](https://typicode.github.io/husky/) and [lint-staged](https://www.npmjs.com/package/lint-staged)); it integrates hook management directly into the core toolchain using its own CLI commands. When you scaffold a project with `vp create` or use `vp config`, Vite+ automatically installs Git hooks into a `.vite-hooks` directory. Instead of using a separate lint-staged configuration in `package.json`, you define your pre-commit logic directly in your `vite.config.ts` under a staged block.
+Vite+ includes built-in support for [Git hooks](https://git-scm.com/docs/githooks) (specifically designed to replace external dependencies like [Husky](https://typicode.github.io/husky/) and [lint-staged](https://www.npmjs.com/package/lint-staged)); it integrates hook management directly into the core toolchain using its own CLI commands. When you scaffold a project with `vp create` or use `vp config`, Vite+ automatically installs Git hooks into a `.vite-hooks` directory. Instead of using a separate lint-staged configuration in `package.json`, you define your pre-commit logic directly in your [`vite.config.ts`](https://viteplus.dev/config/) under a staged block.
 
 ## Building source 🏭
 
@@ -60,7 +60,7 @@ The primary advantage is speed and developer experience. Vitest leverages Vite's
 
 ## Running webserver 🕸
 
-Vite+ includes a built-in task runner that serves as a modern alternative to defining scripts in `package.json`. Tasks are defined within the `vite.config.ts` file, allowing you to orchestrate complex workflows, such as running code generators or deployment scripts, directly within your project's configuration. You can execute these tasks using the `vp run <task-name>` command. This integration provides benefits like task caching and dependency awareness, ensuring that tasks only re-run when their inputs have changed, which improves performance and reliability in development and CI/CD pipelines.
+Vite+ includes a built-in task runner that serves as a modern alternative to defining scripts in `package.json`. Tasks are defined within the [`vite.config.ts`](https://viteplus.dev/config/) file, allowing you to orchestrate complex workflows, such as running code generators or deployment scripts, directly within your project's configuration. You can execute these tasks using the `vp run <task-name>` command. This integration provides benefits like task caching and dependency awareness, ensuring that tasks only re-run when their inputs have changed, which improves performance and reliability in development and CI/CD pipelines.
 
 ## TL;DR 📖
 
@@ -86,11 +86,12 @@ Scaffold a new web project:
 
 - Write your specification (specs come first!). Decide on a suitable name for your project. Decide which web application framework and programming language it will use. Pick the latest LTS release of Node _that is supported by your framework._
 - `cd ~/src` to navigate into your source code directory
-- `vp create` to begin your interview
-  - Name your project: Type your actual repo name `<your-repo-name>`
-  - Select your framework: Use arrow keys to select e.g. **React**
-  - Select language variant: Choose [TypeScript](./typescript.md)
-- `cd <your-repo-name>` to navigate into your new directory
+- `vp create --list` to see the built-in templates and the common shorthand templates Vite+ recognizes; [`vp create`](https://viteplus.dev/guide/create#usage) interactively scaffolds new projects, monorepos, and apps. While the manual setup is straightforward and highly recommended, the [awesome-vite](https://github.com/vitejs/awesome-vite) GitHub repository lists several community-maintained templates that come pre-configured with Tailwind CSS and other tools. These can save time if they match your exact needs. The manual setup offers complete control and a better understanding of your project's structure from the start.
+  - `vp create vite@latest your-repo-name -- --template react-ts`
+    - Name your project: Type your actual repo name `<your-repo-name>`
+    - Select your framework: Use arrow keys to select e.g. **React**
+    - Select language variant: Choose [TypeScript](./typescript.md)
+- `cd your-repo-name` to navigate into your new directory
 - `vp env pin <version>` to pin the [Node](./node.md) version; this adds a `.node-version` file into the project root
 - `vp check` to ensure your linting, formatting, and type-checking are all passing
 - `vp install` to use a package manager to install your dependencies (defaulting to [pnpm](https://pnpm.io/))
