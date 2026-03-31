@@ -21,12 +21,12 @@ Here you will find tools to do software development, whether you build for [Web]
 
 #### Languages
 
-- [Python via uv](./docs/uv.md)
-- [JS](./docs/node.md), [Typescript](./docs/typescript.md) [via Vite+](./docs/viteplus.md)
+- [Python via uv](./docs/uv.md "UV replaces for pip, pip-tools, virtualenv commands")
+- [Typescript](./docs/typescript.md) [via Vite+](./docs/viteplus.md "Vite+ is the swiss knife for front-end development")
 - [Java](./docs/java.md), [Kotlin](./docs/kotlin.md), [Scala](./docs/scala.md)
-- [C# via .NET](./dotnet/README.md)
+- [C# via .NET](./dotnet/README.md ".NET is Microsoft's framework for building apps")
 - [Ruby on Rails](./docs/ruby.md)
-- [Erlang](./docs/erlang.md) & [Elixir](./docs/elixir.md)
+- [Erlang](./docs/erlang.md), [Elixir](./docs/elixir.md)
 - [Haskell](./docs/haskell.md)
 - [Dart (Flutter)](./docs/flutter.md) 
 - [WebAssembly](./docs/wasm.md)
@@ -35,12 +35,12 @@ Here you will find tools to do software development, whether you build for [Web]
 
 #### Agentic AI & pairing
 
-- [Google Antigravity](https://antigravity.google/docs/home) IDE
+- [Google Antigravity](https://antigravity.google/docs/home "Be an architect/manager of agents") IDE
 - _Gemini Code Assist_ and _Roo Code_ in [VS Code](./code/README.md) IDE
-- _Gemini CLI_ via [npm](./docs/node.md)
-- [Goose](https://block.github.io/goose/docs/category/guides) CLI
-- [Aider](./docs/aider.md) CLI via [Homebrew](./homebrew/README.md)
-- [Ollama](./docs/ollama.md)
+- _Gemini CLI_ via [Vite+](./docs/viteplus.md)
+- Block's [Goose](https://block.github.io/goose/docs/category/guides "Agentic system designed to automate complex development tasks from start to finish") CLI
+- [Aider](./docs/aider.md "writes Git commits for every edit") CLI via [Homebrew](./homebrew/README.md)
+- [Ollama](./docs/ollama.md "to download, manage, & run LLM's locally") CLI
 
 #### CLI
 
