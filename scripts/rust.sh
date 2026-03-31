@@ -1,12 +1,17 @@
 #!/bin/bash
 
 # ------ # ------ # ------ # ------ # ------ # ------ # ------ # ------
+#   Uses Rustup to install Rust compiler.
+#   See: https://rustup.rs/
+#
+#   Also installs Just LSP dependency for the Just extension in VS Code.
 # ------ # ------ # ------ # ------ # ------ # ------ # ------ # ------
 
 # Function ------------------------------------------------------------
 # TODO investigate re-enabling rustup update; it compiled from source 157 packages (too much) last time
 # Install Rust language compiler, package management, LSP, etc.
-_install_rust() {
+install_rust() {
+
     if command -v rustup &> /dev/null; then
         echo "Run 'rustup update' soon."
         # rustup update             # disabled because it takes too long / several minutes.
@@ -23,9 +28,13 @@ _install_rust() {
         curl -L https://raw.githubusercontent.com/cargo-bins/cargo-binstall/main/install-from-binstall-release.sh | bash
         cargo binstall cargo-update --no-confirm
     fi
+
+    # Versions
     echo "$(rustc --version)"
     echo "$(cargo --version)"
     echo "cargo-binstall $(cargo binstall -V $non_interactive)"
+
+    # Install LSP dependency of Just editor extension
     echo "Installing Just LSP language server for editor support..."
     local non_interactive="--no-confirm --disable-telemetry"
     cargo binstall $non_interactive just-lsp

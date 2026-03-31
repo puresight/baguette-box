@@ -7,34 +7,7 @@
 
 # --- load library code ---
 . "$SCRIPTROOT/scripts/lib/platforms.sh" || { echo "❌ Error: scripts/platforms.sh not found."; exit 1; }
-. "$SCRIPTROOT/scripts/lib/apt.sh"     # Debian APT fiunction(s)
-. "$SCRIPTROOT/scripts/lib/flatpak.sh" # Flatpak install fiunction(s)
-. "$SCRIPTROOT/scripts/lib/fonts.sh"   # Nerd Font installation fiunction(s)
-. "$SCRIPTROOT/scripts/lib/rust.sh"    # Rust install fiunction(s)
-. "$SCRIPTROOT/scripts/lib/json.sh"    # for VS Code configuring fiunction(s)
-# . "$SCRIPTROOT/scripts/lib/java.sh"    # Deprecated: OpenJDK install fiunction(s)
-
-# Function to configure APT
-configure_apt() {
-    sudo apt update -qq
-    sudo apt autoremove -y
-    sudo apt autoclean -y
-    _add_apt_sources
-}
-
-# Function to handle APT package installation
-#   dependencies: configure_apt
-install_apt_packages() {
-    local apt_file="${1:-apt/apt.dep}"
-
-    echo "Installing packages from $apt_file..."
-    if [ -f "$apt_file" ]; then
-        sudo DEBIAN_FRONTEND=noninteractive apt install -y $(cat "$apt_file" | sed 's/#.*$//' | sed '/^[[:space:]]*$/d' | tr '\n' ' ')
-    else
-        echo "❌ Error: file '$apt_file' not found" >&2
-        exit 1
-    fi
-}
+. "$SCRIPTROOT/scripts/lib/json.sh"    # update_json function for 2 VS Code configuring recipes
 
 # Function to handle UV installation
 #   dependencies: (none)
@@ -273,26 +246,6 @@ configure_podman() {
     fi
     # Migrate existing containers to a new version of Podman and refresh the runtime to recognize these new mappings. This prevents the common ERRO[0000] user namespaces are not enabled error.
     podman system migrate
-}
-
-# Function to handle Rust installation with cargo-binstall
-#   dependencies: configure_apt, install_apt_packages
-install_rust() {
-    _install_rust
-}
-
-# Function
-#   dependencies: configure_apt, configure_shell
-configure_flatpak() {
-    echo "sorry: flatpak is disabled for troubleshooting."
-    return
-    _configure_flatpak "$@"
-}
-
-# Function
-#   dependencies: (none)
-install_font() {
-    install_nerd_font "$@"
 }
 
 # Function

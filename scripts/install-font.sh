@@ -9,9 +9,15 @@
 #   - PLATFORM global variable
 # ------ # ------ # ------ # ------ # ------ # ------ # ------ # ------
 
+# Function
+#   dependencies: (none)
+install_font() {
+    _install_nerd_font "$@"
+}
+
 # Function to download and install a Nerd Font
 # Parameters: $1 - font name, $2 - version
-install_nerd_font() {
+_install_nerd_font() {
     # Arguments
     local font_name="${1:-JetBrainsMono}"
     local version="${2:-v3.3.0}"
@@ -66,5 +72,5 @@ install_nerd_font() {
 
 # Execute install_nerd_font function if script is run directly
 if [[ "${BASH_SOURCE[0]}" == "${0}" ]]; then
-    install_nerd_font "$@"
+    install_font "$@"
 fi

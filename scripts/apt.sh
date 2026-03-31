@@ -15,6 +15,28 @@
 #
 # ------ # ------ # ------ # ------ # ------ # ------ # ------ # ------
 
+# Function to configure APT
+configure_apt() {
+    sudo apt update -qq
+    sudo apt autoremove -y
+    sudo apt autoclean -y
+    _add_apt_sources
+}
+
+# Function to handle APT package installation
+#   dependencies: configure_apt
+install_apt_packages() {
+    local apt_file="${1:-apt/apt.dep}"
+
+    echo "Installing packages from $apt_file..."
+    if [ -f "$apt_file" ]; then
+        sudo DEBIAN_FRONTEND=noninteractive apt install -y $(cat "$apt_file" | sed 's/#.*$//' | sed '/^[[:space:]]*$/d' | tr '\n' ' ')
+    else
+        echo "❌ Error: file '$apt_file' not found" >&2
+        exit 1
+    fi
+}
+
 # Function
 _update_package_lists() {
     sudo apt update -qq
@@ -85,5 +107,6 @@ _add_apt_sources() {
 
 # This script can be run independently.
 if [[ "${BASH_SOURCE[0]}" == "${0}" ]]; then
-    _add_apt_sources "$@"
+    configure_apt
+    # install_apt_packages "$@"
 fi

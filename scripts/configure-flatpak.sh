@@ -18,6 +18,13 @@
 # ```
 # ------ # ------ # ------ # ------ # ------ # ------ # ------ # ------
 
+# Function
+#   dependencies: configure_apt, configure_shell
+configure_flatpak() {
+    echo "sorry: flatpak is disabled for troubleshooting."
+    return
+    _configure_flatpak "$@"
+}
 
 # Function
 #   TODO 2026/3 Bazaar app failed tests
