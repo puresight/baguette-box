@@ -24,8 +24,10 @@
   "gitlens.currentLine.enabled": true, // The famous inline blame
 
   "editor.fontFamily": "'JetBrains Mono', 'Droid Sans Mono', monospace",
+
+  "editor.defaultFormatter": "oxc.oxc-vscode",
   "editor.formatOnSave": true,
-  "editor.defaultFormatter": "esbenp.prettier-vscode", // Default for most files
+  "oxc.fmt.experimental": true,
 
   "[python]": {
     "editor.defaultFormatter": "charliermarsh.ruff",
