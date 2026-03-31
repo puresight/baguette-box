@@ -38,23 +38,16 @@ code: configure-code
     @printf "\nVS Code is ready to use.\n"
 
 #%#%#%#%#%#%#%#%#%#%#%#%#%#%#%#%#%#%#%#%#%#%#%#%#%#%#%#%#%#%#%#%#%#%#
-#%# -- Regular Recipes --
+#%# -- Regular Recipes : Debian Only --
 #%#%#%#%#%#%#%#%#%#%#%#%#%#%#%#%#%#%#%#%#%#%#%#%#%#%#%#%#%#%#%#%#%#%#
 
-# Display environment
-display-environment:
-    @printf "\n$a display-environment $a\n"
-    @. scripts/index.sh &&\
-        display_environment
-
-# Display versions
-display-versions:
-    @printf "\n$a display-versions $a\n"
-    @. scripts/index.sh &&\
-        display_versions
+# Check Debian APT
+check-apt:
+    @printf "\n$a check-apt $a\n"
+    ./scripts/check-apt.sh
 
 # Configure APT sources
-configure-apt: install-gomplate
+configure-apt: check-apt install-gomplate
     @printf "\n$a configure-apt $a\n"
     ./scripts/apt.sh
 
@@ -62,7 +55,7 @@ configure-apt: install-gomplate
 # Configure shells
 configure-shell: install-apt-packages install-font install-dotnet
     @printf "\n$a configure-shell $a\n"
-    @. scripts/index.sh &&\
+    @. scripts/index.sh && \
         configure_shell zsh pwsh
 
 # Configure Flatpak
@@ -73,31 +66,69 @@ configure-flatpak: install-apt-packages
 # Configure Podman
 configure-podman: install-apt-packages
     @printf "\n$a configure-podman $a\n"
-    @. scripts/index.sh &&\
+    @. scripts/index.sh && \
         configure_podman
 
 # Install APT packages
 install-apt-packages: configure-apt
     @printf "\n$a install-apt-packages $a\n"
-    @. scripts/apt.sh &&\
+    @. scripts/apt.sh && \
         install_apt_packages 'apt/apt.dep'
+
+#%#%#%#%#%#%#%#%#%#%#%#%#%#%#%#%#%#%#%#%#%#%#%#%#%#%#%#%#%#%#%#%#%#%#
+#%# -- Regular Recipes --
+#%#%#%#%#%#%#%#%#%#%#%#%#%#%#%#%#%#%#%#%#%#%#%#%#%#%#%#%#%#%#%#%#%#%#
+
+# Display environment
+display-environment:
+    @printf "\n$a display-environment $a\n"
+    @. scripts/index.sh && \
+        display_environment
+
+# Display versions
+display-versions:
+    @printf "\n$a display-versions $a\n"
+    @. scripts/index.sh && \
+        display_versions
+
+# Install Code
+install-code updates="code/argv.json":
+    @printf "\n$a install-code $a\n"
+    @. scripts/index.sh && \
+        install_code {{updates}}
+
+# Install Code extensions
+install-code-extensions extensions="code/code.dep": install-code
+    @printf "\n$a install-code-extensions $a\n"
+    @. scripts/index.sh && \
+        install_code_extensions {{extensions}}
+
+# Configure Code
+configure-code updates="code/user-settings.json": install-code-extensions install-viteplus
+    @printf "\n$a configure-code $a\n"
+    @. scripts/index.sh && \
+        configure_code {{updates}}
+
+#%#%#%#%#%#%#%#%#%#%#%#%#%#%#%#%#%#%#%#%#%#%#%#%#%#%#%#%#%#%#%#%#%#%#
+#%# -- Regular Recipes : Fedora untested --
+#%#%#%#%#%#%#%#%#%#%#%#%#%#%#%#%#%#%#%#%#%#%#%#%#%#%#%#%#%#%#%#%#%#%#
 
 # Install homebrew packages
 install-homebrew-packages bundle="homebrew/homebrew.dep": install-homebrew
     @printf "\n$a install-homebrew-packages $a\n"
-    @. scripts/index.sh &&\
+    @. scripts/index.sh && \
         install_homebrew_packages {{bundle}}
 
 # Install Homebrew
 install-homebrew:
     @printf "\n$a install-homebrew $a\n"
-    @. scripts/index.sh &&\
+    @. scripts/index.sh && \
         install_homebrew
 
 # Install mise-en-place system
 install-mise:
     @printf "\n$a install-mise $a\n"
-    @. scripts/index.sh &&\
+    @. scripts/index.sh && \
         install_mise
 
 # Install kubectl using mise
@@ -125,13 +156,13 @@ install-ruby version="sub-0.1:latest": install-mise
 # Install Jekyll static site generator
 install-jekyll: install-ruby
     @printf "\n$a install-jekyll $a\n"
-    @. scripts/index.sh &&\
+    @. scripts/index.sh && \
         install_jekyll
 
 # Install Rails framework
 install-rails: install-ruby
     @printf "\n$a install-rails $a\n"
-    @. scripts/index.sh &&\
+    @. scripts/index.sh && \
         install_rails
 
 # Install Microsoft .NET SDK using mise
@@ -190,7 +221,7 @@ install-ollama version="latest": install-mise
 # Install Goose IDE
 install-goose:
     @printf "\n$a install-goose $a\n"
-    @. scripts/index.sh &&\
+    @. scripts/index.sh && \
         install_goose
 
 # Install gomplate for using JSON, YAML, & text templates
@@ -201,13 +232,13 @@ install-gomplate: install-mise
 # Install Rust language using Rustup
 install-rust:
     @printf "\n$a install-rust $a\n"
-    @. scripts/index.sh &&\
+    @. scripts/index.sh && \
         install_rust
 
 # Install terminal tools
 install-tools-terminal shell="zsh": install-mise
     @printf "\n$a install-tools-terminal $a\n"
-    @. scripts/index.sh &&\
+    @. scripts/index.sh && \
         install_terminal_tools {{shell}}
 
 # Install a Nerd Font
@@ -223,7 +254,7 @@ install-tools-storage: install-mise
 # Install uv, the Python package manager
 install-uv:
     @printf "\n$a install-uv $a\n"
-    @. scripts/index.sh &&\
+    @. scripts/index.sh && \
         install_uv
 
 # Install Ansible
@@ -232,25 +263,7 @@ install-ansible: _install-ansible-from-uv display-environment
 
 # Private: install Ansible using uv
 _install-ansible-from-uv: install-uv
-    @. scripts/index.sh &&\
+    @. scripts/index.sh && \
         install_using_uv_with_executables_from 'ansible' 'ansible-core,ansible-lint' 'localhost -m ping'
-
-# Install Code
-install-code updates="code/argv.json": install-apt-packages
-    @printf "\n$a install-code $a\n"
-    @. scripts/index.sh &&\
-        install_code {{updates}}
-
-# Install Code extensions
-install-code-extensions extensions="code/code.dep": install-code
-    @printf "\n$a install-code-extensions $a\n"
-    @. scripts/index.sh &&\
-        install_code_extensions {{extensions}}
-
-# Configure Code
-configure-code updates="code/user-settings.json": install-code-extensions
-    @printf "\n$a configure-code $a\n"
-    @. scripts/index.sh &&\
-        configure_code {{updates}}
 
 #%#%#%#%#%#%#%#%#%#%#%#%#%#%#%#%#%#%#%#%#%#%#%#%#%#%#%#%#%#%#%#%#%#%#

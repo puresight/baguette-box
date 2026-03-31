@@ -375,12 +375,11 @@ configure_code() {
     local settings_file="${1:-code/user-settings.json}"
 
     local vscode_user_settings="$repo_path/$settings_file"
-
-    if [ "$OS" == "debian" ]; then
-        target_json="$HOME/.config/Code/User/settings.json"
-    elif [ "$OS" == "macos" ]; then
+    local target_json="$HOME/.config/Code/User/settings.json"
+    if [ "macos" == $OS ]; then
         target_json="$HOME/scriptsrary/Application Support/Code/User/settings.json"
     fi
+
     if [ -n "$target_json" ]; then
         mkdir -p "$(dirname "$target_json")"
         update_json $vscode_user_settings $target_json
@@ -389,23 +388,18 @@ configure_code() {
             exit 1
         fi
         echo "done"
-    else
-        echo "❌ Error: platform unsupported" >&2
-        # exit 1
     fi
 }
 
 # Function to display environment information
 #   dependencies: (none)
 display_environment() {
-    if [ "$OS" == "debian" ]; then
-        if command -v hostnamectl &> /dev/null; then
-            hostnamectl
-        else
-            cat /etc/os-release
-        fi
-    elif [ "$OS" == "macos" ]; then
+    if [ "$OS" == "macos" ]; then
         sw_vers
+    elif command -v hostnamectl &> /dev/null; then
+        hostnamectl
+    else
+        cat /etc/os-release
     fi
 }
 

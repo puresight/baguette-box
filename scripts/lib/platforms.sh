@@ -43,10 +43,16 @@ case $OS in
     fedora*)
         #   mutable?: dnf install
         # immutable?: rpm-ostree install
-        printf "platform: $OS $VARIANT $VARIANT_ID\n" # e.g. fedora Silverblue bluefin-dx-nvidia-open
+        # ---------
+        # printf "platform: $OS $VARIANT $VARIANT_ID\n" # e.g. fedora Silverblue bluefin-dx-nvidia-open
+        printf "Warning: $OS is not tested\n" >&2
+        if [[ "Silverblue" == "$VARIANT" ]]; then
+            return # pass
+        fi
         ;;
     "ubuntu debian")
         printf "Warning: $ID is not tested\n" >&2
+        return # pass
         ;;
 esac
 
