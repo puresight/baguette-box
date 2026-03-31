@@ -155,7 +155,7 @@ install_goose() {
 #   dependencies: configure_apt
 install_microsoft_dotnet() {
     for arg in "$@"; do
-        if [ "$arg" != "$PLATFORM" ]; then
+        if [ "$arg" != "$OS" ]; then
             echo "Installing .NET SDK $arg..."
             sudo DEBIAN_FRONTEND=noninteractive apt install -y "dotnet-sdk-$arg.0"
         fi
@@ -173,7 +173,7 @@ configure_shell() {
     local rc_file="$HOME/.${shell}rc"
     local pwsh_init="./dotnet/powershell.ps1"
 
-    if [ "$PLATFORM" == "debian" ]; then
+    if [ "$OS" == "debian" ]; then
         local target_shell
         target_shell=$(which "$shell")
         if [ "$SHELL" != "$target_shell" ]; then
@@ -206,7 +206,7 @@ configure_shell() {
         echo "pwsh $(pwsh --version)" 
         pwsh -NoProfile -File $pwsh_init
 
-    elif [ "$PLATFORM" == "macos" ]; then
+    elif [ "$OS" == "macos" ]; then
         if command -v oh-my-posh &> /dev/null; then
             oh-my-posh upgrade
         else
@@ -276,13 +276,13 @@ install_homebrew() {
 
     echo "Setting up environment"
     local BREW_PATH=""
-    if [ "$PLATFORM" == "debian" ]; then
+    if [ "$OS" == "debian" ]; then
         if [ -d "/home/linuxbrew/.linuxbrew" ]; then
             BREW_PATH="/home/linuxbrew/.linuxbrew/bin/brew"
         elif [ -d "$HOME/.linuxbrew" ]; then
             BREW_PATH="$HOME/.linuxbrew/bin/brew"
         fi
-    elif [ "$PLATFORM" == "macos" ]; then
+    elif [ "$OS" == "macos" ]; then
         if [ -f "/opt/homebrew/bin/brew" ]; then
             BREW_PATH="/opt/homebrew/bin/brew"
         elif [ -f "/usr/local/bin/brew" ]; then
@@ -319,12 +319,12 @@ install_code() {
 
     if ! command -v code &> /dev/null; then
         echo "Installing VS Code..."
-        if [ "$PLATFORM" == "debian" ]; then
+        if [ "$OS" == "debian" ]; then
             _install_vscode_debian
-        elif [ "$PLATFORM" == "macos" ]; then
+        elif [ "$OS" == "macos" ]; then
             brew install --cask visual-studio-code
         else
-            echo "Unsupported platform $PLATFORM"
+            echo "Unsupported platform $OS"
         fi
 
         echo "Configuring VS Code runtime arguments"
@@ -340,10 +340,10 @@ install_code() {
         fi
     else
         echo "VS Code is already installed. Checking for updates..."
-        if [ "$PLATFORM" == "debian" ]; then
+        if [ "$OS" == "debian" ]; then
             sudo DEBIAN_FRONTEND=noninteractive apt install -y code
             sudo rm -f /etc/apt/sources.list.d/vscode.list
-        elif [ "$PLATFORM" == "macos" ]; then
+        elif [ "$OS" == "macos" ]; then
             brew upgrade --cask visual-studio-code
         fi
         echo "VS Code: $(code --version)"
@@ -376,9 +376,9 @@ configure_code() {
 
     local vscode_user_settings="$repo_path/$settings_file"
 
-    if [ "$PLATFORM" == "debian" ]; then
+    if [ "$OS" == "debian" ]; then
         target_json="$HOME/.config/Code/User/settings.json"
-    elif [ "$PLATFORM" == "macos" ]; then
+    elif [ "$OS" == "macos" ]; then
         target_json="$HOME/scriptsrary/Application Support/Code/User/settings.json"
     fi
     if [ -n "$target_json" ]; then
@@ -398,13 +398,13 @@ configure_code() {
 # Function to display environment information
 #   dependencies: (none)
 display_environment() {
-    if [ "$PLATFORM" == "debian" ]; then
+    if [ "$OS" == "debian" ]; then
         if command -v hostnamectl &> /dev/null; then
             hostnamectl
         else
             cat /etc/os-release
         fi
-    elif [ "$PLATFORM" == "macos" ]; then
+    elif [ "$OS" == "macos" ]; then
         sw_vers
     fi
 }
