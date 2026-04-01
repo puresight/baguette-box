@@ -1,10 +1,8 @@
 # Baguette Box &nbsp; 🥖🥖🥖
 
 sets up an AI-enabled developer environment on
-Debian-based,
-[ChromeOS](./docs/chromeos.md)
-Linux
-systems
+[Debian](https://www.debian.org/) (including [ChromeOS](./docs/chromeos.md)) systems and
+[Fedora](https://fedoraproject.org/) Linux distributions,
 with tooling for coding, cloud, compute, cache, storage, and data management.
 Here you will find tools to do software development, whether you build for [Web](./docs/dev-web.md), for [Mobile](./docs/dev-mobile.md), for [Desktop](./docs/dev-desktop.md), or the [Cloud](./docs/dev-cloud.md).
 

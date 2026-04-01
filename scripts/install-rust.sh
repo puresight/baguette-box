@@ -30,12 +30,12 @@ install_rust() {
     fi
 
     # Versions
+    local non_interactive="--no-confirm --disable-telemetry"
     echo "$(rustc --version)"
     echo "$(cargo --version)"
     echo "cargo-binstall $(cargo binstall -V $non_interactive)"
 
     # Install LSP dependency of Just editor extension
     echo "Installing Just LSP language server for editor support..."
-    local non_interactive="--no-confirm --disable-telemetry"
     cargo binstall $non_interactive just-lsp
 }

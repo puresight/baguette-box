@@ -91,6 +91,40 @@ display-versions:
     @. scripts/index.sh && \
         display_versions
 
+# Install gomplate for using JSON, YAML, & text templates
+install-gomplate: install-mise
+    @printf "\n$a install-gomplate $a\n"
+    mise use -g gomplate@latest
+
+# Install storage tools
+install-tools-storage: install-mise
+    @printf "\n$a install-tools-storage $a\n"
+    mise use -g mc@latest
+
+# Install VitePlus and Node.js, Gemini CLI
+install-viteplus version="22":
+    @printf "\n$a install-viteplus $a\n"
+    @./scripts/install-viteplus.sh {{version}}
+
+# Install Rust language using Rustup
+install-rust:
+    @printf "\n$a install-rust $a\n"
+    @. scripts/install-rust.sh && \
+        install_rust
+
+# Install uv, the Python package manager
+install-uv:
+    @printf "\n$a install-uv $a\n"
+    @. scripts/index.sh && \
+        install_uv
+
+# Install Wasmer
+install-wasmer: install-mise
+    @printf "\n$a install-wasmer $a\n"
+    @eval "$(mise hook-env)" && \
+        mise use --global github:wasmerio/wasmer && \
+        wasmer run syrusakbary/cowsay "WebAssembly rocks!"
+
 # Install Code
 install-code updates="code/argv.json":
     @printf "\n$a install-code $a\n"
@@ -135,11 +169,6 @@ install-mise:
 install-kubectl version="latest": install-mise
     @printf "\n$a install-kubectl $a\n"
     mise use -g "kubectl@{{version}}"
-
-# Install VitePlus and Node.js, Gemini CLI
-install-viteplus version="22":
-    @printf "\n$a install-viteplus $a\n"
-    @./scripts/install-viteplus.sh {{version}}
 
 # Install Go language using mise
 install-go version="sub-0.0.1:latest": install-mise
@@ -207,12 +236,6 @@ install-flutter version="latest": install-mise
     @printf "\n$a install-flutter $a\n"
     mise use -g flutter@{{version}}
 
-# Install Wasmer
-install-wasmer: install-mise
-    @printf "\n$a install-wasmer $a\n"
-    mise use --global github:wasmerio/wasmer
-    @wasmer run syrusakbary/cowsay "WebAssembly rocks!"
-
 # Install Ollama
 install-ollama version="latest": install-mise
     @printf "\n$a install-ollama $a\n"
@@ -224,17 +247,6 @@ install-goose:
     @. scripts/index.sh && \
         install_goose
 
-# Install gomplate for using JSON, YAML, & text templates
-install-gomplate: install-mise
-    @printf "\n$a install-gomplate $a\n"
-    mise use -g gomplate@latest
-
-# Install Rust language using Rustup
-install-rust:
-    @printf "\n$a install-rust $a\n"
-    @. scripts/index.sh && \
-        install_rust
-
 # Install terminal tools
 install-tools-terminal shell="zsh": install-mise
     @printf "\n$a install-tools-terminal $a\n"
@@ -245,17 +257,6 @@ install-tools-terminal shell="zsh": install-mise
 install-font id="JetBrainsMono" version="v3.3.0":
     @printf "\n$a install-font $a\n"
     @./scripts/install-font.sh  {{id}} {{version}}
-
-# Install storage tools
-install-tools-storage: install-mise
-    @printf "\n$a install-tools-storage $a\n"
-    mise use -g mc@latest
-
-# Install uv, the Python package manager
-install-uv:
-    @printf "\n$a install-uv $a\n"
-    @. scripts/index.sh && \
-        install_uv
 
 # Install Ansible
 install-ansible: _install-ansible-from-uv display-environment

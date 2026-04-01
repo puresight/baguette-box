@@ -23,7 +23,7 @@ install_uv() {
         uv self update
     fi
     uv --version
-    uv python install
+    # uv python install
 }
 
 # Function to install using UV (e.g. Ansible)
@@ -406,20 +406,35 @@ display_environment() {
 # Function to display current versions
 #   dependencies: (none)
 display_versions() {
-    if command -v kubectl &>/dev/null; then echo "kubectl $(kubectl version | head -n 1)"; fi
-    if command -v gcloud &> /dev/null; then echo "$(gcloud --version | head -n 1)"; fi # FIXME too verbose: we just want the main gcloud version
-    if command -v aws &>/dev/null; then echo "Amazon Web Services: $(aws --version)"; fi
-    if command -v gh &> /dev/null; then echo "Github: $(gh --version | head -n 1)"; fi # FIXME too verbose: just the GH version please
-    if command -v uv &>/dev/null; then echo "$(uv --version)"; fi
-    if command -v python3 &>/dev/null; then echo "$(python3 --version)"; fi
-    if command -v rustc &>/dev/null; then echo "$(rustc --version)"; fi
-    if command -v cargo &>/dev/null; then echo "$(cargo --version)"; fi
-    if command -v cargo &>/dev/null; then echo "cargo-binstall $(cargo binstall -V $non_interactive)"; fi
-    if command -v go &>/dev/null; then echo "$(go version)"; fi
-    if command -v ruby &>/dev/null; then echo "$(ruby --version)"; fi
-    if command -v javac &>/dev/null; then echo "$(javac -version 2>&1)"; fi
-    if command -v dotnet &>/dev/null; then echo "dotnet $(dotnet --version)"; fi
-    if command -v pwsh &>/dev/null; then echo "pwsh $(pwsh --version)"; fi
-    if command -v node &>/dev/null; then echo "Node $(node -v)"; fi
-    if command -v npm &>/dev/null; then echo "npm $(npm -v)"; fi
+    # -- Shells --
+    # bash --version
+    # zsh --version
+    if command -v pwsh &>/dev/null; then echo "pwsh: $(which pwsh) $(pwsh --version)"; fi
+
+    # -- Tools --
+    # mise --version
+    if command -v kubectl &>/dev/null; then echo "kubectl: $(which kubectl) $(kubectl version | head -n 1)"; fi
+    if command -v gcloud &> /dev/null; then echo "Gcloud: $(which gcloud) $(gcloud --version | head -n 1)"; fi # FIXME too verbose: we just want the main gcloud version
+    if command -v aws &>/dev/null; then echo "Amazon Web Services: $(which aws) $(aws --version)"; fi
+    if command -v gh &> /dev/null; then echo "Github: $(which gh) $(gh --version | head -n 1)"; fi # FIXME too verbose: just the GH version please
+    # if command -v mc &> /dev/null; then echo "mc: $(which mc) $(mc --version | head -n 1)"; fi # FIXME too verbose: just the GH version please
+
+    # -- Languages --
+    if command -v uv &>/dev/null; then echo "uv: $(which uv) $(uv --version)"; fi
+    if command -v python3 &>/dev/null; then echo "Python: $(which python3) $(python3 --version)"; fi
+    if command -v rustc &>/dev/null; then echo "Rust: $(which rustc) $(rustc --version)"; fi
+    if command -v cargo &>/dev/null; then echo "Rust $(cargo --version)"; fi
+    if command -v cargo &>/dev/null; then echo "Rust cargo-binstall $(cargo binstall -V --no-confirm --disable-telemetry)"; fi
+    if command -v just &>/dev/null; then echo "Just: $(which just) $(just --version)"; fi
+    if command -v go &>/dev/null; then echo "Go: $(which go) $(go version)"; fi
+    if command -v ruby &>/dev/null; then echo "Ruby: $(which ruby) $(ruby --version)"; fi
+
+    # -- SDK's --
+    if command -v javac &>/dev/null; then echo "Java: $(which javac) $(javac -version 2>&1)"; fi
+    if command -v dotnet &>/dev/null; then echo "dotnet: $(which dotnet) $(dotnet --version)"; fi
+
+    # -- Frontend --
+    # if command -v vp &>/dev/null; then echo "Vite+ $(which vp) $(vp --version)"; fi
+    if command -v node &>/dev/null; then echo "Node: $(which node) $(node -v)"; fi
+    if command -v npm &>/dev/null; then echo "npm: $(which npm) $(npm -v)"; fi
 }

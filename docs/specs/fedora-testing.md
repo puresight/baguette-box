@@ -10,6 +10,11 @@ These recipes were tested on Fedora Linux
 
 - display-environment
 - display-versions
+- install-gomplate
+- install-viteplus
+- install-rust
+- install-uv
+- install-wasmer
 - code
 - install-code
 - install-code-extensions
