@@ -125,6 +125,23 @@ install-wasmer: install-mise
         mise use --global github:wasmerio/wasmer && \
         wasmer run syrusakbary/cowsay "WebAssembly rocks!"
 
+# Install OpenJDK using mise
+install-java version="21": install-mise
+    @printf "\n$a install-java $a\n"
+    @# microsoft- (MSFT) corretto- (Amazon) temurin- (Eclipse Adoptium) zulu- (Azul Systems) oracle- (Oracle) 
+    mise use -g "java@temurin-{{version}}"
+
+# Install Kotlin language using mise
+install-kotlin version="latest": install-java
+    @printf "\n$a install-kotlin $a\n"
+    mise use -g "kotlin@{{version}}"
+
+# Install Scala language using mise
+install-scala version="latest": install-java
+    @printf "\n$a install-scala $a\n"
+    mise use -g "scala@{{version}}"
+    mise use -g sbt@latest # Scala Build Tool
+
 # Install Code
 install-code updates="code/argv.json":
     @printf "\n$a install-code $a\n"
@@ -198,23 +215,6 @@ install-rails: install-ruby
 install-dotnet version="10": install-mise
     @printf "\n$a install-rails $a\n"
     mise use -g "dotnet@{{version}}"
-
-# Install OpenJDK using mise
-install-java version="21": install-mise
-    @printf "\n$a install-java $a\n"
-    @# microsoft- (MSFT) corretto- (Amazon) temurin- (Eclipse Adoptium) zulu- (Azul Systems) oracle- (Oracle) 
-    mise use -g "java@temurin-{{version}}"
-
-# Install Kotlin language using mise
-install-kotlin version="latest": install-java
-    @printf "\n$a install-kotlin $a\n"
-    mise use -g "kotlin@{{version}}"
-
-# Install Scala language using mise
-install-scala version="latest": install-java
-    @printf "\n$a install-scala $a\n"
-    mise use -g "scala@{{version}}"
-    mise use -g sbt@latest # Scala Build Tool
 
 # Install Haskell language
 install-haskell version="latest": install-mise install-apt-packages

@@ -428,9 +428,9 @@ display_versions() {
     if command -v just &>/dev/null; then echo "Just: $(which just) $(just --version)"; fi
     if command -v go &>/dev/null; then echo "Go: $(which go) $(go version)"; fi
     if command -v ruby &>/dev/null; then echo "Ruby: $(which ruby) $(ruby --version)"; fi
-
-    # -- SDK's --
     if command -v javac &>/dev/null; then echo "Java: $(which javac) $(javac -version 2>&1)"; fi
+    # if command -v scala &>/dev/null; then echo "Scala: $(which scala) $(scala -version 2>&1)"; fi
+    if command -v kotlinc &>/dev/null; then echo "Kotlin: $(which kotlinc) $(kotlinc -version 2>&1)"; fi
     if command -v dotnet &>/dev/null; then echo "dotnet: $(which dotnet) $(dotnet --version)"; fi
 
     # -- Frontend --
