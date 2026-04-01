@@ -1,16 +1,21 @@
 # Baguette Box &nbsp; 🥖🥖🥖
 
 sets up an AI-enabled developer environment on
-[Debian](https://www.debian.org/) (including [ChromeOS](./docs/chromeos.md)) systems and
-[Fedora](https://fedoraproject.org/) Linux distributions,
+[Debian](https://www.debian.org/) (like
+[ChromeOS](./docs/chromeos.md),
+[Ubuntu](https://docs.ubuntu.com/),
+[Mint](https://linuxmint.com/),
+[Pop](https://system76.com/pop/),
+[Raspberry Pi](https://www.raspberrypi.com/software/#raspberry-pi-os))
+systems and [Fedora](https://fedoraproject.org/) atomic Linux distributions (like
+[Bazzite](https://bazzite.gg/),
+[Silverblue](https://fedoraproject.org/atomic-desktops/silverblue/),
+[Bluefin](https://projectbluefin.io/),
+[Aurora](https://getaurora.dev/)),
 with tooling for coding, cloud, compute, cache, storage, and data management.
 Here you will find tools to do software development, whether you build for [Web](./docs/dev-web.md), for [Mobile](./docs/dev-mobile.md), for [Desktop](./docs/dev-desktop.md), or the [Cloud](./docs/dev-cloud.md).
 
 <!-- --
-[Ubuntu](https://docs.ubuntu.com/),
-[Mint](https://linuxmint.com/),
-[Pop!\_OS](https://system76.com/pop/),
-[Raspberry Pi](https://www.raspberrypi.com/software/#raspberry-pi-os)
 [Apple/Mac](https://www.apple.com/mac/) _future_
 [Microsoft/WSL2](https://learn.microsoft.com/en-us/windows/wsl/about) _future_
 <!-- -->

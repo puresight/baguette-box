@@ -91,6 +91,12 @@ display-versions:
     @. scripts/index.sh && \
         display_versions
 
+# Install mise-en-place system
+install-mise:
+    @printf "\n$a install-mise $a\n"
+    @. scripts/index.sh && \
+        install_mise
+
 # Install gomplate for using JSON, YAML, & text templates
 install-gomplate: install-mise
     @printf "\n$a install-gomplate $a\n"
@@ -112,11 +118,45 @@ install-rust:
     @. scripts/install-rust.sh && \
         install_rust
 
+# Install Go language using mise
+install-go version="latest": install-mise
+    @printf "\n$a install-go $a\n"
+    mise plugins update
+    mise use -g go@{{version}} && \
+        eval "$(mise hook-env)" && \
+        go version
+    @# Pre-2026 way using Github backend # mise use github:tinygo-org/tinygo
+    mise use -g tinygo@latest && \
+        eval "$(mise hook-env)" && \
+        tinygo version
+
+# Install Ruby language using mise
+install-ruby version="sub-0.1:latest": install-mise
+    @printf "\n$a install-ruby $a\n"
+    mise settings ruby.compile=false # Precompiled ruby will be the default in 2026.8.0.
+    # mise settings ruby.compile=1 # if precompiled has trouble
+    mise use -g "ruby@{{version}}" && \
+        eval "$(mise hook-env)" && \
+        ruby --version
+
+# Install Rails framework
+install-rails: install-ruby
+    @printf "\n$a install-rails $a\n"
+    @. scripts/index.sh && \
+        install_rails
+
 # Install uv, the Python package manager
 install-uv:
     @printf "\n$a install-uv $a\n"
     @. scripts/index.sh && \
         install_uv
+
+# Install kubectl using mise
+install-kubectl version="latest": install-mise
+    @printf "\n$a install-kubectl $a\n"
+    @mise use -g kubectl@{{version}} && \
+        eval "$(mise hook-env)" && \
+        kubectl version --client
 
 # Install Wasmer
 install-wasmer: install-mise
@@ -164,6 +204,12 @@ configure-code updates="code/user-settings.json": install-code-extensions instal
 #%# -- Regular Recipes : Fedora untested --
 #%#%#%#%#%#%#%#%#%#%#%#%#%#%#%#%#%#%#%#%#%#%#%#%#%#%#%#%#%#%#%#%#%#%#
 
+# Install Jekyll static site generator
+install-jekyll: install-ruby
+    @printf "\n$a install-jekyll $a\n"
+    @. scripts/index.sh && \
+        install_jekyll
+
 # Install homebrew packages
 install-homebrew-packages bundle="homebrew/homebrew.dep": install-homebrew
     @printf "\n$a install-homebrew-packages $a\n"
@@ -176,44 +222,9 @@ install-homebrew:
     @. scripts/index.sh && \
         install_homebrew
 
-# Install mise-en-place system
-install-mise:
-    @printf "\n$a install-mise $a\n"
-    @. scripts/index.sh && \
-        install_mise
-
-# Install kubectl using mise
-install-kubectl version="latest": install-mise
-    @printf "\n$a install-kubectl $a\n"
-    mise use -g "kubectl@{{version}}"
-
-# Install Go language using mise
-install-go version="sub-0.0.1:latest": install-mise
-    @printf "\n$a install-go $a\n"
-    mise use -g go@{{version}}
-    @mise plugins add tinygo https://github.com/mritd/asdf-tinygo.git
-    mise use -g tinygo@{{version}}
-
-# Install Ruby language using mise
-install-ruby version="sub-0.1:latest": install-mise
-    @printf "\n$a install-ruby $a\n"
-    mise use -g "ruby@{{version}}"
-
-# Install Jekyll static site generator
-install-jekyll: install-ruby
-    @printf "\n$a install-jekyll $a\n"
-    @. scripts/index.sh && \
-        install_jekyll
-
-# Install Rails framework
-install-rails: install-ruby
-    @printf "\n$a install-rails $a\n"
-    @. scripts/index.sh && \
-        install_rails
-
 # Install Microsoft .NET SDK using mise
 install-dotnet version="10": install-mise
-    @printf "\n$a install-rails $a\n"
+    @printf "\n$a install-dotnet $a\n"
     mise use -g "dotnet@{{version}}"
 
 # Install Haskell language

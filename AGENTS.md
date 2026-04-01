@@ -15,3 +15,8 @@ Always end code files with a new line.
 ## justfile's
 
 Limit shell commands in justfile's to the minimum necessary for invocation. Keep non-trivial scripting in language specific (e.g. bash) files that an IDE shall do syntax highlighting and checking on.
+
+## Bluefin
+
+Bluefin is a Fedora atomic (immutable) distribution derived from Silverblue.
+Using Homebrew is often its recommended way to manage users' system dev dependencies, because it allow users to install toolchains without layering them onto the core system via rpm-ostree -- which keeps system updates fast and the base OS clean.

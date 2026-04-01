@@ -124,22 +124,35 @@ install_rails() {
     if ! gem list -i "^rails$" > /dev/null; then
         echo "Installing Rails..."
         gem install rails
+        mise reshim
     fi
-    echo "$(rails --version) is installed"
+    echo "$(which rails) $(rails --version)"
 }
 
 # Function to install Jekyll
+# FIXME: broken for Bluefin atomic linux ***********************************
 #   dependencies: install_mise_tools (for Ruby)
 install_jekyll() {
+    # On distributions like Fedora, Jekyll gem installation can fail if build tools
+    # for compiling native extensions are missing.
+    if [[ -f /etc/fedora-release ]] && ! command -v g++ &>/dev/null; then
+        echo "Build tools (like g++) not found. They are required for installing some Ruby gems."
+        echo "Attempting to install the 'Development Tools' group via dnf..."
+        if ! sudo dnf groupinstall -y "Development Tools"; then
+            echo "❌ Error: Failed to install 'Development Tools'." >&2
+            echo "Please install them manually: sudo dnf groupinstall 'Development Tools'" >&2
+            return 1
+        fi
+    fi
+
     if ! gem list -i "^jekyll$" > /dev/null; then
         echo "Installing Jekyll..."
         gem install jekyll bundler
         gem install logger
-        # Regenerate shims so 'jekyll' and 'bundle' commands work
-        mise reshim
+        mise reshim # so 'jekyll' and 'bundle' commands work
     fi
-    echo "bundle $(bundle --version) is installed"
-    echo "$(jekyll --version)"
+    echo "$(which bundle) $(bundle --version)"
+    echo "$(which jekyll) $(jekyll --version)"
 }
 
 # Function to handle GOOSE installation
@@ -155,7 +168,7 @@ install_goose() {
 #   dependencies: configure_apt
 install_microsoft_dotnet() {
     for arg in "$@"; do
-        if [ "$arg" != "$OS" ]; then
+        if [ "$arg" != "$OS_FAMILY" ]; then
             echo "Installing .NET SDK $arg..."
             sudo DEBIAN_FRONTEND=noninteractive apt install -y "dotnet-sdk-$arg.0"
         fi
@@ -173,7 +186,7 @@ configure_shell() {
     local rc_file="$HOME/.${shell}rc"
     local pwsh_init="./dotnet/powershell.ps1"
 
-    if [ "$OS" == "debian" ]; then
+    if [ "$OS_FAMILY" == "debian" ]; then
         local target_shell
         target_shell=$(which "$shell")
         if [ "$SHELL" != "$target_shell" ]; then
@@ -206,7 +219,7 @@ configure_shell() {
         echo "pwsh $(pwsh --version)" 
         pwsh -NoProfile -File $pwsh_init
 
-    elif [ "$OS" == "macos" ]; then
+    elif [ "$OS_FAMILY" == "macos" ]; then
         if command -v oh-my-posh &> /dev/null; then
             oh-my-posh upgrade
         else
@@ -276,13 +289,13 @@ install_homebrew() {
 
     echo "Setting up environment"
     local BREW_PATH=""
-    if [ "$OS" == "debian" ]; then
+    if [ "$OS_FAMILY" == "debian" ]; then
         if [ -d "/home/linuxbrew/.linuxbrew" ]; then
             BREW_PATH="/home/linuxbrew/.linuxbrew/bin/brew"
         elif [ -d "$HOME/.linuxbrew" ]; then
             BREW_PATH="$HOME/.linuxbrew/bin/brew"
         fi
-    elif [ "$OS" == "macos" ]; then
+    elif [ "$OS_FAMILY" == "macos" ]; then
         if [ -f "/opt/homebrew/bin/brew" ]; then
             BREW_PATH="/opt/homebrew/bin/brew"
         elif [ -f "/usr/local/bin/brew" ]; then
@@ -319,12 +332,12 @@ install_code() {
 
     if ! command -v code &> /dev/null; then
         echo "Installing VS Code..."
-        if [ "$OS" == "debian" ]; then
+        if [ "$OS_FAMILY" == "debian" ]; then
             _install_vscode_debian
-        elif [ "$OS" == "macos" ]; then
+        elif [ "$OS_FAMILY" == "macos" ]; then
             brew install --cask visual-studio-code
         else
-            echo "Unsupported platform $OS"
+            echo "Unsupported platform $OS_FAMILY"
         fi
 
         echo "Configuring VS Code runtime arguments"
@@ -340,10 +353,10 @@ install_code() {
         fi
     else
         echo "VS Code is already installed. Checking for updates..."
-        if [ "$OS" == "debian" ]; then
+        if [ "$OS_FAMILY" == "debian" ]; then
             sudo DEBIAN_FRONTEND=noninteractive apt install -y code
             sudo rm -f /etc/apt/sources.list.d/vscode.list
-        elif [ "$OS" == "macos" ]; then
+        elif [ "$OS_FAMILY" == "macos" ]; then
             brew upgrade --cask visual-studio-code
         fi
         echo "VS Code: $(code --version)"
@@ -376,7 +389,7 @@ configure_code() {
 
     local vscode_user_settings="$repo_path/$settings_file"
     local target_json="$HOME/.config/Code/User/settings.json"
-    if [ "macos" == $OS ]; then
+    if [ "macos" == $OS_FAMILY ]; then
         target_json="$HOME/scriptsrary/Application Support/Code/User/settings.json"
     fi
 
@@ -394,7 +407,7 @@ configure_code() {
 # Function to display environment information
 #   dependencies: (none)
 display_environment() {
-    if [ "$OS" == "macos" ]; then
+    if [ "$OS_FAMILY" == "macos" ]; then
         sw_vers
     elif command -v hostnamectl &> /dev/null; then
         hostnamectl
@@ -409,32 +422,32 @@ display_versions() {
     # -- Shells --
     # bash --version
     # zsh --version
-    if command -v pwsh &>/dev/null; then echo "pwsh: $(which pwsh) $(pwsh --version)"; fi
+    if command -v pwsh &>/dev/null; then printf "$(which pwsh) $(pwsh --version)\n"; fi
 
     # -- Tools --
     # mise --version
-    if command -v kubectl &>/dev/null; then echo "kubectl: $(which kubectl) $(kubectl version | head -n 1)"; fi
-    if command -v gcloud &> /dev/null; then echo "Gcloud: $(which gcloud) $(gcloud --version | head -n 1)"; fi # FIXME too verbose: we just want the main gcloud version
-    if command -v aws &>/dev/null; then echo "Amazon Web Services: $(which aws) $(aws --version)"; fi
-    if command -v gh &> /dev/null; then echo "Github: $(which gh) $(gh --version | head -n 1)"; fi # FIXME too verbose: just the GH version please
-    # if command -v mc &> /dev/null; then echo "mc: $(which mc) $(mc --version | head -n 1)"; fi # FIXME too verbose: just the GH version please
+    if command -v kubectl &>/dev/null; then printf "$(which kubectl) $(kubectl version --client)\n"; fi
+    if command -v gcloud &> /dev/null; then printf "$(which gcloud) $(gcloud --version | head -n 1)\n"; fi # FIXME too verbose: we just want the main gcloud version
+    if command -v aws &>/dev/null; then printf "$(which aws) $(aws --version)\n"; fi
+    if command -v gh &> /dev/null; then printf "$(which gh) $(gh --version | head -n 1)\n"; fi # FIXME too verbose: just the GH version please
+    # if command -v mc &> /dev/null; then printf "$(which mc) $(mc --version | head -n 1)\n"; fi # FIXME too verbose: just the GH version please
 
     # -- Languages --
-    if command -v uv &>/dev/null; then echo "uv: $(which uv) $(uv --version)"; fi
-    if command -v python3 &>/dev/null; then echo "Python: $(which python3) $(python3 --version)"; fi
-    if command -v rustc &>/dev/null; then echo "Rust: $(which rustc) $(rustc --version)"; fi
-    if command -v cargo &>/dev/null; then echo "Rust $(cargo --version)"; fi
-    if command -v cargo &>/dev/null; then echo "Rust cargo-binstall $(cargo binstall -V --no-confirm --disable-telemetry)"; fi
-    if command -v just &>/dev/null; then echo "Just: $(which just) $(just --version)"; fi
-    if command -v go &>/dev/null; then echo "Go: $(which go) $(go version)"; fi
-    if command -v ruby &>/dev/null; then echo "Ruby: $(which ruby) $(ruby --version)"; fi
-    if command -v javac &>/dev/null; then echo "Java: $(which javac) $(javac -version 2>&1)"; fi
-    # if command -v scala &>/dev/null; then echo "Scala: $(which scala) $(scala -version 2>&1)"; fi
-    if command -v kotlinc &>/dev/null; then echo "Kotlin: $(which kotlinc) $(kotlinc -version 2>&1)"; fi
-    if command -v dotnet &>/dev/null; then echo "dotnet: $(which dotnet) $(dotnet --version)"; fi
+    if command -v uv &>/dev/null; then printf "$(which uv) $(uv --version)\n"; fi
+    if command -v python3 &>/dev/null; then printf "$(which python3) $(python3 --version)\n"; fi
+    if command -v rustc &>/dev/null; then printf "$(which rustc) $(rustc --version) "; fi
+    if command -v cargo &>/dev/null; then printf "$(cargo --version) "; fi
+    if command -v cargo &>/dev/null; then printf "$(cargo binstall -V --no-confirm --disable-telemetry)\n"; fi
+    if command -v just &>/dev/null; then printf "$(which just) $(just --version)\n"; fi
+    if command -v go &>/dev/null; then printf "$(which go) $(go version)\n"; fi
+    if command -v ruby &>/dev/null; then printf "$(which ruby) $(ruby --version)\n"; fi
+    if command -v javac &>/dev/null; then printf "$(which javac) $(javac -version 2>&1)\n"; fi
+    # if command -v scala &>/dev/null; then printf "$(which scala) $(scala -version 2>&1)\n"; fi
+    if command -v kotlinc &>/dev/null; then printf "$(which kotlinc) $(kotlinc -version 2>&1)\n"; fi
+    if command -v dotnet &>/dev/null; then printf "$(which dotnet) $(dotnet --version)\n"; fi
 
     # -- Frontend --
-    # if command -v vp &>/dev/null; then echo "Vite+ $(which vp) $(vp --version)"; fi
-    if command -v node &>/dev/null; then echo "Node: $(which node) $(node -v)"; fi
-    if command -v npm &>/dev/null; then echo "npm: $(which npm) $(npm -v)"; fi
+    # if command -v vp &>/dev/null; then printf "$(which vp) $(vp --version)\n"; fi
+    if command -v node &>/dev/null; then printf "$(which node) $(node -v)\n"; fi
+    if command -v npm &>/dev/null; then printf "$(which npm) $(npm -v)\n"; fi
 }

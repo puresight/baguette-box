@@ -15,6 +15,13 @@ These recipes were tested on Fedora Linux
 - install-rust
 - install-uv
 - install-wasmer
+- install-kubectl
+- install-java
+- install-kotlin
+- install-scala
+- install-go
+- install-ruby
+- install-rails
 - code
 - install-code
 - install-code-extensions
@@ -23,6 +30,7 @@ These recipes were tested on Fedora Linux
 
 ## Failed:
 
+- install-jekyll (requires g++)
 - bootstrap
 - check-apt
 - configure-apt

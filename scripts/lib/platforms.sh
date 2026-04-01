@@ -5,7 +5,7 @@
 #   - Error if no internet connection
 #   - Error if known incompatible platform
 #   - Warning if unknown compatible platforms
-#   - Set global $OS variable to the OS family name e.g. "debian"
+#   - Set global $OS_FAMILY variable to the OS family name e.g. "debian"
 # ------ # ------ # ------ # ------ # ------ # ------ # ------ # ------
 
 # Halt if no internet connection
@@ -20,49 +20,53 @@ fi
 # Check the Unix kernel identification
 case "$(uname -s)" in
     Darwin*)
-        OS="macos"
-        printf "❌ Error: $OS is not supported\n" >&2 && exit 1
+        OS_FAMILY="macos"
+        printf "❌ Error: $OS_FAMILY is not supported\n" >&2
+        exit 1
         sw_vers
         ;;
     FreeBSD*)
-        OS="freebsd"
-        printf "❌ Error: $OS is not supported\n" >&2 && exit 1
+        OS_FAMILY="freebsd"
+        printf "❌ Error: $OS_FAMILY is not supported\n" >&2 &&
+        exit 1
         cat /etc/freebsd-update.conf
         ;;
     Linux*)
-        OS=${ID_LIKE:-$ID}  # Prefer ID_LIKE e.g. fedora|debian
+        OS_FAMILY=${ID_LIKE:-$ID}  # Prefer ID_LIKE e.g. fedora|debian
         ;;
     *)
-        OS="unknown"
-        printf "❌ Error: $OS is not supported\n" >&2 && exit 1
+        OS_FAMILY="unknown"
+        printf "❌ Error: OS is not supported\n" >&2
+        exit 1
         ;;
 esac
 
 # Check the Linux distro identification
-case $OS in
+case $OS_FAMILY in
     fedora*)
         #   mutable?: dnf install
         # immutable?: rpm-ostree install
         # ---------
-        # printf "platform: $OS $VARIANT $VARIANT_ID\n" # e.g. fedora Silverblue bluefin-dx-nvidia-open
-        printf "Warning: $OS is not tested\n" >&2
+        # printf "platform: $OS_FAMILY $VARIANT $VARIANT_ID\n" # e.g. fedora Silverblue bluefin-dx-nvidia-open
+        printf "Warning: $OS_FAMILY is not fully tested\n" >&2
         if [[ "Silverblue" == "$VARIANT" ]]; then
             return # pass
         fi
         ;;
     "ubuntu debian")
-        printf "Warning: $ID is not tested\n" >&2
+        printf "Warning: $ID is untested\n" >&2
         return # pass
         ;;
 esac
 
 # Warn if not debian
-if [ "$OS" != "debian" ]; then
-    printf "Warning: $OS is not supported.\n" >&2
-    read -p "You should abort now. Do you want to continue anyway? (y)Yes/(n)No : " choice
-    case $choice in
-        [yY]* ) echo "Ok, you were warned." ;;
-        [nN]* ) echo "Aborting." && exit 1 ;;
-        *) exit ;;
-    esac
+if [ "$OS_FAMILY" != "debian" ]; then
+    printf "Warning: '$OS_FAMILY' is not a supported OS.\n" >&2
+    read -p "Continue anyway? (y/N) " -r choice
+    # Default to 'No' if input does not start with 'y' or 'Y'
+    if [[ ! "$choice" =~ ^[Yy] ]]; then
+        echo "Aborting."
+        exit 1
+    fi
+    echo "Proceeding at your own risk..."
 fi
