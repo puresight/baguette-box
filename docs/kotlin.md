@@ -4,7 +4,7 @@
 
 While Kotlin is the official language for
 [Android development](https://developer.android.com/kotlin)
-and is widely used for [server-side](./dev-cloud.md) applications,
+and is widely used for [server-side](./dev-server.md) applications,
 Jetbrains is positioning it as an emerging choice for cross-platform
 [web](./dev-web.md), [mobile](./dev-mobile.md), and [desktop](./dev-desktop.md) development
 too, with _Kotlin Multiplatform (KMP)_.

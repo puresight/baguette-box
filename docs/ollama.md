@@ -1,6 +1,6 @@
 # Ollama
 
-[Ollama](https://ollama.com/) is a powerful tool that simplifies running and managing large language models (LLMs). While it is well-known for running **open source models** like _Llama 3_ and _Mistral_ locally, it can also act as a unified interface to access powerful cloud-based models.
+[Ollama](https://ollama.com/) is a powerful tool that simplifies running and managing large language models (LLMs). While it is well-known for running **open source models** like _Llama 3_ and _Mistral_ locally, it can also act as a unified interface to access powerful [cloud](./dev-server.md)-based models.
 
 > _“Start building with open models. Code with open models. Run any app or agent with open models. Over 40,000 integrations.”_
 
@@ -8,7 +8,7 @@
 
 ## Using Cloud Models for AI Tooling
 
-Ollama packages model configurations into a self-contained format called a `Modelfile` and provides a simple command-line interface and a local REST API. This turns your personal computer into a versatile AI development server, regardless of whether the models are running on your hardware or in the cloud.
+Ollama packages model configurations into a self-contained format called a `Modelfile` and provides a simple command-line interface and a local REST API. This turns your personal computer into a versatile AI development server, regardless of whether the models are running on your hardware or in the [cloud](./dev-server.md).
 
 For developers on lightweight workstations without powerful GPUs, running large, capable models locally is often not feasible. Ollama provides a solution by allowing you to "proxy" requests to cloud-based models through its local API. This gives you a consistent, unified endpoint for all your AI tools (like Aider, Goose, or Roo Code), simplifying configuration and allowing you to easily switch between different model providers without reconfiguring each tool.
 
