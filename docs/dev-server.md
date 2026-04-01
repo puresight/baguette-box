@@ -1,25 +1,6 @@
-# Cloud development
+# Cloud
 
-Cloud development involves building, deploying, and managing software applications that run on remote servers hosted on the internet ("the cloud") rather than on a user's local machine. This approach enables massive scalability, high availability, and global reach. Modern cloud development relies on a set of core practices and tools that abstract away physical hardware, allowing developers to focus on writing code and delivering value.
-
-## The Cloud Native Approach
-
-Cloud native is an approach to building and running applications that fully leverages the advantages of the cloud computing model. As defined by the Cloud Native Computing Foundation ([CNCF](https://www.cncf.io/)), it's about designing applications as loosely coupled microservices, running them in containers, and managing them with dynamic orchestration. This differs significantly from traditional development.
-
-| Aspect | Traditional (Monolithic) | Cloud Native |
-| :--- | :--- | :--- |
-| **Architecture** | Large, single-unit applications where all components are tightly coupled. | Small, independent microservices, each responsible for a single business function. |
-| **Deployment** | Infrequent, large-scale releases with significant manual effort and downtime. | Frequent, automated releases via CI/CD pipelines, enabling rapid iteration. |
-| **Scalability** | Vertical scaling (adding more CPU/RAM to a single server). Expensive and has limits. | Horizontal scaling (adding more instances of a service). Elastic and cost-effective. |
-| **Resilience** | A failure in one component can bring down the entire application. | Failures are isolated to individual microservices; the system can remain partially functional. |
-
-This shift enables organizations to build highly scalable, resilient, and agile systems. The key concepts below are the building blocks of this approach.
-
-## Key Concepts
-
-- **Containerization:** Packaging an application and its dependencies into a standardized unit called a container. This ensures the application runs consistently across different environments. [Podman](./podman.md) is a popular, secure tool for managing containers.
-- **Orchestration:** Automating the deployment, scaling, and management of containerized applications. [Kubernetes](https://kubernetes.io/) (managed via `kubectl`) is the industry standard for container orchestration.
-- **Infrastructure as Code (IaC):** Managing and provisioning infrastructure (like servers, databases, and networks) through machine-readable definition files, rather than manual configuration. Tools like Terraform, Pulumi, and AWS CloudFormation enable repeatable and version-controlled infrastructure setups.
+Cloud ("server-side") development involves building, deploying, and managing software applications that run on remote **servers** hosted on the internet ("the cloud") rather than on a user's local machine. This approach enables massive scalability, high availability, and global reach. Modern [cloud development](./dev-cloudnative.md) relies on a set of core practices and tools that abstract away physical hardware, allowing developers to focus on writing code and delivering value.
 
 ## Cloud Providers
 
