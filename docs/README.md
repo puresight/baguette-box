@@ -5,7 +5,7 @@ To maintain workstation integrity, only install code from reputable & verified a
 ## How to Run Recipes
 
 - ↪️ View our menu: `just`
-- ↪️ Bootstrap your new system: `just bootstrap`
+- ↪️ Bootstrap your new Debian system: `just debian`
 - ↪️ Setup VS Code: `just code`
 
 Our recipes are idempotent, so you can run them again, anytime.

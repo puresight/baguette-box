@@ -8,12 +8,11 @@ These recipes were tested on Fedora Linux
 
 ## Passed:
 
-- display-environment
-- display-versions
 - install-gomplate
 - install-viteplus
 - install-rust
 - install-uv
+- install-tools-storage
 - install-wasmer
 - install-kubectl
 - install-java
@@ -22,6 +21,9 @@ These recipes were tested on Fedora Linux
 - install-go
 - install-ruby
 - install-rails
+- display-environment
+- display-versions
+
 - code
 - install-code
 - install-code-extensions

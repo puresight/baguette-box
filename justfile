@@ -25,13 +25,17 @@ _:
 #%# -- High-level Recipes --
 #%#%#%#%#%#%#%#%#%#%#%#%#%#%#%#%#%#%#%#%#%#%#%#%#%#%#%#%#%#%#%#%#%#%#
 
-# Bootstrap the system to the max
-bootstrap-max: install-apt-packages configure-shell install-dotnet install-tools-terminal install-tools-storage configure-flatpak install-homebrew install-rust install-uv install-java install-kubectl install-viteplus install-go install-ruby install-jekyll install-rails install-goose install-ansible configure-podman display-environment display-versions
+# For test purposes only on Debian
+test-debian: install-apt-packages configure-shell install-dotnet install-tools-terminal install-tools-storage configure-flatpak install-homebrew install-rust install-uv install-java install-kubectl install-viteplus install-go install-ruby install-jekyll install-rails install-goose install-ansible configure-podman display-environment display-versions
     @printf "\nRemember to restart your shell environment before proceeding.\n"
 
-# Bootstrap the system
-bootstrap: install-apt-packages configure-shell install-uv install-viteplus display-environment display-versions
+# Bootstrap the Debian system
+debian: install-apt-packages configure-shell install-uv install-viteplus display-environment display-versions
     @printf "\nRemember to restart your shell environment before proceeding.\n"
+
+# Bootstrap the uBlue system
+ublue: install-mise install-gomplate install-tools-storage install-uv install-wasmer install-kubectl install-java install-kotlin install-scala install-go install-rust install-ruby install-rails  install-viteplus display-environment display-versions
+    @printf "\nUniversal Blue\n"
 
 # Install VS Code w/ custom settings & extensions
 code: configure-code
