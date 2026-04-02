@@ -130,19 +130,14 @@ install_rails() {
 }
 
 # Function to install Jekyll
-# FIXME: broken for Bluefin atomic linux ***********************************
+# TODO FIXME: broken for Bluefin atomic linux */*/*/*/*/*/*/*/*/*/*
 #   dependencies: install_mise_tools (for Ruby)
 install_jekyll() {
-    # On distributions like Fedora, Jekyll gem installation can fail if build tools
-    # for compiling native extensions are missing.
-    if [[ -f /etc/fedora-release ]] && ! command -v g++ &>/dev/null; then
+    if [[ "$OS_FAMILY" == "fedora" ]] && ! command -v g++ &>/dev/null; then
+        echo "❌ Error: requires Fedora 'Development Tools'" >&2
         echo "Build tools (like g++) not found. They are required for installing some Ruby gems."
-        echo "Attempting to install the 'Development Tools' group via dnf..."
-        if ! sudo dnf groupinstall -y "Development Tools"; then
-            echo "❌ Error: Failed to install 'Development Tools'." >&2
-            echo "Please install them manually: sudo dnf groupinstall 'Development Tools'" >&2
-            return 1
-        fi
+        echo "install the 'Development Tools' group via dnf"
+        echo "Please install them manually: sudo dnf groupinstall 'Development Tools'"
     fi
 
     if ! gem list -i "^jekyll$" > /dev/null; then
@@ -151,6 +146,7 @@ install_jekyll() {
         gem install logger
         mise reshim # so 'jekyll' and 'bundle' commands work
     fi
+
     echo "$(which bundle) $(bundle --version)"
     echo "$(which jekyll) $(jekyll --version)"
 }

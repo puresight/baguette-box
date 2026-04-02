@@ -1,18 +1,72 @@
 #!/bin/bash
 
 # ------ # ------ # ------ # ------ # ------ # ------ # ------ # ------
+
 # Purpose:
+#
 #   - Error if no internet connection
 #   - Error if known incompatible platform
 #   - Warning if unknown compatible platforms
 #   - Set global $OS_FAMILY variable to the OS family name e.g. "debian"
+#   - Set global $OS_NAME variable to the OS name e.g. "Bluefin"
+
 # ------ # ------ # ------ # ------ # ------ # ------ # ------ # ------
 
-# Halt if no internet connection
-(timeout 2 bash -c 'exec 3<>/dev/tcp/detectportal.firefox.com/80') 2>/dev/null # Assumed: Firefox still operates its captive portal website
-if [ $? -ne 0 ]; then
-    printf "\n❌ Error: disconnected from the Internet. Check your connection and try again.\n\n" >&2 && exit 1
-fi
+# Method of OS identification:
+#
+# - Unix: compare output of command: `uname -r`
+# - Linux: source the file: /etc/os-release
+#   - Debian: variable $ID == "debian"
+#   - Fedora: variable $ID == "fedora" && file exists: /etc/fedora-release
+#     - Atomic: if [ -f /run/ostree-booted ]
+#     - Universal Blue:
+#         - if command -v ujust, and
+#         - variable $CPE_NAME contains "/o:universal-blue"
+#       - Bluefin/etc:
+#           - variable VARIANT_ID contains bluefin|bazzite|aurora|ucore, or
+#           - variable CPE_NAME contains bluefin|bazzite|aurora|ucore
+#       - uCore: if command -v ucore-update
+
+# ------ # ------ # ------ # ------ # ------ # ------ # ------ # ------
+
+# Function returns number of evidences that the system is a Crostini
+check_crostini() {
+    local crostini=0
+
+    # Check the primary Crostini guest tool commands
+    local GUEST_TOOLS=("garcon" "sommelier" "vmtoolsd")
+    for cmd in "${GUEST_TOOLS[@]}"; do
+        if command -v "$cmd" >/dev/null 2>&1; then
+            ((crostini++))
+        fi
+    done
+
+    # Check specific device nodes of Standard Crostini environments
+    if [ -d /dev/wl0 ] || [ -d /proc/sys/fs/binfmt_misc/WSLInterop ]; then
+        ((crostini++))
+    fi
+
+    # Check if the vsh_id environment variable exists, which is typical in Crostini's vsh shell
+    if [ -n "$vsh_id" ]; then
+        ((crostini++))
+    fi
+
+    return crostini
+}
+
+# Try it out
+[ check_crostini -gt 0 ] && echo "System is probably a Chromebook. *** *** *** *** ***"
+
+# Function
+check_online() {
+    (timeout 2 bash -c 'exec 3<>/dev/tcp/detectportal.firefox.com/80') 2>/dev/null # Assumed: Firefox still operates its captive portal website
+    if [ $? -ne 0 ]; then
+        printf "\n❌ Error: disconnected from the Internet. Check your connection and try again.\n\n" >&2
+        exit 1
+    fi
+}
+
+check_online
 
 # if exists, source the /etc/os-release
 [[ -f /etc/os-release ]] && . /etc/os-release
@@ -48,10 +102,11 @@ case $OS_FAMILY in
         # immutable?: rpm-ostree install
         # ---------
         # printf "platform: $OS_FAMILY $VARIANT $VARIANT_ID\n" # e.g. fedora Silverblue bluefin-dx-nvidia-open
-        printf "Warning: $OS_FAMILY is not fully tested\n" >&2
         if [[ "Silverblue" == "$VARIANT" ]]; then
+            OS_FAMILY=ublue
             return # pass
         fi
+        printf "Warning: $OS_FAMILY is not fully tested\n" >&2
         ;;
     "ubuntu debian")
         printf "Warning: $ID is untested\n" >&2

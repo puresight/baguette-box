@@ -1,4 +1,4 @@
-# Fedora testing
+# Fedora
 
 These recipes were tested on Fedora Linux
 
@@ -6,33 +6,17 @@ These recipes were tested on Fedora Linux
 - VARIANT_ID=bluefin-dx-nvidia-open
 - CPE_NAME="cpe:/o:universal-blue:bluefin:43"
 
-## Passed:
+## High Level Recipes
 
-- install-gomplate
-- install-viteplus
-- install-rust
-- install-uv
-- install-tools-storage
-- install-wasmer
-- install-kubectl
-- install-java
-- install-kotlin
-- install-scala
-- install-go
-- install-ruby
-- install-rails
-- display-environment
-- display-versions
-
+- ublue 
 - code
-- install-code
-- install-code-extensions
-- install-mise
-- install-viteplus
 
-## Failed:
+## Failed recipes
 
 - install-jekyll (requires g++)
+
+## Debian specific recipes
+
 - bootstrap
 - check-apt
 - configure-apt

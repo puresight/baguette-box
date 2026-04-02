@@ -15,6 +15,7 @@ set shell := ["bash", "-c"]
 
 export SCRIPTROOT := justfile_directory()
 export BIN_DIR := home_dir() + "/.local/bin"
+export OS_FAMILY := "debian"
 export a := ':::::::::::::::'
 
 [default]
@@ -25,21 +26,21 @@ _:
 #%# -- High-level Recipes --
 #%#%#%#%#%#%#%#%#%#%#%#%#%#%#%#%#%#%#%#%#%#%#%#%#%#%#%#%#%#%#%#%#%#%#
 
-# For test purposes only on Debian
-test-debian: install-apt-packages configure-shell install-dotnet install-tools-terminal install-tools-storage configure-flatpak install-homebrew install-rust install-uv install-java install-kubectl install-viteplus install-go install-ruby install-jekyll install-rails install-goose install-ansible configure-podman display-environment display-versions
-    @printf "\nRemember to restart your shell environment before proceeding.\n"
-
 # Bootstrap the Debian system
 debian: install-apt-packages configure-shell install-uv install-viteplus display-environment display-versions
     @printf "\nRemember to restart your shell environment before proceeding.\n"
 
 # Bootstrap the uBlue system
 ublue: install-mise install-gomplate install-tools-storage install-uv install-wasmer install-kubectl install-java install-kotlin install-scala install-go install-rust install-ruby install-rails  install-viteplus display-environment display-versions
-    @printf "\nUniversal Blue\n"
+    @printf "\nRemember to restart your shell environment before proceeding.\n"
 
 # Install VS Code w/ custom settings & extensions
 code: configure-code
     @printf "\nVS Code is ready to use.\n"
+
+# For test purposes only on Debian
+test-debian: install-apt-packages configure-shell install-dotnet install-tools-terminal install-tools-storage configure-flatpak install-homebrew install-rust install-uv install-java install-kubectl install-viteplus install-go install-ruby install-jekyll install-rails install-goose install-ansible configure-podman display-environment display-versions
+    @printf "\nRemember to restart your shell environment before proceeding.\n"
 
 #%#%#%#%#%#%#%#%#%#%#%#%#%#%#%#%#%#%#%#%#%#%#%#%#%#%#%#%#%#%#%#%#%#%#
 #%# -- Regular Recipes : Debian Only --
@@ -215,10 +216,11 @@ install-jekyll: install-ruby
         install_jekyll
 
 # Install homebrew packages
-install-homebrew-packages bundle="homebrew/homebrew.dep": install-homebrew
+install-homebrew-packages bundle="homebrew/debian.dep": install-homebrew
     @printf "\n$a install-homebrew-packages $a\n"
     @. scripts/index.sh && \
         install_homebrew_packages {{bundle}}
+    # TODO: refactor function to use $OS_FAMILY version of .dep
 
 # Install Homebrew
 install-homebrew:
