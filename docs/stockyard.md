@@ -1,16 +1,28 @@
 # Stockyard
 
-[Stockyard](https://stockyard.dev/docs/) is a partially open source LLM control plane that acts as a unified gateway for AI model interactions. It provides a single, OpenAI-compatible API endpoint to proxy requests to over 16 different model providers, including hosts for open models. With features like cost tracking, smart routing, request tracing, and security guardrails, it simplifies building and managing complex AI-powered applications.
+[Stockyard](https://stockyard.dev/docs/) is a source-available LLM control plane that acts as a unified gateway for AI model interactions. It provides a single, [OpenAI-compatible API](https://developers.openai.com/api/docs/libraries) endpoint to proxy requests to over 16 different model providers, including hosts for open models. With features like cost tracking, smart routing, request tracing, and security guardrails, it simplifies building and managing complex AI-powered applications. Stockyard is a single, self-hosted binary that gives you a unified control layer for cost, performance, and security across all your model providers.
 
-For developers, Stockyard is a standard for LLMs. It's a single, self-hosted binary that gives you a unified control layer for cost, performance, and security across all your model providers.
+- ↪️ Run recipe to [install from Github with Mise](https://mise.jdx.dev/dev-tools/backends/github.html): `just install-stockyard`
 
 ## Unified Access to Cloud-Hosted Open Models
 
-A primary use case for Stockyard is to provide a consistent interface for using powerful open models hosted by various cloud providers (like Groq, Together AI, or Fireworks.ai). While tools like Ollama are excellent for running models locally, many developers on lightweight workstations need to access larger, faster models in the cloud. Stockyard bridges this gap.
+A primary use case for Stockyard is to provide a consistent interface for using powerful open models hosted by various cloud providers. While tools like [Ollama](./ollama.md) are excellent for running models locally, many developers on lightweight workstations need to access larger, faster models in the cloud. Stockyard bridges this gap.
 
-By acting as a local proxy, Stockyard allows you to configure all your AI development tools (Aider, Goose, VS Code extensions, etc.) to a single endpoint (`http://localhost:4200/v1`). You can then switch between different models and providers—from `openai/gpt-4o` to `groq/llama3-70b-8192`—without reconfiguring each tool. Stockyard handles routing the request to the correct upstream provider, while transparently adding valuable observability and control.
+By acting as a local proxy, Stockyard allows you to configure all your AI development tools to a single endpoint (`http://localhost:4200/v1`). You can then switch between different models and providers—from `openai/gpt-4o` to `groq/llama3-70b-8192`—without reconfiguring each tool. Stockyard handles routing the request to the correct upstream provider, while transparently adding valuable observability and control.
 
 This workflow combines the flexibility of open models with the performance of cloud hosting, all managed through a single, consistent developer experience.
+
+### Cloud Model Providers
+
+Here are a few of the best cloud model providers
+
+- [DeepInfra](https://deepinfra.com/pricing) has the best price-to-performance
+- [Fireworks.ai](https://fireworks.ai/models?featured=true) is a pro all-rounder
+- [SiliconFlow](https://www.siliconflow.com/models) has optimized quantization (FP8/INT4) for runing bigger models at speeds of smaller
+- [Groq](https://groq.com/pricing) has speed (LPU technology) for agents
+- [Together AI](https://www.together.ai/models) has fast new model versions, good variety
+- [Cloudflare Workers AI](https://www.cloudflare.com/developer-platform/products/workers-ai/) has the CDN/edge advantage
+- [Nebius AI](https://nebius.com/token-factory/prices) for Europe
 
 ## Key Features
 
@@ -23,14 +35,11 @@ This workflow combines the flexibility of open models with the performance of cl
 | **Security Guardrails** | Enforce centralized security policies, including PII redaction, key management, and content filtering. |
 | **Middleware** | A library of over 76 modules for caching, retries, fallbacks, and custom request/response transformations. |
 
-## Getting Started
+## Get Started with Community Edition
 
-1.  **Download and Run:** Download the Stockyard binary for your platform from the official releases and run it.
-    ```sh
-    ./stockyard
-    ```
+The self-hosted community edition is free to use and includes the full proxy, middleware library, and core applications (tracing, audit, prompt studio, etc.). It is limited to 10,000 requests per month (with cost-based routing limited to 100 requests per day). This is generally sufficient for individual developer use.
 
-2.  **Configure API Keys:** Stockyard uses environment variables to authenticate with upstream model providers. For secure storage, consider using the system Keyring.
+- **Configure API Keys:** Stockyard uses environment variables to authenticate with upstream model providers. For secure storage, consider using the system Keyring.
     ```sh
     # Set keys for the providers you want to use
     export OPENAI_API_KEY="sk-..."
@@ -38,19 +47,14 @@ This workflow combines the flexibility of open models with the performance of cl
     export ANTHROPIC_API_KEY="sk-ant-..."
     ```
 
-3.  **Access the Dashboard:** Once running, you can view the management UI in your browser to see logs, track costs, and configure routes.
-    - **Dashboard URL:** `http://localhost/ui`
+- **Access the Dashboard:** Once running, you can view the management UI in your browser to see logs, track costs, and configure routes. Dashboard URL: `http://localhost/ui`
 
-4.  **Configure Your Tools:** Point your AI tools to the local Stockyard API endpoint. Stockyard requires no API key for local access; it uses the environment variables you set to authenticate with the cloud providers.
+- **Configure Your Tools:** Point your AI tools to the local Stockyard API endpoint. Stockyard requires no API key for local access; it uses the environment variables you set to authenticate with the cloud providers.
     ```sh
     # Example: Configure Aider to use an open model via Stockyard
     export OPENAI_API_BASE="http://localhost:4200/v1"
     export OPENAI_API_KEY="not-needed" # Stockyard handles upstream auth
 
-    # Now you can use any model Stockyard is configured for
+    # Now you can use any model Stockyard is configured for e.g.
     aider --model groq/llama3-70b-8192
     ```
-
-## Community Edition
-
-The self-hosted community edition is free to use and includes the full proxy, middleware library, and core applications (tracing, audit, prompt studio, etc.). It is limited to 10,000 requests per month (with cost-based routing limited to 100 requests per day). This is generally sufficient for individual developer use.
