@@ -296,6 +296,14 @@ install-flutter version="latest": install-mise
     @printf "\n$a install-flutter $a\n"
     mise use -g flutter@{{version}}
 
+# Install Stockyard the LLM control plane
+[group('AI')]
+install-stockyard: install-mise
+    @printf "\n$a install-stockyard $a\n"
+    mise use -g github:stockyard-dev/Stockyard
+    @# brew install stockyard-dev/tap/stockyard
+    stockyard doctor
+
 # Install Ollama
 [group('AI')]
 install-ollama version="latest": install-mise

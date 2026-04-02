@@ -44,6 +44,7 @@ Here you will find tools to do software development, whether you build for [Web]
 - Block's [Goose](https://block.github.io/goose/docs/category/guides "Agentic system designed to automate complex development tasks from start to finish") CLI
 - [Aider](./docs/aider.md "writes Git commits for every edit") CLI via [Homebrew](./homebrew/README.md)
 - [Ollama](./docs/ollama.md "to download, manage, & run LLM's locally") CLI
+- [Stockyard](./docs/stockyard.md "the LLM control plane — proxy, routing, cost tracking, tracing, guardrails, & middleware modules") CLI
 
 #### CLI
 
