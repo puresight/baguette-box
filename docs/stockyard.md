@@ -6,23 +6,11 @@
 
 ## Unified Access to Cloud-Hosted Open Models
 
-A primary use case for Stockyard is to provide a consistent interface for using powerful open models hosted by various cloud providers. While tools like [Ollama](./ollama.md) are excellent for running models locally, many developers on lightweight workstations need to access larger, faster models in the cloud. Stockyard bridges this gap.
+A primary use case for Stockyard is to provide a consistent interface for using powerful open models [hosted by various cloud providers](./cloudmodels.md). While tools like [Ollama](./ollama.md) are excellent for running models locally, many developers on lightweight workstations need to access larger, faster models in the cloud. Stockyard bridges this gap.
 
 By acting as a local proxy, Stockyard allows you to configure all your AI development tools to a single endpoint (`http://localhost:4200/v1`). You can then switch between different models and providers—from `openai/gpt-4o` to `groq/llama3-70b-8192`—without reconfiguring each tool. Stockyard handles routing the request to the correct upstream provider, while transparently adding valuable observability and control.
 
 This workflow combines the flexibility of open models with the performance of cloud hosting, all managed through a single, consistent developer experience.
-
-### Cloud Model Providers
-
-Here are a few of the best cloud model providers
-
-- [DeepInfra](https://deepinfra.com/pricing) has the best price-to-performance
-- [Fireworks.ai](https://fireworks.ai/models?featured=true) is a pro all-rounder
-- [SiliconFlow](https://www.siliconflow.com/models) has optimized quantization (FP8/INT4) for runing bigger models at speeds of smaller
-- [Groq](https://groq.com/pricing) has speed (LPU technology) for agents
-- [Together AI](https://www.together.ai/models) has fast new model versions, good variety
-- [Cloudflare Workers AI](https://www.cloudflare.com/developer-platform/products/workers-ai/) has the CDN/edge advantage
-- [Nebius AI](https://nebius.com/token-factory/prices) for Europe
 
 ## Key Features
 
