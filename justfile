@@ -93,9 +93,10 @@ install-flutter version="latest": install-mise
 # Install Stockyard the LLM control plane
 [group('AI')]
 install-stockyard: install-mise
-    @printf "\n$a install-stockyard $a\n"
+    #!/bin/bash
+    printf "\n$a install-stockyard $a\n"
     mise use -g github:stockyard-dev/Stockyard
-    @# brew install stockyard-dev/tap/stockyard
+    # brew install stockyard-dev/tap/stockyard
     stockyard doctor
 
 # Install Ollama
@@ -241,7 +242,7 @@ install-viteplus version="22":
 [group('AI')]
 install-gemini: install-viteplus
     #!/bin/bash
-    @printf "\n$a install-gemini $a\n"
+    printf "\n$a install-gemini $a\n"
     if ! command -v gemini &>/dev/null; then
         echo "Installing Gemini CLI globally..."
         vp install -g @google/gemini-cli
@@ -259,12 +260,13 @@ install-rust:
 # Install Go language using mise
 [group('Languages')]
 install-go version="latest": install-mise
-    @printf "\n$a install-go $a\n"
+    #!/bin/bash
+    printf "\n$a install-go $a\n"
     mise plugins update
     mise use -g go@{{version}} && \
         eval "$(mise hook-env)" && \
         go version
-    @# Pre-2026 way using Github backend # mise use github:tinygo-org/tinygo
+    # Pre-2026 way using Github backend # mise use github:tinygo-org/tinygo
     mise use -g tinygo@latest && \
         eval "$(mise hook-env)" && \
         tinygo version
@@ -272,7 +274,8 @@ install-go version="latest": install-mise
 # Install Ruby language using mise
 [group('Languages')]
 install-ruby version="sub-0.1:latest": install-mise
-    @printf "\n$a install-ruby $a\n"
+    #!/bin/bash
+    printf "\n$a install-ruby $a\n"
     mise settings ruby.compile=false # Precompiled ruby will be the default in 2026.8.0.
     # mise settings ruby.compile=1 # if precompiled has trouble
     mise use -g "ruby@{{version}}" && \
@@ -296,8 +299,9 @@ install-uv:
 # Install kubectl using mise
 [group('Tools')]
 install-kubectl version="latest": install-mise
-    @printf "\n$a install-kubectl $a\n"
-    @mise use -g kubectl@{{version}} && \
+    #!/bin/bash
+    printf "\n$a install-kubectl $a\n"
+    mise use -g kubectl@{{version}} && \
         eval "$(mise hook-env)" && \
         kubectl version --client
 
@@ -305,8 +309,9 @@ install-kubectl version="latest": install-mise
 [group('Tools')]
 [group('Managers')]
 install-wasmer: install-mise
-    @printf "\n$a install-wasmer $a\n"
-    @eval "$(mise hook-env)" && \
+    #!/bin/bash
+    printf "\n$a install-wasmer $a\n"
+    eval "$(mise hook-env)" && \
         mise use --global github:wasmerio/wasmer && \
         wasmer run syrusakbary/cowsay "WebAssembly rocks!"
 
@@ -327,7 +332,8 @@ install-kotlin version="latest": install-java
 # Install Scala language using mise
 [group('Languages')]
 install-scala version="latest": install-java
-    @printf "\n$a install-scala $a\n"
+    #!/bin/bash
+    printf "\n$a install-scala $a\n"
     mise use -g "scala@{{version}}"
     mise use -g sbt@latest # Scala Build Tool
 
