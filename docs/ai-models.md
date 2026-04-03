@@ -2,6 +2,13 @@
 
 These are some tiny/smol models that can be used with ~4gb of VRAM.
 
+#### Qwen 3.5
+
+Qwen 3.5 series in 3/2026 was widely considered the best-in-class for small, efficient models on consumer hardware. Alibaba optimized this generation for "agentic" tasks—meaning they are significantly better at following complex logic and writing functional code than the previous 2.5 version.
+
+- `ollama run qwen3.5:2b` is the "speed king." It will feel instantaneous in 4gb. It’s perfect for simple Python scripts, refactoring functions, or explaining logic. Qwen 3.5 2B (2.4 Billion) VRAM Usage: ~1.6GB (4-bit quantization).
+- `ollama run qwen3.5:4b` is the "sweet spot" for 4gb. It has a noticeably higher "reasoning ceiling" than the 2B version. It can handle more complex logic puzzles and multi-file code explanations. Qwen 3.5 4B (4.1 Billion) VRAM Usage: ~2.9GB (4-bit quantization).
+
 #### DeepSeek R1 Distill Qwen 1.5B
 
 The New Logic King.
