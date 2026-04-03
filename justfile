@@ -38,13 +38,13 @@ code: configure-code
     @printf "\nVS Code is ready to use.\n"
 
 # For test purposes only
-[group('Test recipe')]
-_test-debian: install-apt-packages configure-shell install-dotnet install-tools-terminal install-tools-storage configure-flatpak install-homebrew install-rust install-uv install-java install-kubectl install-viteplus install-go install-ruby install-jekyll install-rails install-goose install-ansible configure-podman display-environment display-versions
+[group('Test')]
+_test-debian: install-apt-packages configure-shell install-dotnet install-tools-terminal install-mc configure-flatpak install-homebrew install-rust install-uv install-java install-kubectl install-viteplus install-go install-ruby install-jekyll install-rails install-goose install-ansible configure-podman display-environment display-versions
     @printf "\nRemember to restart your shell environment before proceeding.\n"
 
 # For test purposes only
-[group('Test recipe')]
-_test-ublue: install-homebrew install-homebrew-packages install-mise install-gomplate install-tools-storage install-uv install-wasmer install-stockyard install-kubectl install-java install-kotlin install-scala install-go install-rust install-ruby install-rails  install-viteplus install-gemini display-environment display-versions
+[group('Test')]
+_test-ublue: install-homebrew install-homebrew-packages install-mise install-gomplate install-mc install-uv install-wasmer install-stockyard install-kubectl install-java install-kotlin install-scala install-go install-rust install-ruby install-rails  install-viteplus install-gemini display-environment display-versions
     @printf "\nRemember to restart your shell environment before proceeding.\n"
 
 #%#%#%#%#%#%#%#%#%#%#%#%#%#%#%#%#%#%#%#%#%#%#%#%#%#%#%#%#%#%#%#%#%#%#
@@ -177,7 +177,7 @@ configure-podman: install-apt-packages
 install-apt-packages: configure-apt
     @printf "\n$a install-apt-packages $a\n"
     @. scripts/apt.sh && \
-        install_apt_packages 'apt/apt.dep'
+        install_apt_packages 'apt/apt.Packages'
 
 #%#%#%#%#%#%#%#%#%#%#%#%#%#%#%#%#%#%#%#%#%#%#%#%#%#%#%#%#%#%#%#%#%#%#
 #%# -- Regular Recipes --
@@ -226,8 +226,8 @@ install-gomplate: install-mise
 
 # Install storage tools
 [group('Tools')]
-install-tools-storage: install-mise
-    @printf "\n$a install-tools-storage $a\n"
+install-mc: install-mise
+    @printf "\n$a install-mc $a\n"
     mise use -g mc@latest
 
 # Install VitePlus and Node
@@ -340,7 +340,7 @@ install-code updates="code/argv.json":
 
 # Install Code extensions
 [group('Managers')]
-install-code-extensions extensions="code/code.dep": install-code
+install-code-extensions extensions="code/code.Extensions": install-code
     @printf "\n$a install-code-extensions $a\n"
     @. scripts/index.sh && \
         install_code_extensions {{extensions}}

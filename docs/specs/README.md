@@ -2,6 +2,19 @@
 
 This `doc/specs` folder contains the specs & plans for this repository. Baguette Box ("box") is full automation for setting up (and maintaining) a new dev workstation. See also its `./README.md` and `../README.md`.
 
+## Customers
+
+The customers of this project are builders of various sorts. Many customers will fit into multiple categories of builder types, at varying levels of maturity.
+
+1. Software developers
+2. Data professionals
+3. Media developers
+4. Portfolio developers (financial analysts)
+5. Business developers (e.g. for _Claude Cowork_ kind of use)
+6. Gamers (Virtual Reality / Augmented Reality asset developers)
+7. Policy developers
+8. Community organizers
+
 ## Values & Approach
 
 - "Cattle not pets" approach

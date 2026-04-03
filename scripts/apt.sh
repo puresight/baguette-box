@@ -26,7 +26,7 @@ configure_apt() {
 # Function to handle APT package installation
 #   dependencies: configure_apt
 install_apt_packages() {
-    local apt_file="${1:-apt/apt.dep}"
+    local apt_file="${1:-apt/apt.Packages}"
 
     echo "Installing packages from $apt_file..."
     if [ -f "$apt_file" ]; then

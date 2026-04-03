@@ -17,7 +17,7 @@ In the era of agentic AI and pair programming, the terminal aka Command Line Int
 A text-heavy approach ensures that a developer can maintain a "low-latency" feedback loop between their code editor and the database engine.
 
 - ↪️ Run recipe: `just install-apt-packages`
-- ✏️ Specify CLI tool packages in: [`apt/apt.dep`](../apt/apt.dep)
+- ✏️ Specify CLI tool packages in: [`apt/apt.Packages`](../apt/apt.Packages)
 
 ### Tools
 

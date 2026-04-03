@@ -3,10 +3,10 @@
 > The Advanced Package Tool ([APT](https://wiki.debian.org/AptCLI)) is a powerful command-line utility used primarily in Debian-based Linux distributions to automate the installation, configuration, and removal of software. For computer users, APT represents a streamlined way to manage their system; instead of manually hunting for installers online, users can download verified software from secure repositories with a single command. Its most significant benefit is automatic dependency management, which ensures that all supporting files required for a program to run are identified and installed simultaneously, maintaining system stability and security with minimal effort.
 
 
-This folder contains the _apt.dep_ file that lists (with comments) the APT dependencies for recipe _install-apt-packages_ to install on the system.
+This folder contains the _apt.Packages_ file that lists (with comments) the APT dependencies for recipe _install-apt-packages_ to install on the system.
 
 - ↪️ Run recipe: `just install-apt-packages`
-- ✏️ Keep dependencies in: [`./apt/apt.dep`](./apt.dep)
+- ✏️ Keep dependencies in: [`./apt/apt.Packages`](./apt.Packages)
 
 ## APT Sources
 

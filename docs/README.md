@@ -77,7 +77,7 @@ Connects [APT](../apt/README.md) to APT repository sources.
 
 #### `install-apt-packages`
 
-Runs `apt install` on packages listed in the [`apt/apt.dep`](../apt/apt.dep)
+Runs `apt install` on packages listed in the [`apt/apt.Packages`](../apt/apt.Packages)
 
 <!-- --
 
@@ -97,7 +97,7 @@ installs flatpak and adds the remote source for the Flathub app marketplace.
 
 [Flatpak](./flatpak.md) is the preferred method for installing GUI applications on this system. This approach ensures applications run in isolated environments with their own dependencies, preventing conflicts with system libraries and keeping the host OS clean. It also provides access to the latest versions of applications regardless of the distribution's release cycle. Read the [flatpak.md](./flatpak.md) docs for more info.
 
-#### `install-tools-storage`
+#### `install-mc`
 
 installs utilities such as
 [MinIO Client](./docs/mc.md) (`mc`), a tool for managing files on S3-compatible cloud storage.
@@ -185,7 +185,7 @@ installs a monospace [font](./fonts.md) needed by the prompt et. al.
 
 #### `configure-shell`
 
-changes the system's default shell to zsh (which was installed in the apt/apt.dep),
+changes the system's default shell to zsh (which was installed in the apt/apt.Packages),
 runs a _pwsh_ script to install [Azure PowerShell](https://learn.microsoft.com/en-us/powershell/azure/)
 (aka [`Az`](https://www.powershellgallery.com/packages/az)) CLI.
 
@@ -228,7 +228,7 @@ with updates for its _argv.json_ settings file.
 
 installs the extensions
 of [Code](../code/README.md) listed in the
-[`code/code.dep`](../code/code.dep) file.
+[`code/code.Extensions`](../code/code.Extensions) file.
 
 To maintain workstation integrity, only install extensions from reputable & verified authors that regularly address issues with code updates.
 

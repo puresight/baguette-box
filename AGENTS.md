@@ -6,11 +6,10 @@ When collaborating on specs, do not switch modes to implement anything, until th
 
 ## Style
 
-DX is a priority.
-
-Maintain a separation of concerns. And maintain a separation of languages also where appropriate.
-
-Always end code files with a new line.
+- Follow the [Google Style Guides](https://google.github.io/styleguide/). Particularly relevant for this repo is the [Shell Style Guide](https://google.github.io/styleguide/shellguide.html).
+- DX is a priority.
+- Maintain a separation of concerns. And maintain a separation of languages also where appropriate.
+- Always end code files with a new line.
 
 ## justfile's
 

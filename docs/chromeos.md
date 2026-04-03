@@ -23,7 +23,7 @@ Common consumer options:
 
 Cloud drives make online storage easy & affordable:
 
-- ↪️ Get [Rclone](./rclone.md): `just install-tools-storage`
+- ↪️ Get [Rclone](./rclone.md) by `just install-apt-packages`
 - Nextcloud: Offers a native Linux client that integrates with a file manager on ChromeOS.
 - Dropbox: Has a long-standing native client, though it lacks built-in client-side encryption.
 - pCloud: Provides an AppImage that creates a virtual drive.

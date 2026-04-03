@@ -368,7 +368,7 @@ install_code() {
 # Function to install VS Code extensions
 #   dependencies: install_code
 install_code_extensions() {
-    local ext_file="${1:-code/code.dep}"
+    local ext_file="${1:-code/code.Extensions}"
 
     if [ -f $ext_file ]; then
         while IFS= read -r extension || [ -n "$extension" ]; do
