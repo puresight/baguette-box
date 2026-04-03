@@ -12,13 +12,15 @@
 # Function to handle UV installation
 #   dependencies: (none)
 install_uv() {
-    local shell="${1:-zsh}"
+    # Detect the current shell from its name to locate the correct rc file.
+    local shell_name=$(basename "$SHELL")
+    local rc_file="$HOME/.${shell_name}rc"
 
     if ! command -v uv &>/dev/null; then
         echo "Installing uv..."
         curl -LsSf https://astral.sh/uv/install.sh | sh
         export PATH="$HOME/.cargo/bin:$PATH"
-        grep -qF 'export UV_NO_BUILD=1' ~/.${shell}rc || echo 'export UV_NO_BUILD=1' >> ~/.${shell}rc
+        grep -qF 'export UV_NO_BUILD=1' "$rc_file" || echo 'export UV_NO_BUILD=1' >> "$rc_file"
     else
         uv self update
     fi
@@ -60,13 +62,14 @@ install_using_uv_with_executables_from() {
 # Function to handle MISE installation per https://mise.jdx.dev/installing-mise.html
 #   dependencies: (none)
 install_mise() {
-    local shell="${1:-zsh}"
+    # Detect the current shell from its name for the installer script.
+    local shell_name=$(basename "$SHELL")
 
     export PATH="$HOME/.local/bin:$PATH"
     if ! command -v mise &>/dev/null; then
         # Install mise and add activation to ~/.zshrc
         echo "Installing mise..."
-        curl https://mise.run/$shell | sh
+        curl https://mise.run/"$shell_name" | sh
     else
         # mise v
         mise self-update -y
@@ -78,8 +81,9 @@ install_mise() {
 # Function to install and configure fzf and zoxide terminal tools
 #   dependencies: configure_shell
 install_terminal_tools() {
-    local shell="${1:-zsh}"
-    local rc_file="$HOME/.${shell}rc"
+    # Detect the current shell from its name to locate the correct rc file.
+    local shell_name=$(basename "$SHELL")
+    local rc_file="$HOME/.${shell_name}rc"
 
     echo "${FUNCNAME[0]}"
 
@@ -110,10 +114,10 @@ install_terminal_tools() {
     # This adds the necessary hook to the shell's rc file to make zoxide work.
     # The hook enables 'z' to work and integrates with fzf automatically if found.
     if ! grep -q "zoxide init" "$rc_file"; then
-        echo "Configuring zoxide for $shell..."
+        echo "Configuring zoxide for $shell_name..."
         echo '' >> "$rc_file"
         echo '# Initialize zoxide for smart directory changing' >> "$rc_file"
-        echo 'eval "$(zoxide init '"$shell"')"' >> "$rc_file"
+        echo 'eval "$(zoxide init '"$shell_name"')"' >> "$rc_file"
         echo "zoxide configured in $rc_file."
     fi
 }
@@ -178,13 +182,14 @@ install_microsoft_dotnet() {
 # Function to handle shell configuration
 #   dependencies: install_dotnet
 configure_shell() {
-    local shell="${1:-zsh}"
-    local rc_file="$HOME/.${shell}rc"
+    # Detect the current shell from its name to locate the correct rc file.
+    local shell_name=$(basename "$SHELL")
+    local rc_file="$HOME/.${shell_name}rc"
     local pwsh_init="./dotnet/powershell.ps1"
 
     if [ "$OS_FAMILY" == "debian" ]; then
         local target_shell
-        target_shell=$(which "$shell")
+        target_shell=$(which "$shell_name")
         if [ "$SHELL" != "$target_shell" ]; then
             echo "Changing user shell to $target_shell"
             sudo chsh -s "$target_shell" "$USER"
@@ -204,9 +209,9 @@ configure_shell() {
         fi
 
         # Posh's config persists in shell's .rc file
-        if ! grep -q "oh-my-posh init $shell" "$rc_file"; then
+        if ! grep -q "oh-my-posh init $shell_name" "$rc_file"; then
             echo "# Integrate Posh" >> "$rc_file"
-            echo 'eval "$(oh-my-posh init '"$shell"' --config https://raw.githubusercontent.com/JanDeDobbeleer/oh-my-posh/main/themes/pure.omp.json)"' \
+            echo 'eval "$(oh-my-posh init '"$shell_name"' --config https://raw.githubusercontent.com/JanDeDobbeleer/oh-my-posh/main/themes/pure.omp.json)"' \
                 >> "$rc_file"
             echo "Persisting in $rc_file"
         fi
@@ -273,49 +278,50 @@ install_microsoft_java() {
 # Function
 #   dependencies: configure_shell
 install_homebrew() {
-    local shell="${1:-zsh}"
-    local rc_file="$HOME/.${shell}rc"
+    # Detect the current shell from its name to locate the correct rc file.
+    local shell_name=$(basename "$SHELL")
+    local rc_file="$HOME/.${shell_name}rc"
 
-    # Install
-    if ! command -v brew &> /dev/null; then
-        /bin/bash -c "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/HEAD/install.sh)"
-    else
+    if command -v brew &> /dev/null; then
         brew update
-    fi
+    else
+        echo "Installing Homebrew..."
+        /bin/bash -c "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/HEAD/install.sh)"
 
-    echo "Setting up environment"
-    local BREW_PATH=""
-    if [ "$OS_FAMILY" == "debian" ]; then
-        if [ -d "/home/linuxbrew/.linuxbrew" ]; then
-            BREW_PATH="/home/linuxbrew/.linuxbrew/bin/brew"
-        elif [ -d "$HOME/.linuxbrew" ]; then
-            BREW_PATH="$HOME/.linuxbrew/bin/brew"
+        echo "Setting up environment"
+        # Determine Homebrew's installation path programmatically, as 'brew'
+        # is not yet in the PATH for a new installation. This avoids a
+        # "command not found" error when 'brew --prefix' is called.
+        local BREW_PREFIX
+        if [[ "$OS_FAMILY" == "macos" ]]; then
+            if [[ "$(uname -m)" == "arm64" ]]; then
+                BREW_PREFIX="/opt/homebrew"
+            else # macos x64
+                BREW_PREFIX="/usr/local"
+            fi
+        else # Linux
+            BREW_PREFIX="/home/linuxbrew/.linuxbrew"
         fi
-    elif [ "$OS_FAMILY" == "macos" ]; then
-        if [ -f "/opt/homebrew/bin/brew" ]; then
-            BREW_PATH="/opt/homebrew/bin/brew"
-        elif [ -f "/usr/local/bin/brew" ]; then
-            BREW_PATH="/usr/local/bin/brew"
-        fi
-    fi
+        local BREW_PATH="$BREW_PREFIX/bin/brew"
 
-    # Persist in shell's .rc file
-    if [ -n "$BREW_PATH" ]; then
-        echo "installed: $BREW_PATH"
-        echo "Persisting in $rc_file"
-        eval "$($BREW_PATH shellenv)"
-        if ! grep -q "shellenv" "$rc_file"; then
-            (echo; echo "eval \"\$($BREW_PATH shellenv)\"") >> "$rc_file"
+        # Persist in shell's .rc file
+        if [ -f "$BREW_PATH" ]; then # Check if the brew executable actually exists
+            echo "installed: $BREW_PATH"
+            echo "Persisting in $rc_file"
+            eval "$($BREW_PATH shellenv)"
+            if ! grep -q "shellenv" "$rc_file"; then
+                (echo; echo "eval \"\$($BREW_PATH shellenv)\"") >> "$rc_file"
+            fi
+            brew --version
         fi
-        brew --version
     fi
 }
 
 # Function to install a Homebrew bundle
 #   dependencies: install_homebrew
 install_homebrew_packages() {
-    local apt_file="${1:-homebrew/homebrew.dep}"
-    brew bundle --file="./$1"
+    local brewfile="${1:-homebrew/${OS_FAMILY}.Brewfile}"
+    brew bundle --file="./$brewfile"
 }
 
 # Function to install VS Code and/or update its argv.json

@@ -33,29 +33,29 @@
 check_crostini() {
     local crostini=0
 
-    # Check the primary Crostini guest tool commands
-    local GUEST_TOOLS=("garcon" "sommelier" "vmtoolsd")
+    local GUEST_TOOLS=("garcon" "sommelier")
     for cmd in "${GUEST_TOOLS[@]}"; do
         if command -v "$cmd" >/dev/null 2>&1; then
+            # printf "Found $cmd which is a Crostini guest tool command\n"
             ((crostini++))
         fi
     done
 
-    # Check specific device nodes of Standard Crostini environments
     if [ -d /dev/wl0 ] || [ -d /proc/sys/fs/binfmt_misc/WSLInterop ]; then
+        # printf "Found a device node used on Crostini\n"
         ((crostini++))
     fi
 
-    # Check if the vsh_id environment variable exists, which is typical in Crostini's vsh shell
     if [ -n "$vsh_id" ]; then
+        # printf "Found vsh_id environment variable, which is typical on Crostini\n"
         ((crostini++))
     fi
 
-    return crostini
+    echo "$crostini"
 }
 
 # Try it out
-[ check_crostini -gt 0 ] && echo "System is probably a Chromebook. *** *** *** *** ***"
+[ $(check_crostini) -ge 4 ] && echo " *** *** *** *** *** System is probably a Chromebook. *** *** *** *** ***"
 
 # Function
 check_online() {

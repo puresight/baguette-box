@@ -69,7 +69,7 @@ configure-apt: check-apt install-gomplate
 configure-shell: install-apt-packages install-font install-dotnet
     @printf "\n$a configure-shell $a\n"
     @. scripts/index.sh && \
-        configure_shell zsh pwsh
+        configure_shell
 
 # Configure Flatpak
 [group('Debian only')]
@@ -108,6 +108,20 @@ display-versions:
     @printf "\n$a display-versions $a\n"
     @. scripts/index.sh && \
         display_versions
+
+# Install Homebrew
+[group('Managers')]
+install-homebrew:
+    @printf "\n$a install-homebrew $a\n"
+    @. scripts/index.sh && \
+        install_homebrew
+
+# Install homebrew packages
+[group('Managers')]
+install-homebrew-packages: install-homebrew
+    @printf "\n$a install-homebrew-packages $a\n"
+    @. scripts/index.sh && \
+        install_homebrew_packages
 
 # Install mise-en-place system
 [group('Managers')]
@@ -249,21 +263,6 @@ install-jekyll: install-ruby
     @. scripts/index.sh && \
         install_jekyll
 
-# Install homebrew packages
-[group('Managers')]
-install-homebrew-packages bundle="homebrew/debian.dep": install-homebrew
-    @printf "\n$a install-homebrew-packages $a\n"
-    @. scripts/index.sh && \
-        install_homebrew_packages {{bundle}}
-    # TODO: refactor function to use $OS_FAMILY version of .dep
-
-# Install Homebrew
-[group('Managers')]
-install-homebrew:
-    @printf "\n$a install-homebrew $a\n"
-    @. scripts/index.sh && \
-        install_homebrew
-
 # Install Microsoft .NET SDK using mise
 [group('Languages')]
 [group('SDK')]
@@ -320,10 +319,10 @@ install-goose:
 
 # Install terminal tools
 [group('Tools')]
-install-tools-terminal shell="zsh": install-mise
+install-tools-terminal: install-mise
     @printf "\n$a install-tools-terminal $a\n"
     @. scripts/index.sh && \
-        install_terminal_tools {{shell}}
+        install_terminal_tools
 
 # Install a Nerd Font
 [group('Tools')]
