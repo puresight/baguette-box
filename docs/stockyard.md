@@ -6,7 +6,7 @@
 
 ## Unified Access to Cloud-Hosted Open Models
 
-A primary use case for Stockyard is to provide a consistent interface for using powerful open models [hosted by various cloud providers](./cloudmodels.md). While tools like [Ollama](./ollama.md) are excellent for running models locally, many developers on lightweight workstations need to access larger, faster models in the cloud. Stockyard bridges this gap.
+A primary use case for Stockyard is to provide a consistent interface for using powerful open models [hosted by various cloud providers](./ai-services.md). While tools like [Ollama](./ollama.md) are excellent for running models locally, many developers on lightweight workstations need to access larger, faster models in the cloud. Stockyard bridges this gap.
 
 By acting as a local proxy, Stockyard allows you to configure all your AI development tools to a single endpoint (`http://localhost:4200/v1`). You can then switch between different models and providers—from `openai/gpt-4o` to `groq/llama3-70b-8192`—without reconfiguring each tool. Stockyard handles routing the request to the correct upstream provider, while transparently adding valuable observability and control.
 
