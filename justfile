@@ -23,29 +23,117 @@ _:
     @just --list
 
 #%#%#%#%#%#%#%#%#%#%#%#%#%#%#%#%#%#%#%#%#%#%#%#%#%#%#%#%#%#%#%#%#%#%#
-#%# -- High-level Recipes --
+#%# -- Featured Recipes --
 #%#%#%#%#%#%#%#%#%#%#%#%#%#%#%#%#%#%#%#%#%#%#%#%#%#%#%#%#%#%#%#%#%#%#
 
 # Bootstrap the Debian system
 [group('Debian only')]
-[group('* Featured *')]
-debian: install-apt-packages configure-shell install-uv install-viteplus display-environment display-versions
+[group('* * * Featured * * *')]
+bootstrap-debian: install-apt-packages configure-shell install-uv install-viteplus display-environment display-versions
     @printf "\nRemember to restart your shell environment before proceeding.\n"
 
-# Bootstrap the uBlue system
-[group('uBlue only')]
-[group('* Featured *')]
-ublue: install-mise install-gomplate install-tools-storage install-uv install-wasmer install-kubectl install-java install-kotlin install-scala install-go install-rust install-ruby install-rails  install-viteplus display-environment display-versions
-    @printf "\nRemember to restart your shell environment before proceeding.\n"
-
-# Install VS Code w/ custom settings & extensions
-[group('* Featured *')]
+# Install VS Code with settings & extensions
+[group('* * * Featured * * *')]
 code: configure-code
     @printf "\nVS Code is ready to use.\n"
 
-# For test purposes only on Debian
+# For test purposes only
+[group('Test recipe')]
 _test-debian: install-apt-packages configure-shell install-dotnet install-tools-terminal install-tools-storage configure-flatpak install-homebrew install-rust install-uv install-java install-kubectl install-viteplus install-go install-ruby install-jekyll install-rails install-goose install-ansible configure-podman display-environment display-versions
     @printf "\nRemember to restart your shell environment before proceeding.\n"
+
+# For test purposes only
+[group('Test recipe')]
+_test-ublue: install-homebrew install-homebrew-packages install-mise install-gomplate install-tools-storage install-uv install-wasmer install-stockyard install-kubectl install-java install-kotlin install-scala install-go install-rust install-ruby install-rails  install-viteplus install-gemini display-environment display-versions
+    @printf "\nRemember to restart your shell environment before proceeding.\n"
+
+#%#%#%#%#%#%#%#%#%#%#%#%#%#%#%#%#%#%#%#%#%#%#%#%#%#%#%#%#%#%#%#%#%#%#
+#%# -- Regular Recipes : Fedora untested --
+#%#%#%#%#%#%#%#%#%#%#%#%#%#%#%#%#%#%#%#%#%#%#%#%#%#%#%#%#%#%#%#%#%#%#
+
+# Install Jekyll static site generator
+[group('Frameworks')]
+install-jekyll: install-ruby
+    @printf "\n$a install-jekyll $a\n"
+    @. scripts/index.sh && \
+        install_jekyll
+
+# Install Microsoft .NET SDK using mise
+[group('Languages')]
+[group('SDK')]
+install-dotnet version="10": install-mise
+    @printf "\n$a install-dotnet $a\n"
+    mise use -g "dotnet@{{version}}"
+
+# Install Haskell language
+[group('Languages')]
+install-haskell version="latest": install-mise install-apt-packages
+    @printf "\n$a install-haskell $a\n"
+    mise use -g "ghc@{{version}}"
+
+# Install Erlang language
+[group('Languages')]
+install-erlang version="latest": install-mise install-apt-packages
+    @printf "\n$a install-erlang $a\n"
+    mise use -g "erlang@{{version}}"
+
+# Install Elixir language using mise
+[group('Languages')]
+install-elixir version="latest": install-erlang
+    @printf "\n$a install-elixir $a\n"
+    mise use -g elixir@{{version}}
+
+# Install Flutter toolkit using mise
+[group('Languages')]
+[group('SDK')]
+install-flutter version="latest": install-mise
+    @printf "\n$a install-flutter $a\n"
+    mise use -g flutter@{{version}}
+
+# Install Stockyard the LLM control plane
+[group('AI')]
+install-stockyard: install-mise
+    @printf "\n$a install-stockyard $a\n"
+    mise use -g github:stockyard-dev/Stockyard
+    @# brew install stockyard-dev/tap/stockyard
+    stockyard doctor
+
+# Install Ollama
+[group('AI')]
+install-ollama version="latest": install-mise
+    @printf "\n$a install-ollama $a\n"
+    mise use -g ollama@{{version}}
+
+# Install Goose IDE
+[group('AI')]
+[group('IDE')]
+install-goose:
+    @printf "\n$a install-goose $a\n"
+    @. scripts/index.sh && \
+        install_goose
+
+# Install terminal tools
+[group('Tools')]
+install-tools-terminal: install-mise
+    @printf "\n$a install-tools-terminal $a\n"
+    @. scripts/index.sh && \
+        install_terminal_tools
+
+# Install a Nerd Font
+[group('Tools')]
+install-font id="JetBrainsMono" version="v3.3.0":
+    @printf "\n$a install-font $a\n"
+    @./scripts/install-font.sh  {{id}} {{version}}
+
+# Install Ansible
+[group('Tools')]
+install-ansible: _install-ansible-from-uv display-environment
+    @printf "\nAnsible CLI should be ready to use."
+
+# Private: install Ansible using uv
+_install-ansible-from-uv: install-uv
+    @. scripts/index.sh && \
+        install_using_uv_with_executables_from 'ansible' 'ansible-core,ansible-lint' 'localhost -m ping'
 
 #%#%#%#%#%#%#%#%#%#%#%#%#%#%#%#%#%#%#%#%#%#%#%#%#%#%#%#%#%#%#%#%#%#%#
 #%# -- Regular Recipes : Debian Only --
@@ -142,12 +230,24 @@ install-tools-storage: install-mise
     @printf "\n$a install-tools-storage $a\n"
     mise use -g mc@latest
 
-# Install VitePlus and Node.js, Gemini CLI
+# Install VitePlus and Node
 [group('Languages')]
 [group('Managers')]
 install-viteplus version="22":
     @printf "\n$a install-viteplus $a\n"
     @./scripts/install-viteplus.sh {{version}}
+
+# Install Gemini CLI
+[group('AI')]
+install-gemini: install-viteplus
+    #!/bin/bash
+    @printf "\n$a install-gemini $a\n"
+    if ! command -v gemini &>/dev/null; then
+        echo "Installing Gemini CLI globally..."
+        vp install -g @google/gemini-cli
+    else
+        printf "\ninstalled: Gemini CLI version $(gemini --version 2>/dev/null | tail -n 1)\n"
+    fi
 
 # Install Rust language using Rustup
 [group('Languages')]
@@ -251,93 +351,5 @@ configure-code updates="code/user-settings.json": install-code-extensions instal
     @printf "\n$a configure-code $a\n"
     @. scripts/index.sh && \
         configure_code {{updates}}
-
-#%#%#%#%#%#%#%#%#%#%#%#%#%#%#%#%#%#%#%#%#%#%#%#%#%#%#%#%#%#%#%#%#%#%#
-#%# -- Regular Recipes : Fedora untested --
-#%#%#%#%#%#%#%#%#%#%#%#%#%#%#%#%#%#%#%#%#%#%#%#%#%#%#%#%#%#%#%#%#%#%#
-
-# Install Jekyll static site generator
-[group('Frameworks')]
-install-jekyll: install-ruby
-    @printf "\n$a install-jekyll $a\n"
-    @. scripts/index.sh && \
-        install_jekyll
-
-# Install Microsoft .NET SDK using mise
-[group('Languages')]
-[group('SDK')]
-install-dotnet version="10": install-mise
-    @printf "\n$a install-dotnet $a\n"
-    mise use -g "dotnet@{{version}}"
-
-# Install Haskell language
-[group('Languages')]
-install-haskell version="latest": install-mise install-apt-packages
-    @printf "\n$a install-haskell $a\n"
-    mise use -g "ghc@{{version}}"
-
-# Install Erlang language
-[group('Languages')]
-install-erlang version="latest": install-mise install-apt-packages
-    @printf "\n$a install-erlang $a\n"
-    mise use -g "erlang@{{version}}"
-
-# Install Elixir language using mise
-[group('Languages')]
-install-elixir version="latest": install-erlang
-    @printf "\n$a install-elixir $a\n"
-    mise use -g elixir@{{version}}
-
-# Install Flutter toolkit using mise
-[group('Languages')]
-[group('SDK')]
-install-flutter version="latest": install-mise
-    @printf "\n$a install-flutter $a\n"
-    mise use -g flutter@{{version}}
-
-# Install Stockyard the LLM control plane
-[group('AI')]
-install-stockyard: install-mise
-    @printf "\n$a install-stockyard $a\n"
-    mise use -g github:stockyard-dev/Stockyard
-    @# brew install stockyard-dev/tap/stockyard
-    stockyard doctor
-
-# Install Ollama
-[group('AI')]
-install-ollama version="latest": install-mise
-    @printf "\n$a install-ollama $a\n"
-    mise use -g ollama@{{version}}
-
-# Install Goose IDE
-[group('AI')]
-[group('IDE')]
-install-goose:
-    @printf "\n$a install-goose $a\n"
-    @. scripts/index.sh && \
-        install_goose
-
-# Install terminal tools
-[group('Tools')]
-install-tools-terminal: install-mise
-    @printf "\n$a install-tools-terminal $a\n"
-    @. scripts/index.sh && \
-        install_terminal_tools
-
-# Install a Nerd Font
-[group('Tools')]
-install-font id="JetBrainsMono" version="v3.3.0":
-    @printf "\n$a install-font $a\n"
-    @./scripts/install-font.sh  {{id}} {{version}}
-
-# Install Ansible
-[group('Tools')]
-install-ansible: _install-ansible-from-uv display-environment
-    @printf "\nAnsible CLI should be ready to use."
-
-# Private: install Ansible using uv
-_install-ansible-from-uv: install-uv
-    @. scripts/index.sh && \
-        install_using_uv_with_executables_from 'ansible' 'ansible-core,ansible-lint' 'localhost -m ping'
 
 #%#%#%#%#%#%#%#%#%#%#%#%#%#%#%#%#%#%#%#%#%#%#%#%#%#%#%#%#%#%#%#%#%#%#

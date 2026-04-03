@@ -6,7 +6,7 @@
 # ------ # ------ # ------ # ------ # ------ # ------ # ------ # ------
 
 install_viteplus() {
-    local version="${1:-lts}"
+    local node_version="${1:-lts}"
 
     if [ -f "$HOME/.vite-plus/env" ]; then
         . "$HOME/.vite-plus/env"
@@ -30,16 +30,9 @@ install_viteplus() {
     # echo "Ensuring Vite+ shims are active..."
     vp env on
 
-    # echo "Setting default Node.js version to '$version' and installing..."
-    vp env default "$version"
-    vp env install
-
-    if ! command -v gemini &>/dev/null; then
-        echo "Installing Gemini CLI globally..."
-        vp install -g @google/gemini-cli
-    else
-        printf "\ninstalled: Gemini CLI version $(gemini --version 2>/dev/null | tail -n 1)\n"
-    fi
+    # echo "Setting default Node.js version to '$node_version' and installing..."
+    vp env default "$node_version"
+    vp env install "$node_version"
 }
 
 # Execute the function if the script is run directly
