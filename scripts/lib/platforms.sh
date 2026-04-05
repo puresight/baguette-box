@@ -57,17 +57,6 @@ check_crostini() {
 # Try it out
 [ $(check_crostini) -ge 4 ] && echo " *** *** *** *** *** System is probably a Chromebook. *** *** *** *** ***"
 
-# Function
-check_online() {
-    (timeout 2 bash -c 'exec 3<>/dev/tcp/detectportal.firefox.com/80') 2>/dev/null # Assumed: Firefox still operates its captive portal website
-    if [ $? -ne 0 ]; then
-        printf "\n❌ Error: disconnected from the Internet. Check your connection and try again.\n\n" >&2
-        exit 1
-    fi
-}
-
-check_online
-
 # if exists, source the /etc/os-release
 [[ -f /etc/os-release ]] && . /etc/os-release
 
@@ -114,7 +103,9 @@ case $OS_FAMILY in
         ;;
 esac
 
-# Warn if not debian
+# Warn if not debian.
+# Because this is an unexpected use of this program, the intent is to hang execution
+# to wait on interactive user confirmation to continue despite the warning.
 if [ "$OS_FAMILY" != "debian" ]; then
     printf "Warning: '$OS_FAMILY' is not a supported OS.\n" >&2
     read -p "Continue anyway? (y/N) " -r choice

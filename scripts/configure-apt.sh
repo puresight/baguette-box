@@ -15,28 +15,6 @@
 #
 # ------ # ------ # ------ # ------ # ------ # ------ # ------ # ------
 
-# Function to configure APT
-configure_apt() {
-    sudo apt update -qq
-    sudo apt autoremove -y
-    sudo apt autoclean -y
-    _add_apt_sources
-}
-
-# Function to handle APT package installation
-#   dependencies: configure_apt
-install_apt_packages() {
-    local apt_file="${1:-apt/apt.Packages}"
-
-    echo "Installing packages from $apt_file..."
-    if [ -f "$apt_file" ]; then
-        sudo DEBIAN_FRONTEND=noninteractive apt install -y $(cat "$apt_file" | sed 's/#.*$//' | sed '/^[[:space:]]*$/d' | tr '\n' ' ')
-    else
-        echo "❌ Error: file '$apt_file' not found" >&2
-        exit 1
-    fi
-}
-
 # Function
 _update_package_lists() {
     sudo apt update -qq
@@ -44,6 +22,8 @@ _update_package_lists() {
         echo "❌ Error: Failed to update package lists" >&2
         return 1
     fi
+    sudo apt autoremove -y
+    sudo apt autoclean -y
 }
 
 # Function to download & dearmor a GPG key
@@ -105,8 +85,13 @@ _add_apt_sources() {
     _update_package_lists
 }
 
+# Function to configure APT
+configure_apt() {
+    _update_package_lists
+    _add_apt_sources
+}
+
 # This script can be run independently.
 if [[ "${BASH_SOURCE[0]}" == "${0}" ]]; then
     configure_apt
-    # install_apt_packages "$@"
 fi

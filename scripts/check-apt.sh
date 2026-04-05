@@ -8,4 +8,7 @@ check_apt() {
     fi
 }
 
-check_apt
+# Execute check_apt function if script is run directly
+if [[ "${BASH_SOURCE[0]}" == "${0}" ]]; then
+    check_apt "$@"
+fi

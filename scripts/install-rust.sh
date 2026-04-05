@@ -36,6 +36,15 @@ install_rust() {
     echo "cargo-binstall $(cargo binstall -V $non_interactive)"
 
     # Install LSP dependency of Just editor extension
-    echo "Installing Just LSP language server for editor support..."
-    cargo binstall $non_interactive just-lsp
+    if command -v just-lsp &> /dev/null; then
+        echo "$(just-lsp -V)"
+    else
+        echo "Installing Just LSP language server for editor support..."
+        cargo binstall $non_interactive just-lsp
+    fi
 }
+
+# Execute the function if the script is run directly
+if [[ "${BASH_SOURCE[0]}" == "${0}" ]]; then
+    install_rust "$@"
+fi

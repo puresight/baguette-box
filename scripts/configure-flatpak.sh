@@ -75,3 +75,8 @@ _configure_flatpak() {
     # Run Bazaar
     # GSK_RENDERER=cairo LIBGL_ALWAYS_SOFTWARE=1 GTK_IM_MODULE=ibus flatpak run io.github.kolunmi.Bazaar
 }
+
+# Execute configure_flatpak function if script is run directly
+if [[ "${BASH_SOURCE[0]}" == "${0}" ]]; then
+    configure_flatpak "$@"
+fi

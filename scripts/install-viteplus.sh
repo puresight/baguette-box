@@ -1,5 +1,7 @@
 #!/bin/bash
 
+. "$SCRIPTROOT/scripts/lib/platforms.sh"
+
 # ------ # ------ # ------ # ------ # ------ # ------ # ------ # ------
 #   This script installs Vite+ and its ecosystem.
 #   See: https://viteplus.dev/

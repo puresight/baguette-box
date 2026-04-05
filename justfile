@@ -29,22 +29,22 @@ _:
 # Bootstrap the Debian system
 [group('Debian only')]
 [group('* * * Featured * * *')]
-bootstrap-debian: install-apt-packages configure-shell install-uv install-viteplus display-environment display-versions
+bootstrap-debian: check-online install-apt-packages configure-shell install-uv install-viteplus display-environment display-versions
     @printf "\nRemember to restart your shell environment before proceeding.\n"
 
 # Install VS Code with settings & extensions
 [group('* * * Featured * * *')]
-code: configure-code
+code: check-online configure-code
     @printf "\nVS Code is ready to use.\n"
 
 # For test purposes only
 [group('Test')]
-_test-debian: install-apt-packages configure-shell install-dotnet install-tools-terminal install-mc configure-flatpak install-homebrew install-rust install-uv install-java install-kubectl install-viteplus install-go install-ruby install-jekyll install-rails install-ollama install-goose install-ansible configure-podman display-environment display-versions
+_test-debian: check-online install-apt-packages configure-shell install-dotnet install-tools-terminal install-mc configure-flatpak install-homebrew install-rust install-uv install-java install-kubectl install-viteplus install-go install-ruby install-jekyll install-rails install-ollama install-goose install-ansible configure-podman display-environment display-versions
     @printf "\nRemember to restart your shell environment before proceeding.\n"
 
 # For test purposes only
 [group('Test')]
-_test-ublue: install-homebrew install-homebrew-packages install-mise install-gomplate install-mc install-uv install-wasmer install-stockyard install-ollama install-goose install-kubectl install-java install-kotlin install-scala install-go install-rust install-ruby install-rails  install-viteplus install-gemini display-environment display-versions
+_test-ublue: check-online install-homebrew install-homebrew-packages install-mise install-gomplate install-mc install-uv install-wasmer install-stockyard install-ollama install-goose install-kubectl install-java install-kotlin install-scala install-go install-rust install-ruby install-rails  install-viteplus install-gemini display-environment display-versions
     @printf "\nRemember to restart your shell environment before proceeding.\n"
 
 #%#%#%#%#%#%#%#%#%#%#%#%#%#%#%#%#%#%#%#%#%#%#%#%#%#%#%#%#%#%#%#%#%#%#
@@ -140,18 +140,6 @@ _install-ansible-from-uv: install-uv
 #%# -- Regular Recipes : Debian Only --
 #%#%#%#%#%#%#%#%#%#%#%#%#%#%#%#%#%#%#%#%#%#%#%#%#%#%#%#%#%#%#%#%#%#%#
 
-# Check Debian APT
-[group('Debian only')]
-check-apt:
-    @printf "\n$a check-apt $a\n"
-    ./scripts/check-apt.sh
-
-# Configure APT sources
-[group('Debian only')]
-configure-apt: check-apt install-gomplate
-    @printf "\n$a configure-apt $a\n"
-    ./scripts/apt.sh
-
 # TODO Refactor function configure_shell to remove dependency on install-dotnet
 # Configure shells
 [group('Debian only')]
@@ -173,16 +161,36 @@ configure-podman: install-apt-packages
     @. scripts/index.sh && \
         configure_podman
 
+# Check Debian APT
+[group('Debian only')]
+check-debian:
+    @printf "\n$a check-debian $a\n"
+    @./scripts/check-apt.sh
+
+# Configure APT sources
+[group('Debian only')]
+configure-apt: check-debian install-gomplate
+    @printf "\n$a configure-apt $a\n"
+    @./scripts/configure-apt.sh
+
 # Install APT packages
 [group('Debian only')]
 install-apt-packages: configure-apt
     @printf "\n$a install-apt-packages $a\n"
-    @. scripts/apt.sh && \
-        install_apt_packages 'apt/apt.Packages'
+    @./scripts/install-apt-packages.sh 'apt/apt.Packages'
 
 #%#%#%#%#%#%#%#%#%#%#%#%#%#%#%#%#%#%#%#%#%#%#%#%#%#%#%#%#%#%#%#%#%#%#
 #%# -- Regular Recipes --
 #%#%#%#%#%#%#%#%#%#%#%#%#%#%#%#%#%#%#%#%#%#%#%#%#%#%#%#%#%#%#%#%#%#%#
+
+# Check Online
+check-online:
+    #!/bin/bash
+    (timeout 2 bash -c 'exec 3<>/dev/tcp/detectportal.firefox.com/80') 2>/dev/null # Assumed: Firefox still operates its captive portal website
+    if [ $? -ne 0 ]; then
+        printf "\n❌ Error: disconnected from the Internet. Check your connection and try again.\n\n" >&2
+        exit 1
+    fi
 
 # Display environment
 [group('Information')]
@@ -254,8 +262,7 @@ install-gemini: install-viteplus
 [group('Languages')]
 install-rust:
     @printf "\n$a install-rust $a\n"
-    @. scripts/install-rust.sh && \
-        install_rust
+    @./scripts/install-rust.sh
 
 # Install Go language using mise
 [group('Languages')]
