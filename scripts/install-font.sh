@@ -1,76 +1,43 @@
 #!/bin/bash
-
 # ------ # ------ # ------ # ------ # ------ # ------ # ------ # ------
-#   This library script has functions that install Nerd Fonts.
 #
-#   Dependencies:
-#   - unzip
-#   - fontconfig (fc-cache command)
-#   - PLATFORM global variable
+#       Function to install a Nerd Font
+#
 # ------ # ------ # ------ # ------ # ------ # ------ # ------ # ------
 
-# Function
-#   dependencies: (none)
+# Source lib scripts
+SCRIPTROOT="$(cd -- "$(dirname -- "${BASH_SOURCE[0]}")" && cd .. && pwd)"
+. "$SCRIPTROOT/scripts/lib/platforms.sh"
+
 install_font() {
-    _install_nerd_font "$@"
-}
+    local font_id="${1:-JetBrainsMono}"
+    local font_version="${2:-v3.3.0}"
+    local font_zip="${font_id}.zip"
+    local font_url="https://github.com/ryanoasis/nerd-fonts/releases/download/${font_version}/${font_zip}"
+    local font_dir="$HOME/.local/share/fonts/${font_id}"
 
-# Function to download and install a Nerd Font
-# Parameters: $1 - font name, $2 - version
-_install_nerd_font() {
-    # Arguments
-    local font_name="${1:-JetBrainsMono}"
-    local version="${2:-v3.3.0}"
-    local fonts_dir="${3:-"$HOME/.local/share/fonts"}"
-    # echo "${FUNCNAME[0]}"
-
-    # Internal variables
-    local base_tmp="${TMPDIR:-/tmp}"
-    local font_zip="${font_name}.zip"
-    local download_url="https://github.com/ryanoasis/nerd-fonts/releases/download/${version}/${font_zip}"
-    local temp_file="${base_tmp}/${font_zip}"
-
-    # Check for a specific file to avoid re-downloading. 
-    # Most Nerd Fonts include a "Nerd Font" suffix in the filename.
-    if ls "${fonts_dir}/${font_name}"*"NerdFont"* >/dev/null 2>&1; then
-        echo "$font_name is already installed."
-        return
+    if [ "$OS_FAMILY" != "debian" ] && [ "$OS_FAMILY" != "ublue" ]; then
+        echo "Skipping font installation (unsupported platform $OS_FAMILY)."
+        return 0
     fi
 
-    echo "Installing $font_name Nerd Font ($version)..."
-
-    # Preparation
-    mkdir -p "$fonts_dir" || {
-        echo "❌ Error: Failed to create font directory at $fonts_dir" >&2
-        return 1
-    }
-
-    # Download
-    echo "Downloading $font_name from GitHub..."
-    if ! curl -sfLo "$temp_file" "$download_url"; then
-        echo "❌ Error: Failed to download font from $download_url" >&2
-        return 1
-    fi
-
-    # Extraction
-    echo "Extracting files to $fonts_dir..."
-    if ! unzip -qjo "$temp_file" -d "$fonts_dir"; then
-        echo "❌ Error: Failed to extract $temp_file" >&2
-        rm -f "$temp_file"
-        return 1
-    fi
-
-    # Cleanup and Refresh Cache
-    rm -f "$temp_file"
-    echo "Updating font cache..."
-    if ! fc-cache -f; then
-        echo "Warning: fc-cache failed to refresh. Manual intervention may be required." >&2
+    if [ ! -d "$font_dir" ]; then
+        echo "Installing $font_id font..."
+        mkdir -p "$font_dir"
+        curl -sL "$font_url" -o "/tmp/$font_zip"
+        unzip -q "/tmp/$font_zip" -d "$font_dir"
+        rm "/tmp/$font_zip"
+        
+        if command -v fc-cache &> /dev/null; then
+            fc-cache -fv
+        fi
+        echo "✓ Installed $font_id Nerd Font."
     else
-        echo "Font installation complete."
+        echo "$font_id font is already installed."
     fi
 }
 
-# Execute install_nerd_font function if script is run directly
+# This script can be run independently.
 if [[ "${BASH_SOURCE[0]}" == "${0}" ]]; then
     install_font "$@"
 fi

@@ -1,17 +1,18 @@
 #!/bin/bash
-
 # ------ # ------ # ------ # ------ # ------ # ------ # ------ # ------
+#
 #   Uses Rustup to install Rust compiler.
 #   See: https://rustup.rs/
 #
 #   Also installs Just LSP dependency for the Just extension in VS Code.
+#
 # ------ # ------ # ------ # ------ # ------ # ------ # ------ # ------
 
-# Function ------------------------------------------------------------
-# TODO investigate re-enabling rustup update; it compiled from source 157 packages (too much) last time
-# Install Rust language compiler, package management, LSP, etc.
-install_rust() {
+# Source lib scripts
+SCRIPTROOT="$(cd -- "$(dirname -- "${BASH_SOURCE[0]}")" && cd .. && pwd)"
+. "$SCRIPTROOT/scripts/lib/platforms.sh"
 
+install_rust() {
     if command -v rustup &> /dev/null; then
         echo "Run 'rustup update' soon."
         # rustup update             # disabled because it takes too long / several minutes.
@@ -36,15 +37,11 @@ install_rust() {
     echo "cargo-binstall $(cargo binstall -V $non_interactive)"
 
     # Install LSP dependency of Just editor extension
-    if command -v just-lsp &> /dev/null; then
-        echo "$(just-lsp -V)"
-    else
-        echo "Installing Just LSP language server for editor support..."
-        cargo binstall $non_interactive just-lsp
-    fi
+    echo "Installing Just LSP language server for editor support..."
+    cargo binstall $non_interactive just-lsp
 }
 
-# Execute the function if the script is run directly
+# This script can be run independently.
 if [[ "${BASH_SOURCE[0]}" == "${0}" ]]; then
     install_rust "$@"
 fi

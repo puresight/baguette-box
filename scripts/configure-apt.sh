@@ -1,19 +1,15 @@
 #!/bin/bash
-
 # ------ # ------ # ------ # ------ # ------ # ------ # ------ # ------
 #
 #       Functions to install APT sources for APT package repositories.
 #   Supports GPG key management and repository configuration
 #   using the newer DEB822 format (.sources).
 #
-#   Why not just use [software-properties-common](https://packages.debian.org/sid/software-properties-common)?
-#   Because that Ubuntu package will hit stable in Debian 14
-#   or maybe 13 but in 12 it cannot do DEB822.
-#
-#   Dependencies:
-#       none
-#
 # ------ # ------ # ------ # ------ # ------ # ------ # ------ # ------
+
+# Source lib scripts
+SCRIPTROOT="$(cd -- "$(dirname -- "${BASH_SOURCE[0]}")" && cd .. && pwd)"
+. "$SCRIPTROOT/scripts/lib/platforms.sh"
 
 # Function
 _update_package_lists() {
@@ -31,7 +27,6 @@ _update_package_lists() {
 _install_gpg_key() {
     local gpg_url="$1"
     local keyring_file="$2"
-    # echo "${FUNCNAME[0]}"
 
     local keyring_dir=$(dirname "$keyring_file")
     sudo mkdir -p -m 755 "$keyring_dir"
@@ -87,11 +82,15 @@ _add_apt_sources() {
 
 # Function to configure APT
 configure_apt() {
+    if [ "$OS_FAMILY" != "debian" ]; then
+        echo "Skipping APT configuration (non-debian platform)."
+        return 0
+    fi
     _update_package_lists
     _add_apt_sources
 }
 
 # This script can be run independently.
 if [[ "${BASH_SOURCE[0]}" == "${0}" ]]; then
-    configure_apt
+    configure_apt "$@"
 fi

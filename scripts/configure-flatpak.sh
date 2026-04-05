@@ -1,28 +1,17 @@
 #!/bin/bash
-
 # ------ # ------ # ------ # ------ # ------ # ------ # ------ # ------
 #
-#   ⚠ Under Construction ⚠
-#   -- Persistant Problem --
-# 
-# ```log`
-# Flatpak 1.14.10
-# Performing 'scorched earth' reset of Flatpak user data...
-# Adding Flatpak remote 'flathub'...
-# Warning: Could not update extra metadata for 'flathub': GPG verification enabled, but no summary found (check that the configured URL in remote config is correct)
-# Name    Options
-# flathub user
-# Updating appstream data for user remote flathub
-# Error updating: Error updating appstream2: No such ref 'appstream2/x86_64' in remote flathub; Error updating appstream: No such ref 'appstream/x86_64' in remote flathub
-# error: Unable to load summary from remote flathub: GPG verification enabled, but no summary found (check that the configured URL in remote config is correct)
-# ```
+#   Function to configure Flatpak
+#
 # ------ # ------ # ------ # ------ # ------ # ------ # ------ # ------
 
-# Function
-#   dependencies: configure_apt, configure_shell
+# Source lib scripts
+SCRIPTROOT="$(cd -- "$(dirname -- "${BASH_SOURCE[0]}")" && cd .. && pwd)"
+. "$SCRIPTROOT/scripts/lib/platforms.sh"
+
 configure_flatpak() {
-    echo "sorry: flatpak is disabled for troubleshooting."
-    return
+    # echo "sorry: flatpak is disabled for troubleshooting."
+    # return
     _configure_flatpak "$@"
 }
 
@@ -34,7 +23,12 @@ _configure_flatpak() {
     local app_id="${3:-com.github.tchx84.Flatseal}"
     local delay_seconds=5
     local level="user" # not "system"
-    local chromeos_vars=GSK_RENDERER=cairo LIBGL_ALWAYS_SOFTWARE=1 GTK_IM_MODULE=ibus
+    local chromeos_vars="GSK_RENDERER=cairo LIBGL_ALWAYS_SOFTWARE=1 GTK_IM_MODULE=ibus"
+
+    if ! command -v flatpak &> /dev/null; then
+        echo "Warning: flatpak not found. Skipping configuration."
+        return 0
+    fi
 
     flatpak --version
 
@@ -58,25 +52,20 @@ _configure_flatpak() {
 
     # Functional Test: Flatseal, docs https://github.com/tchx84/Flatseal/blob/master/DOCUMENTATION.md
     # Install Flatseal
-    flatpak install --$level -y --noninteractive $remote_name $app_id
+    flatpak install --$level -y --noninteractive "$remote_name" "$app_id"
 
     # Run Flatseal with tmux
-    echo "Expect $app_id to open in $delay_seconds seconds"
-    tmux new-session -d -s background_task \
-        "sleep $delay_seconds && $chromeos_vars flatpak run $app_id > /dev/null 2>&1"
-    tmux ls
-
-    # ---
-    # Functional Test: Bazaar failed.
-    # Install Bazaar
-    # flatpak install -y --user io.github.kolunmi.Bazaar
-    # flatpak override --user io.github.kolunmi.Bazaar --talk-name=org.freedesktop.Flatpak
-    # flatpak override --user io.github.kolunmi.Bazaar --filesystem=/var/scripts/flatpak:ro
-    # Run Bazaar
-    # GSK_RENDERER=cairo LIBGL_ALWAYS_SOFTWARE=1 GTK_IM_MODULE=ibus flatpak run io.github.kolunmi.Bazaar
+    if command -v tmux &> /dev/null; then
+        echo "Expect $app_id to open in $delay_seconds seconds"
+        tmux new-session -d -s background_task \
+            "sleep $delay_seconds && $chromeos_vars flatpak run $app_id > /dev/null 2>&1"
+        tmux ls
+    else
+        echo "Warning: tmux not found. Skipping functional test."
+    fi
 }
 
-# Execute configure_flatpak function if script is run directly
+# This script can be run independently.
 if [[ "${BASH_SOURCE[0]}" == "${0}" ]]; then
     configure_flatpak "$@"
 fi

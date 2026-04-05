@@ -30,7 +30,7 @@ For simplicity and ease of discovery, a single, monolithic `justfile` will be us
 **Goal:** Modularize the shell functions.
 
 - Each public task function from `scripts/index.sh` (e.g., `install_code`) will be extracted into its own `kebab-case` script in the `scripts/` directory (e.g., `scripts/install-code.sh`). The function name inside the script will remain `snake_case` (e.g., `function install_code { ... }`).
-- To allow direct execution by `just`, each extracted script must include an execution block at the bottom (e.g., `if [[ "${BASH_SOURCE[0]}" == "${0}" ]]; then install_code "$@"; fi`). This perfectly follows the pattern already established in `scripts/install-apt-packages.sh`.
+- To allow direct execution by `just`, each extracted script must include an execution block at the bottom (e.g., `if [[ "${BASH_SOURCE[0]}" == "${0}" ]]; then install_code "$@"; fi`). This perfectly follows the pattern already established in `./scripts/install-apt-packages.sh`.
 - Each justfile recipe must be updated to use direct execution once a script is migrated.
-- The `scripts/lib/` directory will hold shared, non-executable library functions that are sourced by the recipe scripts.
+- The `./scripts/lib/` directory will hold shared, non-executable library functions that are sourced by the recipe scripts.
 - `just` recipes will be updated to call the new, modular `kebab-case` scripts in `scripts/` directly, making them more efficient and self-contained.

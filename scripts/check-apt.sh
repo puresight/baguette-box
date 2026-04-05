@@ -1,14 +1,29 @@
 #!/bin/bash
+# ------ # ------ # ------ # ------ # ------ # ------ # ------ # ------
+#
+#       Function to check APT status
+#
+# ------ # ------ # ------ # ------ # ------ # ------ # ------ # ------
 
-# Function
+# Source lib scripts
+SCRIPTROOT="$(cd -- "$(dirname -- "${BASH_SOURCE[0]}")" && cd .. && pwd)"
+. "$SCRIPTROOT/scripts/lib/platforms.sh"
+
 check_apt() {
-    if ! command -v apt &> /dev/null; then
-        printf "❌ Error: APT not found; this recipe was designed for Debian-based systems.\n" >&2
-        exit 1
+    if [ "$OS_FAMILY" != "debian" ]; then
+        echo "Skipping APT check (non-debian platform)."
+        return 0
     fi
+
+    # Check for lock files
+    if lsof /var/lib/dpkg/lock-frontend >/dev/null 2>&1 || lsof /var/lib/apt/lists/lock >/dev/null 2>&1; then
+        echo "❌ Error: APT is currently locked by another process." >&2
+        return 1
+    fi
+    echo "✓ APT is available."
 }
 
-# Execute check_apt function if script is run directly
+# This script can be run independently.
 if [[ "${BASH_SOURCE[0]}" == "${0}" ]]; then
     check_apt "$@"
 fi

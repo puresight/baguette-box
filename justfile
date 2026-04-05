@@ -39,7 +39,7 @@ code: check-online configure-code
 
 # For test purposes only
 [group('Test')]
-_test-debian: check-online install-apt-packages configure-shell install-dotnet install-tools-terminal install-mc configure-flatpak install-homebrew install-rust install-uv install-java install-kubectl install-viteplus install-go install-ruby install-jekyll install-rails install-ollama install-goose install-ansible configure-podman display-environment display-versions
+_test-debian: check-online install-apt-packages configure-shell install-dotnet install-tools-terminal install-mc configure-flatpak install-homebrew install-rust install-uv install-java install-kubectl install-viteplus install-go install-ruby install-jekyll install-rails install-goose install-ansible configure-podman display-environment display-versions
     @printf "\nRemember to restart your shell environment before proceeding.\n"
 
 # For test purposes only
@@ -55,8 +55,7 @@ _test-ublue: check-online install-homebrew install-homebrew-packages install-mis
 [group('Frameworks')]
 install-jekyll: install-ruby
     @printf "\n$a install-jekyll $a\n"
-    @. scripts/index.sh && \
-        install_jekyll
+    @./scripts/install-jekyll.sh
 
 # Install Microsoft .NET SDK using mise
 [group('Languages')]
@@ -101,7 +100,7 @@ install-stockyard: install-mise
 
 # Install Ollama
 [group('AI')]
-install-ollama version="latest": install-mise
+install-ollama version="0.20.2": install-mise
     @printf "\n$a install-ollama $a\n"
     mise use -g ollama@{{version}}
 
@@ -110,15 +109,13 @@ install-ollama version="latest": install-mise
 [group('IDE')]
 install-goose:
     @printf "\n$a install-goose $a\n"
-    @. scripts/index.sh && \
-        install_goose
+    @./scripts/install-goose.sh
 
 # Install terminal tools
 [group('Tools')]
 install-tools-terminal: install-mise
     @printf "\n$a install-tools-terminal $a\n"
-    @. scripts/index.sh && \
-        install_terminal_tools
+    @./scripts/install-terminal-tools.sh
 
 # Install a Nerd Font
 [group('Tools')]
@@ -133,7 +130,7 @@ install-ansible: _install-ansible-from-uv display-environment
 
 # Private: install Ansible using uv
 _install-ansible-from-uv: install-uv
-    @. scripts/index.sh && \
+    @. scripts/lib/uv.sh && \
         install_using_uv_with_executables_from 'ansible' 'ansible-core,ansible-lint' 'localhost -m ping'
 
 #%#%#%#%#%#%#%#%#%#%#%#%#%#%#%#%#%#%#%#%#%#%#%#%#%#%#%#%#%#%#%#%#%#%#
@@ -145,21 +142,19 @@ _install-ansible-from-uv: install-uv
 [group('Debian only')]
 configure-shell: install-apt-packages install-font install-dotnet
     @printf "\n$a configure-shell $a\n"
-    @. scripts/index.sh && \
-        configure_shell
+    @./scripts/configure-shell.sh
 
 # Configure Flatpak
 [group('Debian only')]
 configure-flatpak: install-apt-packages
     @printf "\n$a configure-flatpak $a\n"
-    @. scripts/configure-flatpak.sh
+    @./scripts/configure-flatpak.sh
 
 # Configure Podman
 [group('Debian only')]
 configure-podman: install-apt-packages
     @printf "\n$a configure-podman $a\n"
-    @. scripts/index.sh && \
-        configure_podman
+    @./scripts/configure-podman.sh
 
 # Check Debian APT
 [group('Debian only')]
@@ -196,36 +191,31 @@ check-online:
 [group('Information')]
 display-environment:
     @printf "\n$a display-environment $a\n"
-    @. scripts/index.sh && \
-        display_environment
+    @./scripts/display-environment.sh
 
 # Display versions
 [group('Information')]
 display-versions:
     @printf "\n$a display-versions $a\n"
-    @. scripts/index.sh && \
-        display_versions
+    @./scripts/display-versions.sh
 
 # Install Homebrew
 [group('Managers')]
 install-homebrew:
     @printf "\n$a install-homebrew $a\n"
-    @. scripts/index.sh && \
-        install_homebrew
+    @./scripts/install-homebrew.sh
 
 # Install homebrew packages
 [group('Managers')]
 install-homebrew-packages: install-homebrew
     @printf "\n$a install-homebrew-packages $a\n"
-    @. scripts/index.sh && \
-        install_homebrew_packages
+    @./scripts/install-homebrew-packages.sh
 
 # Install mise-en-place system
 [group('Managers')]
 install-mise:
     @printf "\n$a install-mise $a\n"
-    @. scripts/index.sh && \
-        install_mise
+    @./scripts/install-mise.sh
 
 # Install gomplate for using JSON, YAML, & text templates
 [group('Tools')]
@@ -293,15 +283,13 @@ install-ruby version="sub-0.1:latest": install-mise
 [group('Frameworks')]
 install-rails: install-ruby
     @printf "\n$a install-rails $a\n"
-    @. scripts/index.sh && \
-        install_rails
+    @./scripts/install-rails.sh
 
 # Install uv, the Python package manager
 [group('Managers')]
 install-uv:
     @printf "\n$a install-uv $a\n"
-    @. scripts/index.sh && \
-        install_uv
+    @./scripts/install-uv.sh
 
 # Install kubectl using mise
 [group('Tools')]
@@ -348,21 +336,18 @@ install-scala version="latest": install-java
 [group('IDE')]
 install-code updates="code/argv.json":
     @printf "\n$a install-code $a\n"
-    @. scripts/index.sh && \
-        install_code {{updates}}
+    @./scripts/install-code.sh {{updates}}
 
 # Install Code extensions
 [group('Managers')]
 install-code-extensions extensions="code/code.Extensions": install-code
     @printf "\n$a install-code-extensions $a\n"
-    @. scripts/index.sh && \
-        install_code_extensions {{extensions}}
+    @./scripts/install-code-extensions.sh {{extensions}}
 
 # Configure Code
 [group('Tools')]
 configure-code updates="code/user-settings.json": install-code-extensions install-viteplus
     @printf "\n$a configure-code $a\n"
-    @. scripts/index.sh && \
-        configure_code {{updates}}
+    @./scripts/configure-code.sh {{updates}}
 
 #%#%#%#%#%#%#%#%#%#%#%#%#%#%#%#%#%#%#%#%#%#%#%#%#%#%#%#%#%#%#%#%#%#%#
