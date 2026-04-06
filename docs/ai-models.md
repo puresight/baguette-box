@@ -6,14 +6,14 @@ Large Language Models (LLMs) have evolved from cloud-only curiosities into versa
 
 While pay-as-you-go APIs are ideal for production applications, many developers and small teams opt for monthly subscriptions that provide priority access to the most advanced models for daily coding, research, and prototyping. These services often bundle chat interfaces, higher usage limits, and early access to new features, making them a cost-effective way to integrate cutting-edge AI into the development workflow.
 
-- **[Anthropic](https://www.anthropic.com/):** has their [Claude Pro](https://claude.ai/pro) subscription, giving users priority access to its latest models like _Claude Sonnet_. It's highly regarded for its large context window, strong reasoning, and coding capabilities.
-- **[OpenAI](https://openai.com/):** The [ChatGPT Plus](https://openai.com/chatgpt) subscription is a developer staple, providing access to the flagship GPT-4o model, advanced data analysis, image generation with DALL-E 3, and higher message limits.
-- **[Google](https://ai.google/):** The [Google One AI Premium](https://one.google.com/ai-premium) plan includes access to [Gemini Advanced](https://gemini.google.com/advanced), which uses its most powerful models for complex tasks. It's deeply integrated into the Google ecosystem.
-- **[GitHub Copilot](https://github.com/features/copilot):** is the Microsoft tool for developers, this subscription integrates AI directly into the IDE (like VS Code) for autocompletion, refactoring, and in-editor chat, speeding up the coding process.
+- **[Anthropic](https://www.anthropic.com/):** has their [Claude Pro](https://claude.com/pricing/pro) subscription, giving users priority access to its latest models like _Claude Sonnet_. It's highly regarded for its large context window, strong reasoning, and coding capabilities.
+- **[OpenAI](https://openai.com/):** The [ChatGPT Plus](https://chatgpt.com/pricing) subscription is a developer staple, providing access to the flagship GPT-4o model, advanced data analysis, image generation with DALL-E 3, and higher message limits.
+- **[Google](https://ai.google/):** The [Google One AI Premium plan](https://one.google.com/about/google-ai-plans/) includes access to [Gemini Advanced](https://gemini.google.com/advanced), which uses its most powerful models for complex tasks. It's deeply integrated into the Google ecosystem.
+- **Microsoft:** [GitHub Copilot subscription](https://github.com/features/copilot/plans) integrates AI directly into VS Code etc for autocompletion, refactoring, and in-editor chat.
 
 ## For Researchers
 
-- **[Perplexity](https://www.perplexity.ai/):** Its Pro subscription is tailored for research, combining a powerful conversational AI with real-time web search and the ability to choose from various underlying models (including OpenAI's and Anthropic's), making it excellent for sourcing information and citations.
+- **[Perplexity](https://www.perplexity.ai/):** Its [Pro subscription](https://www.perplexity.ai/help-center/en/articles/11187416-which-perplexity-subscription-plan-is-right-for-you) is tailored for research, combining a powerful conversational AI with real-time web search and the ability to choose from various underlying models (including OpenAI's and Anthropic's), making it excellent for sourcing information and citations.
 
 ## For Media Producers
 
