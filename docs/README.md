@@ -5,7 +5,7 @@ To maintain workstation integrity, only install code from reputable & verified a
 ## How to Run Recipes
 
 - ↪️ View our menu: `just`
-- ↪️ Bootstrap your new Debian system: `just debian`
+- ↪️ Bootstrap your new Debian system: `just bootstrap-debian`
 - ↪️ Setup VS Code: `just code`
 
 Our recipes are idempotent, so you can run them again, anytime.
@@ -82,7 +82,7 @@ Runs `apt install` on packages listed in the [`apt/apt.Packages`](../apt/apt.Pac
 <!-- --
 
 - [Zsh](https://zsh.sourceforge.io/) shell
-- [Rclone](.//rclone.md) is a tool for mounting nearly any cloud service as a local file system
+- [Rclone](./rclone.md) is a tool for mounting nearly any cloud service as a local file system
 - [aws CLI](https://docs.aws.amazon.com/cli/) ☁ tools
 - [gcloud CLI](https://cloud.google.com/cli) ☁ tools
 - [kubectl](https://kubernetes.io/docs/reference/kubectl/) tool
@@ -104,7 +104,7 @@ installs utilities such as
 
 #### `install-uv`
 
-installs [UV](.//uv.md)
+installs [UV](./uv.md)
 (the unified tool for the Python ecosystem)
 and Python.
 
@@ -199,7 +199,7 @@ installs [CLI tools](./cli-tools.md) like
 
 #### `configure-podman`
 
-configures [Podman](.//podman.md)
+configures [Podman](./podman.md)
 
 #### `install-homebrew`
 
@@ -208,7 +208,10 @@ installs (or updates)
 
 #### `install-homebrew-packages`
 
-uses Homebrew to install packages in the [`homebrew/homebrew.dep`](./homebrew.dep) file
+uses Homebrew to install packages for your platform
+
+- Debian-based systems: use the [`homebrew/debian.Brewfile`](./debian.Brewfile) file
+- Universal Blue systems: use the [`homebrew/ublue.Brewfile`](./ublue.Brewfile) file
 
 #### `display-environment`
 

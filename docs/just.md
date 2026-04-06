@@ -1,10 +1,6 @@
 # Just
 
-Once in this repo's root directory, using `just` to set up your environment is as easy as 1-2-3:
-
-1. To see a list of available recipes and tasks, run: `just`
-1. Bootstrap your new system: `just bootstrap`
-1. Install VS Code: `just code`
+Once in this repo's root directory, using `just` to set up your environment is easy.
 
 ## About Just
 

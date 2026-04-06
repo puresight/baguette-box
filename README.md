@@ -90,7 +90,7 @@ Next, prepare your new system:
 Finally, proceed to set up your environment.
 
 - ↪️ View the menu by typing: `just`
-- ↪️ Run recipe to bootstrap your new Debian system: `just debian`
+- ↪️ Run recipe to bootstrap your new Debian system: `just bootstrap-debian`
 - ↪️ Run recipe to install VS Code: `just code`
 
 Your system configuration will be ready in a few minutes.

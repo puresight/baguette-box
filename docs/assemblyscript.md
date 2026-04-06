@@ -1,7 +1,7 @@
 # AssemblyScript
 
 [AssemblyScript](https://www.assemblyscript.org/) is a programming language that provides a TypeScript-like syntax for compiling directly to **[WebAssembly](./wasm.md "wasm")**.
-It is designed for developers already familiar with [TypeScript](./node.md) who want to create high-performance web applications without the steep learning curve of lower-level languages like Rust or C++.
+It is designed for developers already familiar with [TypeScript](./typescript.md) who want to create high-performance web applications without the steep learning curve of lower-level languages like Rust or C++.
 
 By leveraging a strict subset of TypeScript's features, AssemblyScript produces lean, optimized Wasm modules ideal for performance-critical tasks in the browser, such as game development, data processing, and complex calculations.
 

@@ -5,7 +5,7 @@
 Aider can understand and modify multiple files simultaneously to complete complex tasks. Aider has broad model support. Aider creates a [repo map](https://aider.chat/docs/repomap.html) of your codebase, which provides the AI with deep context of how functions & classes relate.
 
 - ↪️ Run recipe: `just install-homebrew-packages`
-- ✏️ Add in: [`homebrew.dep`](../homebrew/homebrew.dep)
+- ✏️ Add in: [`debian.Brewfile`](../homebrew/debian.Brewfile) or [`ublue.Brewfile`](../homebrew/ublue.Brewfile)
 
 ## Pairing
 
