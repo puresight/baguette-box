@@ -1,6 +1,6 @@
 # AI Models
 
-Large Language Models (LLMs) have evolved from cloud-only curiosities into versatile tools integrated across the software stack. On developer workstations, they function as agentic pair programmers, capable of understanding a local codebase to refactor files and automate commits. For consumer applications, small, efficient models are increasingly run directly on-device to power features like intelligent text completion or photo editing without a network connection. In the cloud, providers leverage Content Delivery Networks (CDNs) to serve low-latency inference at the edge, enabling real-time AI features in web applications with global reach.
+Large Language Models (LLMs) have evolved from cloud-only curiosities into versatile tools integrated across the software stack. On developer workstations, they function as agentic pair programmers, capable of understanding a local codebase to refactor files and automate commits. For consumer applications, small, efficient models are increasingly run directly on-device to power features like intelligent text completion or photo editing without a network connection. In the cloud, providers leverage Content Delivery Networks (CDN's) to serve low-latency inference at the edge, enabling real-time AI features in web applications with global reach.
 
 ## For Software Developers
 
@@ -9,7 +9,7 @@ While pay-as-you-go APIs are ideal for production applications, many developers 
 - **[Anthropic](https://www.anthropic.com/):** has their [Claude Pro](https://claude.com/pricing/pro) subscription, giving users priority access to its latest models like _Claude Sonnet_. It's highly regarded for its large context window, strong reasoning, and coding capabilities.
 - **[OpenAI](https://openai.com/):** The [ChatGPT Plus](https://chatgpt.com/pricing) subscription is a developer staple, providing access to the flagship GPT-4o model, advanced data analysis, image generation with DALL-E 3, and higher message limits.
 - **[Google](https://ai.google/):** The [Google One AI Premium plan](https://one.google.com/about/google-ai-plans/) includes access to [Gemini Advanced](https://gemini.google.com/advanced), which uses its most powerful models for complex tasks. It's deeply integrated into the Google ecosystem.
-- **Microsoft:** [GitHub Copilot subscription](https://github.com/features/copilot/plans) integrates AI directly into VS Code etc for autocompletion, refactoring, and in-editor chat.
+- **[Microsoft](https://www.microsoft.com/ai):** [GitHub Copilot subscription](https://github.com/features/copilot/plans) integrates AI directly into VS Code etc for autocompletion, refactoring, and in-editor chat.
 
 ## For Researchers
 
@@ -30,6 +30,21 @@ For solopreneurs and small media companies, generative AI has become an indispen
   - [Adobe Firefly](https://www.adobe.com/products/firefly.html) (in Adobe Creative Cloud) allows creators to use generative AI within their existing Photoshop or Premiere Pro workflows. It's trained on commercially safe data, making it a reliable choice for advertising.
 - **Scripting & Strategy:**
   - ChatGPT, Claude, and Gemini: These general-purpose models are invaluable for brainstorming video ideas, writing and refining scripts, generating SEO-friendly titles and descriptions, and drafting social media posts to promote content.
+
+## For Cloud Apps on the Edge
+
+In the cloud, providers leverage Content Delivery Networks (CDN's) to serve low-latency inference at the edge, enabling real-time AI features in web applications with global reach.
+The major hyperscalers (AWS, Google Cloud, and Azure) have shifted their architecture to compete directly with CDN's by offering "Edge Functions" and "Serverless GPU" services. While Vercel focuses on developer experience and Cloudflare on a massive global network of small points of presence, the hyperscalers leverage their massive GPU "Regional Edges" to handle heavier AI workloads.
+
+- [Cloudflare Workers AI](https://developers.cloudflare.com/workers-ai/)
+- [Vercel AI SDK](https://ai-sdk.dev/docs/introduction)
+- Amazon
+  - [AWS Lambda Edge](https://aws.amazon.com/lambda/edge/): This is the direct competitor to Cloudflare Workers. it allows you to run Node.js or Python code at AWS CloudFront locations globally. In 2026, it is commonly used for AI tasks like request routing, A/B testing models, and prompt sanitization.
+- Google
+  - [GCP Cloud Functions (2nd Gen)](https://cloud.google.com/blog/products/serverless/cloud-functions-2nd-generation-now-generally-available): Competes with Cloudflare Workers. It uses the same "Min-instances" technology to eliminate cold starts, making it viable for real-time AI API middleware.
+- Microsoft Azure
+  - [Azure Static Web Apps](https://learn.microsoft.com/en-us/azure/static-web-apps/overview) (SWA): The direct competitor to Vercel for frontend-heavy AI apps. It integrates seamlessly with Azure Functions for back-end AI logic and has built-in "First-class" support for the Azure OpenAI Service.
+  - [Azure Functions (Flex Consumption)](https://learn.microsoft.com/en-us/azure/azure-functions/flex-consumption-plan): A 2026 evolution that allows for high-concurrency AI processing. It competes with Cloudflare’s "Dedicated Pools" by providing guaranteed memory and CPU for token-heavy LLM streaming.
 
 ## Tiny Open LLM's For Local Development
 
