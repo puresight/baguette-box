@@ -197,7 +197,7 @@ for the zsh and pwsh shells.
 installs [CLI tools](./cli-tools.md) like
 [fzf](https://junegunn.github.io/fzf/) & [zoxide](https://zoxide.org/)
 
-#### `configure-podman`
+#### `configure-podman-chromeos`
 
 configures [Podman](./podman.md)
 

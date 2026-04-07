@@ -39,12 +39,12 @@ code: check-online configure-code
 
 # For test purposes only
 [group('Test')]
-_test-debian: check-online install-apt-packages configure-shell install-dotnet install-tools-terminal install-mc configure-flatpak install-homebrew install-rust install-uv install-java install-kubectl install-viteplus install-go install-ruby install-jekyll install-rails install-goose install-ansible configure-podman display-environment display-versions
+_test-debian: check-online install-apt-packages configure-shell install-dotnet install-tools-terminal install-mc configure-flatpak install-homebrew install-rust install-uv install-java install-kubectl install-viteplus install-go install-ruby install-jekyll install-rails install-goose install-ansible display-environment display-versions
     @printf "\nRemember to restart your shell environment before proceeding.\n"
 
 # For test purposes only
 [group('Test')]
-_test-ublue: check-online install-homebrew install-homebrew-packages install-mise install-gomplate install-mc install-uv install-wasmer install-stockyard install-ollama install-goose install-kubectl install-java install-kotlin install-scala install-go install-rust install-ruby install-rails  install-viteplus install-gemini display-environment display-versions
+_test-ublue: check-online install-homebrew install-homebrew-packages install-mise install-gomplate install-mc install-uv install-wasmer install-stockyard install-java install-kotlin install-scala install-go install-rust install-ruby install-rails  install-viteplus display-environment display-versions
     @printf "\nRemember to restart your shell environment before proceeding.\n"
 
 #%#%#%#%#%#%#%#%#%#%#%#%#%#%#%#%#%#%#%#%#%#%#%#%#%#%#%#%#%#%#%#%#%#%#
@@ -152,9 +152,9 @@ configure-flatpak: install-apt-packages
 
 # Configure Podman
 [group('Debian only')]
-configure-podman: install-apt-packages
-    @printf "\n$a configure-podman $a\n"
-    @./scripts/configure-podman.sh
+configure-podman-chromeos: install-apt-packages
+    @printf "\n$a configure-podman-chromeos $a\n"
+    @./scripts/configure-podman-chromeos.sh
 
 # Check Debian APT
 [group('Debian only')]

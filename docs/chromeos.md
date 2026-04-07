@@ -37,6 +37,8 @@ Cloud drives make online storage easy & affordable:
 
 If you want to run Podman in rootless mode on [Crostini](https://www.chromium.org/chromium-os/developer-library/guides/containers/containers-and-vms/) (the Linux environment for ChromeOS), you will encounter challenges, because you're running in a [nested container](https://ntk.me/2021/05/14/podman-in-crostini/), _an LXC container running inside ChromeOS._
 
+- ↪️ Run recipe: `just configure-podman-chromeos`
+
 #### Challenges
 
 - **LXC Nesting Restrictions:** By default, Crostini’s LXC container does not allow further nesting. To run Podman containers inside it, you must enable security nesting by setting `security.nesting` to `true`.
