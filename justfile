@@ -44,7 +44,7 @@ _test-debian: check-online install-apt-packages configure-shell install-dotnet i
 
 # For test purposes only
 [group('Test')]
-_test-ublue: check-online install-homebrew install-homebrew-packages install-mise install-gomplate install-mc install-uv install-wasmer install-stockyard install-java install-kotlin install-scala install-go install-rust install-ruby install-rails  install-viteplus display-environment display-versions
+_test-ublue: check-online check-fedora install-homebrew install-homebrew-packages install-mise install-gomplate install-mc install-uv install-wasmer install-stockyard install-java install-kotlin install-scala install-go install-rust install-ruby install-rails  install-viteplus display-environment display-versions
     @printf "\nRemember to restart your shell environment before proceeding.\n"
 
 #%#%#%#%#%#%#%#%#%#%#%#%#%#%#%#%#%#%#%#%#%#%#%#%#%#%#%#%#%#%#%#%#%#%#
@@ -125,17 +125,20 @@ install-font id="JetBrainsMono" version="v3.3.0":
 
 # Install Ansible
 [group('Tools')]
-install-ansible: _install-ansible-from-uv display-environment
-    @printf "\nAnsible CLI should be ready to use."
-
-# Private: install Ansible using uv
-_install-ansible-from-uv: install-uv
+install-ansible:
+    @printf "\n$a install-ansible $a\n"
     @. scripts/lib/uv.sh && \
         install_using_uv_with_executables_from 'ansible' 'ansible-core,ansible-lint' 'localhost -m ping'
 
 #%#%#%#%#%#%#%#%#%#%#%#%#%#%#%#%#%#%#%#%#%#%#%#%#%#%#%#%#%#%#%#%#%#%#
 #%# -- Regular Recipes : Debian Only --
 #%#%#%#%#%#%#%#%#%#%#%#%#%#%#%#%#%#%#%#%#%#%#%#%#%#%#%#%#%#%#%#%#%#%#
+
+# Check Debian APT
+[group('Debian only')]
+check-debian:
+    @printf "\n$a check-debian $a\n"
+    @./scripts/check-apt.sh
 
 # TODO Refactor function configure_shell to remove dependency on install-dotnet
 # Configure shells
@@ -155,12 +158,6 @@ configure-flatpak: install-apt-packages
 configure-podman-chromeos: install-apt-packages
     @printf "\n$a configure-podman-chromeos $a\n"
     @./scripts/configure-podman-chromeos.sh
-
-# Check Debian APT
-[group('Debian only')]
-check-debian:
-    @printf "\n$a check-debian $a\n"
-    @./scripts/check-apt.sh
 
 # Configure APT sources
 [group('Debian only')]
@@ -351,3 +348,9 @@ configure-code updates="code/user-settings.json": install-code-extensions instal
     @./scripts/configure-code.sh {{updates}}
 
 #%#%#%#%#%#%#%#%#%#%#%#%#%#%#%#%#%#%#%#%#%#%#%#%#%#%#%#%#%#%#%#%#%#%#
+
+# Check Fedora RPM
+[group('Fedora only')]
+check-fedora:
+    @printf "\n$a check-fedora $a\n"
+    @./scripts/check-rpm.sh

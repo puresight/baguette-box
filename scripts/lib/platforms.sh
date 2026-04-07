@@ -55,7 +55,7 @@ check_crostini() {
 }
 
 # Try it out
-[ $(check_crostini) -ge 4 ] && echo " *** *** *** *** *** System is probably a Chromebook. *** *** *** *** ***"
+[ $(check_crostini) -ge 1 ] && printf "\n*** *** *** ChromeOS platform detected *** *** ***\n\n"
 
 # if exists, source the /etc/os-release
 [[ -f /etc/os-release ]] && . /etc/os-release

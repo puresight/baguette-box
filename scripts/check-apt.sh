@@ -10,11 +10,6 @@ SCRIPTROOT="$(cd -- "$(dirname -- "${BASH_SOURCE[0]}")" && cd .. && pwd)"
 . "$SCRIPTROOT/scripts/lib/platforms.sh"
 
 check_apt() {
-    if [ "$OS_FAMILY" != "debian" ]; then
-        echo "Skipping APT check (non-debian platform)."
-        return 0
-    fi
-
     # Check for lock files
     if lsof /var/lib/dpkg/lock-frontend >/dev/null 2>&1 || lsof /var/lib/apt/lists/lock >/dev/null 2>&1; then
         echo "❌ Error: APT is currently locked by another process." >&2

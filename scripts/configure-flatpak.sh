@@ -9,15 +9,9 @@
 SCRIPTROOT="$(cd -- "$(dirname -- "${BASH_SOURCE[0]}")" && cd .. && pwd)"
 . "$SCRIPTROOT/scripts/lib/platforms.sh"
 
-configure_flatpak() {
-    # echo "sorry: flatpak is disabled for troubleshooting."
-    # return
-    _configure_flatpak "$@"
-}
-
 # Function
 #   TODO 2026/3 Bazaar app failed tests
-_configure_flatpak() {
+configure_flatpak() {
     local remote_name="${1:-flathub}"
     local remote_url="${2:-'https://dl.flathub.org/repo/flathub.flatpakrepo'}"
     local app_id="${3:-com.github.tchx84.Flatseal}"
@@ -31,6 +25,10 @@ _configure_flatpak() {
     fi
 
     flatpak --version
+
+    # TODO troubleshoot and test Flatpak on ChromeOS
+    echo "This recipe is down for maintenance."
+    return 0 ###
 
     # On some systems, particularly Crostini on Chromebooks, the flatpak cache or
     # installation can become corrupted. This can lead to GPG and ref errors.
