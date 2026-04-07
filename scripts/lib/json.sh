@@ -15,8 +15,8 @@ update_json() {
     npm install -g -y jsonc-cli
 
     echo "${FUNCNAME[0]}"
-    echo "Source: $source_file"
-    echo "Target: $target_file"
+    echo "- Source: $source_file"
+    echo "- Target: $target_file"
 
     # Files exist?
     if [[ ! -f "$source_file" && ! -f "$target_file" ]]; then

@@ -35,7 +35,8 @@ bootstrap-debian: check-online install-apt-packages configure-shell install-uv i
 # Install VS Code with settings & extensions
 [group('* * * Featured * * *')]
 code: check-online configure-code
-    @printf "\nVS Code is ready to use.\n"
+    @printf "✓ code "
+    @code --version
 
 # For test purposes only
 [group('Test')]
@@ -242,7 +243,7 @@ install-gemini: install-viteplus
         echo "Installing Gemini CLI globally..."
         vp install -g @google/gemini-cli
     else
-        printf "\ninstalled: Gemini CLI version $(gemini --version 2>/dev/null | tail -n 1)\n"
+        printf "\n✓ exists: Gemini CLI version $(gemini --version 2>/dev/null | tail -n 1)\n"
     fi
 
 # Install Rust language using Rustup
@@ -270,11 +271,12 @@ install-go version="latest": install-mise
 install-ruby version="sub-0.1:latest": install-mise
     #!/bin/bash
     printf "\n$a install-ruby $a\n"
-    mise settings ruby.compile=false # Precompiled ruby will be the default in 2026.8.0.
-    # mise settings ruby.compile=1 # if precompiled has trouble
-    mise use -g "ruby@{{version}}" && \
-        eval "$(mise hook-env)" && \
-        ruby --version
+    mise settings ruby.compile=false  # Precompiled ruby will be the default in 2026.8.0.
+    # mise settings ruby.compile=1    # if precompiled has trouble
+    mise use -g "ruby@{{version}}"
+    eval "$(mise hook-env)"
+    printf "✓ "
+    ruby --version
 
 # Install Rails framework
 [group('Frameworks')]
