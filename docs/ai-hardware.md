@@ -1,5 +1,7 @@
 # AI Hardware
 
+The massive parallel computations required in this new era of AI are a poor fit for the traditional CPU's of yesteryear. This is driving a transformation in computer architecture, toward making GPU's integral and high-bandwidth memory common. This architecture was formerly featured only in advanced gaming workstations, military simulation servers, or CGI media production labs.
+
 ## Apple
 
 Local inference on Apple hardware is defined by Apple Silicon (M-series chips) and its Unified Memory Architecture (UMA). Unlike traditional PCs where the GPU has separate VRAM, UMA allows the CPU and GPU to share a single pool of high-speed memory. This is a major advantage for AI, as it eliminates the VRAM bottleneck; a MacBook Pro with 64GB of RAM can dedicate nearly all of it to a model, enabling users to run very large models (70B+ parameters) locally. The software foundation is the [Metal](https://developer.apple.com/metal/) framework for low-level GPU programming and Core ML for deploying optimized models. The ecosystem is rapidly maturing with tools like Apple's own MLX framework and community projects like [llama.cpp](https://llama-cpp.com/) that are highly optimized for the platform.
