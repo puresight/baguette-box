@@ -2,7 +2,7 @@
 
 Mission: We are in the process of testing all recipes on Fedora Atomic Desktop distro in the Universal Blue `ublue` project. The specific variant is called _Bluefin_ DX.
 
-Scope: We aim to support all ublue variants, even those less specialized for developers, especially and including the most popular variant, _Bazzite_ -- which is focused on gamers. Gamers are power users. Note that gamer hardware is more likely in 2026 to have GPU's & VRAM (or unified memory architecture) that can be exploited for running local LLM's.
+Scope: We aim to support all [ublue](https://universal-blue.org/) variants, even those less specialized for developers, especially and including the most popular variant, _Bazzite_ -- which is focused on gamers. Gamers are power users. Note that gamer hardware is more likely in 2026 to have GPU's & VRAM (or unified memory architecture) that can be exploited for running local LLM's.
 
 Test equipment: The specific hardware `/etc/os-release` for testing has these attributes:
 
