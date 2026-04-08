@@ -1,6 +1,6 @@
 # Baguette Box &nbsp; 🥖🥖🥖
 
-sets up an [AI](./docs/ai.md)-enabled developer environment on
+sets up an ✨[AI](./docs/ai.md)-enabled developer environment on
 [Debian](https://www.debian.org/) (like
 [ChromeOS](./docs/chromeos.md),
 [Ubuntu](https://docs.ubuntu.com/),
@@ -35,14 +35,6 @@ Here you will find tools to do software development, whether you build for [Web]
 - [WebAssembly](./docs/wasm.md)
 - [Rust](./docs/rust.md)
 - [Go](./docs/go.md)
-
-#### Pairing & Agentic AI✨
-
-- [Google Antigravity](https://antigravity.google/docs/home "Be an architect/manager of agents") IDE
-- _Gemini Code Assist_ and _Roo Code_ in [VS Code](./code/README.md) IDE
-- _Gemini CLI_ via [Vite+](./docs/viteplus.md)
-- Block's [Goose](https://block.github.io/goose/docs/category/guides "Agentic system designed to automate complex development tasks from start to finish") CLI
-- [Aider](./docs/aider.md "writes Git commits for every edit") CLI via [Homebrew](./homebrew/README.md)
 
 #### CLI
 
