@@ -14,14 +14,12 @@ display_versions() {
     # bash --version
     # zsh --version
     if command -v pwsh &>/dev/null; then printf "$(which pwsh) $(pwsh --version)\n"; fi
-
     # -- Tools --
     # mise --version
     if command -v gcloud &> /dev/null; then printf "$(which gcloud) $(gcloud --version | head -n 1)\n"; fi # FIXME too verbose: we just want the main gcloud version
     if command -v aws &>/dev/null; then printf "$(which aws) $(aws --version)\n"; fi
     if command -v gh &> /dev/null; then printf "$(which gh) $(gh --version | head -n 1)\n"; fi # FIXME too verbose: just the GH version please
-    # if command -v mc &> /dev/null; then printf "$(which mc) $(mc --version | head -n 1)\n"; fi # FIXME too verbose: just the GH version please
-
+    if command -v mc &> /dev/null; then printf "$(which mc) \n"; fi
     # -- Languages --
     if command -v uv &>/dev/null; then printf "$(which uv) $(uv --version)\n"; fi
     if command -v python3 &>/dev/null; then printf "$(which python3) $(python3 --version)\n"; fi
@@ -31,12 +29,17 @@ display_versions() {
     if command -v cargo &>/dev/null; then printf "cargo-binstall $(cargo binstall -V --no-confirm --disable-telemetry)\n"; fi
     if command -v go &>/dev/null; then printf "$(which go) $(go version)\n"; fi
     if command -v ruby &>/dev/null; then printf "$(which ruby) $(ruby --version)\n"; fi
-    if command -v javac &>/dev/null; then printf "$(which javac) $(javac -version 2>&1)\n"; fi
-    # if command -v scala &>/dev/null; then printf "$(which scala) $(scala -version 2>&1)\n"; fi
+    if command -v javac &>/dev/null; then printf "$(which javac) \n"; fi
     if command -v kotlinc &>/dev/null; then printf "$(which kotlinc) $(kotlinc -version 2>&1)\n"; fi
     if command -v dotnet &>/dev/null; then printf "$(which dotnet) $(dotnet --version)\n"; fi
-    if command -v kubectl &>/dev/null; then printf "$(which kubectl) $(kubectl version --client)\n"; fi
-
+    if command -v scala &>/dev/null; then
+        local scala_version="$(scala -version 2>&1)"
+        printf "$(which scala) ${scala_version//$'\n'/ }\n"
+    fi
+    if command -v kubectl &>/dev/null; then
+        local kubectl_version="$(kubectl version --client)"
+        printf "$(which kubectl) ${kubectl_version//$'\n'/ }\n"
+    fi
     # -- Frontend --
     # if command -v vp &>/dev/null; then printf "$(which vp) $(vp --version)\n"; fi
     if command -v node &>/dev/null; then printf "$(which node) $(node -v)\n"; fi

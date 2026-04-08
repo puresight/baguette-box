@@ -31,6 +31,7 @@ Some packages are high level supported by the Bluefin-DX already:
 - install-goose
 - install-ollama
 - install-tools-terminal
+- install-font
 - configure-shell
 
 ## Debian specific recipes

@@ -29,23 +29,23 @@ _:
 # Bootstrap the Debian system
 [group('Debian only')]
 [group('* * * Featured * * *')]
-bootstrap-debian: check-online install-apt-packages configure-shell install-uv install-viteplus display-environment display-versions
+bootstrap-debian: _check-online install-apt-packages configure-shell install-uv install-viteplus display-environment display-versions
     @printf "\nRemember to restart your shell environment before proceeding.\n"
 
 # Install VS Code with settings & extensions
 [group('* * * Featured * * *')]
-code: check-online configure-code
+code: _check-online configure-code
     @printf "✓ code "
     @code --version
 
 # For test purposes only
 [group('Test')]
-_test-debian: check-online install-apt-packages configure-shell install-dotnet install-tools-terminal install-mc configure-flatpak install-homebrew install-rust install-uv install-java install-kubectl install-viteplus install-go install-ruby install-jekyll install-rails install-goose install-ansible display-environment display-versions
+_test-debian: _check-online install-apt-packages configure-shell install-dotnet install-tools-terminal install-mc configure-flatpak install-homebrew install-rust install-uv install-java install-kubectl install-viteplus install-go install-ruby install-jekyll install-rails install-goose install-ansible display-environment display-versions
     @printf "\nRemember to restart your shell environment before proceeding.\n"
 
 # For test purposes only
 [group('Test')]
-_test-ublue: check-online check-fedora install-homebrew install-homebrew-packages install-mise install-gomplate install-mc install-uv install-wasmer install-stockyard install-java install-kotlin install-scala install-go install-rust install-ruby install-rails  install-viteplus display-environment display-versions
+_test-ublue: _check-online _check-fedora install-homebrew install-homebrew-packages install-mise install-gomplate install-mc install-uv install-wasmer install-stockyard install-java install-kotlin install-scala install-go install-rust install-ruby install-rails  install-viteplus display-environment display-versions
     @printf "\nRemember to restart your shell environment before proceeding.\n"
 
 #%#%#%#%#%#%#%#%#%#%#%#%#%#%#%#%#%#%#%#%#%#%#%#%#%#%#%#%#%#%#%#%#%#%#
@@ -65,13 +65,13 @@ install-dotnet version="10": install-mise
     @printf "\n$a install-dotnet $a\n"
     mise use -g "dotnet@{{version}}"
 
-# Install Haskell language
+# Install Haskell language using mise
 [group('Languages')]
 install-haskell version="latest": install-mise install-apt-packages
     @printf "\n$a install-haskell $a\n"
     mise use -g "ghc@{{version}}"
 
-# Install Erlang language
+# Install Erlang language using mise
 [group('Languages')]
 install-erlang version="latest": install-mise install-apt-packages
     @printf "\n$a install-erlang $a\n"
@@ -90,7 +90,7 @@ install-flutter version="latest": install-mise
     @printf "\n$a install-flutter $a\n"
     mise use -g flutter@{{version}}
 
-# Install Stockyard the LLM control plane
+# Install Stockyard.dev, the LLM control plane
 [group('AI')]
 install-stockyard: install-mise
     #!/bin/bash
@@ -137,8 +137,8 @@ install-ansible:
 
 # Check Debian APT
 [group('Debian only')]
-check-debian:
-    @printf "\n$a check-debian $a\n"
+_check-debian:
+    @printf "\n$a _check-debian $a\n"
     @./scripts/check-apt.sh
 
 # TODO Refactor function configure_shell to remove dependency on install-dotnet
@@ -162,7 +162,7 @@ configure-podman-chromeos: install-apt-packages
 
 # Configure APT sources
 [group('Debian only')]
-configure-apt: check-debian install-gomplate
+configure-apt: _check-debian install-gomplate
     @printf "\n$a configure-apt $a\n"
     @./scripts/configure-apt.sh
 
@@ -177,7 +177,7 @@ install-apt-packages: configure-apt
 #%#%#%#%#%#%#%#%#%#%#%#%#%#%#%#%#%#%#%#%#%#%#%#%#%#%#%#%#%#%#%#%#%#%#
 
 # Check Online
-check-online:
+_check-online:
     #!/bin/bash
     (timeout 2 bash -c 'exec 3<>/dev/tcp/detectportal.firefox.com/80') 2>/dev/null # Assumed: Firefox still operates its captive portal website
     if [ $? -ne 0 ]; then
@@ -285,6 +285,7 @@ install-rails: install-ruby
     @./scripts/install-rails.sh
 
 # Install uv, the Python package manager
+[group('Languages')]
 [group('Managers')]
 install-uv:
     @printf "\n$a install-uv $a\n"
@@ -353,6 +354,6 @@ configure-code updates="code/user-settings.json": install-code-extensions instal
 
 # Check Fedora RPM
 [group('Fedora only')]
-check-fedora:
-    @printf "\n$a check-fedora $a\n"
+_check-fedora:
+    @printf "\n$a _check-fedora $a\n"
     @./scripts/check-rpm.sh
