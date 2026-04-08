@@ -82,8 +82,8 @@ On a Fedora Atomic Desktop, you're probably more interested in installing specif
 On Debian, proceed to set up your environment:
 
 - ↪️ View the menu by typing: `just`
-- ↪️ Run recipe to bootstrap your new Debian system: `just bootstrap-debian`
-- ↪️ Run recipe to install VS Code: `just code`
+- ↪️ Run recipe to [bootstrap](./docs/README.md) your new system: `just bootstrap-debian`
+- ↪️ Run recipe to install [VS Code](./docs/README.md): `just code`
 
 Your system configuration will be ready in a few minutes.
 Do reach out and stay in touch, to let us know how you find our software useful, and how it can improve.
