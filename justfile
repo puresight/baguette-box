@@ -242,9 +242,33 @@ install-gemini: install-viteplus
     if ! command -v gemini &>/dev/null; then
         echo "Installing Gemini CLI globally..."
         vp install -g @google/gemini-cli
-    else
-        printf "\n✓ exists: Gemini CLI version $(gemini --version 2>/dev/null | tail -n 1)\n"
     fi
+    printf "✓ gemini "
+    gemini --version 2>/dev/null | tail -n 1
+
+# Install OpenAI Codex CLI
+[group('AI')]
+install-codex: install-viteplus
+    #!/bin/bash
+    printf "\n$a install-codex $a\n"
+    if ! command -v codex &>/dev/null; then
+        echo "Installing OpenAI Codex CLI globally..."
+        vp install -g @openai/codex
+    fi
+    printf "✓ "
+    codex --version
+
+# Install Anthropic Claude Code CLI
+[group('AI')]
+install-claude-code: install-viteplus
+    #!/bin/bash
+    printf "\n$a install-claude-code $a\n"
+    if ! command -v claude-code &>/dev/null; then
+        echo "Installing Anthropic Claude Code CLI globally..."
+        vp install -g @anthropic-ai/claude-code
+    fi
+    printf "✓ "
+    claude --version
 
 # Install Rust language using Rustup
 [group('Languages')]

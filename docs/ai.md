@@ -8,8 +8,10 @@ To simplify the complexity of using varying models running in assorted environme
 
 ## Developer Tools
 
-- [Google Antigravity](https://antigravity.google/docs/home "Be an architect/manager of agents") IDE
-- _Gemini Code Assist_ and _Roo Code_ in [VS Code](../code/README.md) IDE
-- [Gemini](./gemini.md) CLI
-- Block's [Goose](https://block.github.io/goose/docs/category/guides "Agentic system designed to automate complex development tasks from start to finish") CLI
 - [Aider](./aider.md "writes Git commits for every edit") CLI
+- Anthropic [Claude Code](./claude-code.md) CLI
+- OpenAI [Codex](./openai-codex.md) CLI
+- Block [Goose](https://block.github.io/goose/docs/category/guides "Agentic system designed to automate complex development tasks from start to finish") CLI
+- Google [Gemini](./gemini.md) CLI
+- Google [Antigravity](https://antigravity.google/docs/home "Be an architect/manager of agents") IDE
+- _Gemini Code Assist_ and _Roo Code_ in [VS Code](../code/README.md) IDE
