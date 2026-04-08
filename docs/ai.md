@@ -11,7 +11,7 @@ To simplify the complexity of using varying models running in assorted environme
 - [Aider](./aider.md "writes Git commits for every edit") CLI
 - Anthropic [Claude Code](./claude-code.md) CLI
 - OpenAI [Codex](./openai-codex.md) CLI
-- Block [Goose](https://block.github.io/goose/docs/category/guides "Agentic system designed to automate complex development tasks from start to finish") CLI
+- Block [Goose](./goose.md) CLI
 - Google [Gemini](./gemini.md) CLI
-- Google [Antigravity](https://antigravity.google/docs/home "Be an architect/manager of agents") IDE
+- Google [Antigravity](./antigravity.md) IDE
 - _Gemini Code Assist_ and _Roo Code_ extensions in [VS Code](../code/README.md) IDE
