@@ -1,6 +1,6 @@
 # Baguette Box &nbsp; 🥖🥖🥖
 
-sets up an AI-enabled developer environment on
+sets up an [AI](./docs/ai.md)-enabled developer environment on
 [Debian](https://www.debian.org/) (like
 [ChromeOS](./docs/chromeos.md),
 [Ubuntu](https://docs.ubuntu.com/),
@@ -36,7 +36,7 @@ Here you will find tools to do software development, whether you build for [Web]
 - [Rust](./docs/rust.md)
 - [Go](./docs/go.md)
 
-#### Agentic AI & pairing
+#### Pairing & Agentic AI✨
 
 - [Google Antigravity](https://antigravity.google/docs/home "Be an architect/manager of agents") IDE
 - _Gemini Code Assist_ and _Roo Code_ in [VS Code](./code/README.md) IDE
@@ -56,7 +56,7 @@ Here you will find tools to do software development, whether you build for [Web]
 
 ## Prepare
 
-Next, prepare your new system:
+First, prepare your new system:
 
 - On Linux, upgrade and install git
   ```sh
@@ -87,23 +87,23 @@ Next, prepare your new system:
   
 ## Proceed
 
-Finally, proceed to set up your environment.
+On a Fedora Atomic Desktop, you're probably more interested in installing specific things, than a bootstrap. So check out the menu.
+
+On Debian, proceed to set up your environment:
 
 - ↪️ View the menu by typing: `just`
 - ↪️ Run recipe to bootstrap your new Debian system: `just bootstrap-debian`
 - ↪️ Run recipe to install VS Code: `just code`
 
 Your system configuration will be ready in a few minutes.
-
-<!-- --
-Stay in touch to let us know about bugs & improvements.
-<!-- -->
+Do reach out and stay in touch, to let us know how you find our software useful, and how it can improve.
 
 ## Plan
 
-Finally, after you bootstrap and have Code ready, consider your plans for the workstation. What tools do you need to accomplish your aims? You could write them down in a markdown file, and compare your goals with the project’s [justfile](./justfile), to see what recipes are recommended.
-_A just-in-time approach to tool installation is recommended.
-You can always add more later._
+Finally, after you bootstrap and have Code ready, consider your plans for the workstation. What tools do you need to accomplish your aims? You could write them down in a markdown file, and compare your goals with the project’s [justfile](./justfile), to see what recipes are recommended. _Pairing with AI, spec first is the way._
+
+A just-in-time approach to tool installation is recommended;
+you can always add more later.
 
 ## Licensing Notice (Temporary - March 2026)
 
