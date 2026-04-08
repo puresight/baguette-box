@@ -10,6 +10,6 @@ To simplify the complexity of using varying models running in assorted environme
 
 - [Google Antigravity](https://antigravity.google/docs/home "Be an architect/manager of agents") IDE
 - _Gemini Code Assist_ and _Roo Code_ in [VS Code](../code/README.md) IDE
-- _Gemini CLI_ via [Vite+](./viteplus.md)
+- [Gemini](./gemini.md) CLI
 - Block's [Goose](https://block.github.io/goose/docs/category/guides "Agentic system designed to automate complex development tasks from start to finish") CLI
-- [Aider](./aider.md "writes Git commits for every edit") CLI via [Homebrew](../homebrew/README.md)
+- [Aider](./aider.md "writes Git commits for every edit") CLI
