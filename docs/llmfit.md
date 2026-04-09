@@ -2,7 +2,7 @@
 
 [llmfit](https://github.com/AlexsJones/llmfit) is a command-line utility that helps you determine which open-source Large Language Models (LLMs) can run on your local hardware. It inspects your system's processors, VRAM, RAM, etc and cross-references it with the requirements of models, giving you a clear list of what will "fit" on your machine.
 
-- ↪️ Run recipe to [install with Mise](https://mise.jdx.dev/lang/go.html): `just install-llmfit`
+- ↪️ Run recipe to compile & install for your system: `just install-llmfit`
 
 ## The Challenge of Local Inference
 
