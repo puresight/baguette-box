@@ -105,6 +105,19 @@ install-ollama version="0.20.2": install-mise
     @printf "\n$a install-ollama $a\n"
     mise use -g ollama@{{version}}
 
+# Install llmfit to find compatible local models
+[group('Tools')]
+[group('AI')]
+install-llmfit: install-mise
+    #!/bin/bash
+    printf "\n$a install-llmfit $a\n"
+    if ! command -v llmfit &>/dev/null; then
+        mise use -g github:AlexsJones/llmfit
+    fi
+    eval "$(mise hook-env)"
+    printf "✓ "
+    llmfit --version
+
 # Install Goose IDE
 [group('AI')]
 [group('IDE')]

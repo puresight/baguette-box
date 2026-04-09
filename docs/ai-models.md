@@ -5,6 +5,7 @@ Large Language Models (LLMs) have evolved from cloud-only curiosities into versa
 ## Tiny Open LLM's For Local Development
 
 For developers working on workstations with limited VRAM (e.g., 4gb), running small, open-weight LLMs locally has become a powerful and cost-effective practice. These "tiny" models, often 4 billion parameters or fewer, are optimized to run efficiently on consumer-grade GPUs. They enable a suite of offline-first AI capabilities directly within the development environment, including advanced code completion, in-IDE pair programming for refactoring and debugging, and simple agentic workflows for tasks like generating boilerplate code or writing commit messages.
+Tools like [llmfit](./llmfit.md) can help you identify which of these models will perform best on your specific hardware.
 
 ### Google Gemma
 
