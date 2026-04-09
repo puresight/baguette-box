@@ -7,12 +7,12 @@ To simplify the complexity of using varying models running in assorted environme
 
 ## Developer Tools
 
-The AI developer tools you choose are often tied to your [AI subscriptions](./ai-subscriptions.md). Provider-specific tools, like the `claude-code` CLI, require an account with that service. In contrast, model-agnostic tools like `Aider` can be configured to use any backend. In this case, your subscription (e.g., ChatGPT Plus or Claude Pro) is what grants you the authentication method needed to connect your tool of choice to a powerful, state-of-the-art model for coding and analysis.
+The AI developer tools you choose are often tied to your [AI subscriptions](./ai-subscriptions.md). The provider-specific tools require an account with that service, and your subscription grants you the credentials or the authentication you need to connect it to their remote models for generative coding & analysis.
 
-- [Aider](./aider.md "writes Git commits for every edit") CLI
+- [Aider](./aider.md "writes Git commits for every edit") CLI is [model](./ai-models.md)-agnostic
 - Anthropic [Claude Code](./claude-code.md) CLI
 - OpenAI [Codex](./openai-codex.md) CLI
-- Block [Goose](./goose.md) CLI
+- Block [Goose](./goose.md) CLI is [model](./ai-models.md)-agnostic
 - Google [Gemini](./gemini.md) CLI
 - Google [Antigravity](./antigravity.md) IDE
-- _Gemini Code Assist_ and _Roo Code_ extensions in [VS Code](../code/README.md) IDE
+- _Roo Code_ ([model](./ai-models.md)-agnostic) and _Gemini Code Assist_ extensions in [VS Code](../code/README.md) IDE

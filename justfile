@@ -111,9 +111,9 @@ install-ollama version="0.20.2": install-mise
 install-llmfit: install-rust
     #!/bin/bash
     printf "\n$a install-llmfit $a\n"
-    # Install llmfit by compiling it from source using cargo.
-    # This ensures it's linked against the system's GLIBC, avoiding compatibility issues.
-    cargo install llmfit
+    if ! command -v llmfit &> /dev/null; then
+        cargo install llmfit # compile to ensures linked against the system's GLIBC, avoiding compatibility issues
+    fi
     eval "$(mise hook-env)"
     printf "✓ "
     llmfit --version
