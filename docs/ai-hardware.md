@@ -2,11 +2,11 @@
 
 The massive parallel computations required in this new era of AI are a poor fit for the traditional CPU's of yesteryear. This is driving a transformation in computer architecture, toward making GPU's integral and high-bandwidth memory common. This architecture was formerly featured only in advanced gaming workstations, military simulation stations, or CGI media production labs.
 
-Tools like [llmfit](./llmfit.md) can help you identify which of these [models](./ai-models.md) will perform best on your specific hardware.
+Tools like [llmfit](./llmfit.md) can help you identify the [LLM's](./ai-models.md) that will perform best on specific hardware you already own.
 
 ## Apple
 
-Local inference on Apple hardware is defined by Apple Silicon ([M-series chips](https://www.apple.com/newsroom/2025/10/apple-unleashes-m5-the-next-big-leap-in-ai-performance-for-apple-silicon/)) and its Unified Memory Architecture (UMA). Unlike traditional PCs where the GPU has separate VRAM, UMA allows the CPU and GPU to share a single pool of high-speed memory. This is a major advantage for AI, as it eliminates the VRAM bottleneck; a MacBook Pro with 64GB of RAM can dedicate nearly all of it to a model, enabling users to run very large [models](./ai-models.md) (70B+ parameters) locally. The software foundation is the [Metal](https://developer.apple.com/metal/) framework for low-level GPU programming and [Core ML](https://developer.apple.com/machine-learning/core-ml/) for deploying optimized [models](./ai-models.md). The ecosystem is rapidly maturing with tools like Apple's own MLX framework and community projects like [llama.cpp](https://llama-cpp.com/) that are highly optimized for the platform.
+Local inference on Apple hardware is defined by Apple Silicon ([M-series chips](https://www.apple.com/newsroom/2025/10/apple-unleashes-m5-the-next-big-leap-in-ai-performance-for-apple-silicon/)) and its Unified Memory Architecture (UMA). Unlike traditional PCs where the GPU has separate VRAM, UMA allows the CPU and GPU to share a single pool of high-speed memory. This is a major advantage for AI, as it eliminates the VRAM bottleneck; a MacBook Pro with 64GB of RAM can dedicate nearly all of it to a model, enabling users to run very large [models](./ai-models.md) (70B+ parameters) locally. The software foundation is the [Metal](https://developer.apple.com/metal/) framework for low-level GPU programming and [Core ML](https://developer.apple.com/machine-learning/core-ml/) for deploying optimized [models](./ai-models.md). The ecosystem is rapidly maturing with tools like Apple's own [MLX framework](https://mlx-framework.org/) and community projects like [llama.cpp](https://llama-cpp.com/) that are highly optimized for the platform.
 
 - [Mac Mini](https://www.apple.com/mac-mini/)
 - [Mac Studio](https://www.apple.com/mac-studio/)
@@ -27,10 +27,14 @@ For local inference on Intel hardware, the ecosystem revolves around the [OpenVI
 
 ## Nvidia
 
-NVIDIA's dominance in AI is built on successive GPU architectures, each bringing significant performance gains. The **Pascal** architecture (GeForce 10-series) was the workhorse of the early deep learning boom, but it lacked specialized hardware. The **Turing** architecture (GeForce 20-series, Quadro RTX) was a watershed moment, introducing the first-generation **Tensor Cores**, which dramatically accelerated mixed-precision matrix operations—a core component of AI inference and training. The subsequent **Ampere** architecture (GeForce 30-series) refined these cores and offered a massive leap in performance, making high-end AI development more accessible on consumer cards. Later generations like **Ada Lovelace** (40-series) and **Blackwell** have continued this trend, increasing core counts, memory bandwidth, and adding support for new data formats like FP8 to further boost efficiency for large model inference.
+NVIDIA's dominance in AI is built on successive GPU architectures, each bringing significant performance gains.
 
-- [DGX Spark](https://www.nvidia.com/en-us/products/workstations/dgx-spark/) uses the GB10 Grace Blackwell superchip to deliver a petaFLOP of FP4 AI performance in a power-efficient, compact form factor. Has a preinstalled Ubuntu Linux + Nvidia AI software stack and 128 GB of memory.
-- [Jetson Developer Kits](https://developer.nvidia.com/embedded/jetson-developer-kits) enable professionals, students, and enthusiasts to develop & test software for Nvidia-based products. Each kit includes a Jetson module on a reference carrier board with standard interfaces for flexible development and prototyping.
+In 2016, the [Pascal](https://developer.nvidia.com/blog/inside-pascal/) architecture (GeForce 10-series) was the workhorse of the early deep learning boom, but it lacked specialized hardware. The data-center-focused [Volta](https://www.nvidia.com/en-us/data-center/volta-gpu-architecture/) architecture first introduced Tensor Cores, but it was the subsequent [Turing](https://developer.nvidia.com/blog/nvidia-turing-architecture-in-depth/) architecture (GeForce 20-series, Quadro RTX) in 2018 that brought them to the consumer market, making it a watershed moment. These cores dramatically accelerated mixed-precision matrix operations—a core component of AI inference and training.
+In 2020, the [Ampere](https://developer.nvidia.com/blog/nvidia-ampere-architecture-in-depth/) architecture (GeForce 30-series) refined these cores and offered a massive leap in performance, making high-end AI development more accessible on consumer cards.
+
+The data-center-exclusive [Hopper](https://www.nvidia.com/en-us/data-center/hopper-architecture/) architecture pioneered features like the Transformer Engine for enterprise AI. Its consumer-facing counterpart in 2022, [Ada Lovelace](https://en.wikipedia.org/wiki/Ada_Lovelace_(microarchitecture)) (GeForce 40-series, [whitepaper](https://images.nvidia.com/aem-dam/Solutions/geforce/ada/nvidia-ada-gpu-architecture.pdf)), and the 2024 [Grace Blackwell](https://en.wikipedia.org/wiki/Blackwell_(microarchitecture)) ([whitepaper](https://resources.nvidia.com/en-us-blackwell-architecture)) architecture continued this trend of performance gains. These later generations increased core counts, memory bandwidth, and added support for new data formats like FP8 to further boost efficiency for large model inference.
+
+In 2026, [Vera Rubin](https://www.nvidia.com/en-us/data-center/vera-cpu/) shall continue this march in data centers with a 2x performance improvement.
 
 ### Nvidia Drivers, Tools & Libraries
 
@@ -43,11 +47,14 @@ It allows owners to query GPU device state and with the appropriate privileges, 
 - [How to Use Nvidia-smi Command on Windows and Ubuntu Linux](https://www.gpu-mart.com/blog/monitor-gpu-utilization-with-nvidia-smi "GPU Mart")
 - [2025/11 Omer Sen: NVIDIA-SMI Comprehensive Cheat Sheet](https://gist.github.com/omerfsen/8ecb620675525ac724a92bdf5a31a4b3)
 
-### GeForce RTX 20x0
+### Nvidia Developer Hardware
 
-The RTX 20-series cards, based on the Turing architecture, are a good entry point for serious local AI experimentation, especially [models](./ai-models.md) with 8GB of VRAM (like the RTX 2070/2080). This amount of memory is a sweet spot, comfortably fitting popular `7B` and `8B` parameter [models](./ai-models.md) at full precision or with light quantization. With 4-bit quantization (e.g., using ollama), an 8GB card can even run some 13B [models](./ai-models.md). The Turing architecture's Tensor Cores provide a significant speedup for mixed-precision inference, making these cards much faster than older generations. For a smooth experience, using tools like [ollama](./ollama.md) or [text-generation-webui](https://github.com/oobabooga/text-generation-webui/tree/main?tab=readme-ov-file#text-generation-web-ui) with quantized model formats (<abbr title="GPT-Generated Unified Format">GGUF</abbr>, <abbr title="Activation-aware Weight Quantization">AWQ</abbr>) is highly recommended to balance performance and memory usage.
+- [DGX Spark](https://www.nvidia.com/en-us/products/workstations/dgx-spark/) uses the GB10 _Grace Blackwell_ superchip to deliver a petaFLOP of FP4 AI performance in a power-efficient, compact form factor. Has a preinstalled Ubuntu Linux + Nvidia AI software stack and 128 GB of memory.
+- [Jetson Developer Kits](https://developer.nvidia.com/embedded/jetson-developer-kits) enable professionals, students, and enthusiasts to develop & test software for Nvidia-based products. Each kit includes a Jetson module on a reference carrier board with standard interfaces for flexible development and prototyping.
+  - _Grace Blackwell:_ Jetson AGX Thor
+  - _Ampere:_ Jetson Orin Nano
 
-### T1000
+### Nvidia T1000
 
 [T1000](https://www.nvidia.com/content/dam/en-zz/Solutions/design-visualization/productspage/quadro/quadro-desktop/proviz-print-nvidia-T1000-datasheet-us-nvidia-1670054-r4-web.pdf)
 is a [Quadro](https://www.nvidia.com/en-in/drivers/quadro-desktop-gpu-specs/), Turing card with 4gb GDDR6 memory, 128-bit interface, 160 GB/s bandwidth, 2.50 TFLOPS.
@@ -56,3 +63,7 @@ is a [Quadro](https://www.nvidia.com/en-in/drivers/quadro-desktop-gpu-specs/), T
 - Monitor your VRAM: Open a terminal tab and run `nvidia-smi -l 1` to see how much of that VRAM you're using in real-time.
 - Update the stuff: Ensure your drivers are up to date to take advantage of speed optimizations that Ollama uses by default on Turing cards.
 - **NVFP4** Support: Newer versions of Ollama support NVFP4, a quantization format specifically for Nvidia cards that can reduce memory usage by nearly 50% with minimal quality loss. This might let you squeeze a 7B model into your 4GB VRAM comfortably.
+
+### Nvidia GeForce RTX 20-series
+
+The RTX 20-series cards based on the Turing architecture, are a good entry point for serious local AI experimentation, especially [models](./ai-models.md) with 8GB of VRAM (like the RTX 2070/2080). This amount of memory is a sweet spot, comfortably fitting popular `7B` and `8B` parameter [models](./ai-models.md) at full precision or with light quantization. With 4-bit quantization (e.g., using ollama), an 8GB card can even run some 13B [models](./ai-models.md). The Turing architecture's Tensor Cores provide a significant speedup for mixed-precision inference, making these cards much faster than older generations. For a smooth experience, using tools like [ollama](./ollama.md) or [text-generation-webui](https://github.com/oobabooga/text-generation-webui/tree/main?tab=readme-ov-file#text-generation-web-ui) with quantized model formats (<abbr title="GPT-Generated Unified Format">GGUF</abbr>, <abbr title="Activation-aware Weight Quantization">AWQ</abbr>) is highly recommended to balance performance and memory usage.
