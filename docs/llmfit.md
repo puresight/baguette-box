@@ -2,6 +2,8 @@
 
 [llmfit](https://github.com/AlexsJones/llmfit) is a command-line utility that helps you determine which open-source Large Language Models (LLMs) can run on your local hardware. It inspects your system's processors, VRAM, RAM, etc and cross-references it with the requirements of models, giving you a clear list of what will "fit" on your machine.
 
+- ↪️ Run recipe to [install with Mise](https://mise.jdx.dev/lang/go.html): `just install-llmfit`
+
 ## The Challenge of Local Inference
 
 The open-source AI landscape is moving at a breakneck pace, with new and updated models released weekly. While tools like [Ollama](./ollama.md) make it incredibly easy to download and run these models, a critical question remains: *Will this model actually run on my computer?*
@@ -18,11 +20,6 @@ A model's size (e.g., 3B, 8B, 70B parameters) and its quantization level directl
 ## Practical Usage
 
 Using `llmfit` is straightforward. You can have it auto-detect your hardware or specify your resources manually.
-
-1.  **Install the tool:**
-    ```sh
-    just install-llmfit
-    ```
 
 1.  **Auto-detect hardware:** Run the command without any flags. `llmfit` will attempt to detect your available VRAM and system RAM.
 
@@ -47,9 +44,9 @@ The Mapping Logic: In the resulting JSON array, look for the `best_quant` and `r
 
 Provider Filtering with `--runtime` (or `-r`): you can narrow the JSON output to only show models compatible with a specific tool by using the runtime filter; this forces the mapping logic to prioritize that runner's naming convention.
 
-- Ollama: llmfit --json fit -r ollama
-- llama.cpp: llmfit --json fit -r llama.cpp
-- MLX: llmfit --json fit -r mlx
+- Ollama: `llmfit --json fit -r ollama`
+- llama.cpp: `llmfit --json fit -r llama.cpp`
+- MLX: `llmfit --json fit -r mlx`
 
 When you parse the JSON output, the mapping is typically found across these keys:
 
@@ -60,8 +57,8 @@ When you parse the JSON output, the mapping is typically found across these keys
 Some automation is possible if llmfit supports your inference engine. For example, you could write a shell script that runs on a schedule (e.g., a weekly cron job) to:
 
 1.  Run `llmfit -o json` to get the latest list of compatible models.
-2.  Use a tool like `jq` to parse the JSON and extract the names of the top-recommended models.
-3.  Pipe these names to `ollama pull` to download them automatically.
-4.  Optionally, run `ollama rm` to prune older or unused models.
+1.  Use a tool like `jq` to parse the JSON and extract the names of the top-recommended models.
+1.  Pipe these names to `ollama pull` to download them automatically.
+1.  Optionally, run `ollama rm` to prune older or unused models.
 
 This workflow turns your workstation into a self-maintaining AI development environment, ensuring you always have the best-performing local models at your fingertips without manual intervention.
