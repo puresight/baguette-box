@@ -23,7 +23,7 @@ The ecosystem for local inference on AMD hardware is built around [ROCm](https:/
 For local inference on Intel hardware, the ecosystem revolves around the [OpenVINO Toolkit](https://www.intel.com/content/www/us/en/developer/tools/openvino-toolkit/overview.html). OpenVINO (Open Visual Inference & Neural Network Optimization) is a suite of tools that optimizes deep learning [models](./ai-models.md) for high performance on Intel CPUs, integrated graphics (iGPUs), and discrete GPUs like Intel Arc. It allows developers to convert [models](./ai-models.md) from popular frameworks (like [TensorFlow](https://www.tensorflow.org/), [PyTorch](https://pytorch.org/get-started/locally/), & [ONNX](https://onnx.ai/onnx/intro/)) and deploy them efficiently. For monitoring, the `intel_gpu_top` command (part of the [intel-gpu-tools](https://github.com/tiagovignatti/intel-gpu-tools/blob/master/README) package on Linux) provides a `top`-like interface to see real-time usage of the GPU, which is invaluable for debugging performance.
 
 - Intel Arc series GPUs (e.g., [A750](https://www.intel.com/content/www/us/en/products/sku/227954/intel-arc-a750-graphics/specifications.html), [A770](https://www.intel.com/content/www/us/en/products/sku/229151/intel-arc-a770-graphics-16gb/specifications.html)) have emerged as an affordable and powerful option for local AI inference. The A770, with its 16GB VRAM option, offers a compelling price-to-memory ratio, allowing enthusiasts to run larger [models](./ai-models.md) (13B to 30B parameter range with quantization) that are often out of reach for similarly priced competitors. While driver support was initially a challenge, it has matured significantly. On Linux, support is integrated into the Mesa drivers, and frameworks like PyTorch can leverage Arc GPUs via the Intel Extension for PyTorch (IPEX). On Windows, they are a first-class citizen for DirectML-based applications, making them a viable alternative for AI hobbyists.
-- Intel's [Core Ultra processors](https://www.intel.com/content/www/us/en/ark/products/series/241071/intel-core-ultra-processors-series-2.html) bring a hybrid AI architecture to modern laptops, integrating three distinct compute engines on a single chip: the CPU, an integrated Arc GPU, and a new Neural Processing Unit (NPU). The NPU is designed for low-power, sustained AI workloads—like real-time background blur or noise cancellation—enabling "always-on" features without draining the battery. For more demanding tasks, such as running local language [models](./ai-models.md) or generative AI, applications can leverage the more powerful integrated Arc GPU. The OpenVINO toolkit orchestrates this by allowing developers to intelligently offload tasks to the most appropriate engine, making these laptops versatile platforms for both efficient, everyday AI assistance and on-device inference.
+ - Intel's [Core Ultra processors](https://www.intel.com/content/www/us/en/ark/products/series/241071/intel-core-ultra-processors-series-2.html) bring a hybrid AI architecture to modern laptops, integrating three distinct compute engines on a single chip: the CPU, an integrated Arc GPU, and a new Neural Processing Unit (NPU). This design relies on a unified memory architecture, allowing the CPU, GPU, and NPU to efficiently share system RAM for AI tasks. The NPU is designed for low-power, sustained AI workloads—like real-time background blur or noise cancellation—enabling "always-on" features without draining the battery. For more demanding tasks, such as running local language models or generative AI, applications can leverage the more powerful integrated Arc GPU. The OpenVINO toolkit orchestrates this by allowing developers to intelligently offload tasks to the most appropriate engine, making these laptops versatile platforms for both efficient, everyday AI assistance and on-device inference.
 
 ## Nvidia
 
@@ -67,3 +67,50 @@ is a [Quadro](https://www.nvidia.com/en-in/drivers/quadro-desktop-gpu-specs/), T
 ### Nvidia GeForce RTX 20-series
 
 The RTX 20-series cards based on the Turing architecture, are a good entry point for serious local AI experimentation, especially [models](./ai-models.md) with 8GB of VRAM (like the RTX 2070/2080). This amount of memory is a sweet spot, comfortably fitting popular `7B` and `8B` parameter [models](./ai-models.md) at full precision or with light quantization. With 4-bit quantization (e.g., using ollama), an 8GB card can even run some 13B [models](./ai-models.md). The Turing architecture's Tensor Cores provide a significant speedup for mixed-precision inference, making these cards much faster than older generations. For a smooth experience, using tools like [ollama](./ollama.md) or [text-generation-webui](https://github.com/oobabooga/text-generation-webui/tree/main?tab=readme-ov-file#text-generation-web-ui) with quantized model formats (<abbr title="GPT-Generated Unified Format">GGUF</abbr>, <abbr title="Activation-aware Weight Quantization">AWQ</abbr>) is highly recommended to balance performance and memory usage.
+
+## MediaTek
+
+[Reportedly developed in collaboration with NVIDIA](https://www.forbes.com/sites/jonmarkman/2026/03/16/the-arm-invasion-nvidia-targets-200-billion-pc-market-with-n1x-chips/), [MediaTek](https://www.mediatek.com/)'s `N1` & `N1X` chips (expected in 2026) combine their ARM-based CPU expertise with NVIDIA’s powerful GPU & AI architecture.
+These chips are expected to power thin-and-light laptops that outperform Qualcomm in graphics and gaming while maintaining an aggressive price point.
+MediaTek is also positioning itself as a leader for "AI Chromebooks," leveraging a partnership with Google to challenge the standard PC definition with AI-centric, ARM-based hardware.
+
+Based on recent developments in the partnership between MediaTek & NVIDIA, their upcoming chips are taking a "Linux-first, Windows-later" approach. This strategy is driven more by the immediate needs of the AI research community than a pure ideological push for open-source compatibility. While these chips are eventually aimed at the "Windows on ARM" consumer market, the initial high-end variants (like the `GB10` or `N1X`) are shipping first in _AI Workstations_ and _Personal AI Supercomputers_ (such as [Project DIGITS](https://www.thurrott.com/hardware/315540/mediatek-nvidia-confirm-partnership-on-arm-chips)). MediaTek is working with Linux to create a high-performance sandbox for AI users who want to bypass corporate cloud servers.
+
+## Qualcomm
+
+Qualcomm's Snapdragon processors, particularly the Snapdragon X Elite and X Plus series, are central to the new wave of AI-powered PCs. Their architecture is built around the powerful Hexagon NPU (Neural Processing Unit), designed for high-performance, low-power AI inference. This allows for sustained AI workloads—such as real-time translation, advanced camera features, and persistent on-device assistants—without a significant impact on battery life. The Qualcomm AI Engine orchestrates tasks across the NPU, CPU, and GPU, intelligently assigning workloads to the most efficient processor. This integrated approach, supported by the Qualcomm AI Stack, makes Snapdragon-powered devices, including the first wave of [Copilot+ PCs](https://www.qualcomm.com/laptops), ideal platforms for the emerging ecosystem of always-on, on-device AI applications.
+
+Similar to Apple Silicon, Snapdragon X platforms use a Unified Memory Architecture (UMA), where the CPU, GPU, and NPU share the same pool of system RAM. This makes the price-to-RAM ratio the most critical factor for local LLM inference, as more memory directly allows for larger, more capable models to run efficiently on-device.
+
+As of their launch, the initial wave of Copilot+ PCs from manufacturers like Samsung, Dell, Lenovo, and Acer ***do not have official Linux support.*** While the upstream Linux kernel is seeing active development for the Snapdragon X series, full, stable support for specific devices (including drivers for Wi-Fi, audio, and the NPU) will depend on ongoing community efforts and is not guaranteed. Therefore, for users prioritizing a Linux environment, it is advisable to wait for official announcements or confirmed community-vetted options.
+
+## Cloud & Data Center Hardware
+
+While the hardware above focuses on local and workstation inference, the backbone of large-scale AI training and production inference runs on specialized hardware in cloud data centers.
+
+### Google TPUs
+
+Tensor Processing Units ([TPUs](https://cloud.google.com/tpu/docs/intro-to-tpu)) are Google's custom-designed ASICs built specifically to accelerate machine learning workloads. Unlike general-purpose GPUs, TPUs are optimized for the massive matrix operations at the heart of neural networks. They are the power behind many of Google's own AI products (including Search and Gemini) and are available to developers through the Google Cloud Platform.
+
+### AWS Custom Silicon
+
+Amazon Web Services has developed its own custom chips to optimize performance and cost for AI workloads on its cloud platform.
+
+-   **AWS Trainium:** These are second-generation machine learning accelerators built specifically for high-performance deep learning training.
+-   **AWS Inferentia:** These chips are designed to deliver high-performance inference at the lowest cost in the cloud.
+
+### Microsoft Azure AI
+
+Microsoft is also investing in custom silicon to power its AI ambitions. The **Azure Maia AI Accelerator** is designed to run large language model training and inference for OpenAI models and other workloads on Microsoft Azure.
+
+### Specialized AI Accelerators
+
+Beyond the hyperscalers, several companies focus exclusively on building novel hardware architectures for AI.
+
+-   **Groq:** Known for its Language Processing Unit ([LPU](https://wow.groq.com/lpu-inference-engine/)) architecture, which is designed to deliver ultra-low latency for LLM inference, making it ideal for real-time conversational AI and agentic systems.
+-   **Cerebras:** Builds systems around its Wafer-Scale Engine (WSE), a single, massive chip that contains trillions of transistors, designed to drastically reduce the time it takes to train large AI models.
+-   **SambaNova Systems:** Offers a full-stack platform, from its Reconfigurable Dataflow Unit (RDU) chip to software, for training and deploying foundation models.
+
+### The Rise of RISC-V
+
+The open-standard [RISC-V](https://riscv.org/) instruction set architecture (ISA) is fostering a new wave of innovation in custom AI hardware. It allows companies to design specialized, power-efficient processors and accelerators for AI without the licensing fees associated with proprietary architectures like ARM or x86. This is leading to a growing ecosystem of custom silicon tailored for specific AI tasks.
