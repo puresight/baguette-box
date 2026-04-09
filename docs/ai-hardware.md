@@ -76,6 +76,8 @@ MediaTek is also positioning itself as a leader for "AI Chromebooks," leveraging
 
 Based on recent developments in the partnership between MediaTek & NVIDIA, their upcoming chips are taking a "Linux-first, Windows-later" approach. This strategy is driven more by the immediate needs of the AI research community than a pure ideological push for open-source compatibility. While these chips are eventually aimed at the "Windows on ARM" consumer market, the initial high-end variants (like the `GB10` or `N1X`) are shipping first in _AI Workstations_ and _Personal AI Supercomputers_ (such as [Project DIGITS](https://www.thurrott.com/hardware/315540/mediatek-nvidia-confirm-partnership-on-arm-chips)). MediaTek is working with Linux to create a high-performance sandbox for AI users who want to bypass corporate cloud servers.
 
+<!-- --
+
 ## Qualcomm
 
 Qualcomm's Snapdragon processors, particularly the Snapdragon X Elite and X Plus series, are central to the new wave of AI-powered PCs. Their architecture is built around the powerful Hexagon NPU (Neural Processing Unit), designed for high-performance, low-power AI inference. This allows for sustained AI workloads—such as real-time translation, advanced camera features, and persistent on-device assistants—without a significant impact on battery life. The Qualcomm AI Engine orchestrates tasks across the NPU, CPU, and GPU, intelligently assigning workloads to the most efficient processor. This integrated approach, supported by the Qualcomm AI Stack, makes Snapdragon-powered devices, including the first wave of [Copilot+ PCs](https://www.qualcomm.com/laptops), ideal platforms for the emerging ecosystem of always-on, on-device AI applications.
@@ -84,33 +86,31 @@ Similar to Apple Silicon, Snapdragon X platforms use a Unified Memory Architectu
 
 As of their launch, the initial wave of Copilot+ PCs from manufacturers like Samsung, Dell, Lenovo, and Acer ***do not have official Linux support.*** While the upstream Linux kernel is seeing active development for the Snapdragon X series, full, stable support for specific devices (including drivers for Wi-Fi, audio, and the NPU) will depend on ongoing community efforts and is not guaranteed. Therefore, for users prioritizing a Linux environment, it is advisable to wait for official announcements or confirmed community-vetted options.
 
-## Cloud & Data Center Hardware
+<!-- -->
+
+## Datacenter Hardware
 
 While the hardware above focuses on local and workstation inference, the backbone of large-scale AI training and production inference runs on specialized hardware in cloud data centers.
 
-### Google TPUs
+### Hyperscalers
 
-Tensor Processing Units ([TPUs](https://cloud.google.com/tpu/docs/intro-to-tpu)) are Google's custom-designed ASICs built specifically to accelerate machine learning workloads. Unlike general-purpose GPUs, TPUs are optimized for the massive matrix operations at the heart of neural networks. They are the power behind many of Google's own AI products (including Search and Gemini) and are available to developers through the Google Cloud Platform.
-
-### AWS Custom Silicon
+Tensor Processing Units ([TPU's](https://cloud.google.com/tpu/docs/intro-to-tpu)) are Google's custom-designed ASICs built specifically to accelerate machine learning workloads. Unlike general-purpose GPUs, TPUs are optimized for the massive matrix operations at the heart of neural networks. They are the power behind many of Google's own AI products (including Search and Gemini) and are available to developers through the Google Cloud Platform.
 
 Amazon Web Services has developed its own custom chips to optimize performance and cost for AI workloads on its cloud platform.
 
--   **AWS Trainium:** These are second-generation machine learning accelerators built specifically for high-performance deep learning training.
--   **AWS Inferentia:** These chips are designed to deliver high-performance inference at the lowest cost in the cloud.
+-   [AWS Trainium](https://aws.amazon.com/ai/machine-learning/trainium/): These are second-generation machine learning accelerators built specifically for high-performance deep learning training.
+-   [AWS Inferentia](https://aws.amazon.com/ai/machine-learning/inferentia/): These chips are designed to deliver high-performance inference at the lowest cost in the cloud.
 
-### Microsoft Azure AI
-
-Microsoft is also investing in custom silicon to power its AI ambitions. The **Azure Maia AI Accelerator** is designed to run large language model training and inference for OpenAI models and other workloads on Microsoft Azure.
+Microsoft is also investing in custom silicon to power its AI ambitions. The [Azure Maia AI Accelerator](https://azure.microsoft.com/en-us/blog/azure-maia-for-the-era-of-ai-from-silicon-to-software-to-systems/) is designed to run large language model training and inference for OpenAI models and other workloads on Microsoft Azure.
 
 ### Specialized AI Accelerators
 
-Beyond the hyperscalers, several companies focus exclusively on building novel hardware architectures for AI.
+Beyond the major clouds, several companies focus exclusively on building novel hardware architectures for AI.
 
 -   **Groq:** Known for its Language Processing Unit ([LPU](https://wow.groq.com/lpu-inference-engine/)) architecture, which is designed to deliver ultra-low latency for LLM inference, making it ideal for real-time conversational AI and agentic systems.
 -   **Cerebras:** Builds systems around its Wafer-Scale Engine (WSE), a single, massive chip that contains trillions of transistors, designed to drastically reduce the time it takes to train large AI models.
 -   **SambaNova Systems:** Offers a full-stack platform, from its Reconfigurable Dataflow Unit (RDU) chip to software, for training and deploying foundation models.
 
-### The Rise of RISC-V
+### RISC-V
 
 The open-standard [RISC-V](https://riscv.org/) instruction set architecture (ISA) is fostering a new wave of innovation in custom AI hardware. It allows companies to design specialized, power-efficient processors and accelerators for AI without the licensing fees associated with proprietary architectures like ARM or x86. This is leading to a growing ecosystem of custom silicon tailored for specific AI tasks.
