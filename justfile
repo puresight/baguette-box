@@ -105,15 +105,15 @@ install-ollama version="0.20.2": install-mise
     @printf "\n$a install-ollama $a\n"
     mise use -g ollama@{{version}}
 
-# Install llmfit to find compatible local models
+# Compile & install llmfit to find compatible local models
 [group('Tools')]
 [group('AI')]
-install-llmfit: install-mise
+install-llmfit: install-rust
     #!/bin/bash
     printf "\n$a install-llmfit $a\n"
-    if ! command -v llmfit &>/dev/null; then
-        mise use -g github:AlexsJones/llmfit
-    fi
+    # Install llmfit by compiling it from source using cargo.
+    # This ensures it's linked against the system's GLIBC, avoiding compatibility issues.
+    cargo install llmfit
     eval "$(mise hook-env)"
     printf "✓ "
     llmfit --version
