@@ -2,10 +2,11 @@
 
 Large Language Models (LLMs) have evolved from cloud-only curiosities into versatile tools integrated across the software stack. On developer workstations, they function as agentic pair programmers, capable of understanding a local codebase to refactor files and automate commits. For consumer applications, small, efficient models are increasingly run directly on-device to power features like intelligent text completion or photo editing without a network connection. In the cloud, providers leverage Content Delivery Networks (CDN's) to serve low-latency [inference](./ai-inference.md) at the edge, enabling real-time AI features in web applications with global reach.
 
+The key constraint for any local model is your [hardware's](./ai-hardware.md) available VRAM. Before downloading a model, use [llmfit](./llmfit.md) to confirm it will perform as expected on your machine.
+
 ## Tiny Open LLM's For Local Development
 
 For developers working on workstations with limited VRAM (e.g., 4gb), running small, open-weight LLMs locally has become a powerful and cost-effective practice. These "tiny" models, often 4 billion parameters or fewer, are optimized to run efficiently on consumer-grade GPUs. They enable a suite of offline-first AI capabilities directly within the development environment, including advanced code completion, in-IDE pair programming for refactoring and debugging, and simple agentic workflows for tasks like generating boilerplate code or writing commit messages.
-Tools like [llmfit](./llmfit.md) can help you identify which of these models will perform best on your specific [hardware](./ai-hardware.md).
 
 ### Google Gemma
 
