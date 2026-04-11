@@ -1,6 +1,9 @@
 # Docs
 
-To maintain workstation integrity, only install code from reputable & verified authors that regularly address issues with code updates.
+Use this repo to help you set up your ✨[AI](./ai.md)-enabled developer environment
+with tooling for coding, cloud, compute, cache, storage, data management, et. al.
+
+_To maintain workstation integrity, only install code from reputable & verified authors that regularly address issues with code updates._
 
 ## How to Run Recipes
 

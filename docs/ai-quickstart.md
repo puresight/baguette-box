@@ -1,10 +1,10 @@
 # AI Quickstart
 
-Choose a path to equipping yourself with AI assistance. Whether you prefer a completely offline local setup, a high-performance cloud-hybrid architecture, or a managed ecosystem, these examples could give you ideas on how to get started.
+Welcome, explorer. Choose a path to equipping yourself with AI assistance. Whether you prefer a completely offline local setup, a high-performance cloud-hybrid architecture, or a managed ecosystem, these examples could give you ideas on how to get started.
 
 ## 1. The Beginner (Google Ecosystem)
 
-**Goal:** A seamless, managed experience using Google's AI stack. Perfect if you have a Google AI subscription.
+**Goal:** A seamless, managed experience using Google's AI stack. Perfect if you have a Google [AI subscription](./ai-subscriptions.md).
 
 1.  **IDE Start:** Install [VS Code](../code/README.md) (`just code`) and configure the **Gemini Code Assist** extension for AI-powered autocomplete and chat directly in your editor.
 2.  **CLI Graduation:** Run `just install-gemini` to install the [Gemini CLI](./gemini.md). This moves you from simple editor chat to terminal-based agentic workflows that can execute shell commands and fetch web docs.

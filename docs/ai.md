@@ -18,7 +18,7 @@ The AI developer tools you choose are often tied to your [AI subscriptions](./ai
 - Google [Antigravity](./antigravity.md) IDE
 - _Roo Code_ ([model](./ai-models.md)-agnostic) and _Gemini Code Assist_ extensions in [VS Code](../code/README.md) IDE
 
-If you're new to the stack, check out our [quickstart](./ai-quickstart.md) to find a path for pairing with AI.
+If you're new using AI, check out our [quickstart](./ai-quickstart.md) to discover a path for pairing with AI.
 
 ## Agentic Workflows
 
