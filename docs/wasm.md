@@ -1,4 +1,4 @@
-# <img src="https://cdn.simpleicons.org/webassembly" align="right" width="48" height="48"> WebAssembly
+# <img src="https://cdn.simpleicons.org/webassembly" alt="WebAssembly logo" align="right" width="96" style="margin: 1ex 1em 1ex 0.5em;"> WebAssembly
 
 [WebAssembly](https://webassembly.org/) ("wasm") is an open standard that defines a portable binary-code format for executable programs. It is designed as a high-performance _compilation target_ for programming languages like [Rust](./rust.md), [Go](./go.md), or [AssemblyScript](./assemblyscript.md) &mdash; enabling deployment on the web for client and server applications.
 

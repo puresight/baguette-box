@@ -1,4 +1,4 @@
-# Rclone
+# <img src="https://www.vectorlogo.zone/logos/rclone/rclone-icon.svg" alt="Rclone logo" align="right" width="96" style="margin-top: 1ex; border-left: 0.1em solid transparent;"> Rclone
 
 [Rclone](https://rclone.org/docs/) is a Swiss Army Knife for mounting nearly any [cloud](./dev-server.md) service as a local file system in Linux. It is broadly compatibile, supporting Dropbox, pCloud, MEGA, S3-compatible storage, yada yada.
 

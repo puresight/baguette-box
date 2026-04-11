@@ -1,4 +1,4 @@
-# <img src="https://cdn.simpleicons.org/go" align="right" width="48" height="48"> 🐹 Go
+# <img src="https://www.vectorlogo.zone/logos/golang/golang-icon.svg" alt="Go logo" align="right" width="96" style="margin-top: -20px; border-left: 0.5em solid transparent;"> 🐹 Go
 
 > [Go lang](https://go.dev/) is an open-source, statically typed, and compiled programming language (designed at Google by Robert Griesemer, Rob Pike, and Ken Thompson). It was created to address the challenges of large-scale software development, emphasizing simplicity, reliability, and efficiency.
 > 

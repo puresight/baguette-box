@@ -1,4 +1,4 @@
-# ChromeOS
+# <img src="https://www.vectorlogo.zone/logos/google/google-icon.svg" alt="Google logo" align="right" width="96" style="margin-top: 1ex; border-left: 0.1em solid transparent;"> ChromeOS
 
 ## Get Started
 

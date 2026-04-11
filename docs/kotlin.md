@@ -1,4 +1,4 @@
-# Kotlin
+# <img src="https://www.vectorlogo.zone/logos/kotlinlang/kotlinlang-icon.svg" alt="Kotlin logo" align="right" width="96" style="margin-top: 1ex; border-left: 0.1em solid transparent;"> Kotlin
 
 [Kotlin](https://kotlinlang.org/) is a modern, statically typed programming language developed by JetBrains. It is designed to be fully interoperable with [Java](./java.md) and runs on the Java Virtual Machine (JVM), making it a popular and pragmatic choice for modern application development. Kotlin's syntax is more **concise** than Java's, significantly reducing boilerplate code. Its key features include built-in **null safety** to prevent null pointer exceptions, first-class support for **coroutines** to simplify [asynchronous programming](https://kotlinlang.org/docs/async-programming.html), and [functional reactive programming](https://softwarepatternslexicon.com/kotlin/reactive-programming-patterns/functional-reactive-programming-frp/) (FRP) capabilities.
 

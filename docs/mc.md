@@ -1,4 +1,4 @@
-# Minio Client
+# <img src="https://www.google.com/s2/favicons?sz=128&domain=min.io" alt="MinIO logo" align="right" width="96" style="margin-top: -9px; border-left: 0.1em solid transparent;"> Minio Client
 
 > [MinIO Client](https://github.com/minio/mchttps://github.com/minio/mc) (mc) is a command-line tool that provides a modern, Unix-like interface for managing files on both local filesystems and Amazon S3-compatible [cloud](./dev-server.md) **storage services**. It is designed to be a replacement for standard commands like ls, cp, and mkdir, optimized for object storage.
 

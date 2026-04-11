@@ -1,4 +1,4 @@
-# Flutter
+# <img src="https://www.vectorlogo.zone/logos/flutterio/flutterio-icon.svg" alt="Flutter logo" align="right" width="96" style="margin-top: 1ex; border-left: 0.1em solid transparent;"> Flutter
 
 [Flutter](https://flutter.dev/) is a UI toolkit from Google for building beautiful, natively compiled applications for mobile, web, and desktop from a single codebase. It uses the [Dart](https://dart.dev/) programming language and a reactive, widget-based architecture.
 

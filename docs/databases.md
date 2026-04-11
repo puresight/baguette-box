@@ -39,7 +39,7 @@ A text-heavy approach ensures that a developer can maintain a "low-latency" feed
 NoSQL database development, particularly within agentic workflows, relies heavily on CLI tools that can handle JSON or key-value structures with minimal friction.
 
 - [mongosh](https://www.mongodb.com/docs/mongodb-shell/) is the modern shell that replaced the legacy mongo client, offering a powerful _Node.js-based environment_ for manipulating document collections
-- [Redis CLI](https://redis.io/docs/latest/develop/tools/) tools for sending requests to the server, indispensable for real-time data debugging and state management
+- <img src="https://www.vectorlogo.zone/logos/redis/redis-icon.svg" align="right" width="24" style="margin-top: 0.1ex; border-left: 0.5em solid transparent;"> [Redis CLI](https://redis.io/docs/latest/develop/tools/) tools for sending requests to the server, indispensable for real-time data debugging and state management
 
 ### Microsoft SQL (MSSQL)
 

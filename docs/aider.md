@@ -1,4 +1,4 @@
-# Aider
+# <img src="https://raw.githubusercontent.com/paul-gauthier/aider/main/aider/website/assets/logo.svg" alt="Aider logo" align="right" width="96" style="margin-top: 1ex; border-left: 0.1em solid transparent;"> Aider
 
 [Aider](https://aider.chat/docs/) is an open-source AI coding assistant designed to function as a pair programmer directly within your terminal. Unlike most AI tools that require you to copy and paste code into a web chat, Aider connects to your _local repository_ to edit files in place and automatically commit changes with descriptive messages.
 

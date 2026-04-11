@@ -1,4 +1,4 @@
-# Ruby
+# <img src="https://www.vectorlogo.zone/logos/ruby-lang/ruby-lang-icon.svg" alt="Ruby logo" align="right" style="max-width: 96px; border-left: 0.1em;"> Ruby
 
 > [Ruby](https://ruby-lang.org/) is a dynamic programming language with a focus on simplicity and productivity. Developed in the mid-1990s by Yukihiro "Matz" Matsumoto, it is designed for developer happiness, featuring an elegant syntax that is natural to read and easy to write. Ruby is a purely **object-oriented** language where everything is an object, but it also supports **procedural and functional** programming paradigms.
 > 

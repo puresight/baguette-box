@@ -1,4 +1,4 @@
-# Flatpak
+# <img src="https://www.google.com/s2/favicons?sz=128&domain=flatpak.org" alt="Flatpak logo" align="right" width="96" style="margin-top: 1ex; border-left: 0.1em solid transparent;"> Flatpak
 
 [Flatpak](https://flathub.org/) is a Linux package management system that bundles an app with all its necessary dependencies in a container, allowing isolation from the rest of the system. Flatpak is the preferred method for installing GUI applications on this system. This approach ensures applications run in isolated environments with their own dependencies, preventing conflicts with system libraries and keeping the host OS clean. It also provides access to the latest versions of applications regardless of the distribution's release cycle.
 

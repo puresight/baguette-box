@@ -1,4 +1,4 @@
-# <img src="https://cdn.simpleicons.org/debian" align="right" width="48" height="48"> 🎒 Docs
+# Docs
 
 Use this repo to help you set up your ✨ [AI](./ai.md)-enabled developer environment
 with tooling for coding, cloud, compute, cache, storage, data management, et. al.
@@ -8,7 +8,7 @@ _To maintain workstation integrity, only install code from reputable & verified 
 ## 🚀 How to Run Recipes
 
 - ↪️ View our menu: `just`
-- ↪️ Bootstrap your new Debian system: `just bootstrap-debian`
+- ↪️ Bootstrap your new Debian system: `just bootstrap-debian` <img src="https://cdn.simpleicons.org/debian" alt="Debian logo" align="right" width="48" style="border-left: 0.1em solid transparent;">
 - ↪️ Setup VS Code: `just code`
 
 Our recipes are idempotent, so you can run them again, anytime.
@@ -37,7 +37,7 @@ These are availble but not integral:
 - λ [Haskell](./docs/haskell.md)
 - 💙 [Dart (Flutter)](./docs/flutter.md) 
 
-### 🐚 CLI:
+### CLI:
 
 - 🐚 [Zsh](https://zsh.sourceforge.io/) & [pwsh](https://learn.microsoft.com/en-us/powershell/) shells
 - 💅 [Oh My Posh](https://ohmyposh.dev/) prompt _with_ 🖋️ [nerd fonts](./fonts.md)
@@ -45,12 +45,12 @@ These are availble but not integral:
 - 💾 [MinIO Client](./docs/mc.md), [Rclone](./docs/rclone.md) storage utils
 - 🗄️ [Postgres](https://www.postgresql.org/docs/current/reference-client.html), [MariaDB](https://mariadb.com/docs/server/clients-and-utilities/mariadb-client/mariadb-command-line-client), [Redis](https://redis.io/docs/latest/develop/tools/), [SQLite](https://www.sqlite.org/) [database clients](./databases.md)
 
-## 🛠️ Recipes
+## Recipes
 
 Find the [just](./just.md) recipe definitions in the justfile.
 While precise understanding is in inspecting the bash source of the [scripts](../scripts) that implement them, here is a summary.
 
-### 🔝 High Level Recipes
+### High Level Recipes
 
 High level recipes combine many regular recipes to accomplish an objective for overall system configuration.
 
@@ -62,7 +62,7 @@ Bootstrap your new system. Installs tons of stuff (essentials and nice to have).
 
 Install VS [Code](../code/README.md).
 
-### 🛠️ Regular Recipes
+### Regular Recipes
 
 Regular recipes perform specific & granular tasks for system configuration.
 

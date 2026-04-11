@@ -1,4 +1,4 @@
-# Elixir
+# <img src="https://www.vectorlogo.zone/logos/elixir-lang/elixir-lang-icon.svg" alt="Elixir logo" align="right" width="96" style="margin-top: 1ex; border-left: 0.1em solid transparent;"> Elixir
 
 > [Elixir](https://elixir-lang.org/) is a dynamic, functional language that runs on the [Erlang](./erlang.md) virtual machine (BEAM), designed for building scalable and maintainable applications. It leverages the power of Erlang's Open Telecom Platform (OTP) to provide a robust foundation for creating concurrent, distributed, and fault-tolerant systems. Elixir is known for its productive and elegant syntax, powerful metaprogramming capabilities through macros, and a thriving ecosystem. It is particularly popular for web development, thanks to the highly-performant [Phoenix framework](https://www.phoenixframework.org/), which brings real-time features and developer productivity to the forefront.
 
