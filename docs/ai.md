@@ -1,6 +1,6 @@
 # AI
 
-The modern AI stack is a layered system, starting with the [hardware](./ai-hardware.md) that dictates performance. Before selecting your stack, use [llmfit](./llmfit.md) to determine what your local machine can realistically handle. On this foundation run the "brains" of the operation: the Large Language Models, ranging from small local LLM's to really big ones that run in cloud datacenters.
+The modern AI stack is a layered system, starting with the [hardware](./ai-hardware.md) that dictates performance (before selecting your stack, use [llmfit](./llmfit.md) to determine what your local machine can realistically handle). On this foundation run the "brains" of the operation: the Large Language Models, ranging from small local LLM's to really big ones that run in cloud datacenters.
 
 The process of running these [models](./ai-models.md) to process requests & generate responses is known as inference. [Inference](./ai-inference.md) can be performed in clouds, or on your own machine using an engine like [Ollama](./ollama.md "to download, manage, & run LLM's locally").
 
@@ -22,10 +22,10 @@ If you're new using AI, check out our [quickstart](./ai-quickstart.md) to discov
 
 ## Agentic Workflows
 
-An **Agentic Workflow** is a development pattern where the AI doesn't just "chat," but is empowered to use tools, execute code, and perform multi-step reasoning to achieve a goal. This project is built to enable you to use "Agentic AI" — moving beyond simple prompt-response into a loop where the agent has access to your terminal & codebase, consisting of steps like:
+An _Agentic Workflow_ is a development pattern where the AI doesn't just "chat," but is empowered to use tools, execute code, and perform multi-step reasoning to achieve a goal. This project is built to enable you to use "Agentic AI" — moving beyond simple prompt-response into a loop where the agent has access to your terminal & codebase, consisting of steps like:
 
-- **Research:** Perceive & observe: gather data from environment, users, metrics.
-- **Strategy:** Interpret & model: synthesize observations into beliefs, state, goals, and hypotheses.
+- **Research:** Perceive & observe, gather data from environment, users, metrics.
+- **Strategy:** Interpret & model, synthesize observations into beliefs, state, goals, and hypotheses.
 - **Plan:** Choose objectives, create plans, allocate resources and roles.
 - **Act:** Execute tasks, run migration, deploy changes, produce outcomes.
 - **Evaluate:** Measure results, collect feedback, detect errors and opportunities.

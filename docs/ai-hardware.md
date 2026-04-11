@@ -2,7 +2,7 @@
 
 The massive parallel computations required in this new era of AI are a poor fit for the traditional CPU's of yesteryear. This is driving a transformation in computer architecture, toward making GPU's integral and high-bandwidth memory common. This architecture was formerly featured only in advanced gaming workstations, military simulation stations, or CGI media production labs.
 
-Tools like [llmfit](./llmfit.md) can help you identify the [LLM's](./ai-models.md) that will perform best on specific hardware you already own.
+_Tools like [llmfit](./llmfit.md) can help you identify the [LLM's](./ai-models.md) that will perform best on specific hardware you already own._
 
 ## Apple
 
@@ -62,7 +62,7 @@ is a [Quadro](https://www.nvidia.com/en-in/drivers/quadro-desktop-gpu-specs/), T
 - Avoid 7B/8B [models](./ai-models.md): While you can run them (like Llama 3.1 8B), they will exceed your `4`GB VRAM. Ollama will "spill" the remaining layers to your system RAM/CPU, and your speed will drop from ~50+ tokens/sec to about 3–5 tokens/sec. Stick to [models](./ai-models.md) labeled "4B" or lower for that smooth, local-only feel.
 - Monitor your VRAM: Open a terminal tab and run `nvidia-smi -l 1` to see how much of that VRAM you're using in real-time.
 - Update the stuff: Ensure your drivers are up to date to take advantage of speed optimizations that Ollama uses by default on Turing cards.
-- **NVFP4** Support: Newer versions of Ollama support NVFP4, a quantization format specifically for Nvidia cards that can reduce memory usage by nearly 50% with minimal quality loss. This might let you squeeze a 7B model into your 4GB VRAM comfortably.
+- **NVFP4** Support: Newer versions of [Ollama](./ollama.md) support NVFP4, a quantization format specifically for Nvidia cards that can reduce memory usage by nearly 50% with minimal quality loss. This might let you squeeze a 7B model into your 4GB VRAM comfortably.
 
 ### Nvidia GeForce RTX 20-series
 

@@ -16,7 +16,7 @@ Welcome, explorer. Choose a path to equipping yourself with AI assistance. Wheth
 
 ## 2. The Localist
 
-**Goal:** Complete privacy and zero latency costs. You want your AI to run entirely on your own hardware.
+**Goal:** Complete privacy and zero latency costs. You want your AI [models](./ai-models.md) to run entirely on your own [hardware](./ai-hardware.md).
 
 1.  **Assess:** Run `just install-llmfit` then execute `llmfit` to see which models fit your VRAM.
 2.  **Server:** Run `just install-ollama` to install the [Ollama](./ollama.md) inference engine.

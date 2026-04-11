@@ -1,6 +1,6 @@
 # llmfit
 
-[llmfit](https://github.com/AlexsJones/llmfit) is a command-line utility that helps you determine which open-source Large Language Models (LLMs) can run on your local hardware. It inspects your system's processors, VRAM, RAM, etc and cross-references it with the requirements of models, giving you a clear list of what will "fit" on your machine.
+[llmfit](https://github.com/AlexsJones/llmfit) is a command-line utility that helps you determine which open-source Large Language Models ([LLMs](./ai-models.md)) can run on your local [hardware](./ai-hardware.md). It inspects your system's processors, VRAM, RAM, etc and cross-references it with the requirements of models, giving you a clear list of what will "fit" on your machine.
 
 - ↪️ Run recipe to compile & install for your system: `just install-llmfit`
 
@@ -14,8 +14,8 @@ A model's size (e.g., 3B, 8B, 70B parameters) and its quantization level directl
 
 `llmfit` acts as a crucial "pre-flight check" in a developer's local AI workflow, integrating seamlessly with other tools:
 
--   **Ollama:** `llmfit` is the perfect companion to Ollama. Before you run `ollama pull <some-new-model>`, you can run `llmfit` to confirm that the model is a good match for your hardware's capabilities. It takes the guesswork out of model selection.
--   **Stockyard:** While Stockyard provides a unified API to manage both cloud and local models, `llmfit` helps you provision the "local" part of that stack. You can use `llmfit` to identify the most powerful models your workstation can handle, and then configure Stockyard to use them for fast, free, offline tasks. For more demanding queries, Stockyard can then route requests to powerful cloud-based models, giving you the best of both worlds.
+-   **Ollama:** `llmfit` is the perfect companion to [Ollama](./ollama.md). Before you run `ollama pull <some-new-model>`, you can run `llmfit` to confirm that the model is a good match for your hardware's capabilities. It takes the guesswork out of model selection.
+-   **Stockyard:** While [Stockyard](./stockyard.md) provides a unified API to manage both cloud and local models, `llmfit` helps you provision the "local" part of that stack. You can use `llmfit` to identify the most powerful models your workstation can handle, and then configure Stockyard to use them for fast, free, offline tasks. For more demanding queries, Stockyard can then route requests to powerful cloud-based models, giving you the best of both worlds.
 
 ## Practical Usage
 
