@@ -1,4 +1,4 @@
-# <img src="https://cdn.simpleicons.org/python" alt="Python logo" align="right" style="max-width: 96px; margin: 0.5ex 1em;"> UV
+# <img src="https://cdn.simpleicons.org/python" alt="Python logo" align="right" style="width: 96px; max-height: 96px; margin: 0.5ex 1em;"> UV
 
 [UV](https://docs.astral.sh/uv/getting-started/features/), the unified tool that replaces utilities in the Python ecosystem (pip, pip-tools, pyenv, virtualenv, pipx, poetry, twine), installs [Python](https://www.python.org/).
 
