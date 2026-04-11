@@ -1,10 +1,10 @@
-# Node
+# <img src="https://cdn.simpleicons.org/nodedotjs" align="right" width="48" height="48"> 🟢 Node
 
 [Node](https://nodejs.org/docs/latest/api/documentation.html) is an open-source, cross-platform JavaScript runtime environment that allows developers to execute JavaScript code outside of a web browser. Built on Google's V8 engine, it enables the use of JavaScript for server-side scripting to build fast and scalable network applications. Its core strength lies in its asynchronous, event-driven architecture, which uses a single-threaded event loop to handle thousands of concurrent connections without blocking execution.
 
 - ↪️ Run recipe: `just install-viteplus`
 
-## Package managers
+## 📦 Package managers
 
 There are a few package managers
 
@@ -12,7 +12,7 @@ There are a few package managers
 - [yarn](https://yarnpkg.com/)
 - [pnpm](https://pnpm.io/)
 
-## Languages
+## 🌐 Languages
 
 - [JavaScript](https://developer.mozilla.org/en-US/docs/Web/JavaScript)
     - [Kangax features matrix](https://compat-table.github.io/compat-table/es2016plus/) compat table
@@ -20,27 +20,27 @@ There are a few package managers
 - [Typescript](./typescript.md)
 - [AssemblyScript](./assemblyscript.md)
 
-## Frameworks
+## 🏗️ Frameworks
 
 The Node.js ecosystem is rich with frameworks that streamline development for both local/server-side and web/client-side applications.
 
-### Server-Side (Backend)
+### 🖥️ Server-Side (Backend)
 
 While Node.js provides the core runtime, frameworks like Express have become the de-facto standard for building web servers and APIs. They provide routing, middleware, and templating tools that simplify backend development.
 
 - [Express.js](https://expressjs.com/)
-- [Fastify](https://www.fastify.io/) for high performance
+- ⚡ [Fastify](https://www.fastify.io/) for high performance
 - [NestJS](https://nestjs.com/) for building scalable, enterprise-grade applications with TypeScript
 - Vercel's [Next.js](https://nextjs.org/ "The React Framework for the Web") with [Zod/TypeBox](https://javascript-conference.com/architecture-performance/safer-typescript-data-validation-zod-typebox/) for data-handling DSLs
 
-### Client-Side (Frontend)
+### 📱 Client-Side (Frontend)
 
 For building user interfaces, the JS/TypeScript ecosystem offers several powerful component-based frameworks. These tools enable developers to create interactive, single-page applications (SPA's) that run in the browser.
 
-- [React](./dev-web.md#react) is a library for building user interfaces, maintained by Meta. It uses a declarative, component-based approach and is one of the most popular choices for web development.
-- [Vue.js](https://vuejs.org/) is an approachable, performant, and versatile framework for building web user interfaces. It is known for its gentle learning curve.
-- [Svelte](https://svelte.dev/) is a radical new approach to building user interfaces. Whereas traditional frameworks do their work in the browser, Svelte shifts that work into a compile step that happens when you build your app.
+- ⚛️ [React](./dev-web.md#react) is a library for building user interfaces, maintained by Meta. It uses a declarative, component-based approach and is one of the most popular choices for web development.
+- 🖖 [Vue.js](https://vuejs.org/) is an approachable, performant, and versatile framework for building web user interfaces. It is known for its gentle learning curve.
+- 🔥 [Svelte](https://svelte.dev/) is a radical new approach to building user interfaces. Whereas traditional frameworks do their work in the browser, Svelte shifts that work into a compile step that happens when you build your app.
 
-## Workstation Applications
+## 💻 Workstation Applications
 
-- [Gemini CLI](https://geminicli.com/docs/) is a conversational assistant that can reason through complex requests and execute multi-step workflows; it uses Google's Gemini models in your terminal. It acts as a pair programmer to write, debug, and refactor code using a Reason & Act (Re/Act) loop. Has built-in tools for file system interaction, shell command execution, and web fetching. Uses large context windows to analyze codebase. Supports MCP. Has "slash commands" (e.g., /chat, /auth). `npm install -g @google/gemini-cli`
+- ♊ [Gemini CLI](https://geminicli.com/docs/) is a conversational assistant that can reason through complex requests and execute multi-step workflows; it uses Google's Gemini models in your terminal. It acts as a pair programmer to write, debug, and refactor code using a Reason & Act (Re/Act) loop. Has built-in tools for file system interaction, shell command execution, and web fetching. Uses large context windows to analyze codebase. Supports MCP. Has "slash commands" (e.g., /chat, /auth). `npm install -g @google/gemini-cli`

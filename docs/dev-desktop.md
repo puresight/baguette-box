@@ -1,8 +1,8 @@
-# Desktop development
+# 💻 Desktop development
 
 Desktop app development focuses on creating software applications that run natively on operating systems like [Windows](https://www.microsoft.com/windows), [macOS](https://www.apple.com/macos/), and [Linux](./dev-server.md). While this traditionally required separate codebases for each platform, modern development has shifted towards cross-platform frameworks. These toolkits allow developers to write code once and deploy it across desktop, mobile, and web, dramatically improving efficiency and ensuring a consistent user experience.
 
-## Tauri
+## ⛵ Tauri
 
 [Tauri](https://tauri.app/) has surged in popularity as a lightweight alternative to **[Electron](https://www.electronjs.org/)**. Instead of bundling a full Chromium instance, it leverages the system's native webview, resulting in tiny binary sizes (often under 5MB) and significantly lower memory usage. With its backend powered by [Rust](./rust.md), Tauri offers a high security posture and a "secure-by-default" model, making it an excellent choice for performance-sensitive desktop apps where a small footprint is critical. To get started here,
 
@@ -27,7 +27,7 @@ If you also own a **Windows** PC, install Microsoft **[Visual Studio](https://vi
 - "Desktop development with C++" `Microsoft.VisualStudio.Workload.NativeDesktop`
 - "MS Build Tools" `Microsoft.VisualStudio.Workload.MSBuildTools`
 
-## Flutter
+## 💙 Flutter
 
 [Flutter](./flutter.md) is Google's UI toolkit for building beautiful, natively compiled applications for desktop, [mobile](./dev-mobile.md#Flutter), and [web](./dev-web.md#Flutter) from a single codebase. Unlike frameworks that wrap native components, Flutter uses its own high-performance rendering engine (Skia) to draw every pixel on the screen. This gives developers complete control over the UI and ensures a consistent look and feel across all platforms.
 
@@ -37,7 +37,7 @@ If you also own a **Windows** PC, install Microsoft **[Visual Studio](https://vi
 - 📦 **Run your app:** You can run your application on your desktop with `flutter run -d <platform>` (e.g., `flutter run -d windows`).
 - 🛠 **Learn about platform integration:** While the UI is consistent, you may need to use platform-specific plugins for features like window management or system dialogs.
 
-## Kotlin Multiplatform
+## 🎯 Kotlin Multiplatform
 
 [Compose Multiplatform](https://www.jetbrains.com/lp/compose-multiplatform/), an extension of [Kotlin Multiplatform](https://kotlinlang.org/lp/multiplatform/), allows developers to build UIs for desktop, web, and mobile from a single, shared [Kotlin](./kotlin.md) codebase. It leverages the [Jetpack Compose](https://developer.android.com/jetpack/compose) paradigm, bringing a modern, declarative UI framework to the desktop.
 
@@ -48,7 +48,7 @@ For desktop development, Compose Multiplatform compiles your [Kotlin](./kotlin.m
 - 🚀 **Learn the Compose Mindset:** If you're new to Compose, learn the fundamentals of declarative UI, including Composable functions, state management, and modifiers. The principles are the same as on Android.
 - 📦 **Run your desktop app:** Once your project is set up, you can run your desktop application using the Gradle task `run`.
 
-## React Native
+## ⚛️ React Native
 
 While [React Native](https://reactnative.dev/) is famous for mobile development, its ecosystem has expanded to support desktop platforms through community and corporate-backed efforts. Projects like [React Native for Windows](https://microsoft.github.io/react-native-windows/) and [React Native for macOS](https://github.com/microsoft/react-native-macos) allow developers to leverage their existing [React](./dev-web.md#react) and JavaScript skills to build native desktop applications.
 

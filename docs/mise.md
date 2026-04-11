@@ -1,10 +1,10 @@
-# Mise
+# <img src="https://mise.jdx.dev/favicon.ico" align="right" width="48" height="48"> 📦 Mise
 
 > Mise-en-place is a polyglot runtime and tool manager! `mise` is a high-performance, _asdf_-compatible tool manager written in Rust. It serves as a unified interface for managing project-specific runtimes, environment variables, and tasks, effectively replacing the need for fragmented tools like `nvm`, `pyenv`, `direnv`, and `make`.
 
 - ↪️ Run recipe to install: `just install-mise`
 
-## Core Architecture & Primitives
+## 🏗️ Core Architecture & Primitives
 
 - **Shims vs. Path Manipulation:** Unlike `asdf`, which relies on shims by default (introducing execution overhead), `mise` primarily uses **PATH modification**. It dynamically injects the correct binary paths into the shell session upon directory entry.
 - **The Config Hierarchy:** Tool versions are resolved via a deterministic lookup:
@@ -14,7 +14,7 @@
   4.  Global config: `~/.config/mise/config.toml`.
 - **Backends:** `mise` supports multiple installation backends, including **asdf plugins**, native core repositories (for high-speed installs of Node, Ruby, Python, etc.), and **vfox**.
 
-## Configuration & Tool Management
+## ⚙️ Configuration & Tool Management
 
 The `.mise.toml` file is the central manifest for project environments. It supports version ranges, auto-installations, and environment-specific overrides.
 
@@ -25,7 +25,7 @@ The `.mise.toml` file is the central manifest for project environments. It suppo
 | **Global Aliases**       | Map custom names to specific versions (e.g., `prod` -> `1.2.3`).           |
 | **Lazy Loading**         | Plugins are only fetched/cached when a specific tool version is requested. |
 
-## Environment & Task Orchestration
+## 🔄 Environment & Task Orchestration
 
 Beyond versioning, `mise` integrates environment variable management and a task runner, reducing context switching.
 
@@ -34,7 +34,7 @@ Beyond versioning, `mise` integrates environment variable management and a task 
   - **Features:** File watching (`--watch`), requirements (ensure `db` is up before `test`), and parallel execution.
   - **Syntax:** Tasks are defined in `[tasks]` blocks using shell-like syntax or references to external scripts.
 
-## Developer Workflow: Quick Reference
+## 🏃 Developer Workflow: Quick Reference
 
 ```bash
 # Bootstrap an environment
@@ -50,7 +50,7 @@ mise doctor  # Validates shim integrity and PATH health
 mise ls      # Lists currently active and installed tool versions
 ```
 
-## Performance & Security
+## ⚡ Performance & Security
 
 Binary Speed: Written in Rust, mise is significantly faster than shell-script-based managers, with negligible latency added to shell startup (typically <5ms).
 

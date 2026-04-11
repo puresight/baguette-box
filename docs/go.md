@@ -1,4 +1,4 @@
-# Go
+# <img src="https://cdn.simpleicons.org/go" align="right" width="48" height="48"> 🐹 Go
 
 > [Go lang](https://go.dev/) is an open-source, statically typed, and compiled programming language (designed at Google by Robert Griesemer, Rob Pike, and Ken Thompson). It was created to address the challenges of large-scale software development, emphasizing simplicity, reliability, and efficiency.
 > 
@@ -8,6 +8,6 @@
 
 - ↪️ Run recipe to [install with Mise](https://mise.jdx.dev/lang/go.html): `just install-go`
 
-## WebAssembly
+## 🕸️ WebAssembly
 
 The standard Go compiler produces large binaries because it bundles the full Go runtime making [TinyGo](https://tinygo.org/) is the preferred toolchain for [WebAssembly](./wasm.md). TinyGo outputs leaner files and integrates cleanly if you already know Go, though it doesn’t support the complete Go standard library, which can be a limitation depending on what your code depends on.

@@ -7,7 +7,7 @@ Welcome, explorer. Choose a path to equipping yourself with AI assistance. Wheth
 **Goal:** A seamless, managed experience using Google's AI stack. Perfect if you have a Google [AI subscription](./ai-subscriptions.md).
 
 1.  **IDE Start:** Install [VS Code](../code/README.md) (`just code`) and configure the **Gemini Code Assist** extension for AI-powered autocomplete and chat directly in your editor.
-2.  **CLI Graduation:** Run `just install-gemini` to install the [Gemini CLI](./gemini.md). This moves you from simple editor chat to terminal-based agentic workflows that can execute shell commands and fetch web docs.
+2.  **CLI Graduation:** Run `just install-gemini` to install the [Gemini CLI](./gemini-cli.md). This moves you from simple editor chat to terminal-based agentic workflows that can execute shell commands and fetch web docs.
     ```sh
     # Authenticate and start chatting
     gemini

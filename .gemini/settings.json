@@ -1,0 +1,9 @@
+{
+  "plan": {
+    "enabled": true,
+    "modelRouting": true
+  },
+  "model": {
+    "defaultModel": "gemini-flash-latest"
+  }
+}

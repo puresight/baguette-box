@@ -1,8 +1,8 @@
-# Web development
+# 🌐 Web development
 
 Web development encompasses building websites and software applications for the internet. This guide provides an overview of several modern frameworks used to create rich, interactive user experiences. Below, you'll find introductions to React, a popular JavaScript library, as well as front-end, cross-platform toolkits like Flutter and Kotlin Multiplatform that bring different paradigms to web UI development.
 
-## React
+## ⚛️ React
 
 [React](https://react.dev/) is a declarative, component-based JavaScript library for building user interfaces, particularly for single-page applications where you need a fast, interactive experience. Maintained by Meta, it allows developers to create reusable UI components that manage their own state, leading to more predictable and debuggable code.
 
@@ -11,7 +11,7 @@ Web development encompasses building websites and software applications for the 
   - Hey check out T3 stack: [Create T3 Turbo](https://github.com/t3-oss/create-t3-turbo?tab=readme-ov-file#readme) allows shared code between Web (Vite/Next.js) and Mobile (Expo)
 - 🧠 **Understand component state:** Grasping core concepts like component state (`useState`), props, and the component lifecycle is fundamental to building anything non-trivial.
 
-## Flutter
+## 💙 Flutter
 
 [Flutter](./flutter.md) is a UI toolkit from Google for building natively compiled applications for web, mobile, and desktop from a single codebase. While it's widely known for mobile development, its web support has matured significantly, allowing developers to create rich, hardware-accelerated web applications with complex animations and a consistent look and feel across all platforms. It uses the [Dart](https://dart.dev/) programming language and a reactive, widget-based architecture.
 
@@ -20,7 +20,7 @@ Web development encompasses building websites and software applications for the 
 - 🚀 **Create a new project:** Run `flutter create my_flutter_web_app` to generate a new project with web support included. You can then run it in Chrome with `flutter run -d chrome`.
 - 🧠 **Understand layout constraints:** Unlike traditional web development with HTML/CSS, Flutter uses a widget tree with layout constraints. Familiarize yourself with core layout widgets like `Row`, `Column`, `Container`, and `Expanded`.
 
-## Kotlin Multiplatform
+## 🎯 Kotlin Multiplatform
 
 [Compose Multiplatform for Web](https://www.jetbrains.com/lp/compose-multiplatform/web/), an extension of [Kotlin Multiplatform](https://kotlinlang.org/lp/multiplatform/), allows developers to build UIs for web, desktop, and mobile from a single, shared Kotlin codebase. For web development, it leverages [Kotlin/JS](https://kotlinlang.org/docs/js-overview.html) to compile declarative UI code written with the [Jetpack Compose paradigm](https://developer.android.com/jetpack/compose) into interactive web applications. This enables teams to share not only business logic but also the entire user interface, ensuring consistency and accelerating development across platforms.
 
