@@ -2,6 +2,15 @@
 
 Mobile development involves creating software applications for smartphones and tablets. This guide covers several popular cross-platform frameworks that allow developers to build apps for both iOS and Android from a single codebase, maximizing efficiency and reach. Below, you'll find introductions to React Native, Flutter, and Kotlin Multiplatform, each offering a different approach to building high-quality mobile experiences.
 
+## ⛵ Tauri
+
+[Tauri](https://tauri.app/) 2.0 extends its lightweight, security-first philosophy from desktop to mobile, allowing developers to build native iOS and Android apps from a single codebase. By leveraging the system's native webview, it enables you to use your existing web frontend (React, Svelte, Vue, etc.) and a powerful [Rust](./rust.md) backend to create fast, secure mobile applications with a significantly smaller footprint than many alternatives.
+
+- 📖 **Read the official mobile guide:** The [Tauri mobile documentation](https://tauri.app/v2/guides/mobile/development) is the best place to start. It covers the specific requirements for setting up your environment for iOS (Xcode) and Android (Android Studio).
+- ⚙️ **Add the mobile target:** To add mobile support to an existing Tauri project, you can run `npx tauri mobile init`. This will scaffold the necessary configuration and native project files.
+- 🚀 **Run on a device or emulator:** Once configured, you can run your app using `vp run tauri mobile dev` (or `npm run tauri mobile dev`), which will build and launch the application on a connected device or emulator.
+- 🧠 **Understand the architecture:** Unlike frameworks that re-implement native UI components, Tauri renders your web app in a high-performance webview. The Rust backend runs on the mobile device, allowing for secure, high-performance logic, system access, and state management that is shared across all platforms (desktop and mobile).
+
 ## ⚛️ React Native
 
 [React Native](https://reactnative.dev/) enables you to build natively-rendering mobile apps for iOS and Android using [React](https://react.dev/) and JavaScript. Unlike web-view-based solutions, React Native uses the same fundamental UI building blocks as regular iOS and Android apps, so your app will have a truly native look and feel. It's an excellent choice for teams with a web development background in React.

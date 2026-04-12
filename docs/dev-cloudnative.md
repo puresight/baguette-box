@@ -1,13 +1,13 @@
 # Cloud Native Development
 
-Cloud native is an approach to building and running applications that fully leverages the advantages of the cloud computing model. As defined by the [<abbr title="Cloud Native Computing Foundation">CNCF</abbr>](https://www.cncf.io/), it's about designing applications as loosely coupled microservices, running them in containers, and managing them with dynamic orchestration. This differs significantly from traditional development.
+Cloud native is an approach to building and running applications that fully leverages the advantages of the cloud computing model. As defined by the [<abbr title="Cloud Native Computing Foundation">CNCF</abbr>](https://www.cncf.io/), it's about designing applications as loosely coupled "microservices," running them in containers, and managing them with dynamic orchestration. This differs significantly from traditional development.
 
 | Aspect | Traditional (Monolithic) | Cloud Native |
 | :--- | :--- | :--- |
-| **Architecture** | Large, single-unit applications where all components are tightly coupled. | Small, independent microservices, each responsible for a single business function. |
+| **Architecture** | Large, single-unit applications where all components are tightly coupled. | Small, independent "microservices," each responsible for a single business function. |
 | **Deployment** | Infrequent, large-scale releases with significant manual effort and downtime. | Frequent, automated releases via CI/CD pipelines, enabling rapid iteration. |
 | **Scalability** | Vertical scaling (adding more CPU/RAM to a single server). Expensive and has limits. | Horizontal scaling (adding more instances of a service). Elastic and cost-effective. |
-| **Resilience** | A failure in one component can bring down the entire application. | Failures are isolated to individual microservices; the system can remain partially functional. |
+| **Resilience** | A failure in one component can bring down the entire application. | Failures are isolated to individual "microservices"; the system can remain partially functional. |
 
 This shift enables organizations to build highly scalable, resilient, and agile systems. The key concepts below are the building blocks of this approach.
 
@@ -42,5 +42,5 @@ The [12 Factor App](https://12factor.net/) methodology is a set of principles fo
 
 While the original twelve factors provide a robust foundation, the evolution of cloud-native practices has led some architects to propose additional principles. These factors address modern challenges in areas like API design and security.
 
-13. **API First:** Design APIs as first-class artifacts. Define contracts (e.g., using OpenAPI) before implementation, as opposed to generating documentation from code. This contract-first approach enables parallel development, provides clear boundaries between microservices, and ensures the API is a stable, well-documented product.
+13. **API First:** Design APIs as first-class artifacts. Define contracts (e.g., using OpenAPI) before implementation, as opposed to generating documentation from code. This contract-first approach enables parallel development, provides clear boundaries between "microservices" and ensures the API is a stable, well-documented product.
 14. **Authentication & Authorization:** Treat identity as a first-class concern. Applications should not embed their own authentication logic but instead delegate it to centralized identity services (e.g., via OAuth2/OIDC). Authorization rules should be externalized and managed centrally where possible, rather than being hardcoded into the application.

@@ -2,6 +2,8 @@
 
 Web development encompasses building websites and software applications for the internet. This guide provides an overview of several modern frameworks used to create rich, interactive user experiences. Below, you'll find introductions to React, a popular JavaScript library, as well as front-end, cross-platform toolkits like Flutter and Kotlin Multiplatform that bring different paradigms to web UI development.
 
+💭 Something to be mindful of&hellip; _For web developers,_ [Tauri](./dev-desktop.md#Tauri) 2.0 offers a direct & efficient path to transform a progressive web application into a native product for Windows, macOS, Linux, iOS, and Android. Instead of rewriting code, you can package your existing web frontend (built with React, Vue, Svelte, etc.) into a native shell that uses the system's webview. This results in a small, fast, and secure application that can be distributed through app stores or as a standalone download. It's a powerful strategy for web developers looking to expand their product's reach beyond the browser, offering users a more integrated, offline-capable experience without the overhead of learning native development or the trouble of bundling a full browser like Electron.
+
 ## ⚛️ React
 
 [React](https://react.dev/) is a declarative, component-based JavaScript library for building user interfaces, particularly for single-page applications where you need a fast, interactive experience. Maintained by Meta, it allows developers to create reusable UI components that manage their own state, leading to more predictable and debuggable code.
