@@ -51,8 +51,14 @@ Welcome, explorer. Choose a path to equipping yourself with AI assistance. Wheth
 2.  **Configure:** Set your API keys as environment variables (OpenAI, Anthropic, Groq, etc.).
 3.  **Orchestrate:** Start Stockyard to provide a unified OpenAI-compatible endpoint at `http://localhost:4200/v1`.
 4.  **Execute:** Use [Goose](./goose.md) for autonomous agentic tasks or [Aider](./aider.md) for pair programming, both pointed at your Stockyard gateway.
-    ```sh
-    # Example: Running Aider through Stockyard
-    export OPENAI_API_BASE="http://localhost:4200/v1"
-    aider --model anthropic/claude-3-5-sonnet
-    ```
+## Privacy & IP Protection
+
+A common concern when using AI assistants is the protection of intellectual property (IP) and trade secrets. Most modern AI providers use "inference-time" data to improve their models unless you explicitly opt out.
+
+- **Local First:** If your security requirements are absolute, follow **The Localist** path. Running models entirely on your own hardware (via Ollama) ensures no data ever leaves your machine.
+- **Cloud Opt-Out:** If you use cloud-hosted models, ensure you have configured your accounts to prevent your queries and code from being used for training.
+
+See the specific tool pages for detailed opt-out instructions:
+- [Claude Code](./claude-code.md#privacy--opt-out)
+- [Gemini CLI](./gemini-cli.md#privacy--opt-out)
+- [OpenAI Codex CLI](./openai-codex.md#privacy--opt-out)
