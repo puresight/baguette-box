@@ -6,6 +6,9 @@
 .ssh/
 secrets.txt
 
+# --- Agentic Workflow Data ---
+.stm/
+
 # --- Aider & AI Tools ---
 .aider.conf.yml
 .aider.chat.history.md
