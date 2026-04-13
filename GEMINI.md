@@ -1,30 +1,10 @@
-# Agentic Workflow
+# Gemini Agent Instructions
 
-This is a cycle where you (the agent) iterate through these stations:
-
-- (Pre): Read files in your `./.stm/` short term memory directory. Always check the glob("./.stm/*.md") at the start of any new complex task.
-- Plan
-  - Research
-  - Strategy
-  - Plan
-- Act
-  - Execute
-  - Validate & Evaluate
-  - Measure (quantitative)
-  - Assess (qualitative)
-  - Critique
-  - Learn: remember by
-    - Append this GEMINI.md file to durably remember insights/lessons for the future. Presume I want to commit them to the repo but tag any you think are personal or private for my later review.
-    - Write to STM: add bullets to markdown files named by date in the repo's `./.stm/` directory for any tasks or specific knowledge you expect to complete or obsolete.
-- (Post): edit or remove files in your `./.stm/` directory
-
-----
-
-# Baguette Box - Project Context
+## Baguette Box - Project Context
 
 `baguette-box` is an AI-enabled developer environment bootstrap and configuration toolset designed for Debian-based systems and Fedora atomic Linux distributions (Bazzite, Silverblue, Bluefin, Aurora). It automates the setup of a professional workstation equipped for modern software development across Web, Mobile, Desktop, and Cloud, with a strong emphasis on Agentic AI integration.
 
-## Project Overview
+### Project Overview
 
 - **Primary Purpose**: Standardize and automate the installation of development tools, languages, and AI agents.
 - **Core Philosophies**: 
@@ -32,15 +12,15 @@ This is a cycle where you (the agent) iterate through these stations:
   - **AI-First**: Pre-configured for agentic workflows (Gemini, Goose, Aider, etc.).
   - **Modern Tooling**: Leverages `mise` for version management, `viteplus` for frontend management, and `uv` for Python/CLI tool management.
 
-## Tech Stack & Architecture
+### Tech Stack & Architecture
 
-### Management Tools
+#### Management Tools
 - **Task Runner**: `just` (see `justfile` as head of available recipes and modules).
 - **Version Manager**: `mise` (preferred for most language SDKs and CLI tools).
 - **Python/Tool Manager**: `uv` (used for Python environments and standalone CLI tools like Ansible).
 - **Package Managers**: `apt` (Debian), `homebrew` (uBlue/macOS), `flatpak` (Linux GUI), `wasmer` (WebAssembly).
 
-### Languages & Frameworks
+#### Languages & Frameworks
 Supports a wide range of ecosystems including:
 - **Web**: Node.js, TypeScript (via `viteplus`), WebAssembly (Rust, Go, AssemblyScript).
 - **Systems**: Rust (via `rustup`), Go, WebAssembly (Wasmer).
@@ -48,11 +28,11 @@ Supports a wide range of ecosystems including:
 - **Mobile**: React Native (via `viteplus`), Flutter.
 - **Desktop**: C#, .NET, Ruby on Rails, Elixir/Erlang, Haskell, Dart (Flutter).
 
-### Agentic AI & IDE
+#### Agentic AI & IDE
 - **IDEs**: VS Code (customized via `code/` directory), Antigravity, Goose.
 - **AI Agents**: Gemini CLI, Ollama (local LLMs), Stockyard (LLM control plane).
 
-## Key Directory Structure
+### Key Directory Structure
 
 - `/docs/specs/`: Authoritative specifications for the codebase
 - `/docs/`: Documentation for specific technologies
@@ -63,22 +43,22 @@ Supports a wide range of ecosystems including:
   - `apt.sh`: APT source and package management logic.
 - `justfile`: The entry point for all automation recipes.
 
-## Building and Running
+### Building and Running
 
 The project is a collection of setup scripts triggered by `just`.
 
-### Common Recipes
+#### Common Recipes
 - `just`: List all available recipes.
 - `just bootstrap-debian`: Full bootstrap for a fresh Debian system (installs APT packages, configures shell, installs uv/viteplus).
 - `just code`: Installs VS Code with pre-defined extensions and settings.
 - `just install-<tool>`: Targeted installations (e.g., `just install-rust`, `just install-goose`, `just install-java`).
 - `just display-versions`: Check the status of installed languages and major tools.
 
-### Configuration
+#### Configuration
 - Shell configuration logic is in `scripts/index.sh` under `configure_shell`.
 - VS Code settings are managed via `scripts/lib/json.sh` which merges local JSON templates into the system config.
 
-## Development Conventions
+### Development Conventions
 
 1. **Specifications**: Every new addition, change, or code transformation follows a spec.
 2. **Modular Scripts**: Installation logic should be placed in `scripts/` and exposed via `justfile` recipes.
@@ -87,8 +67,10 @@ The project is a collection of setup scripts triggered by `just`.
 5. **Documentation**: Every major tool or language addition should have a corresponding `.md` file in `/docs/` that describes it, and tells the user how to install it.
 6. **Testing**: Use the `_test-debian` or `_test-ublue` recipes in `justfile` to verify full environment builds.
 
-## GEMINI.md Instructions
+### Policy
+
 When interacting with this project:
+
 - Always check the `justfile` for the "official" way to install or configure a tool.
 - Refer to `scripts/*.sh` code for the underlying bash implementation of setup tasks.
 - If adding a new tool, ensure it follows the pattern of:
@@ -97,9 +79,3 @@ When interacting with this project:
   3. Adding an installation function in `scripts/`.
   4. Adding a recipe in `justfile`.
   5. Adding documentation in `docs/`.
-
-----
-
-# Long Term Memory
-
-The text below is added by Agents during the Learn station of their Workflow.
