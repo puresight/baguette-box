@@ -1,4 +1,4 @@
-# 🦙 Ollama
+# <figure style="float: right; margin: 0.4ex 0.5em; line-height: 1; text-align: center; font-size: 80px">🦙</figure> Ollama
 
 [Ollama](https://ollama.com/) is a powerful tool that simplifies running and managing large language models (LLMs). While it is well-known for running **open source models** like _Llama 3_ and _Mistral_ locally, it can also act as a unified interface to access powerful [cloud](./dev-server.md)-based models.
 

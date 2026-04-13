@@ -1,4 +1,4 @@
-# AI Quickstart
+# <figure style="float: right; margin: 0.5ex 0.5em; line-height: 1; text-align: center; font-size: 80px">🐰</figure> AI Quickstart
 
 Welcome, explorer. Choose a path to equipping yourself with AI assistance. Whether you prefer a completely offline local setup, a high-performance cloud-hybrid architecture, or a managed ecosystem, these examples could give you ideas on how to get started.
 

@@ -1,4 +1,4 @@
-# Fonts
+# <figure style="float: right; margin: 0.5ex 0.5em; line-height: 1; text-align: center; font-size: 80px">🔤</figure> Fonts
 
 [Nerd Fonts](https://www.nerdfonts.com/font-downloads)
 are a collection of popular developer-focused fonts, _patched with a massive set of additional glyphs and icons._ They merge standard monospaced typefaces with symbols from sets like Font Awesome, Devicons, and Octicons. Why they excel for developer workstations:

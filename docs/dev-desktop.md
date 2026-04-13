@@ -1,4 +1,4 @@
-# 💻 Desktop development
+# <figure style="float: right; margin: 0.4ex 0.5em; line-height: 1; text-align: center; font-size: 80px">🖥️</figure> Desktop development
 
 Desktop app development focuses on creating software applications that run natively on operating systems like [Windows](https://www.microsoft.com/windows), [macOS](https://www.apple.com/macos/), and [Linux](./dev-server.md). While this traditionally required separate codebases for each platform, modern development has shifted towards cross-platform frameworks. These toolkits allow developers to write code once and deploy it across desktop, mobile, and web, dramatically improving efficiency and ensuring a consistent user experience.
 

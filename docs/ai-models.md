@@ -1,4 +1,4 @@
-# AI Models
+# <figure style="float: right; margin: 0.31ex 0.5em; line-height: 1; text-align: center; font-size: 80px">🤖</figure> AI Models
 
 Large Language Models (LLMs) have evolved from cloud-only curiosities into versatile tools integrated across the software stack. On developer workstations, they function as agentic pair programmers, capable of understanding a local codebase to refactor files and automate commits. For consumer applications, small, efficient models are increasingly run directly on-device to power features like intelligent text completion or photo editing without a network connection. In the cloud, providers leverage Content Delivery Networks (CDN's) to serve low-latency [inference](./ai-inference.md) at the edge, enabling real-time AI features in web applications with global reach.
 

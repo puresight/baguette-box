@@ -1,4 +1,4 @@
-# Baguette Box &nbsp; 🥖🥖🥖
+# <figure style="float: right; margin: 0.7ex 0.5em; line-height: 1; text-align: center; font-size: 80px">🥖</figure> Baguette Box
 
 sets up an ✨[AI](./docs/ai.md)-enabled developer environment on
 [Debian](https://www.debian.org/) (like

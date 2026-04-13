@@ -1,4 +1,4 @@
-# AI Inference
+# <figure style="float: right; margin: 0.5ex 0.5em; line-height: 1; text-align: center; font-size: 80px">💬</figure> AI Inference
 
 For production applications, the standard billing model is pay-as-you-go token metering, where costs scale directly with API usage. Unlike the fixed-cost [monthly subscriptions](./ai-subscriptions.md) favored by app & media developers, this approach provides maximum flexibility for applications with variable workloads. However, it places the technical burden on the developer to optimize for efficiency to control costs. On this page, we explore the ecosystem of providers specializing in token-metered inference, from large-scale cloud platforms to low-latency edge networks.
 

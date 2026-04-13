@@ -1,4 +1,4 @@
-# APT
+# <img src="https://www.vectorlogo.zone/logos/debian/debian-icon.svg" alt="Debian logo" align="right" style="max-width: 96px; margin: 0 1em; border-left: 0.1em solid transparent;"> APT
 
 > The Advanced Package Tool ([APT](https://wiki.debian.org/AptCLI)) is a powerful command-line utility used primarily in Debian-based Linux distributions to automate the installation, configuration, and removal of software. For computer users, APT represents a streamlined way to manage their system; instead of manually hunting for installers online, users can download verified software from secure repositories with a single command. Its most significant benefit is automatic dependency management, which ensures that all supporting files required for a program to run are identified and installed simultaneously, maintaining system stability and security with minimal effort.
 

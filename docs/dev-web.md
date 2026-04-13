@@ -1,4 +1,4 @@
-# 🌐 Web development
+# <figure style="float: right; margin: 0.3ex 0.5em; line-height: 1; text-align: center; font-size: 80px">🌐</figure> Web development
 
 Web development encompasses building websites and software applications for the internet. This guide provides an overview of several modern frameworks used to create rich, interactive user experiences. Below, you'll find introductions to React, a popular JavaScript library, as well as front-end, cross-platform toolkits like Flutter and Kotlin Multiplatform that bring different paradigms to web UI development.
 

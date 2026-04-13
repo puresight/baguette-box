@@ -1,4 +1,4 @@
-# Docs
+# <figure style="float: right; margin: 0.1ex 1em; line-height: 1; text-align: center; font-size: 80px">📚</figure> Docs
 
 Use this repo to help you set up your ✨ [AI](./ai.md)-enabled developer environment
 with tooling for coding, cloud, compute, cache, storage, data management, et. al.

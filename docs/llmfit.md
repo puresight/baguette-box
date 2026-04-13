@@ -1,4 +1,4 @@
-# llmfit
+# <figure style="float: right; margin: 0.7ex 0.5em; line-height: 1; text-align: center; font-size: 80px">📏</figure> llmfit
 
 [llmfit](https://github.com/AlexsJones/llmfit) is a command-line utility that helps you determine which open-source Large Language Models ([LLMs](./ai-models.md)) can run on your local [hardware](./ai-hardware.md). It inspects your system's processors, VRAM, RAM, etc and cross-references it with the requirements of models, giving you a clear list of what will "fit" on your machine.
 

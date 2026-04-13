@@ -1,10 +1,10 @@
-# Vite+
+# <img src="https://viteplus.dev/logo.svg" alt="Vite+ logo" align="right" style="max-height: 96px; margin: 1ex 1em; border-left: 0.1em solid transparent;"> Vite+
 
 [Vite+](https://viteplus.dev/ "VitePlus") is an integrated, high-performance toolchain for modern [web development](./dev-web.md) that streamlines project setup and maintenance. It manages **[Node](./node.md)** runtimes and package managers, ensuring consistent environments across projects. By bundling fast, Rust-based tools, it provides a unified interface for static analysis, testing, and task running, aiming to be a comprehensive solution for the software development lifecycle.
 
 Developers should adopt Vite+ to boost productivity and ensure code quality through its unified, performance-oriented architecture. It replaces a fragmented collection of tools like [nvm](https://github.com/nvm-sh/nvm?tab=readme-ov-file#about), [Prettier](https://prettier.io/), and [ESLint](https://eslint.org/), with a single, cohesive command-line interface, reducing configuration overhead. Its integrated version management eliminates environment-related inconsistencies, allowing developers to focus more on building features and less on wrangling tools. It focuses on modernizing existing projects by replacing slow JavaScript tools with fast equivalents; it powers [Vue](https://vuejs.org/), [SvelteKit](https://kit.svelte.dev/), [Nuxt](https://nuxt.com/), [Astro](https://astro.build/), and is gaining ground in [Angular](https://angular.io/). Vite+ is winning the battle for the existing web as most major frameworks have standardized on its architecture.
 
-This performance is also critical for modern agentic ✨AI workflows, where ***fast feedback loops*** from linting and testing enable AI coding assistants to validate their changes and iterate rapidly, significantly accelerating pair programming.
+This performance is also critical for modern agentic AI workflows, where ***fast feedback loops*** from linting and testing enable AI coding assistants to validate their changes and iterate rapidly, significantly accelerating pair programming.
 
 - ↪️ Run recipe `just install-viteplus`
 - Config: find its managed runtimes, cached binaries, and global settings in `~/.vite-plus`

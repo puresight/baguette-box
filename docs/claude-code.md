@@ -1,4 +1,4 @@
-# Claude Code
+# <img src="https://www.google.com/s2/favicons?sz=128&domain=claude.com" alt="Claude logo" align="right" width="96" style="margin-top: 1ex; border-left: 0.1em solid transparent;"><!-- <img src="https://www.google.com/s2/favicons?sz=128&domain=anthropic.com"> --> Claude Code
 
 ## CLI
 

@@ -1,4 +1,4 @@
-# Keyring
+# <figure style="float: right; margin: 0.55ex 0.5em; line-height: 1; text-align: center; font-size: 80px">🔐</figure> Keyring
 
 [GNOME Keyring](https://wiki.gnome.org/Projects/GnomeKeyring) is a collection of components in the Linux environment that securely stores secrets, making them available to applications.
 Since VS Code is going to use this system anyway, you might as well use it, too. Secrets include credentials for apps, virtual private networks, shared drives, databases, signed messaging, secure tunnels, SSL/TLS certificates, etc. How to:

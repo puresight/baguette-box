@@ -1,4 +1,4 @@
-# Databases
+# <figure style="float: right; margin: 0.4ex 0.5em; line-height: 1; text-align: center; font-size: 80px">🗄️</figure> Databases
 
 <!-- --
 

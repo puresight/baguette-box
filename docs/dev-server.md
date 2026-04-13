@@ -1,6 +1,6 @@
-# Cloud
+# <figure style="float: right; margin: 0.3ex 0.5em; line-height: 1; text-align: center; font-size: 80px">🏢</figure> Cloud
 
-Cloud ("server-side") development involves building, deploying, and managing software applications that run on remote **servers** hosted on the internet ("the cloud") rather than on a user's local machine. This approach enables massive scalability, high availability, and global reach. Modern [cloud development](./dev-cloudnative.md) relies on a set of core practices and tools that abstract away physical hardware, allowing developers to focus on writing code and delivering value.
+☁️ Cloud ("server-side") development involves building, deploying, and managing software applications that run on remote **servers** hosted on the internet ("the cloud") rather than on a user's local machine. This approach enables massive scalability, high availability, and global reach. Modern [cloud development](./dev-cloudnative.md) relies on a set of core practices and tools that abstract away physical hardware, allowing developers to focus on writing code and delivering value.
 
 ## Cloud Providers
 

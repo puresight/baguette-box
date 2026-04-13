@@ -1,4 +1,4 @@
-# Stockyard
+# <img src="https://www.google.com/s2/favicons?sz=128&domain=stockyard.dev" alt="Stockyard logo" align="right" width="96" style="margin-top: 1ex; border-left: 0.1em solid transparent;"> Stockyard
 
 [Stockyard](https://stockyard.dev/docs/) is a source-available LLM control plane that acts as a unified gateway for AI model interactions. It provides a single, [OpenAI-compatible API](https://developers.openai.com/api/docs/libraries) endpoint to proxy requests to over 16 different model providers, including hosts for open models. With features like cost tracking, smart routing, request tracing, and security guardrails, it simplifies building and managing complex AI-powered applications. Stockyard is a single, self-hosted binary that gives you a unified control layer for cost, performance, and security across all your model providers.
 

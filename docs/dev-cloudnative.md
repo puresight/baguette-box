@@ -1,4 +1,4 @@
-# Cloud Native Development
+# <figure style="float: right; margin: 0.2ex 0.5em; line-height: 1; text-align: center; font-size: 80px">☁️</figure> Cloud Native Development
 
 Cloud native is an approach to building and running applications that fully leverages the advantages of the cloud computing model. As defined by the [<abbr title="Cloud Native Computing Foundation">CNCF</abbr>](https://www.cncf.io/), it's about designing applications as loosely coupled "microservices," running them in containers, and managing them with dynamic orchestration. This differs significantly from traditional development.
 

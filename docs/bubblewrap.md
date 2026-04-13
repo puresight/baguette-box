@@ -1,4 +1,4 @@
-# Bubblewrap
+# <figure style="float: right; margin: 0.3ex 0.5em; line-height: 1; text-align: center; font-size: 80px">🫧</figure> Bubblewrap
 
 [Bubblewrap](https://github.com/containers/bubblewrap) `bwrap` is a lightweight, unprivileged sandboxing tool that creates isolated environments using Linux namespaces (user/pid/mount/net/etc.), seccomp filters, and mounts — without needing root or setuid. Wrap your risky CLI commands in bwrap to remap filesystem, drop caps, isolate namespaces.
 

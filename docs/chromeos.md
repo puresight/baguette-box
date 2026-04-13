@@ -1,4 +1,4 @@
-# <img src="https://www.vectorlogo.zone/logos/google/google-icon.svg" alt="Google logo" align="right" width="96" style="margin-top: 1ex; border-left: 0.1em solid transparent;"> ChromeOS
+# <img src="https://chromeos.dev/badges/en/primary.svg" alt="Add to Chromebook badge" align="right" width="160" style="margin-top: 1ex; border-left: 0.1em solid transparent;"> ChromeOS
 
 ## Get Started
 

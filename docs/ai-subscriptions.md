@@ -1,4 +1,4 @@
-# AI Subscriptions
+# <figure style="float: right; margin: 0.3ex 0.5em; line-height: 1; text-align: center; font-size: 80px">💳</figure> AI Subscriptions
 
 When choosing an AI service, developers face a key decision between two primary billing models: fixed monthly subscriptions and pay-as-you-go token metering. **Monthly subscriptions** offer predictable, fixed costs, making them ideal for professionals who require consistent, heavy usage for tasks like coding and research. This model often includes benefits like priority access and higher rate limits, abstracting away the need to monitor the token count of every query. In contrast, **token-metered billing** is the standard for production applications, where costs scale directly with usage. This pay-as-you-go approach provides maximum flexibility and can be more economical for sporadic use, but it places the technical burden on the developer to optimize for efficiency by carefully managing prompt length and output size to control costs.
 

@@ -1,4 +1,4 @@
-# AI Hardware
+# <figure style="float: right; margin: 0.3ex 0.5em; line-height: 1; text-align: center; font-size: 80px"></figure> AI Hardware
 
 The massive parallel computations required in this new era of AI are a poor fit for the traditional CPU's of yesteryear. This is driving a transformation in computer architecture, toward making GPU's integral and high-bandwidth memory common. This architecture was formerly featured only in advanced gaming workstations, military simulation stations, or CGI media production labs.
 

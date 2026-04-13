@@ -1,4 +1,4 @@
-# <img src="https://cdn.simpleicons.org/googlegemini" alt="Google Gemini logo" align="right" width="96" style="margin-top: 1ex; border-left: 0.1em solid transparent;"> AI
+# <figure style="float: right; margin: 0.5ex 0.4em; line-height: 1; text-align: center; font-size: 80px">✨</figure> AI
 
 The modern AI stack is a layered system, starting with the [hardware](./ai-hardware.md) that dictates performance (before selecting your stack, use [llmfit](./llmfit.md) to determine what your local machine can realistically handle). On this foundation run the "brains" of the operation: the Large Language Models, ranging from small local LLM's to really big ones that run in cloud datacenters.
 
